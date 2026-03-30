@@ -2,9 +2,8 @@ backend:
   name: github
   repo: meettheminmusic/meettheminmusic-blog
   branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
-  site_domain: meettheminmusic.netlify.app
+  base_url: https://meettheminmusic.netlify.app
+  auth_endpoint: .netlify/identity/authorize
 
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
