@@ -1,12 +1,12 @@
 baseURL = "https://meettheminmusic.com/"
 languageCode = "en-us"
 title = "Meet Them in Music"
-theme = ""  # We're building layouts directly, no external theme
+
 
 [params]
   tagline = "Music education that starts where they are."
   author = "Dr. P. Eric Bottorff"
-  description = "Adaptive music education for students with disabilities. Research-informed, practitioner-friendly strategies for inclusive music classrooms."
+  description = "Practical strategies and resources for teaching music to students with disabilities. Research-informed, practitioner-friendly. By Dr. P. Eric Bottorff."
   # Brand colors (available in templates via .Site.Params)
   colorCharcoal = "#2C2C2A"
   colorWarmGray = "#5F5E5A"
