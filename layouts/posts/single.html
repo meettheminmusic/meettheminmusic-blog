@@ -1,0 +1,23 @@
+{{ define "main" }}
+<article>
+  <div class="post-header">
+    <p class="post-meta">{{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min read</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.tags }}
+    <div style="margin-top: 0.75rem;">
+      {{ range . }}<a href="/tags/{{ . | urlize }}/" class="tag">{{ . }}</a> {{ end }}
+    </div>
+    {{ end }}
+  </div>
+
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+
+  <hr style="margin: 3rem 0;">
+  <p style="color: var(--warm-gray); font-size: 0.875rem;">
+    Written by <strong>{{ .Site.Params.author }}</strong>. Have a question or want to connect?
+    <a href="/contact/">Get in touch</a>.
+  </p>
+</article>
+{{ end }}

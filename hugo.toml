@@ -1,0 +1,56 @@
+baseURL = "https://meettheminmusic.com/"
+languageCode = "en-us"
+title = "Meet Them in Music"
+theme = ""  # We're building layouts directly, no external theme
+
+[params]
+  tagline = "Music education that starts where they are."
+  author = "Dr. P. Eric Bottorff"
+  description = "Adaptive music education for students with disabilities. Research-informed, practitioner-friendly strategies for inclusive music classrooms."
+  # Brand colors (available in templates via .Site.Params)
+  colorCharcoal = "#2C2C2A"
+  colorWarmGray = "#5F5E5A"
+  colorTeal = "#0F6E56"
+  colorWarmWhite = "#FAFAF8"
+  colorTealTint = "#E1F5EE"
+  colorDarkTeal = "#085041"
+
+[markup]
+  [markup.highlight]
+    style = "github"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # Allows raw HTML in Markdown if needed
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Blog"
+    url = "/posts/"
+    weight = 2
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 3
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 4
+
+[permalinks]
+  posts = "/:slug/"

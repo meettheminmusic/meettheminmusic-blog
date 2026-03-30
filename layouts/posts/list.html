@@ -1,0 +1,12 @@
+{{ define "main" }}
+<h1>All posts</h1>
+<ul class="post-list">
+  {{ range .Pages }}
+  <li class="post-card">
+    <p class="post-meta">{{ .Date.Format "January 2, 2006" }}</p>
+    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+    <p class="post-excerpt">{{ .Summary | truncate 160 }}</p>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}
