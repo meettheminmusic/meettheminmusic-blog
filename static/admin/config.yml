@@ -1,9 +1,6 @@
 backend:
-  name: github
-  repo: meettheminmusic/meettheminmusic-blog
+  name: git-gateway
   branch: main
-  base_url: https://meettheminmusic.netlify.app
-  auth_endpoint: .netlify/identity/authorize
 
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
