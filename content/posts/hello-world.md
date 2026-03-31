@@ -1,7 +1,7 @@
 ---
 title: Welcome to Meet Them in Music
 date: 2026-03-29
-draft: false
+draft: true
 description: Introducing a new resource for inclusive music education.
 tags:
   - introduction
