@@ -9,6 +9,9 @@
       {{ range . }}<a href="/tags/{{ . | urlize }}/" class="tag">{{ . }}</a> {{ end }}
     </div>
     {{ end }}
+    {{ with .Params.image }}
+    <img src="{{ . }}" alt="" class="post-featured-image">
+    {{ end }}
   </div>
 
   <div class="post-content">
