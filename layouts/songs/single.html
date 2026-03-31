@@ -1,0 +1,50 @@
+{{ define "main" }}
+<div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+  <p class="song-back"><a href="/songs/">&larr; Song library</a></p>
+  <article class="song-single">
+    <h1>{{ .Title }}</h1>
+
+    <dl class="song-details">
+      {{ with .Params.keys }}
+      <div class="song-detail-row">
+        <dt>Key</dt>
+        <dd>{{ index . 0 }}</dd>
+      </div>
+      {{ end }}
+      {{ with .Params.modes }}
+      <div class="song-detail-row">
+        <dt>Mode</dt>
+        <dd>{{ index . 0 }}</dd>
+      </div>
+      {{ end }}
+      {{ with .Params.meters }}
+      <div class="song-detail-row">
+        <dt>Meter</dt>
+        <dd>{{ index . 0 }}</dd>
+      </div>
+      {{ end }}
+      {{ with .Params.source }}
+      <div class="song-detail-row">
+        <dt>Source</dt>
+        <dd>{{ if $.Params.source_url }}<a href="{{ $.Params.source_url }}" target="_blank" rel="noopener">{{ . }}</a>{{ else }}{{ . }}{{ end }}</dd>
+      </div>
+      {{ end }}
+    </dl>
+
+    {{ with .Params.concepts }}
+    <div class="song-concepts" style="margin-bottom: 1.5rem;">
+      <span class="filter-label">Concepts</span>
+      <div style="margin-top: 0.5rem;">
+        {{ range . }}<span class="tag">{{ . }}</span> {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{ with .Content }}
+    <div class="post-content">
+      {{ . }}
+    </div>
+    {{ end }}
+  </article>
+</div>
+{{ end }}

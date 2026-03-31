@@ -1,0 +1,126 @@
+{{ define "main" }}
+<div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+  <div class="library-header">
+    <h1>Song library</h1>
+    <p class="library-desc">Browse and filter songs by concept, key, mode, and meter.</p>
+  </div>
+
+  <div class="library-filters" id="library-filters">
+    <div class="filter-group">
+      <span class="filter-label">Concepts</span>
+      <div class="filter-buttons" data-filter="concepts">
+        {{ range .Site.Taxonomies.concepts }}
+          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+        {{ end }}
+      </div>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Mode</span>
+      <div class="filter-buttons" data-filter="mode">
+        {{ range .Site.Taxonomies.modes }}
+          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+        {{ end }}
+      </div>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Meter</span>
+      <div class="filter-buttons" data-filter="meter">
+        {{ range .Site.Taxonomies.meters }}
+          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+        {{ end }}
+      </div>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Key</span>
+      <div class="filter-buttons" data-filter="key">
+        {{ range .Site.Taxonomies.keys }}
+          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+        {{ end }}
+      </div>
+    </div>
+    <button class="filter-clear" id="filter-clear" hidden>Clear filters</button>
+  </div>
+
+  <p class="library-count" id="library-count"></p>
+
+  <ul class="song-list" id="song-list">
+    {{ range .Pages.ByTitle }}
+    <li class="song-card"
+      data-concepts="{{ delimit .Params.concepts "|" | lower }}"
+      data-mode="{{ delimit .Params.modes "|" | lower }}"
+      data-meter="{{ delimit .Params.meters "|" | lower }}"
+      data-key="{{ delimit .Params.keys "|" | lower }}">
+      <div class="song-card-main">
+        <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        <div class="song-meta">
+          {{ with .Params.keys }}<span class="song-meta-item">{{ index . 0 }}</span>{{ end }}
+          {{ with .Params.modes }}<span class="song-meta-item">{{ index . 0 }}</span>{{ end }}
+          {{ with .Params.meters }}<span class="song-meta-item">{{ index . 0 }}</span>{{ end }}
+        </div>
+        {{ with .Params.concepts }}
+        <div class="song-concepts">
+          {{ range . }}<span class="tag">{{ . }}</span> {{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+</div>
+
+<script>
+(function () {
+  const activeFilters = { concepts: [], mode: [], meter: [], key: [] };
+  const cards = Array.from(document.querySelectorAll('.song-card'));
+  const countEl = document.getElementById('library-count');
+  const clearBtn = document.getElementById('filter-clear');
+
+  function updateCount(visible) {
+    countEl.textContent = visible === cards.length
+      ? `${cards.length} songs`
+      : `${visible} of ${cards.length} songs`;
+  }
+
+  function applyFilters() {
+    let visible = 0;
+    const hasActive = Object.values(activeFilters).some(a => a.length > 0);
+    clearBtn.hidden = !hasActive;
+
+    cards.forEach(card => {
+      const match = Object.entries(activeFilters).every(([key, values]) => {
+        if (!values.length) return true;
+        const cardVal = card.dataset[key] || '';
+        return values.every(v => cardVal.split('|').includes(v.toLowerCase()));
+      });
+      card.hidden = !match;
+      if (match) visible++;
+    });
+    updateCount(visible);
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = btn.closest('[data-filter]').dataset.filter;
+      const val = btn.dataset.value;
+      const idx = activeFilters[group].indexOf(val);
+      if (idx === -1) {
+        activeFilters[group].push(val);
+        btn.classList.add('active');
+      } else {
+        activeFilters[group].splice(idx, 1);
+        btn.classList.remove('active');
+      }
+      applyFilters();
+    });
+  });
+
+  clearBtn.addEventListener('click', () => {
+    Object.keys(activeFilters).forEach(k => activeFilters[k] = []);
+    document.querySelectorAll('.filter-btn.active').forEach(b => b.classList.remove('active'));
+    applyFilters();
+  });
+
+  updateCount(cards.length);
+})();
+</script>
+{{ end }}

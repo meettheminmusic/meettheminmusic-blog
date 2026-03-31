@@ -33,6 +33,10 @@ title = "Meet Them in Music"
 [taxonomies]
   tag = "tags"
   category = "categories"
+  concept = "concepts"
+  mode = "modes"
+  meter = "meters"
+  key = "keys"
 
 [menu]
   [[menu.main]]
@@ -44,13 +48,17 @@ title = "Meet Them in Music"
     url = "/posts/"
     weight = 2
   [[menu.main]]
+    name = "Song library"
+    url = "/songs/"
+    weight = 3
+  [[menu.main]]
     name = "About"
     url = "/about/"
-    weight = 3
+    weight = 4
   [[menu.main]]
     name = "Contact"
     url = "/contact/"
-    weight = 4
+    weight = 5
 
 [permalinks]
   posts = "/:slug/"
