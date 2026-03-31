@@ -1,13 +1,15 @@
 ---
 title: Hogs in the Cornfield
 concepts:
-  - 16th notes, 8th notes
+  - 16th notes
+  - 8th notes
 keys:
   - D
 modes:
   - Major
 meters:
-  - Duple, 2/4
+  - Duple
+  - 2/4
 source: Traditional
 source_url: ''
 ---
