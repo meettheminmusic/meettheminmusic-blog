@@ -127,13 +127,6 @@ img {
 }
 .logo-meet { color: var(--teal); }
 .logo-in { color: var(--charcoal); }
-.logo-byline {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: var(--warm-gray);
-  letter-spacing: 0.02em;
-}
 
 .site-nav { display: flex; gap: 1.5rem; }
 .site-nav a {

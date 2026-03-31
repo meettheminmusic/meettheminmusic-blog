@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Meet Them in Music</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Meet Them in Music</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;Meet Them in Music is a resource for music educators who want to better serve students with disabilities. Founded by Dr. P. Eric Bottorff, an elementary music educator and district content leader in Michigan, this site bridges the gap between music education and special education with research-informed, practitioner-friendly strategies.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Contact</title>
+      <link>http://localhost:1313/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/contact/</guid>
+      <description>&lt;p&gt;Have a question, resource suggestion, or collaboration idea? I&amp;rsquo;d love to hear from you.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Email:&lt;/strong&gt; &lt;a href=&#34;mailto:MeetThemInMusic@gmail.com&#34;&gt;MeetThemInMusic@gmail.com&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
