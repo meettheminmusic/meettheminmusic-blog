@@ -1,6 +1,8 @@
 ---
 title: Akka Bakka Soda Cracker
-concepts: []
+concepts:
+  - Steady beat
+  - Turn taking
 keys:
   - D
   - unpitched
