@@ -22,6 +22,21 @@ collections:
       - { label: "Featured image", name: "image", widget: "image", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
 
+  - name: "songs"
+    label: "Song library"
+    folder: "content/songs"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Concepts", name: "concepts", widget: "list", required: false }
+      - { label: "Keys", name: "keys", widget: "list", required: false }
+      - { label: "Modes", name: "modes", widget: "list", required: false }
+      - { label: "Meters", name: "meters", widget: "list", required: false }
+      - { label: "Source", name: "source", widget: "string", required: false }
+      - { label: "Source URL", name: "source_url", widget: "string", required: false }
+      - { label: "Notes", name: "body", widget: "markdown", required: false }
+
   - name: "pages"
     label: "Pages"
     folder: "content"
