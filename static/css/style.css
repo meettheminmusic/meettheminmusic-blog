@@ -506,6 +506,22 @@ img {
   margin: 0;
 }
 
+/* --- Callout --- */
+
+.callout {
+  background-color: var(--teal-tint);
+  border-left: 4px solid var(--teal);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+}
+
+.callout-title {
+  font-weight: 600;
+  color: var(--dark-teal);
+  margin-bottom: 0.5rem;
+}
+
 /* --- Responsive --- */
 
 @media (max-width: 640px) {
