@@ -1,12 +1,19 @@
 {{ define "main" }}
-<div style="margin-bottom: 3rem;">
-  <h1>{{ .Site.Params.tagline }}</h1>
-  <p style="font-size: 1.125rem; color: var(--warm-gray); max-width: 560px;">
-    Practical strategies, research-informed resources, and inclusive approaches for teaching music to students with disabilities.
-  </p>
+<div class="hero">
+  <div class="hero-circles" aria-hidden="true">
+    <div class="hero-circle hero-circle--1"></div>
+    <div class="hero-circle hero-circle--2"></div>
+    <div class="hero-circle hero-circle--3"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">by Dr. P. Eric Bottorff</p>
+    <h1 class="hero-title"><span class="hero-title--teal">Meet Them</span> in Music</h1>
+    <p class="hero-tagline">{{ .Site.Params.tagline }}</p>
+    <p class="hero-desc">Practical strategies, research-informed resources, and inclusive approaches for teaching music to students with disabilities.</p>
+  </div>
 </div>
 
-<h2 style="font-size: 1rem; color: var(--warm-gray); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;">Recent posts</h2>
+<h2 class="section-label">Recent posts</h2>
 <ul class="post-list">
   {{ range first 10 (where .Site.RegularPages "Section" "posts") }}
   <li class="post-card">

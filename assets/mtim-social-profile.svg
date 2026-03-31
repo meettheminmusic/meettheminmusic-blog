@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;display=swap');
+    </style>
+  </defs>
+  <rect width="400" height="400" fill="#FAFAF8"/>
+  <text x="200" y="185" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="32" font-weight="500" letter-spacing="-0.3" text-anchor="middle"><tspan fill="#0F6E56">Meet Them</tspan></text>
+  <text x="200" y="222" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="32" font-weight="500" letter-spacing="-0.3" text-anchor="middle" fill="#2C2C2A">in Music</text>
+  <text x="200" y="252" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="400" fill="#5F5E5A" letter-spacing="0.5" text-anchor="middle">by Dr. P. Eric Bottorff</text>
+</svg>

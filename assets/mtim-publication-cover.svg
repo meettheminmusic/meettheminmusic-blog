@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#FAFAF8"/>
+
+  <!-- Subtle geometric accent: overlapping translucent circles suggesting connection/inclusion -->
+  <circle cx="180" cy="315" r="260" fill="none" stroke="#0F6E56" stroke-width="0.75" opacity="0.08"/>
+  <circle cx="320" cy="315" r="260" fill="none" stroke="#0F6E56" stroke-width="0.75" opacity="0.08"/>
+  <circle cx="880" cy="315" r="260" fill="none" stroke="#0F6E56" stroke-width="0.75" opacity="0.08"/>
+  <circle cx="1020" cy="315" r="260" fill="none" stroke="#0F6E56" stroke-width="0.75" opacity="0.08"/>
+
+  <!-- Faint intersection fills -->
+  <clipPath id="left-intersect">
+    <circle cx="320" cy="315" r="260"/>
+  </clipPath>
+  <circle cx="180" cy="315" r="260" fill="#0F6E56" opacity="0.03" clip-path="url(#left-intersect)"/>
+
+  <clipPath id="right-intersect">
+    <circle cx="1020" cy="315" r="260"/>
+  </clipPath>
+  <circle cx="880" cy="315" r="260" fill="#0F6E56" opacity="0.03" clip-path="url(#right-intersect)"/>
+
+  <!-- Subtle horizontal rule above text -->
+  <line x1="540" y1="230" x2="660" y2="230" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round" opacity="0.25"/>
+
+  <!-- Wordmark -->
+  <text x="600" y="285" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="54" font-weight="500" letter-spacing="-0.5" text-anchor="middle"><tspan fill="#0F6E56">Meet Them</tspan><tspan fill="#2C2C2A"> in Music</tspan></text>
+
+  <!-- Tagline -->
+  <text x="600" y="332" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="400" fill="#5F5E5A" text-anchor="middle" font-style="italic">Music education that starts where they are.</text>
+
+  <!-- Byline -->
+  <text x="600" y="368" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="400" fill="#888780" letter-spacing="0.5" text-anchor="middle">by Dr. P. Eric Bottorff</text>
+
+  <!-- Subtle horizontal rule below text -->
+  <line x1="540" y1="395" x2="660" y2="395" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round" opacity="0.25"/>
+
+</svg>
