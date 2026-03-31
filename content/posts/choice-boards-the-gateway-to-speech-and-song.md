@@ -1,18 +1,12 @@
 ---
 title: 'Choice Boards: The Gateway to Speech and Song'
 date: 2026-03-31T17:02:00
-draft: false
+draft: true
 description: ''
 tags: []
 categories: []
 image: ''
 ---
-
-# Choice boards: the gateway to speech and song
-
-_by Dr. P. Eric Bottorff_
-
-***
 
 Here's a moment you've probably had. You're about to launch into a singing activity, the kind your class is going to love, and you glance over at the student who is non-speaking or minimally verbal. And you quietly ask yourself: what do I do with them right now?
 
