@@ -2,11 +2,14 @@
 title: Akka Bakka Soda Cracker
 concepts: []
 keys:
-  - D, unpitched
+  - D
+  - unpitched
 modes:
-  - Major, chant
+  - Major
+  - chant
 meters:
-  - Duple, 2/4
+  - Duple
+  - 2/4
 source: ''
 source_url: ''
 ---
@@ -21,21 +24,21 @@ source_url: ''
 
 **<u>Activity:</u>**
 
-_Turn taking game:_ One student stomps around the room to the beat of the song.  On the final quarter note ("you!"). The student points to another student to take their place.  
+_Turn taking game:_ One student stomps around the room to the beat of the song.  On the final quarter note ("you!"). The student points to another student to take their place.
 
 For students who are hesitant to participate, or who have movement difference, they can hold the hand of the teacher or their favorite paraprofessional.
 
 **<u>Assessment Opportunity:</u>**
 
-**Beat Keeping:** 
+**Beat Keeping:**
 
 Watch for student ability to march to the beat of the song. Do they keep one foot in time while the other does not?  Does beat keeping change at a different tempo?
 
-**Rests:** 
+**Rests:**
 
 Is the student able to keep the beat through a silent rest? Do they rush/drag/alter their movement on the rest?
 
-**Predicting Song Ending/Tracking Form:** 
+**Predicting Song Ending/Tracking Form:**
 
 Does the student end preceisely on the word "you!" or do they run to choose a next participant on the ending rest of the song?
 
