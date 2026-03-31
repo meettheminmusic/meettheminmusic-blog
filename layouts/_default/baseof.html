@@ -13,6 +13,15 @@
   <meta property="og:url" content="{{ .Permalink }}">
   {{ with .Params.image }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
 
+  <!-- Apply saved contrast preference before CSS loads to prevent flash -->
+  <script>
+    (function () {
+      var contrast = localStorage.getItem('mtim-contrast');
+      if (!contrast) contrast = window.matchMedia('(prefers-contrast: more)').matches ? 'high' : 'standard';
+      if (contrast === 'high') document.documentElement.setAttribute('data-contrast', 'high');
+    })();
+  </script>
+
   <!-- Fonts and styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,13 +45,23 @@
         <span class="logo-in"> in Music</span>
         <span class="logo-byline">by Dr. P. Eric Bottorff</span>
       </a>
-      <nav class="site-nav">
-        {{ range .Site.Menus.main }}
-          <a href="{{ .URL }}" {{ if $.IsMenuCurrent "main" . }}class="active"{{ end }}>
-            {{ .Name }}
-          </a>
-        {{ end }}
-      </nav>
+      <div class="header-end">
+        <nav class="site-nav">
+          {{ range .Site.Menus.main }}
+            <a href="{{ .URL }}" {{ if $.IsMenuCurrent "main" . }}class="active"{{ end }}>
+              {{ .Name }}
+            </a>
+          {{ end }}
+        </nav>
+        <div class="a11y-controls">
+          <button id="contrast-toggle" class="a11y-btn" aria-pressed="false" aria-label="High contrast">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 3a9 9 0 0 1 0 18V3z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -58,5 +77,28 @@
     </div>
   </footer>
 
+  <script>
+    (function () {
+      var html = document.documentElement;
+      var contrastBtn = document.getElementById('contrast-toggle');
+
+      function syncButton() {
+        contrastBtn.setAttribute('aria-pressed', html.getAttribute('data-contrast') === 'high' ? 'true' : 'false');
+      }
+
+      syncButton();
+
+      contrastBtn.addEventListener('click', function () {
+        if (html.getAttribute('data-contrast') === 'high') {
+          html.removeAttribute('data-contrast');
+          localStorage.setItem('mtim-contrast', 'standard');
+        } else {
+          html.setAttribute('data-contrast', 'high');
+          localStorage.setItem('mtim-contrast', 'high');
+        }
+        syncButton();
+      });
+    })();
+  </script>
 </body>
 </html>

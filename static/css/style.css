@@ -506,6 +506,78 @@ img {
   margin: 0;
 }
 
+/* --- Accessibility toggle buttons --- */
+
+.header-end {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.a11y-controls {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.a11y-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 0.5px solid var(--neutral-100);
+  background: transparent;
+  color: var(--warm-gray);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  padding: 0;
+}
+.a11y-btn:hover {
+  background: var(--neutral-50);
+  color: var(--charcoal);
+  border-color: var(--neutral-100);
+}
+.a11y-btn[aria-pressed="true"] {
+  background: var(--teal);
+  color: var(--white);
+  border-color: var(--teal);
+}
+.a11y-btn:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+/* --- High contrast --- */
+
+[data-contrast="high"] {
+  --charcoal: #000000;
+  --warm-gray: #3D3D3D;
+  --teal: #005A40;
+  --dark-teal: #003D2B;
+  --warm-white: #FFFFFF;
+  --teal-tint: #B8E8D0;
+  --neutral-100: #767676;
+  --neutral-50: #F0F0F0;
+  --white: #FFFFFF;
+}
+
+/* --- Respect OS preferences for users without JS --- */
+
+@media (prefers-contrast: more) {
+  :root:not([data-contrast]) {
+    --charcoal: #000000;
+    --warm-gray: #3D3D3D;
+    --teal: #005A40;
+    --dark-teal: #003D2B;
+    --warm-white: #FFFFFF;
+    --teal-tint: #B8E8D0;
+    --neutral-100: #767676;
+    --neutral-50: #F0F0F0;
+    --white: #FFFFFF;
+  }
+}
+
 /* --- Callout --- */
 
 .callout {
@@ -528,6 +600,7 @@ img {
   h1 { font-size: 1.5rem; }
   h2 { font-size: 1.25rem; }
   .site-header .container { flex-direction: column; gap: 1rem; }
+  .header-end { gap: 1rem; }
   .site-nav { gap: 1rem; }
   .hero-title { font-size: 2.1rem; }
   .hero { padding: 3rem 0 2.5rem; }
