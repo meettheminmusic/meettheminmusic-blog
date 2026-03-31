@@ -31,8 +31,9 @@
 
   <header class="site-header">
     <div class="container">
-      <a href="/" class="logo" aria-label="Meet Them in Music — home">
-        <img src="/mtim-logo-horizontal-light.svg" alt="Meet Them in Music" class="logo-img">
+      <a href="/" class="logo">
+        <span class="logo-meet">Meet Them</span>
+        <span class="logo-in"> in Music</span>
       </a>
       <nav class="site-nav">
         {{ range .Site.Menus.main }}
@@ -44,13 +45,13 @@
     </div>
   </header>
 
-  <main class="container" style="padding-top: 2rem; padding-bottom: 2rem;">
+  <main class="site-main">
     {{ block "main" . }}{{ end }}
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <img src="/mtim-logo-horizontal-dark.svg" alt="Meet Them in Music" class="footer-logo">
+      <p class="footer-name">Meet Them in Music</p>
       <p class="footer-tagline">Music education that starts where they are.</p>
       <p class="footer-copy">&copy; {{ now.Format "2006" }} Dr. P. Eric Bottorff. All rights reserved.</p>
     </div>
