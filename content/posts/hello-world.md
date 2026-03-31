@@ -1,7 +1,7 @@
 ---
 title: Welcome to Meet Them in Music
 date: 2026-03-29
-draft: true
+draft: false
 description: Why I Built This and Who It's For.
 image: /images/uploads/Welcome Blog Post Hero Image.png
 ---
