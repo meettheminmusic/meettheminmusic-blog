@@ -745,6 +745,406 @@ table tr:nth-child(even) {
   background-color: rgba(241, 239, 232, 0.3); /* Very faint tint using --neutral-50 */
 }
 
+/* --- Utilities --- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Homepage --- */
+
+.home-hero {
+  background: var(--charcoal);
+  padding: 72px 0 68px;
+}
+
+.home-hero__overline {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9FE1CB;
+  margin-bottom: 1.25rem;
+}
+
+.home-hero__heading {
+  font-size: 2.375rem;
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--warm-white);
+  max-width: 580px;
+  margin-bottom: 1.375rem;
+}
+
+.home-hero__lead {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: #B4B2A9;
+  max-width: 520px;
+  margin-bottom: 2rem;
+}
+
+.home-hero__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.home-section {
+  padding-block: 56px;
+  border-bottom: 0.5px solid var(--neutral-100);
+}
+
+.home-section:last-of-type {
+  border-bottom: none;
+}
+
+.home-section--alt {
+  background: var(--neutral-50);
+}
+
+.home-section__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.home-section__header h2 {
+  font-size: 1.375rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-bottom: 4px;
+}
+
+.home-section__subhead {
+  font-size: 0.875rem;
+  color: var(--warm-gray);
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.section-link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--teal);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.section-link:hover {
+  color: var(--dark-teal);
+  text-decoration: none;
+}
+
+/* Song grid (homepage teaser — scoped so library list is unaffected) */
+
+.song-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+}
+
+.song-grid__card {
+  background: var(--white);
+  border: 0.5px solid var(--neutral-100);
+  border-radius: 12px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.song-grid__img-wrap {
+  margin: -18px -16px 4px;
+  border-radius: 11px 11px 0 0;
+  overflow: hidden;
+  height: 140px;
+  background: var(--neutral-50);
+}
+
+.song-grid__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 0;
+  display: block;
+}
+
+.song-grid__grades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  list-style: none;
+  padding: 0;
+}
+
+.grade-badge {
+  background: var(--teal-tint);
+  color: var(--dark-teal);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 4px;
+  line-height: 1.4;
+}
+
+.song-grid__title {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.song-grid__title a {
+  color: var(--charcoal);
+  text-decoration: none;
+}
+
+.song-grid__title a:hover {
+  color: var(--teal);
+}
+
+.song-grid__meta {
+  font-size: 0.75rem;
+  color: var(--warm-gray);
+  margin: 0;
+}
+
+.song-grid__activities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  list-style: none;
+  padding: 0;
+  margin-top: auto;
+}
+
+.activity-tag {
+  background: var(--neutral-50);
+  color: #444441;
+  font-size: 0.6875rem;
+  font-weight: 400;
+  padding: 3px 8px;
+  border-radius: 4px;
+  line-height: 1.4;
+}
+
+.song-grid-empty {
+  padding: 2.5rem;
+  border: 0.5px dashed var(--neutral-100);
+  border-radius: 12px;
+  text-align: center;
+  color: var(--warm-gray);
+  font-size: 0.9375rem;
+}
+
+.song-grid-empty .section-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+}
+
+/* Featured post */
+
+.featured-card {
+  border-left: 3px solid var(--teal);
+  border-radius: 0 12px 12px 0;
+  background: var(--white);
+  border-top: 0.5px solid var(--neutral-100);
+  border-right: 0.5px solid var(--neutral-100);
+  border-bottom: 0.5px solid var(--neutral-100);
+  padding: 28px 28px 24px;
+}
+
+.featured-card__meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8125rem;
+  color: var(--warm-gray);
+  margin-bottom: 0.875rem;
+}
+
+.featured-card__title {
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+
+.featured-card__title a {
+  color: var(--charcoal);
+  text-decoration: none;
+}
+
+.featured-card__title a:hover {
+  color: var(--teal);
+}
+
+.featured-card__excerpt {
+  font-size: 0.9375rem;
+  color: var(--warm-gray);
+  line-height: 1.65;
+  max-width: 580px;
+  margin-bottom: 1.25rem;
+}
+
+.read-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--teal);
+  text-decoration: none;
+}
+
+.read-link:hover {
+  color: var(--dark-teal);
+}
+
+/* Post grid (homepage teaser — scoped so posts list is unaffected) */
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+}
+
+.post-grid__card {
+  background: var(--white);
+  border: 0.5px solid var(--neutral-100);
+  border-radius: 12px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.post-grid__tag {
+  display: inline-block;
+  background: var(--teal-tint);
+  color: var(--dark-teal);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 4px;
+  line-height: 1.4;
+  width: fit-content;
+}
+
+.post-grid__title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.post-grid__title a {
+  color: var(--charcoal);
+  text-decoration: none;
+}
+
+.post-grid__title a:hover {
+  color: var(--teal);
+}
+
+.post-grid__excerpt {
+  font-size: 0.75rem;
+  color: var(--warm-gray);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.post-grid__date {
+  font-size: 0.6875rem;
+  color: #888780;
+  margin-top: auto;
+}
+
+/* Email signup */
+
+.home-signup {
+  padding-block: 56px;
+  background: var(--warm-white);
+  text-align: center;
+  border-top: 0.5px solid var(--neutral-100);
+}
+
+.home-signup h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  margin-bottom: 0.5rem;
+}
+
+.home-signup p {
+  font-size: 0.9375rem;
+  color: var(--warm-gray);
+  max-width: 420px;
+  margin-inline: auto;
+  margin-bottom: 1.5rem;
+}
+
+.signup-form {
+  display: flex;
+  gap: 8px;
+  max-width: 400px;
+  margin-inline: auto;
+}
+
+.signup-form input[type="email"] {
+  flex: 1;
+  padding: 10px 14px;
+  border: 0.5px solid var(--neutral-100);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: var(--charcoal);
+  background: var(--white);
+  min-height: 44px;
+}
+
+.signup-form input[type="email"]::placeholder {
+  color: #B4B2A9;
+}
+
+.signup-form input[type="email"]:focus {
+  outline: 2px solid var(--teal);
+  outline-offset: 1px;
+}
+
+.signup-form button {
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.signup-form button:hover {
+  background: var(--dark-teal);
+}
+
 /* --- About page --- */
 
 .overline {
@@ -974,6 +1374,11 @@ table tr:nth-child(even) {
   .hero-title { font-size: 2.1rem; }
   .hero { padding: 3rem 0 2.5rem; }
   .about-eric__photo { float: none; width: 100%; max-width: 320px; margin: 0 0 1.5rem 0; }
+  .home-hero__heading { font-size: 1.875rem; }
+  .song-grid { grid-template-columns: 1fr; }
+  .post-grid { grid-template-columns: 1fr; }
+  .home-section__header { flex-direction: column; gap: 0.5rem; }
+  .featured-card { padding: 20px 18px; }
   .about-hero__heading { font-size: 1.75rem; }
   .about-hero__lead { font-size: 1rem; }
   .feature-grid { grid-template-columns: 1fr; }
@@ -981,5 +1386,6 @@ table tr:nth-child(even) {
 }
 
 @media (max-width: 480px) {
+  .signup-form { flex-direction: column; }
   .cta-box__actions { flex-direction: column; align-items: center; }
 }

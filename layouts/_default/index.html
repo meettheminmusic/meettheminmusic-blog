@@ -1,34 +1,231 @@
 {{ define "main" }}
-<div class="hero">
-  <div class="hero-rings" aria-hidden="true">
-    <div class="hero-ring hero-ring--1"></div>
-    <div class="hero-ring hero-ring--2"></div>
-    <div class="hero-ring hero-ring--3"></div>
-    <div class="hero-ring hero-ring--4"></div>
-  </div>
-  <div class="container hero-content">
-<h1 class="hero-title">Meet Them in Music</h1>
-    <p class="hero-tagline">{{ .Site.Params.tagline }}</p>
-    <p class="hero-desc">Practical strategies, research-informed resources, and inclusive approaches for teaching music to students with disabilities.</p>
-  </div>
-</div>
 
-<div class="container" style="padding-top: 2.5rem; padding-bottom: 3rem;">
-  <h2 class="section-label">Recent posts</h2>
-  <ul class="post-list">
-    {{ range first 10 (where (where .Site.RegularPages "Section" "posts") "Params.unlisted" "ne" true) }}
-    <li class="post-card">
-      {{ with .Params.image }}<a href="{{ $.Permalink }}"><img src="{{ . }}" alt="" class="post-card-image"></a>{{ end }}
-      <p class="post-meta">{{ .Date.Format "January 2, 2006" }}</p>
-      <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-      <p class="post-excerpt">{{ .Summary | truncate 160 }}</p>
-      {{ with .Params.tags }}
-      <div style="margin-top: 0.5rem;">
-        {{ range . }}<a href="/tags/{{ . | urlize }}/" class="tag">{{ . }}</a> {{ end }}
+{{/*
+  ── Content queries ──────────────────────────────────────────
+  Songs: first 3 entries from the songs section, newest first.
+  Featured: single post with `featured: true` in front matter.
+  Recent: up to 3 posts from the posts section, excluding the
+          featured post so it never appears twice on the page.
+*/}}
+
+{{ $songs    := where (.Site.RegularPages.ByDate.Reverse) "Section" "songs" | first 3 }}
+{{ $featured := where .Site.RegularPages "Params.featured" true | first 1 }}
+{{ $allPosts := where (where .Site.RegularPages "Section" "posts") "Params.unlisted" "ne" true }}
+{{ $recent   := $allPosts | complement $featured | first 3 }}
+
+
+{{/* ── Hero ──────────────────────────────────────────────── */}}
+
+<section class="home-hero" aria-labelledby="home-hero-heading">
+  <div class="container-wide">
+    <p class="home-hero__overline" aria-hidden="true">
+      Music education that starts where they are.
+    </p>
+    <h1 class="home-hero__heading" id="home-hero-heading">
+      Your students belong in the music room.
+    </h1>
+    <p class="home-hero__lead">
+      Research-informed strategies, adapted songs, and practical tools
+      for general music teachers who want to meet every learner where they are.
+    </p>
+    <div class="home-hero__actions">
+      <a href="{{ "/songs/" | relURL }}" class="btn-primary">
+        Explore the song library
+      </a>
+      <a href="{{ "/posts/" | relURL }}" class="btn-ghost-light">
+        Read the blog
+      </a>
+    </div>
+  </div>
+</section>
+
+
+{{/* ── Song library teaser ────────────────────────────────── */}}
+
+<section class="home-section" aria-labelledby="songs-heading">
+  <div class="container-wide">
+
+    <div class="home-section__header">
+      <div>
+        <h2 id="songs-heading">Song library</h2>
+        <p class="home-section__subhead">
+          Songs with original pedagogical analysis
+          and participation affordances. Ready for the classroom!
+        </p>
       </div>
-      {{ end }}
-    </li>
+      <a href="{{ "/songs/" | relURL }}" class="section-link"
+         aria-label="Browse all songs in the library">
+        Browse all songs →
+      </a>
+    </div>
+
+    {{ if $songs }}
+      <ul class="song-grid" role="list">
+        {{ range $songs }}
+          <li>
+            <article class="song-grid__card">
+
+              {{ with .Params.card_image }}
+                <div class="song-grid__img-wrap">
+                  <img src="{{ . }}" alt="{{ $.Title }} notation"
+                       class="song-grid__img" loading="lazy">
+                </div>
+              {{ end }}
+
+              {{ with .Params.grade_level }}
+                <ul class="song-grid__grades" role="list" aria-label="Grade levels">
+                  {{ range . }}
+                    <li class="grade-badge">{{ . }}</li>
+                  {{ end }}
+                </ul>
+              {{ end }}
+
+              <h3 class="song-grid__title">
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+              </h3>
+
+              <p class="song-grid__meta">
+                {{- with .Params.meter -}}{{ . }}{{ end -}}
+                {{- with .Params.tonality }} &middot; {{ . }}{{ end -}}
+                {{- with .Params.origin }} &middot; {{ . }}{{ end -}}
+              </p>
+
+              {{ with .Params.activity_type }}
+                <ul class="song-grid__activities" role="list" aria-label="Activity types">
+                  {{ range . }}
+                    <li class="activity-tag">{{ . }}</li>
+                  {{ end }}
+                </ul>
+              {{ end }}
+
+            </article>
+          </li>
+        {{ end }}
+      </ul>
+
+    {{ else }}
+      <div class="song-grid-empty" role="status">
+        <p>The song library is coming soon. Check back after launch.</p>
+        <a href="{{ "/posts/" | relURL }}" class="section-link">
+          Read the blog in the meantime →
+        </a>
+      </div>
     {{ end }}
-  </ul>
-</div>
+
+  </div>
+</section>
+
+
+{{/* ── Featured post ───────────────────────────────────────── */}}
+
+{{ with index $featured 0 }}
+  <section class="home-section home-section--alt"
+           aria-labelledby="featured-heading">
+    <div class="container-wide">
+
+      <p class="overline" aria-hidden="true">Featured</p>
+
+      <article class="featured-card" aria-labelledby="featured-post-title">
+        <div class="featured-card__meta">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">
+            {{ .Date.Format "January 2, 2006" }}
+          </time>
+          <span class="featured-card__read-time">
+            {{ .ReadingTime }} min read
+          </span>
+        </div>
+        <h2 class="featured-card__title" id="featured-post-title">
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </h2>
+        <p class="featured-card__excerpt">{{ .Summary }}</p>
+        <a href="{{ .Permalink }}" class="read-link"
+           aria-label="Read: {{ .Title }}">
+          Read this piece →
+        </a>
+      </article>
+
+    </div>
+  </section>
+{{ end }}
+
+
+{{/* ── Recent posts ────────────────────────────────────────── */}}
+
+{{ if $recent }}
+  <section class="home-section" aria-labelledby="recent-heading">
+    <div class="container-wide">
+
+      <div class="home-section__header">
+        <h2 id="recent-heading">Recent posts</h2>
+        <a href="{{ "/posts/" | relURL }}" class="section-link"
+           aria-label="View all blog posts">
+          All posts →
+        </a>
+      </div>
+
+      <ul class="post-grid" role="list">
+        {{ range $recent }}
+          <li>
+            <article class="post-grid__card">
+
+              {{ with .Params.tags }}
+                <span class="post-grid__tag" aria-label="Topic">
+                  {{ index . 0 }}
+                </span>
+              {{ end }}
+
+              <h3 class="post-grid__title">
+                <a href="{{ .Permalink }}">{{ .Title }}</a>
+              </h3>
+
+              <p class="post-grid__excerpt">{{ .Summary | truncate 120 }}</p>
+
+              <time class="post-grid__date"
+                    datetime="{{ .Date.Format "2006-01-02" }}">
+                {{ .Date.Format "January 2, 2006" }}
+              </time>
+
+            </article>
+          </li>
+        {{ end }}
+      </ul>
+
+    </div>
+  </section>
+{{ end }}
+
+
+{{/* ── Email signup ─────────────────────────────────────────── */}}
+
+<section class="home-signup" aria-labelledby="signup-heading">
+  <div class="container-wide">
+    <h2 id="signup-heading">New posts, when they're ready.</h2>
+    <p>
+      No noise. Research-informed strategies for your music room,
+      delivered when there's something worth saying.
+    </p>
+
+    {{/*
+      Replace action="#" with your Buttondown form URL when ready.
+    */}}
+    <form class="signup-form"
+          action="#"
+          method="post"
+          aria-label="Email signup">
+      <label for="signup-email" class="sr-only">Your email address</label>
+      <input
+        id="signup-email"
+        type="email"
+        name="email"
+        placeholder="Your email address"
+        required
+        autocomplete="email"
+        aria-required="true"
+      >
+      <button type="submit">Notify me</button>
+    </form>
+
+  </div>
+</section>
+
 {{ end }}

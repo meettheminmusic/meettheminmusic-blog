@@ -1,5 +1,6 @@
 ---
 title: Great Big House in New Orleans
+date: 2026-04-01
 concepts:
   - Choice Board
   - Bordun
@@ -11,6 +12,7 @@ meters:
   - duple, 2/4
 source: ''
 source_url: ''
+card_image: "/images/uploads/Great_Big_House_in_New_Orleans-3.png"
 ---
 
 ![Notation for Great Big House in New Orleans with a bass line bordun](/images/uploads/Great_Big_House_in_New_Orleans-3.png "Notation for Great Big House in New Oreleans")

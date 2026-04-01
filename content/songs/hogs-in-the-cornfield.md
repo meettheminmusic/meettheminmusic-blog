@@ -1,5 +1,6 @@
 ---
 title: Hogs in the Cornfield
+date: 2026-03-31
 concepts:
   - 16th notes
   - 8th notes
@@ -12,6 +13,7 @@ meters:
   - 2/4
 source: Traditional
 source_url: ''
+card_image: "/images/uploads/Hogs_in_the_Cornfield-2.png"
 ---
 
 ![Notation for Hogs in the Cornfield](/images/uploads/Hogs_in_the_Cornfield-2.png "Hogs in the Cornfield")

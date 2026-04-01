@@ -1,5 +1,6 @@
 ---
 title: Pickles and Pie
+date: 2026-03-31
 concepts:
   - Leading tone
   - Choice Board
@@ -12,6 +13,7 @@ meters:
   - 2/4
 source: ''
 source_url: ''
+card_image: "/images/uploads/Pickles_and_Pie-2.png"
 ---
 
 ![Notation for Pickles and Pie](/images/uploads/Pickles_and_Pie-2.png "Pickles and Pie")

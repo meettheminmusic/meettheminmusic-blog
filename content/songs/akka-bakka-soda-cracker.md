@@ -1,5 +1,6 @@
 ---
 title: Akka Bakka Soda Cracker
+date: 2026-03-31
 concepts:
   - Steady beat
   - Turn taking
@@ -13,6 +14,7 @@ meters:
   - 2/4
 source: ''
 source_url: ''
+card_image: "/images/uploads/Akka_Bakka_Soda_Cracker-3.png"
 ---
 
 ![Unpitched Notation for the song Akka Bakka Soda Cracker](/images/uploads/Akka_Bakka_Soda_Cracker-3.png "Akka Bakka Soda Cracker (Chant)")

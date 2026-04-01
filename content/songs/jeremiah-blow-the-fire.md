@@ -1,5 +1,6 @@
 ---
 title: Jeremiah Blow the Fire
+date: 2026-03-31
 concepts:
   - 8th notes
   - Rests
@@ -12,6 +13,7 @@ meters:
   - 2/4
 source: ''
 source_url: ''
+card_image: "/images/uploads/Jeremiah_Blow_the_Fire-5.png"
 ---
 
 ![Notation for the song Jeremiah Blow the Fire](/images/uploads/Jeremiah_Blow_the_Fire-5.png "Jeremiah Blow the Fire")

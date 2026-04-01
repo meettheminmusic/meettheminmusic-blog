@@ -1,5 +1,6 @@
 ---
 title: Grandma's Glasses
+date: 2026-04-01
 concepts:
   - Fingerplay
   - Movement
@@ -13,6 +14,7 @@ meters:
   - triple
 source: ''
 source_url: ''
+card_image: "/images/uploads/Grandma_s_Glasses-5.png"
 ---
 
 ![percussion notation for the fingerplay Grandma's Glasses](/images/uploads/Grandma_s_Glasses-5.png "Grandma's Glasses Notation")
