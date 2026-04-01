@@ -1,0 +1,166 @@
+{{ define "main" }}
+
+<article class="about-page" aria-labelledby="about-page-title">
+
+  {{/* ── Hero ─────────────────────────────────────────────── */}}
+  <section class="about-hero" aria-labelledby="about-page-title">
+    <div class="container">
+      <p class="overline" aria-hidden="true">About</p>
+      <h1 class="about-hero__heading" id="about-page-title">
+        Every student deserves a music education.
+      </h1>
+      <p class="about-hero__lead">
+        But wanting to be inclusive in your general music
+        classroom and knowing how to do it are two very different things. If
+        you've ever watched a student disengage during music and wondered what
+        you were missing, you're in the right place.
+      </p>
+    </div>
+  </section>
+
+  {{/* ── The gap ───────────────────────────────────────────── */}}
+  <section class="about-section" aria-labelledby="gap-heading">
+    <div class="container">
+      <h2 id="gap-heading">The Gap Between Desire and Reality</h2>
+      <p>
+        Most general music teachers care deeply about inclusion. They also carry
+        full rosters, limited planning time, and professional development that
+        rarely speaks to their classroom. Special education training exists --
+        but it's not designed with the music room in mind. Music education
+        training exists -- but students with disabilities are often an
+        afterthought.
+      </p>
+      <p>That gap is where too many students fall through.</p>
+      <blockquote class="pullquote">
+        <em>Meet Them in Music</em> exists to close it.
+      </blockquote>
+    </div>
+  </section>
+
+  {{/* ── About Eric ────────────────────────────────────────── */}}
+  <section class="about-section" aria-labelledby="eric-heading">
+    <div class="container">
+      <h2 id="eric-heading">
+        I'm <span class="text-teal">Dr. P. Eric Bottorff</span>, and I've spent
+        my career in that gap.
+      </h2>
+
+      <div class="about-eric">
+        <img
+          src="/images/uploads/Bottorff%20Headshots.png"
+          alt="Dr. P. Eric Bottorff"
+          class="about-eric__photo"
+          width="280"
+          loading="lazy"
+        >
+        <div class="about-eric__body">
+
+          {{/* Credentials badges from front matter */}}
+          {{ with .Params.credentials }}
+            <ul class="credential-list" role="list" aria-label="Credentials">
+              {{ range . }}
+                <li class="credential-badge">{{ . }}</li>
+              {{ end }}
+            </ul>
+          {{ end }}
+
+          <p>
+            I teach K-4 general music in South East Michigan, where I've spent
+            years figuring out what it actually looks like to meet every student in
+            the music room -- not in theory, but on a Tuesday at 9 a.m. with 22
+            kids and a substitute paraprofessional you've never met.
+          </p>
+          <p>
+            I hold an Ed.D. and a K-12 administrator certificate, and I serve as a
+            district content area leader for music education. In 2023, I was named
+            Michigan Music Teacher of the Year -- an honor I'm proud of, and one
+            that only deepened my conviction that the students most often left out
+            of the conversation deserve the best we have to offer.
+          </p>
+
+          {{ with .Content }}
+            <div class="about-belief">
+              {{ . }}
+            </div>
+          {{ end }}
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  {{/* ── What this site is ─────────────────────────────────── */}}
+  <section class="about-section" aria-labelledby="site-heading">
+    <div class="container">
+      <h2 id="site-heading">What you'll find here</h2>
+      <p>
+        <em>Meet Them in Music</em> is where that practitioner knowledge lives.
+      </p>
+
+      <ul class="feature-grid" role="list" aria-label="Site features">
+        <li class="feature-card">
+          <span class="feature-card__label">Song library</span>
+          <p>
+            Public domain folk songs, each analyzed for tonal content, sensory
+            profile, and adaptations for students with disabilities.
+          </p>
+        </li>
+        <li class="feature-card">
+          <span class="feature-card__label">Blog</span>
+          <p>
+            Research-grounded strategies written for the music room, not the
+            journal. Practical, not preachy.
+          </p>
+        </li>
+        <li class="feature-card">
+          <span class="feature-card__label">Resources</span>
+          <p>
+            Classroom-ready tools designed around the principle that variability
+            in learners is the starting point for good teaching.
+          </p>
+        </li>
+      </ul>
+
+      <p class="text-secondary">
+        The framework here draws on Universal Design for Learning: the idea that
+        barriers to learning live in the environment and the materials, not in
+        the student. When we design music experiences that anticipate a wide
+        range of needs from the start, more students access the music. That's
+        not accommodation. That's just good teaching.
+      </p>
+    </div>
+  </section>
+
+  {{/* ── CTA ───────────────────────────────────────────────── */}}
+  <section class="about-cta" aria-labelledby="cta-heading">
+    <div class="container">
+      <div class="cta-box">
+        <h2 id="cta-heading">Let's work together.</h2>
+        <p>
+          If you're looking for a keynote speaker, a professional development
+          clinician, or a consultant who can help your district think more
+          carefully about students with disabilities in the music room, I'd
+          love to talk.
+        </p>
+
+        {{/* cta_descriptor from front matter */}}
+        {{ with .Params.cta_descriptor }}
+          <p class="cta-box__descriptor">{{ . }}</p>
+        {{ end }}
+
+        <div class="cta-box__actions">
+          <a href="{{ "/contact/" | relURL }}" class="btn-primary">
+            Contact me
+          </a>
+          <a href="{{ "/posts/" | relURL }}" class="btn-ghost-light">
+            Read the blog
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</article>
+
+{{ end }}
