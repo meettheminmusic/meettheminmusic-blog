@@ -14,7 +14,7 @@ source: ''
 source_url: ''
 ---
 
-![Notation for the song Jeremiah Blow the Fire](/images/uploads/Jeremiah_Blow_the_Fire-4.png "Jeremiah Blow the Fire")
+![Notation for the song Jeremiah Blow the Fire](/images/uploads/Jeremiah_Blow_the_Fire-5.png "Jeremiah Blow the Fire")
 
 **<u>Activity:</u>**
 
