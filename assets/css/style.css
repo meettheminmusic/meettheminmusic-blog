@@ -526,6 +526,38 @@ img {
   margin: 0;
 }
 
+/* --- Draft badge --- */
+
+.tag-draft {
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #92400E;
+  background: #FEF3C7;
+  border: 0.5px solid #D97706;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.tag-unlisted {
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #1E3A5F;
+  background: #DBEAFE;
+  border: 0.5px solid #60A5FA;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
 /* --- Image expand / lightbox --- */
 
 .img-expand-wrap {

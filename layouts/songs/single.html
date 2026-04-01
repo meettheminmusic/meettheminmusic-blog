@@ -2,7 +2,7 @@
 <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
   <p class="song-back"><a href="/songs/">&larr; Song library</a></p>
   <article class="song-single">
-    <h1>{{ .Title }}</h1>
+    <h1>{{ .Title }}{{ if .Draft }}<span class="tag-draft">Draft</span>{{ end }}{{ if .Params.unlisted }}<span class="tag-unlisted">Unlisted</span>{{ end }}</h1>
 
     <dl class="song-details">
       {{ with .Params.keys }}

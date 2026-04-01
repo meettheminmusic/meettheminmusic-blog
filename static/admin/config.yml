@@ -29,6 +29,8 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Draft", name: "draft", widget: "boolean", default: true }
+      - { label: "Unlisted", name: "unlisted", widget: "boolean", default: false }
       - { label: "Concepts", name: "concepts", widget: "list", required: false }
       - { label: "Keys", name: "keys", widget: "list", required: false }
       - { label: "Modes", name: "modes", widget: "list", required: false }
