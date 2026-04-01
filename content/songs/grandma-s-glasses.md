@@ -2,6 +2,8 @@
 title: Grandma's Glasses
 concepts:
   - Fingerplay
+  - Movement
+  - Family
 keys:
   - unpitched
 modes: []
@@ -21,13 +23,19 @@ I love this song as a way to get students used to the difference between duple a
 
 {{< /callout >}}
 
-**<u>Activity:</u>**
+**Introduction**_:_ 
 
-Introduction: Ask the kids "In your family, who is taller:  grandma or grandpa?" _(Of course, not everybody has a grandpa or grandma. Use your discretion)_
+Ask the kids "In your family, who is taller:  grandma or grandpa?" _(Of course, not everybody has a grandpa or grandma. Use your discretion)_
+
+>I like to say "In my family, my grandma is taller and my grandpa is shorter.  My grandpa likes to wear cowboy boots to make himself look taller." This is a true.  If needed, I can also say "When my other grandpa was still alive, he was taller than my grandma."
+
+Then say "In this song, the grandma has small glasses and a small hat. The grandpa has a big hat and big glasses. _Show the movements while you do this to show how the movements represent objects in the song._
+
+**<u>Activity:</u>**
 
 Have the students follow the hand moves while you sing the song.  The students can join when ready.  They will likely latch on to the "Just Like That!" first. Encourage this!
 
-<u>Moves:</u>
+<u>**Moves:**</u>
 
 | lyrics | Movement |
 | --- | --- |
