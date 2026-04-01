@@ -19,7 +19,7 @@ This is a great song to bring out the bass xylophone or bass bars.
 
 **<u>Activity:</u>**
 
-_For classes that need it, I will often have the kids come up in turns.  For classes that are more independent, I will set out multiple instruments. On the first attempt, play with the students on the same instrument._
+>_For classes that need it, I will often have the kids come up in turns.  For classes that are more independent, I will set out multiple instruments. On the first attempt, play with the students on the same instrument._
 
 Have a student choose the type of pie that is in the Great Big House.  Fill in that word instead of "pumpkin." Any answer is the acceptable!
 
