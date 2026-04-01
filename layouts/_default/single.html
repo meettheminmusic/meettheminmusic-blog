@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
 <article>
-  <h1>{{ .Title }}</h1>
+  <h1>{{ .Title }}{{ if .Params.unlisted }}<span class="tag-unlisted">Unlisted</span>{{ end }}</h1>
   <div class="post-content">
     {{ .Content }}
   </div>

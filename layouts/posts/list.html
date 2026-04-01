@@ -2,7 +2,7 @@
 <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
   <h1>All posts</h1>
   <ul class="post-list">
-    {{ range .Pages }}
+    {{ range where .Pages "Params.unlisted" "ne" true }}
     <li class="post-card">
       {{ with .Params.image }}<a href="{{ $.Permalink }}"><img src="{{ . }}" alt="" class="post-card-image"></a>{{ end }}
       <p class="post-meta">{{ .Date.Format "January 2, 2006" }}</p>

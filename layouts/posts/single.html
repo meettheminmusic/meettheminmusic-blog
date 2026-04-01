@@ -3,7 +3,7 @@
 <article>
   <div class="post-header">
     <p class="post-meta">{{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min read</p>
-    <h1>{{ .Title }}</h1>
+    <h1>{{ .Title }}{{ if .Params.unlisted }}<span class="tag-unlisted">Unlisted</span>{{ end }}</h1>
     {{ with .Params.tags }}
     <div style="margin-top: 0.75rem;">
       {{ range . }}<a href="/tags/{{ . | urlize }}/" class="tag">{{ . }}</a> {{ end }}

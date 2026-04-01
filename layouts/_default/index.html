@@ -16,7 +16,7 @@
 <div class="container" style="padding-top: 2.5rem; padding-bottom: 3rem;">
   <h2 class="section-label">Recent posts</h2>
   <ul class="post-list">
-    {{ range first 10 (where .Site.RegularPages "Section" "posts") }}
+    {{ range first 10 (where (where .Site.RegularPages "Section" "posts") "Params.unlisted" "ne" true) }}
     <li class="post-card">
       {{ with .Params.image }}<a href="{{ $.Permalink }}"><img src="{{ . }}" alt="" class="post-card-image"></a>{{ end }}
       <p class="post-meta">{{ .Date.Format "January 2, 2006" }}</p>

@@ -2,7 +2,7 @@
 <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
   <h1>{{ .Title }}</h1>
   <ul class="post-list">
-    {{ range .Pages }}
+    {{ range where .Pages "Params.unlisted" "ne" true }}
     <li class="post-card">
       <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
     </li>
