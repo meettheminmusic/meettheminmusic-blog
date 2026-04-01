@@ -3,11 +3,10 @@ title: Akka Bakka Soda Cracker
 concepts:
   - Steady beat
   - Turn taking
+  - Marching
 keys:
-  - D
   - unpitched
 modes:
-  - Major
   - chant
 meters:
   - Duple
