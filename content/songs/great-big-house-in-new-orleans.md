@@ -1,5 +1,5 @@
 ---
-title: '[In Progress]Great Big House in New Orleans'
+title: Great Big House in New Orleans
 concepts:
   - Choice Board
   - Bordun
