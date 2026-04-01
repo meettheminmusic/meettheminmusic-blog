@@ -1,5 +1,5 @@
 ---
-title: Great Big House in New Orleans
+title: '[In Progress]Great Big House in New Orleans'
 concepts:
   - Choice Board
 keys:
@@ -12,7 +12,7 @@ source: ''
 source_url: ''
 ---
 
-![Notation for Great Big House in New Orleans with a bass line bordun](/images/uploads/Great_Big_House_in_New_Orleans-2.png "Notation for Great Big House in New Oreleans")
+![Notation for Great Big House in New Orleans with a bass line bordun](/images/uploads/Great_Big_House_in_New_Orleans-3.png "Notation for Great Big House in New Oreleans")
 
 This is a great song to bring out the bass xylophone or bass bars.
 
