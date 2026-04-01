@@ -44,14 +44,14 @@
   <p class="library-count" id="library-count"></p>
 
   <ul class="song-list" id="song-list">
-    {{ range .Pages.ByTitle }}
+    {{ range (where .Pages "Params.unlisted" "ne" true).ByTitle }}
     <li class="song-card"
       data-concepts="{{ delimit .Params.concepts "|" | lower }}"
       data-mode="{{ delimit .Params.modes "|" | lower }}"
       data-meter="{{ delimit .Params.meters "|" | lower }}"
       data-key="{{ delimit .Params.keys "|" | lower }}">
       <div class="song-card-main">
-        <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        <h2><a href="{{ .Permalink }}">{{ .Title }}</a>{{ if .Draft }}<span class="tag-draft">Draft</span>{{ end }}</h2>
         <div class="song-meta">
           {{ with .Params.keys }}<span class="song-meta-item">{{ index . 0 }}</span>{{ end }}
           {{ with .Params.modes }}<span class="song-meta-item">{{ index . 0 }}</span>{{ end }}
