@@ -2,6 +2,7 @@
 title: Pickles and Pie
 concepts:
   - Leading tone
+  - Choice Board
 keys:
   - D
 modes:
@@ -13,7 +14,7 @@ source: ''
 source_url: ''
 ---
 
-![Notation for Pickles and Pie](/images/uploads/Screenshot%202026-03-31%20at%201.31.58%20PM.png "Pickles and Pie")
+![Notation for Pickles and Pie](/images/uploads/Pickles_and_Pie-2.png "Pickles and Pie")
 
 I learned this song aurally from a friend.  Originally, my friend used a Lydian version of the tune.  I chose to re-arrange the song in Mixolydian to match my ears' preference.
 
@@ -25,17 +26,14 @@ _The hardest one a student has ever tried to get me to say is "a lion riding on 
 
 Ask the students “Have you everlooked at the clouds and thought they looked like something else? I saw a cloud the otherday that looked like an elephant.” Keep a beat on the drum and sing the song  with the word “elephant” in the blank space. Invite the students up one at a time to select an animal to fill in the blank of the song. IT IS OKAY FOR STUDENTS TO PROVIDE AN ANIMAL NOT ON THE CHOICE BOARD OR TWO COMBINE TWO ANIMALS.
 
-**<u>Tip:</u>** 
+**<u>Tip:</u>**
 
 You can add complexity in later lessons by:
 
-- adding more drums to separate the hands
-
-- Drumming a subdivision of the beat
-
-- Adding rests in the drumming pattern
-
-- Having the child sing without the teacher
+- adding more drums to separate the hands
+- Drumming a subdivision of the beat
+- Adding rests in the drumming pattern
+- Having the child sing without the teacher
 
 **<u>Sample Choice Board for this Song</u>**
 
