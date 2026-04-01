@@ -609,6 +609,32 @@ img {
   margin-bottom: 0.5rem;
 }
 
+/* --- Tables --- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9375rem;
+}
+
+table th, 
+table td {
+  padding: 0.75rem;
+  border: 1px solid var(--neutral-100); /* Matches your hr and card borders */
+  text-align: left;
+}
+
+table th {
+  background-color: var(--neutral-50); /* Subtle gray background */
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+table tr:nth-child(even) {
+  background-color: rgba(241, 239, 232, 0.3); /* Very faint tint using --neutral-50 */
+}
+
 /* --- Responsive --- */
 
 @media (max-width: 640px) {
