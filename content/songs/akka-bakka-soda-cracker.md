@@ -16,13 +16,7 @@ source: ''
 source_url: ''
 ---
 
-**Pitched Notation:**
-
-![Pitched Notation for the song Akka Bakka Soda Cracker](/images/uploads/Akka%20Bakka%20Soda%20Cracker.png "Akka Bakka Soda Cracker")
-
-**Chant Notation:**
-
-![Unpitched Notation for the song Akka Bakka Soda Cracker](/images/uploads/Akka%20Bakka%20Soda%20Cracker%20%28chant%29.png "Akka Bakka Soda Cracker (Chant)")
+![Unpitched Notation for the song Akka Bakka Soda Cracker](/images/uploads/Akka_Bakka_Soda_Cracker-3.png "Akka Bakka Soda Cracker (Chant)")
 
 **<u>Activity:</u>**
 
