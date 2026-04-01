@@ -14,7 +14,7 @@ source: Traditional
 source_url: ''
 ---
 
-![Notation for Hogs in the Cornfield](/images/uploads/Hogs_in_the_Cornfield.png "Hogs in the Cornfield")
+![Notation for Hogs in the Cornfield](/images/uploads/Hogs_in_the_Cornfield-2.png "Hogs in the Cornfield")
 
 **Activity:**
 
