@@ -120,7 +120,24 @@
     applyFilters();
   });
 
-  updateCount(cards.length);
+  // Activate filters from URL params, e.g. /songs/?concepts=Choice+Board&mode=Mixolydian
+  const params = new URLSearchParams(window.location.search);
+  let hadParams = false;
+  ['concepts', 'mode', 'meter', 'key'].forEach(group => {
+    params.getAll(group).forEach(val => {
+      const container = document.querySelector(`[data-filter="${group}"]`);
+      if (!container) return;
+      const btn = Array.from(container.querySelectorAll('.filter-btn'))
+        .find(b => b.dataset.value.toLowerCase() === val.toLowerCase());
+      if (btn) {
+        activeFilters[group].push(btn.dataset.value);
+        btn.classList.add('active');
+        hadParams = true;
+      }
+    });
+  });
+
+  hadParams ? applyFilters() : updateCount(cards.length);
 })();
 </script>
 {{ end }}
