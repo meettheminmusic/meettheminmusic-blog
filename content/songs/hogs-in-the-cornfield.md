@@ -26,4 +26,4 @@ _Adjusting for movement differences:_ Create cards for each of the hand signs,  
 
 Losing a game is hard! Discuss ways to be happy for your friends who are still in the game.  Sometimes giving students a phrase "If I lose that is okay. I will get another chance to try!"
 
-Additionally, students may begin rooting for their friends at the end of the game. That make the other person feel left out if they do not hear their name being chanted.  Talk about what this feels like as you get close to this point in the game.  Point out "we root FOR people, not AGAINST people.  Im saying 'hurray Jackoban,' not 'boo, Willemina!"
+Additionally, students may begin rooting for their friends at the end of the game. That can make the other person feel left out if they do not hear their name being chanted.  Talk about what this feels like as you get close to this point in the game.  Point out "we root FOR people, not AGAINST people.  Im saying 'hurray Jackoban,' not 'boo, Willemina!'"
