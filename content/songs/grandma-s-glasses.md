@@ -18,16 +18,17 @@ source_url: ''
 ![percussion notation for the fingerplay Grandma's Glasses](/images/uploads/Grandma_s_Glasses-5.png "Grandma's Glasses Notation")
 
 {{< callout title="" >}}
-
 I love this song as a way to get students used to the difference between duple and triple
-
 {{< /callout >}}
 
 **Introduction**_:_
 
-Ask the kids "In your family, who is taller:  grandma or grandpa?" _(Of course, not everybody has a grandpa or grandma. Use your discretion)_
+Ask the kids "In your family, who is taller:  grandma or grandpa?"
+_(Of course, not everybody has a grandpa or grandma. Use your discretion)_
 
->I like to say "In my family, my grandma is taller and my grandpa is shorter.  My grandpa likes to wear cowboy boots to make himself look taller." This is a true.  If needed, I can also say "When my other grandpa was still alive, he was taller than my grandma."
+>I like to say "In my family, my grandma is taller and my grandpa is shorter.  My grandpa likes to wear cowboy boots to make himself look taller." _This is a true._
+>
+>If needed, I can also say "When my other grandpa was still alive, he was taller than my grandma."
 
 Then say "In this song, the grandma has small glasses and a small hat. The grandpa has a big hat and big glasses. _Show the movements while you do this to show how the movements represent objects in the song._
 
@@ -44,6 +45,6 @@ Have the students follow the hand moves while you sing the song.  The students c
 | This is the way she folds her hands and places them on her lap | gently put both hands in your lap |
 | These are grandpa's glasses | Make LARGE circles with fingers and place them in front of your eyes |
 | and this is grandpa's hat | Put arms straight up, representing a top hat |
-| This is the way he folds his arms JUST LIKE THAT | Cross your arms over your chest and bounce on each word |{.table-with-lines}
+| This is the way he folds his arms JUST LIKE THAT | Cross your arms over your chest and bounce on each word |
 
 .
