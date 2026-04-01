@@ -23,7 +23,7 @@ I love this song as a way to get students used to the difference between duple a
 
 {{< /callout >}}
 
-**Introduction**_:_ 
+**Introduction**_:_
 
 Ask the kids "In your family, who is taller:  grandma or grandpa?" _(Of course, not everybody has a grandpa or grandma. Use your discretion)_
 
@@ -37,7 +37,7 @@ Have the students follow the hand moves while you sing the song.  The students c
 
 <u>**Moves:**</u>
 
-| lyrics | Movement |
+| Lyrics | Movement |
 | --- | --- |
 | These are grandma's glasses | Make SMALL circles from your fingers and place them in front of your eyes |
 | This is grandma's hat | place both hands on top of your head. Representing a small hat. |
