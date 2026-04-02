@@ -762,8 +762,117 @@ table tr:nth-child(even) {
 /* --- Homepage --- */
 
 .home-hero {
+  position: relative;
+  overflow: hidden;
   background: var(--charcoal);
   padding: 72px 0 68px;
+}
+
+/* Foreground content sits above the beams */
+.home-hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Beam layer — decorative only, invisible to assistive tech */
+.home-hero__beams {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.beam {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Beam 1 — large horizontal glow, upper-left */
+.beam--1 {
+  width: 640px;
+  height: 220px;
+  top: -60px;
+  left: -80px;
+  background: radial-gradient(ellipse at center,
+    rgba(15, 110, 86, 0.45) 0%,
+    transparent 70%
+  );
+  filter: blur(72px);
+  animation: beam-drift-1 7s ease-in-out infinite;
+}
+
+/* Beam 2 — tall vertical glow, right side */
+.beam--2 {
+  width: 360px;
+  height: 480px;
+  top: -100px;
+  right: -80px;
+  background: radial-gradient(ellipse at center,
+    rgba(8, 80, 65, 0.5) 0%,
+    transparent 68%
+  );
+  filter: blur(88px);
+  animation: beam-drift-2 9s ease-in-out infinite;
+}
+
+/* Beam 3 — medium glow, lower-center */
+.beam--3 {
+  width: 480px;
+  height: 280px;
+  bottom: -80px;
+  left: 25%;
+  background: radial-gradient(ellipse at center,
+    rgba(15, 110, 86, 0.3) 0%,
+    transparent 72%
+  );
+  filter: blur(64px);
+  animation: beam-drift-3 8s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+/* Beam 4 — small accent, upper-right area */
+.beam--4 {
+  width: 280px;
+  height: 280px;
+  top: 10px;
+  right: 20%;
+  background: radial-gradient(ellipse at center,
+    rgba(168, 213, 197, 0.12) 0%,
+    transparent 70%
+  );
+  filter: blur(48px);
+  animation: beam-drift-4 10s ease-in-out infinite;
+  animation-delay: -12s;
+}
+
+@keyframes beam-drift-1 {
+  0%, 100% { transform: translate(0, 0) rotate(-6deg) scale(1); }
+  33%       { transform: translate(220px, 100px) rotate(12deg) scale(1.15); }
+  66%       { transform: translate(-100px, 80px) rotate(-20deg) scale(0.9); }
+}
+
+@keyframes beam-drift-2 {
+  0%, 100% { transform: translate(0, 0) rotate(8deg) scale(1); }
+  40%       { transform: translate(-200px, 120px) rotate(-10deg) scale(1.2); }
+  70%       { transform: translate(-80px, -100px) rotate(24deg) scale(0.85); }
+}
+
+@keyframes beam-drift-3 {
+  0%, 100% { transform: translate(0, 0) rotate(3deg) scale(1); }
+  50%       { transform: translate(-180px, -110px) rotate(-18deg) scale(1.25); }
+}
+
+@keyframes beam-drift-4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%       { transform: translate(160px, -100px) scale(1.3); }
+  75%       { transform: translate(-90px, 70px) scale(0.8); }
+}
+
+/* Stop motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .beam { animation: none; }
 }
 
 .home-hero__overline {
@@ -860,9 +969,11 @@ table tr:nth-child(even) {
 }
 
 .song-grid__card {
+  position: relative;
   background: var(--white);
   border: 0.5px solid var(--neutral-100);
   border-radius: 12px;
+  transition: box-shadow 0.2s ease;
   padding: 18px 16px;
   display: flex;
   flex-direction: column;
@@ -913,6 +1024,18 @@ table tr:nth-child(even) {
 .song-grid__title a {
   color: var(--charcoal);
   text-decoration: none;
+}
+
+/* Stretch the title link to cover the entire card */
+.song-grid__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.song-grid__card:hover {
+  box-shadow: 0 0 0 1.5px var(--teal);
 }
 
 .song-grid__title a:hover {
@@ -1025,9 +1148,11 @@ table tr:nth-child(even) {
 }
 
 .post-grid__card {
+  position: relative;
   background: var(--white);
   border: 0.5px solid var(--neutral-100);
   border-radius: 12px;
+  transition: box-shadow 0.2s ease;
   padding: 18px 16px;
   display: flex;
   flex-direction: column;
@@ -1056,6 +1181,18 @@ table tr:nth-child(even) {
 .post-grid__title a {
   color: var(--charcoal);
   text-decoration: none;
+}
+
+/* Stretch the title link to cover the entire card */
+.post-grid__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.post-grid__card:hover {
+  box-shadow: 0 0 0 1.5px var(--teal);
 }
 
 .post-grid__title a:hover {

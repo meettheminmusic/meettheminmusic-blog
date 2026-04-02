@@ -17,6 +17,7 @@ collections:
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Draft", name: "draft", widget: "boolean", default: true }
       - { label: "Unlisted", name: "unlisted", widget: "boolean", default: false }
+      - { label: "Featured on homepage", name: "featured", widget: "boolean", default: false, required: false }
       - { label: "Description", name: "description", widget: "string", required: false }
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Categories", name: "categories", widget: "list", required: false }
@@ -30,8 +31,11 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Draft", name: "draft", widget: "boolean", default: true }
       - { label: "Unlisted", name: "unlisted", widget: "boolean", default: false }
+      - { label: "Featured on homepage", name: "featured", widget: "boolean", default: false, required: false }
+      - { label: "Homepage card image", name: "card_image", widget: "image", required: false }
       - { label: "Concepts", name: "concepts", widget: "list", required: false }
       - { label: "Keys", name: "keys", widget: "list", required: false }
       - { label: "Modes", name: "modes", widget: "list", required: false }

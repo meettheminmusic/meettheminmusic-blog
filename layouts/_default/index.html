@@ -17,7 +17,8 @@
 {{/* ── Hero ──────────────────────────────────────────────── */}}
 
 <section class="home-hero" aria-labelledby="home-hero-heading">
-  <div class="container-wide">
+  {{ partial "hero-beams.html" . }}
+  <div class="container-wide home-hero__content">
     <p class="home-hero__overline" aria-hidden="true">
       Music education that starts where they are.
     </p>
