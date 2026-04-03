@@ -2,10 +2,10 @@
 title: Welcome to Meet Them in Music
 date: 2026-03-29
 draft: false
-featured: true
-slug: welcome-to-meet-them-in-music
-description: "Dr. P. Eric Bottorff introduces Meet Them in Music — a site built for general music teachers who want research-grounded and actionable strategies for including students with disabilities in the music room."
+featured: false
+description: Dr. P. Eric Bottorff introduces Meet Them in Music — a site built for general music teachers who want research-grounded and actionable strategies for including students with disabilities in the music room.
 image: /images/uploads/welcome-blog-post-hero-image.webp
+slug: welcome-to-meet-them-in-music
 ---
 
 Somewhere along the way, you got a student who didn't fit the lesson you planned. Maybe they couldn't hold the instrument the way the method book showed. Maybe the echo song fell apart because processing the call took longer than the response allowed. Maybe you looked at a room full of kids and realized your go-to repertoire wasn't reaching the kid in the corner, and you didn't know why, and nobody had ever taught you what to try instead.
