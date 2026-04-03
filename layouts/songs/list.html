@@ -12,9 +12,17 @@
       <input type="search" id="song-search" class="song-search-input" placeholder="Title, concept, mode…" autocomplete="off" spellcheck="false">
     </div>
     <div class="filter-group">
-      <span class="filter-label">Concepts</span>
-      <div class="filter-buttons" data-filter="concepts">
-        {{ range .Site.Taxonomies.concepts }}
+      <span class="filter-label">Musical concepts</span>
+      <div class="filter-buttons" data-filter="musical_concepts">
+        {{ range .Site.Taxonomies.musical_concepts }}
+          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+        {{ end }}
+      </div>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Social concepts</span>
+      <div class="filter-buttons" data-filter="social_concepts">
+        {{ range .Site.Taxonomies.social_concepts }}
           <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
@@ -52,7 +60,8 @@
     {{ range (where .Pages "Params.unlisted" "ne" true).ByTitle }}
     <li class="song-card"
       data-url="{{ .Permalink }}"
-      data-concepts="{{ delimit .Params.concepts "|" | lower }}"
+      data-musical_concepts="{{ delimit (.Params.musical_concepts | default slice) "|" | lower }}"
+      data-social_concepts="{{ delimit (.Params.social_concepts | default slice) "|" | lower }}"
       data-mode="{{ delimit .Params.modes "|" | lower }}"
       data-meter="{{ delimit .Params.meters "|" | lower }}"
       data-key="{{ delimit .Params.keys "|" | lower }}">
@@ -63,9 +72,10 @@
           {{ with .Params.modes }}<span class="song-meta-item">{{ index . 0 }}</span>{{ end }}
           {{ with .Params.meters }}<span class="song-meta-item">{{ index . 0 }}</span>{{ end }}
         </div>
-        {{ with .Params.concepts }}
+        {{ if or .Params.musical_concepts .Params.social_concepts }}
         <div class="song-concepts">
-          {{ range . }}<span class="tag">{{ . }}</span> {{ end }}
+          {{ range .Params.musical_concepts }}<span class="tag">{{ . }}</span> {{ end }}
+          {{ range .Params.social_concepts }}<span class="tag">{{ . }}</span> {{ end }}
         </div>
         {{ end }}
       </div>
@@ -76,7 +86,7 @@
 
 <script>
 (function () {
-  const activeFilters = { concepts: [], mode: [], meter: [], key: [] };
+  const activeFilters = { musical_concepts: [], social_concepts: [], mode: [], meter: [], key: [] };
   const cards = Array.from(document.querySelectorAll('.song-card'));
   const countEl = document.getElementById('library-count');
   const clearBtn = document.getElementById('filter-clear');
@@ -154,7 +164,7 @@
     .then(r => r.json())
     .then(data => {
       fuse = new Fuse(data, {
-        keys: ['title', 'concepts', 'modes', 'meters', 'keys'],
+        keys: ['title', 'musical_concepts', 'social_concepts', 'modes', 'meters', 'keys'],
         threshold: 0.3,
         minMatchCharLength: 2
       });
@@ -165,10 +175,10 @@
       }
     });
 
-  // Activate filters from URL params, e.g. /songs/?concepts=Choice+Board&mode=Mixolydian
+  // Activate filters from URL params, e.g. /songs/?musical_concepts=Bordun&mode=Pentatonic
   const params = new URLSearchParams(window.location.search);
   let hadParams = false;
-  ['concepts', 'mode', 'meter', 'key'].forEach(group => {
+  ['musical_concepts', 'social_concepts', 'mode', 'meter', 'key'].forEach(group => {
     params.getAll(group).forEach(val => {
       const container = document.querySelector(`[data-filter="${group}"]`);
       if (!container) return;

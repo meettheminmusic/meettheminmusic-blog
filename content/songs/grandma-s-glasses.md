@@ -2,9 +2,10 @@
 title: Grandma's Glasses
 date: 2026-04-01
 description: "Grandma's Glasses is a mixed meter chant. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers."
-concepts:
+musical_concepts:
   - Fingerplay
   - Movement
+social_concepts:
   - Family
 keys:
   - unpitched

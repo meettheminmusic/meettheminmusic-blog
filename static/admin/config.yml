@@ -36,7 +36,8 @@ collections:
       - { label: "Unlisted", name: "unlisted", widget: "boolean", default: false }
       - { label: "Featured on homepage", name: "featured", widget: "boolean", default: false, required: false }
       - { label: "Homepage card image", name: "card_image", widget: "image", required: false }
-      - { label: "Concepts", name: "concepts", widget: "list", required: false }
+      - { label: "Musical concepts", name: "musical_concepts", widget: "list", required: false }
+      - { label: "Social concepts", name: "social_concepts", widget: "list", required: false }
       - { label: "Keys", name: "keys", widget: "list", required: false }
       - { label: "Modes", name: "modes", widget: "list", required: false }
       - { label: "Meters", name: "meters", widget: "list", required: false }
