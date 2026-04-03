@@ -4,7 +4,7 @@
   <ul class="post-list">
     {{ range where .Pages "Params.unlisted" "ne" true }}
     <li class="post-card">
-      {{ with .Params.image }}<a href="{{ $.Permalink }}"><img src="{{ . }}" alt="" class="post-card-image"></a>{{ end }}
+      {{ if .Params.image }}<a href="{{ .Permalink }}"><img src="{{ .Params.image }}" alt="" class="post-card-image"></a>{{ end }}
       <p class="post-meta">{{ .Date.Format "January 2, 2006" }}</p>
       <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
       <p class="post-excerpt">{{ .Summary | truncate 160 }}</p>
