@@ -86,11 +86,11 @@ Any student - I mean it, any student - is welcomed to make a choice from the pro
 
 ## Where do I get the pictures?
 
-Don't overthink this part! In the past I have used [Google images](images.google.com) and [UnSplashed](https://unsplash.com). The important thing is that there are choices and the students know what they mean.
+Don't overthink this part! In the past I have used [Google images](http://images.google.com) and [UnSplashed](https://unsplash.com). The important thing is that there are choices and the students know what they mean.
 
 Sometimes you may need to get a little tricky. I once had a song choice for Offenbach's _Can Can._ The traditional picture for this would be dancing ladies. I'm not dealing with the parent phone calls on that one! Instead, I used a picture of a toucan ... because toucan = two-can = can can!
 
-With the advent of AI image generation, this can be an easy source for images you can't easily find - like my student who wanted a baby giraffe riding on a lion's back.  [Google's Gemini](gemini.google.com) is free and easy to use for this purpose
+With the advent of AI image generation, this can be an easy source for images you can't easily find - like my student who wanted a baby giraffe riding on a lion's back. [Google Gemini](http://gemini.google.com) is free and easy to use for this purpose
 
 ![an AI image of a baby giraffe riding on a lions back](/images/uploads/gemini-generated-image-pz9wm3.webp "an AI image of a baby giraffe riding on a lions back")
 
