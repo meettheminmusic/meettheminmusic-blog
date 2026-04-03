@@ -48,9 +48,9 @@
       </a>
       <div class="header-end">
         <nav class="site-nav">
-          {{ range .Site.Menus.main }}
-            <a href="{{ .URL }}" {{ if $.IsMenuCurrent "main" . }}class="active"{{ end }}>
-              {{ .Name }}
+          {{ range sort .Site.Data.navigation.items "weight" }}
+            <a href="{{ .url }}" {{ if or (eq $.RelPermalink .url) (and (ne .url "/") (strings.HasPrefix $.RelPermalink .url)) }}class="active"{{ end }}>
+              {{ .name }}
             </a>
           {{ end }}
         </nav>

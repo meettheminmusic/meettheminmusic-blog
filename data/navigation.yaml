@@ -1,0 +1,16 @@
+items:
+  - name: Home
+    url: /
+    weight: 1
+  - name: Blog
+    url: /posts/
+    weight: 2
+  - name: Song library
+    url: /songs/
+    weight: 3
+  - name: About
+    url: /about/
+    weight: 4
+  - name: Contact
+    url: /contact/
+    weight: 5

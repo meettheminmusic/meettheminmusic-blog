@@ -45,6 +45,21 @@ collections:
       - { label: "Source URL", name: "source_url", widget: "string", required: false }
       - { label: "Notes", name: "body", widget: "markdown", required: false }
 
+  - name: "navigation"
+    label: "Navigation"
+    files:
+      - name: "main_menu"
+        label: "Header navigation"
+        file: "data/navigation.yaml"
+        fields:
+          - name: items
+            label: "Menu items"
+            widget: list
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "Order", name: "weight", widget: "number", default: 10 }
+
   - name: "pages"
     label: "Pages"
     folder: "content"
