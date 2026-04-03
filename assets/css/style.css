@@ -406,6 +406,27 @@ img {
 
 .filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
 
+.song-search-input {
+  width: 100%;
+  max-width: 360px;
+  background: var(--white);
+  border: 0.5px solid var(--neutral-100);
+  border-radius: 6px;
+  color: var(--charcoal);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding: 6px 12px;
+  min-height: 32px;
+  transition: border-color 0.15s;
+}
+.song-search-input::placeholder { color: #B4B2A9; }
+.song-search-input:focus {
+  border-color: var(--teal);
+  outline: 2px solid var(--teal);
+  outline-offset: 1px;
+}
+
 .filter-label {
   font-size: 0.75rem;
   font-weight: 600;

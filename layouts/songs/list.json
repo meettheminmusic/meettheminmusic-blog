@@ -1,0 +1,6 @@
+{{- $result := slice -}}
+{{- range (where .Pages "Params.unlisted" "ne" true).ByTitle -}}
+  {{- $item := dict "title" .Title "url" .Permalink "concepts" .Params.concepts "modes" .Params.modes "meters" .Params.meters "keys" .Params.keys -}}
+  {{- $result = $result | append $item -}}
+{{- end -}}
+{{ $result | jsonify }}
