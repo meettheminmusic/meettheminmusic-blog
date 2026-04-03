@@ -7,7 +7,7 @@ unlisted: false
 featured: false
 card_image: /images/uploads/go-round-the-mountain-4-note.webp
 concepts:
-  - Stead Beat
+  - Steady Beat
   - Mi-Re-Do
 keys:
   - C
