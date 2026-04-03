@@ -2,6 +2,7 @@
 title: Great Big House in New Orleans
 date: 2026-04-01
 description: "Great Big House in New Orleans is a pentatonic duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers."
+card_image: /images/uploads/Great_Big_House_in_New_Orleans-3.webp
 musical_concepts:
   - Choice Board
   - Bordun
@@ -10,13 +11,13 @@ keys:
 modes:
   - Pentatonic
 meters:
-  - duple, 2/4
+  - duple
+  - 2/4
 source: ''
 source_url: ''
-card_image: "/images/uploads/great-big-house-in-new-orleans-3.webp"
 ---
 
-![Notation for Great Big House in New Orleans with a bass line bordun](/images/uploads/great-big-house-in-new-orleans-3.webp "Notation for Great Big House in New Oreleans")
+![Notation for Great Big House in New Orleans with a bass line bordun](/images/uploads/Great_Big_House_in_New_Orleans-3.webp "Notation for Great Big House in New Oreleans")
 
 This is a great song to bring out the bass xylophone or bass bars.
 
