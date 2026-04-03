@@ -1,7 +1,7 @@
 ---
 title: Go 'Round the Mountain
-date: 2026-04-02T21:14:00
-draft: true
+date: 2026-04-02T21:40:00
+draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Go_Round_the_Mountain (4 Note Version).png
