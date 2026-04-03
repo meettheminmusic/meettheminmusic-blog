@@ -36,7 +36,7 @@ Build a circle of drums. I like to make "drum mountain" out of my tubanos with t
 
 _Added Complexity_: Alternate between drumming on the short drums and the tall drum in the middle.
 
-![Dr. Bottorff and a student drumming while walking in a circle](/images/uploads/Drum%20Mountain.png "The 'Drum Mountain' setup for Go Round the Mountain")
+![Dr. Bottorff and a student drumming while walking in a circle](/images/uploads/Screenshot%202026-04-02%20at%209.36.17%20PM.png "The 'Drum Mountain' setup for Go Round the Mountain")
 
 **<u>Assessment Opportunity:</u>**
 
