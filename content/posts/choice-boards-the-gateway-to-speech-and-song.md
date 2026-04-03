@@ -1,18 +1,23 @@
 ---
 title: 'Choice Boards: The Gateway to Speech and Song'
-date: 2026-04-03T16:37:00
+date: 2026-04-03T16:45:00
 draft: false
-description: ''
-tags: []
-categories: []
-image: ''
+featured: true
+description: Choice boards aren't a workaround. They're a musical tool that gives students  a  voice in your class.
+tags:
+  - Choice Boards
+categories:
+  - Strategies
+  - Adaptation
+  - UDL - Welcoming Interest and Activity
+image: /images/uploads/house-choice-board.webp
 ---
 
 Here's a moment you've probably had. You're about to launch into a singing activity, the kind your class is going to love, and you glance over at the student who is non-speaking or minimally verbal. And you quietly ask yourself: what do I do with them right now?
 
-It's an honest question. And most music teachers who ask it are already doing more than they give themselves credit for. The ones who don't ask have already answered it, usually in one of two ways: 
+It's an honest question. And most music teachers who ask it are already doing more than they give themselves credit for. The ones who don't ask have already answered it, usually in one of two ways:
 
-- skip that student over and keep the activity moving, or 
+- skip that student over and keep the activity moving, or
 - pivot to movement because at least their body is doing something.
 Both paths make the same quiet decision before the student has a chance to show you anything: _that their voice does not matter._
 
@@ -69,7 +74,7 @@ That framing matters, especially if you've ever felt like you need permission to
 
 ## So, what does it look like in MY classroom?
 
-I front load my year with choice boards, both in my self-contained classes and my general education classes. If you start with the expectation that we all participate and all responses are welcomed, you will spend less time fighting for a response later. 
+I front load my year with choice boards, both in my self-contained classes and my general education classes. If you start with the expectation that we all participate and all responses are welcomed, you will spend less time fighting for a response later.
 
 When we are doing an activity with a choice board, I keep it projected the entire time the class is doing the activity. If there is a paraprofessional in the room, they have a printed copy and so do I.
 
