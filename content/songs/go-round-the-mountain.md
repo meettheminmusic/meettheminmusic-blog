@@ -1,6 +1,7 @@
 ---
 title: Go 'Round the Mountain
 date: 2026-04-02T21:43:00
+description: "Go 'Round the Mountain is a major duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers."
 draft: false
 unlisted: false
 featured: false

@@ -1,6 +1,7 @@
 ---
 title: Jeremiah Blow the Fire
 date: 2026-03-31
+description: "Jeremiah Blow the Fire is a major duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers."
 concepts:
   - 8th notes
   - Rests

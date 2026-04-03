@@ -18,11 +18,7 @@
     {{ .Content }}
   </div>
 
-  <hr style="margin: 3rem 0;">
-  <p style="color: var(--warm-gray); font-size: 0.875rem;">
-    Written by <strong>{{ .Site.Params.author }}</strong>. Have a question or want to connect?
-    <a href="/contact/">Get in touch</a>.
-  </p>
+  {{ partial "author-bio.html" . }}
 </article>
 </div>
 {{ end }}

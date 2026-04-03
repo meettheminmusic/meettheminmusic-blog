@@ -1,6 +1,7 @@
 ---
 title: Akka Bakka Soda Cracker
 date: 2026-03-31
+description: "Akka Bakka Soda Cracker is a duple meter chant. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers."
 concepts:
   - Steady beat
   - Turn taking

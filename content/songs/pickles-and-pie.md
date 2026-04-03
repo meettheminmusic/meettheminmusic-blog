@@ -1,6 +1,7 @@
 ---
 title: Pickles and Pie
 date: 2026-03-31
+description: "Pickles and Pie is a mixolydian duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers."
 concepts:
   - Leading tone
   - Choice Board

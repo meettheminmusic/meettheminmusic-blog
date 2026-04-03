@@ -1564,3 +1564,58 @@ table tr:nth-child(even) {
   .signup-form { flex-direction: column; }
   .cta-box__actions { flex-direction: column; align-items: center; }
 }
+
+/* ===== Author Bio ===== */
+.author-bio {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--neutral-100);
+  margin-top: 3rem;
+}
+
+.author-bio__photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.author-bio__name {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--charcoal);
+  margin-bottom: 0.125rem;
+}
+
+.author-bio__credentials {
+  font-size: 0.75rem;
+  color: var(--warm-gray);
+  margin-bottom: 0.625rem;
+}
+
+.author-bio__text {
+  font-size: 0.875rem;
+  color: var(--warm-gray);
+  line-height: 1.65;
+  margin-bottom: 0.625rem;
+}
+
+.author-bio__link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--teal);
+  text-decoration: none;
+}
+
+.author-bio__link:hover {
+  color: var(--dark-teal);
+}
+
+@media (max-width: 480px) {
+  .author-bio {
+    flex-direction: column;
+  }
+}

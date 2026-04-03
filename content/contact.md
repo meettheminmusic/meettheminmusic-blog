@@ -1,6 +1,6 @@
 ---
 title: Contact
-description: Get in touch with "Meet Them in Music"
+description: "Get in touch with Dr. P. Eric Bottorff for keynote speaking, professional development, or consulting on inclusive music education and students with disabilities."
 ---
 
 Have a question, resource suggestion, or collaboration idea? I'd love to hear from you.

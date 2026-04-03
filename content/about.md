@@ -1,10 +1,8 @@
 ---
 title: About
 layout: about
-description: >
-  Dr. P. Eric Bottorff is a K-4 music educator in South East Michigan,
-  Michigan Music Teacher of the Year, and the voice behind Meet Them in Music --
-  a platform bridging music education and special education.
+seo_title: "About Dr. P. Eric Bottorff | Music Education Specialist"
+description: "Dr. P. Eric Bottorff is a K–4 general music teacher, Ed.D., and Michigan Music Teacher of the Year who helps general music educators include students with disabilities through research-grounded, classroom-ready strategies."
 
 credentials:
   - "K-4 general music, South East Michigan"

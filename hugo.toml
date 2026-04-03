@@ -5,6 +5,7 @@ title = "Meet Them in Music"
 
 [params]
   tagline = "Music education that starts where they are."
+  seo_tagline = "Inclusive Elementary Music Education Resources"
   author = "Dr. P. Eric Bottorff"
   description = "Practical strategies and resources for teaching music to students with disabilities. Research-informed, practitioner-friendly. By Dr. P. Eric Bottorff."
   # Brand colors (available in templates via .Site.Params)

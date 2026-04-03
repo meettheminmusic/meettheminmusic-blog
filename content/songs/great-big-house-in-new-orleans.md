@@ -1,6 +1,7 @@
 ---
 title: Great Big House in New Orleans
 date: 2026-04-01
+description: "Great Big House in New Orleans is a pentatonic duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers."
 concepts:
   - Choice Board
   - Bordun
