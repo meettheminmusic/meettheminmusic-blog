@@ -13,10 +13,10 @@ meters:
   - 2/4
 source: ''
 source_url: ''
-card_image: "/images/uploads/Pickles_and_Pie-2.png"
+card_image: "/images/uploads/pickles-and-pie-2.webp"
 ---
 
-![Notation for Pickles and Pie](/images/uploads/Pickles_and_Pie-2.png "Pickles and Pie")
+![Notation for Pickles and Pie](/images/uploads/pickles-and-pie-2.webp "Pickles and Pie")
 
 I learned this song aurally from a friend.  Originally, my friend used a Lydian version of the tune.  I chose to re-arrange the song in Mixolydian to match my ears' preference.
 
@@ -39,8 +39,8 @@ You can add complexity in later lessons by:
 
 **<u>Sample Choice Board for this Song</u>**
 
-![An assortment of animal pictures including a cow, horse, dragon, unicorn, and others](/images/uploads/Pickles%20and%20Pie%20Choice%20Board.png "Sample Choice Board for Pickles and Pie")
+![An assortment of animal pictures including a cow, horse, dragon, unicorn, and others](/images/uploads/pickles-and-pie-choice-board.webp "Sample Choice Board for Pickles and Pie")
 
 Text to Image AIs are a great way to add student voice to the activity.  Google's Gemini was used to create the following image for a student.
 
-![an AI generated image of baby giraffe riding a lion](/images/uploads/Gemini_Generated_Image_pz9wm3pz9wm3pz9w.png "an AI generated image of baby giraffe riding a lion")
+![an AI generated image of baby giraffe riding a lion](/images/uploads/gemini-generated-image-pz9wm3.webp "an AI generated image of baby giraffe riding a lion")

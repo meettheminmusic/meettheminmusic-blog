@@ -4,7 +4,7 @@ date: 2026-04-02T21:43:00
 draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/Go_Round_the_Mountain (4 Note Version).png
+card_image: /images/uploads/go-round-the-mountain-4-note.webp
 concepts:
   - Stead Beat
   - Mi-Re-Do
@@ -20,7 +20,7 @@ source: ''
 source_url: ''
 ---
 
-![Notation for Go Round the Mountain with 4 notes](/images/uploads/Go_Round_the_Mountain%20%284%20Note%20Version%29.png "Go Round the Mountain (4 Note Version)")
+![Notation for Go Round the Mountain with 4 notes](/images/uploads/go-round-the-mountain-4-note.webp "Go Round the Mountain (4 Note Version)")
 
 {{< callout title="" >}}
 This is a favorite game with my students but it makes me incredibly dizzy!
@@ -36,7 +36,7 @@ Build a circle of drums. I like to make "drum mountain" out of my tubanos with t
 
 _Added Complexity_: Alternate between drumming on the short drums and the tall drum in the middle.
 
-![Dr. Bottorff and a student drumming while walking in a circle](/images/uploads/Screenshot%202026-04-02%20at%209.36.17%20PM.png "The 'Drum Mountain' setup for Go Round the Mountain")
+![Dr. Bottorff and a student drumming while walking in a circle](/images/uploads/go-round-the-mountain-drum-setup.webp "The 'Drum Mountain' setup for Go Round the Mountain")
 
 **<u>Assessment Opportunity:</u>**
 
@@ -50,4 +50,4 @@ There are two beat keeping assessments here.
 
 I've seen this version elsewhere
 
-![Go Round the Mountain with 3 notes](/images/uploads/Go_Round_the_Mountain%20%283%20Note%20version%29.png "Go Round the Mountain (3 Note Version)")
+![Go Round the Mountain with 3 notes](/images/uploads/go-round-the-mountain-3-note.webp "Go Round the Mountain (3 Note Version)")

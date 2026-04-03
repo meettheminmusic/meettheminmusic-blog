@@ -4,7 +4,7 @@ date: 2026-03-29
 draft: false
 featured: true
 description: Why I Built This and Who It's For.
-image: /images/uploads/Welcome Blog Post Hero Image.png
+image: /images/uploads/welcome-blog-post-hero-image.webp
 ---
 
 Somewhere along the way, you got a student who didn't fit the lesson you planned. Maybe they couldn't hold the instrument the way the method book showed. Maybe the echo song fell apart because processing the call took longer than the response allowed. Maybe you looked at a room full of kids and realized your go-to repertoire wasn't reaching the kid in the corner, and you didn't know why, and nobody had ever taught you what to try instead.

@@ -14,10 +14,10 @@ meters:
   - triple
 source: ''
 source_url: ''
-card_image: "/images/uploads/Grandma_s_Glasses-5.png"
+card_image: "/images/uploads/grandmas-glasses-5.webp"
 ---
 
-![percussion notation for the fingerplay Grandma's Glasses](/images/uploads/Grandma_s_Glasses-5.png "Grandma's Glasses Notation")
+![percussion notation for the fingerplay Grandma's Glasses](/images/uploads/grandmas-glasses-5.webp "Grandma's Glasses Notation")
 
 {{< callout title="" >}}
 

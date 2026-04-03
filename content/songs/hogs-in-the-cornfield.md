@@ -13,10 +13,10 @@ meters:
   - 2/4
 source: Traditional
 source_url: ''
-card_image: "/images/uploads/Hogs_in_the_Cornfield-2.png"
+card_image: "/images/uploads/hogs-in-the-cornfield-2.webp"
 ---
 
-![Notation for Hogs in the Cornfield](/images/uploads/Hogs_in_the_Cornfield-2.png "Hogs in the Cornfield")
+![Notation for Hogs in the Cornfield](/images/uploads/hogs-in-the-cornfield-2.webp "Hogs in the Cornfield")
 
 **Activity:**
 

@@ -14,10 +14,10 @@ meters:
   - 2/4
 source: ''
 source_url: ''
-card_image: "/images/uploads/Akka_Bakka_Soda_Cracker-3.png"
+card_image: "/images/uploads/akka-bakka-soda-cracker-3.webp"
 ---
 
-![Unpitched Notation for the song Akka Bakka Soda Cracker](/images/uploads/Akka_Bakka_Soda_Cracker-3.png "Akka Bakka Soda Cracker (Chant)")
+![Unpitched Notation for the song Akka Bakka Soda Cracker](/images/uploads/akka-bakka-soda-cracker-3.webp "Akka Bakka Soda Cracker (Chant)")
 
 **<u>Activity:</u>**
 

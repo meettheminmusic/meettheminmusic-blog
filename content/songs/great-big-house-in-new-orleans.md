@@ -12,10 +12,10 @@ meters:
   - duple, 2/4
 source: ''
 source_url: ''
-card_image: "/images/uploads/Great_Big_House_in_New_Orleans-3.png"
+card_image: "/images/uploads/great-big-house-in-new-orleans-3.webp"
 ---
 
-![Notation for Great Big House in New Orleans with a bass line bordun](/images/uploads/Great_Big_House_in_New_Orleans-3.png "Notation for Great Big House in New Oreleans")
+![Notation for Great Big House in New Orleans with a bass line bordun](/images/uploads/great-big-house-in-new-orleans-3.webp "Notation for Great Big House in New Oreleans")
 
 This is a great song to bring out the bass xylophone or bass bars.
 
@@ -29,6 +29,6 @@ Have a student choose the type of pie that is in the Great Big House.  Fill in t
 
 <u>**Choice Board:</u>**
 
-![A choice board for the great big house in new orleans. Includes images of a chicken, ice cream, lime, pumpkins, and moon pie.](/images/uploads/house%20choice%20board.jpg "Great Big House in New Orleans Sample Choice Board")
+![A choice board for the great big house in new orleans. Includes images of a chicken, ice cream, lime, pumpkins, and moon pie.](/images/uploads/house-choice-board.webp "Great Big House in New Orleans Sample Choice Board")
 
 This is a sample choice board created with my students.  Students can select from the board, offer their own idea, or combine ideas.  If students have ideas, add them to your choice board!

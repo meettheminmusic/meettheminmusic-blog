@@ -13,10 +13,10 @@ meters:
   - 2/4
 source: ''
 source_url: ''
-card_image: "/images/uploads/Jeremiah_Blow_the_Fire-5.png"
+card_image: "/images/uploads/jeremiah-blow-the-fire-5.webp"
 ---
 
-![Notation for the song Jeremiah Blow the Fire](/images/uploads/Jeremiah_Blow_the_Fire-5.png "Jeremiah Blow the Fire")
+![Notation for the song Jeremiah Blow the Fire](/images/uploads/jeremiah-blow-the-fire-5.webp "Jeremiah Blow the Fire")
 
 **<u>Activity:</u>**
 
