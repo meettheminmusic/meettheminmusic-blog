@@ -31,7 +31,7 @@ You've probably heard the term "choice board" and filed it mentally under "speci
 
 A choice board is a visual display of options. A student can point to one, tap one, select one on an AAC device, or communicate their choice through eye gaze. What makes it powerful in music class isn't the board itself; it's when you offer it.
 
-[![A sample daily choice board showing colored sticky notes on a folder showing "Flash card" "Vocab practice" "Journal writing" and "review notes"](/images/uploads/example%20choice%20board.webp "Sample choice board of HS English activities")](https://ocali.org/resource_gallery_of_interventions/choice-boards)
+![A sample daily choice board showing colored sticky notes on a folder showing "Flash card" "Vocab practice" "Journal writing" and "review notes"](/images/uploads/example%20choice%20board.webp "Sample choice board of HS English activities")
 
 In music, a choice board means a student gets to make a real musical decision. Not a "do you want to sit or stand" decision. A musical one: which animal lives on Old MacDonald's farm, what food is _Aiken Drum_'s head made of, what does the fox say? The board is a musical tool. It belongs in your room for the same reasons your pitched instruments do.
 
