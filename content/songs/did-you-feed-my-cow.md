@@ -1,0 +1,70 @@
+---
+title: Did You Feed my Cow
+date: 2026-04-04T12:47:00
+draft: false
+unlisted: true
+featured: false
+card_image: /images/uploads/Did-you-Feed-My-Cow.webp
+musical_concepts:
+  - Pickups
+  - Call and Response
+  - Rhythmic elongation
+  - Syncopation
+  - Tonic
+social_concepts:
+  - Responsibility
+  - Farm life
+keys:
+  - F
+modes: []
+meters:
+  - Duple
+  - 4/4
+source: Thomas Talley (October 9, 1868 – July 11, 1952)
+source_url: https://books.googleusercontent.com/books/content?req=AKW5Qacnsh-sgEVrDf0T3XSmKaPXZJW_r4WRdyQ3Y9XJF643vZ_pcljdP6gf_Hl0SaCITrTtCVGKDYA6JS64YU9ulqEwK4uGsmfDxrizTbRugL0pBchUMqvCJdy8iuQ2SV121pVHmOt50xqggvzy7kHKyO7UwcGcWcq7jEIyR-54wqA3G2PwTlc6wjram8SN35Fjal-9iz0GVTQGaowr2v0RP8NNw745fd5FIGzp0BIM29AX0KgaKy0UpzbfQhfP5b7RtbGlBj3p
+---
+
+![Did you feed my cow notation](/images/uploads/Did-you-Feed-My-Cow.webp "Did you feed my cow notation")
+
+{{< callout title="Original source:" >}}
+The original words (recorded by Thomas Talley) described the death of the cow. I have slightly altered the words to match our modern sensibilities.  A link to the original words is on page 78 of the source book linked above.
+{{< /callout >}}
+
+>_If this song is too complicated with its multiple responses, try John the Rabbit.  It assesses responding on tonic with different words than prompted._
+
+**<u>Activity:</u>**
+This is a standard echo/response song procedure.  You will need to give the students the answers before.  Since they are not copying you, this is more challenging than a simple echo song.
+
+Before doing the song as an entire group, it can be helpful to go around with a microphone prompting one child at a time. This feels backwards to the normal process but can ease the process with hesitant classes.
+
+_Adding movement:_
+
+| Word | Motion |
+| --- | --- |
+| Yes, sir! | Thumbs up or nodding |
+| Corn and hay | ASL for corn (https://www.handspeak.com/word/2788/) |
+| Squish, squish, squish | Mime milking a cow with both hands to the beat |
+| All puffed up | Hands on belly, bouncing out to imply getting larger |
+| Flap, flap flap | flap arms to the beat. Mime being a bird |
+
+**<u>Visual Support:</u>**
+
+![Did you feed my cow image 1](/images/uploads/1%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 1")
+
+![Did you feed my cow image 2](/images/uploads/2%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 2")
+
+![Did you feed my cow image 3](/images/uploads/3%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 3")
+
+![Did you feed my cow image 4](/images/uploads/4%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 4")
+
+![Did you feed my cow image 5](/images/uploads/5%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 5")
+
+![Did you feed my cow image 6](/images/uploads/6%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 6")
+
+![Did you feed my cow image 7](/images/uploads/7%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 7")
+
+![Did you feed my cow image 8](/images/uploads/8%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 8")
+
+{{< callout title="Additional sources:" >}}
+A recording of this song sung by Ella Jenkins can be found on [Youtube](https://www.youtube.com/watch?v=GPRHvu5ALGA) and in the [Smithsonian Folkways Recordings](https://folkways.si.edu/ella-jenkins/youll-sing-a-song-and-ill-sing-a-song/childrens/music/album/smithsonian).  Her version is more blues-y.
+{{< /callout >}}
