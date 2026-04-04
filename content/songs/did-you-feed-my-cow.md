@@ -1,8 +1,8 @@
 ---
 title: Did You Feed my Cow
 date: 2026-04-04T12:47:00
-draft: true
-unlisted: false
+draft: false
+unlisted: true
 featured: false
 card_image: /images/uploads/Did-you-Feed-My-Cow.webp
 musical_concepts:
@@ -26,10 +26,16 @@ source_url: https://books.googleusercontent.com/books/content?req=AKW5Qacnsh-sgE
 
 ![Did you feed my cow notation](/images/uploads/Did-you-Feed-My-Cow.webp "Did you feed my cow notation")
 
-> The original words (recorded by Thomas Talley) described the death of the cow. I have slightly altered the words to match our modern sensibilities.  A link to the original words is on page 78 of the source book linked above.
+{{< callout title="Original source:" >}}
+The original words (recorded by Thomas Talley) described the death of the cow. I have slightly altered the words to match our modern sensibilities.  A link to the original words is on page 78 of the source book linked above.
+{{< /callout >}}
+
+>_If this song is too complicated with its multiple responses, try John the Rabbit.  It asses responding on tonic with different words than prompted._
 
 **<u>Activity:</u>**
 This is a standard echo/response song procedure.  You will need to give the students the answers before.  Since they are not copying you, this is more challenging than a simple echo song.
+
+Before doing the song as an entire group, it can be helpful to go around with a microphone prompting one child at a time. This feels backwards to the normal process but can ease the process with hesitant classes.
 
 _Adding movement:_
 
