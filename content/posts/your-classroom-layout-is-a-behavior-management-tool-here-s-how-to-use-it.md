@@ -1,7 +1,7 @@
 ---
 title: Your classroom layout is a behavior management tool - here's how to use it
-date: 2026-04-04T14:32:00
-draft: true
+date: 2026-04-04T14:48:00
+draft: false
 unlisted: false
 featured: false
 description: When you understand the four functions of behavior — escape, attention, tangibles, and stimulation — your music room layout becomes one of your most powerful preventative and supportive tools.
@@ -48,7 +48,7 @@ Behavior doesn't happen randomly. Research in applied behavior analysis tells us
 
 Here is what makes E.A.T.S. so useful for music educators: once you know the function behind a behavior, you begin to see it in a different light and can design responses to it. Not just _in the moment_ responses but responses built into the architecture of your room itself.
 
-Additionally, your classroom layout can be **_preventative_** (designed to reduce the likelihood that behavior will occur) and **_supportive_** (designed to offer a path through behavior when it does). Both matter and both are achievable with low cost and a roll of tape.
+Additionally, your classroom layout can be \*\*_preventative_\*\* (designed to reduce the likelihood that behavior will occur) and \*\*_supportive_\*\* (designed to offer a path through behavior when it does). Both matter and both are achievable with low cost and a roll of tape.
 
 ***
 
@@ -78,7 +78,7 @@ Intentional placement within the semi-circle matters here. Students who frequent
 
 Behavior driven by tangibles can spike during transitions. A student who has difficulty waiting reaches for the drum before the lesson is ready. A student who has difficulty stopping keeps playing after the cue. A student who just really wants to touch a ukulele, will run over and touch a ukulele!
 
-Your layout can address this through visual schedules and physical structure. A visual schedule at the front of the room or on the board tells students when instruments are coming. That preview reduces anticipatory behavior because the tangible is no longer a surprise. It's a promised event with a known timeline. 
+Your layout can address this through visual schedules and physical structure. A visual schedule at the front of the room or on the board tells students when instruments are coming. That preview reduces anticipatory behavior because the tangible is no longer a surprise. It's a promised event with a known timeline.
 
 Red tape on the floor between the circle and the instrument storage area provides a physical "wait here" boundary that makes the transition cleaner. Students who have difficulty with impulse control can feel and see the line, which reduces the cognitive load of self-managing that moment.
 
@@ -108,9 +108,9 @@ Paraprofessionals are also a form of both preventative and supportive supports. 
 
 ## One room, all four functions
 
-None of these strategies are mutually exclusive. A semi-circle with intentional placement, floor markers, red tape transition lines, and a cool-down corner in the corner addresses all four functions of E.A.T.S. simultaneously — and it does so largely without requiring you to stop teaching.
+None of these strategies are mutually exclusive. A semi-circle with intentional placement, floor markers, red tape transition lines, and a cool-down corner in the corner addresses all four functions of E.A.T.S. simultaneously. It does so largely without requiring you to stop teaching.
 
-That is the goal: a room where the design itself is doing behavior support work, so your attention can stay on instruction.
+That is the goal: a room where the design itself is giving nudges towards the behavior that will keep the kids learning.
 
 ***
 
