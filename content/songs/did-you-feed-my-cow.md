@@ -10,8 +10,10 @@ musical_concepts:
   - Call and Response
   - Rhythmic elongation
   - Syncopation
+  - Tonic
 social_concepts:
   - Responsibility
+  - Farm life
 keys:
   - F
 modes: []
@@ -33,14 +35,13 @@ _Adding movement:_
 
 | Word | Motion |
 | --- | --- |
-| Yes, sir! | Thumbs up or nodding|
+| Yes, sir! | Thumbs up or nodding |
 | Corn and hay | ASL for corn (https://www.handspeak.com/word/2788/) |
 | Squish, squish, squish | Mime milking a cow with both hands to the beat |
 | All puffed up | Hands on belly, bouncing out to imply getting larger |
 | Flap, flap flap | flap arms to the beat. Mime being a bird |
 
 **<u>Visual Support:</u>**
-
 
 {{< callout title="Additional sources:" >}}
 A recording of this song sung by Ella Jenkins can be found on [Youtube](https://www.youtube.com/watch?v=GPRHvu5ALGA) and in the [Smithsonian Folkways Recordings](https://folkways.si.edu/ella-jenkins/youll-sing-a-song-and-ill-sing-a-song/childrens/music/album/smithsonian).  Her version is more blues-y.
