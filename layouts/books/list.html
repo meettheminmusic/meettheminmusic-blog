@@ -1,0 +1,34 @@
+{{ define "main" }}
+<div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="post-content">{{ . }}</div>{{ end }}
+
+  <div class="book-grid">
+    {{ range .Pages }}
+    {{ if not .Params.draft }}
+    <div class="book-card">
+      {{ with .Params.cover_image }}
+      <div class="book-card__cover">
+        <img src="{{ . }}" alt="Cover of {{ $.Title }}">
+      </div>
+      {{ end }}
+      <div class="book-card__body">
+        <h2 class="book-card__title">{{ .Title }}</h2>
+        {{ with .Params.description }}
+        <p class="book-card__excerpt">{{ . }}</p>
+        {{ end }}
+        {{ with .Params.author }}
+        <p class="book-card__author">{{ . }}</p>
+        {{ end }}
+        {{ with .Params.amazon_url }}
+        <a href="{{ . }}" class="book-card__buy" target="_blank" rel="noopener sponsored">
+          Buy on Amazon
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

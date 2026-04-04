@@ -8,9 +8,12 @@ items:
   - name: Song library
     url: /songs/
     weight: 3
+  - name: Books
+    url: /books/
+    weight: 4
   - name: About
     url: /about/
-    weight: 4
+    weight: 5
   - name: Contact
     url: /contact/
-    weight: 5
+    weight: 6
