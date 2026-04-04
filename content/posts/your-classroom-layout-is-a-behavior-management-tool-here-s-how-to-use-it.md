@@ -21,7 +21,7 @@ West Japan Railway had a problem that signage and staffing can't fully solve: pa
 
 Their solution was not to add a warning. It was to rotate the benches 90 degrees.
 
-// Image of rotated train platform benchs//
+![Benches on a train platform being rotated 90 degrees away from the tracks](/images/uploads/rotated-benches-on-train-platform.webp "Benches on a train platform being rotated 90 degrees away from the tracks")
 
 That is the idea behind this post.
 
@@ -48,7 +48,7 @@ Behavior doesn't happen randomly. Research in applied behavior analysis tells us
 
 Here is what makes E.A.T.S. so useful for music educators: once you know the function behind a behavior, you begin to see it in a different light and can design responses to it. Not just _in the moment_ responses but responses built into the architecture of your room itself.
 
-Additionally, your classroom layout can be **_preventative_** (designed to reduce the likelihood that behavior will occur) and **_supportive_** (designed to offer a path through behavior when it does). Both matter and both are achievable with low cost and a roll of tape.
+Additionally, your classroom layout can be \*\*_preventative_ **(designed to reduce the likelihood that behavior will occur) and** _supportive_\*\* (designed to offer a path through behavior when it does). Both matter and both are achievable with low cost and a roll of tape.
 
 ***
 
@@ -62,7 +62,7 @@ What does this look like in a layout? First, look at your seating arrangement. A
 
 Second, and more importantly: if escape-motivated behavior is common in your room, build in a planned escape. A cool-down corner — a designated, visually bounded area with a simple calm-down prompt and a neutral sensory tool — gives students a legitimate way to step away temporarily. When students who have sensory sensitivities or anxiety know there is a sanctioned path out of an overwhelming moment (and that you will respect their request to use it!), they are less likely to create an unsanctioned one.
 
-> **Diagram description:** My classroom semi-circle.
+![photograph of a classroom with chairs in a semicircle](/images/uploads/my-classroom-semicircle.webp "photograph of a classroom with chairs in a semicircle")
 
 ### Attention: proximity makes attention sustainable
 
@@ -70,7 +70,7 @@ Students who seek attention from adults are not being manipulative, they are exp
 
 The semi-circle solves this too, from a different angle. When you position yourself at the open end of the arc, you are equidistant from every student. You can make eye contact with each person without crossing the room. You can move to any student in a few steps. That ease of proximity means you can distribute attention _before_ students have to ask for it through behavior.
 
-Intentional placement within the semi-circle matters here. Students who frequently seek attention often do best near your natural position. This is not a reward but because it makes it easier for you to provide brief, proactive check-ins before a bid for attention becomes a disruption. 
+Intentional placement within the semi-circle matters here. Students who frequently seek attention often do best near your natural position. This is not a reward but because it makes it easier for you to provide brief, proactive check-ins before a bid for attention becomes a disruption.
 
 > Aim for a "4 positive to 1 negative" ratio of interactions for students. This is a goal for all students but especially for students who are seeking attention.
 
@@ -82,7 +82,7 @@ Your layout can address this through visual schedules and physical structure. A 
 
 For situations where a red line is not enough to redirect a child who REALLY wants to play the xylophones, a bedsheet or curtain can be useful. Hiding an item from view may help inhibit or delay a desire to grab a xylophone. However, if you cover it up but they know it is there because they went for it the past 3 weeks ... they are still going to go for it. Cover it and move it.
 
-// Image of Xylo with stop sign and tape //
+![A classroom orff instrument with a stop sign and red tape](/images/uploads/xylo-with-stopsign-and-red-tape.webp "A classroom orff instrument with a stop sign and red tape")
 
 ***
 
@@ -92,7 +92,7 @@ Preventative design can reduce the frequency of behavior. Supportive design (the
 
 The cool-down corner is the most direct example. A student who is escalating needs somewhere to go that is not "out of the room" and not "in the middle of the group." The cool-down corner is that third option. It is effective for escape-motivated and stimulation-motivated behavior especially: it offers a genuine break from demand while keeping the student in the space with a clear path back.
 
-A classroom collection of [headphones\*](https://amzn.to/4m8b4K1) that students can wear when the noise gets overstimulating. They should be readily available and just in reach of students who request to use them. The real trick is this: headphones are available for anybody who needs them NOT just the student with autism. If you normalize their availablilty and to not stigmatize students for requesting them you will find that _eventually_ students will notice another student who needs the headphones and advocate for them. 
+A classroom collection of [headphones\*](https://amzn.to/4m8b4K1) that students can wear when the noise gets overstimulating. They should be readily available and just in reach of students who request to use them. The real trick is this: headphones are available for anybody who needs them NOT just the student with autism. If you normalize their availablilty and to not stigmatize students for requesting them you will find that _eventually_ students will notice another student who needs the headphones and advocate for them.
 
 {{< callout title="" >}}
 I have had students using headphone take them off of their own heads to give to a peer they noticed who had a greater need.
