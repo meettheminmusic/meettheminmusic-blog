@@ -164,7 +164,8 @@ img {
 .post-card:last-child { border-bottom: none; }
 .post-card-image {
   width: 100%;
-  height: 220px;
+  aspect-ratio: 16 / 9;
+  height: auto;
   object-fit: cover;
   border-radius: 6px;
   margin-bottom: 1rem;
@@ -1618,6 +1619,13 @@ table tr:nth-child(even) {
   .author-bio {
     flex-direction: column;
   }
+}
+
+/* ── Books page ─────────────────────────────────── */
+.book-disclosure {
+  font-size: 0.75rem;
+  color: var(--warm-gray);
+  margin-bottom: 1.5rem;
 }
 
 /* ── Books grid ──────────────────────────────────── */

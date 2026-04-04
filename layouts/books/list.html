@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
   <h1>{{ .Title }}</h1>
-  {{ with .Content }}<div class="post-content">{{ . }}</div>{{ end }}
+  {{ with .Content }}<div class="book-disclosure">{{ . }}</div>{{ end }}
 
   <div class="book-grid">
     {{ range .Pages }}
