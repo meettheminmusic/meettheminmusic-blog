@@ -30,7 +30,7 @@ source_url: https://books.googleusercontent.com/books/content?req=AKW5Qacnsh-sgE
 The original words (recorded by Thomas Talley) described the death of the cow. I have slightly altered the words to match our modern sensibilities.  A link to the original words is on page 78 of the source book linked above.
 {{< /callout >}}
 
->_If this song is too complicated with its multiple responses, try John the Rabbit.  It asses responding on tonic with different words than prompted._
+>_If this song is too complicated with its multiple responses, try John the Rabbit.  It assesses responding on tonic with different words than prompted._
 
 **<u>Activity:</u>**
 This is a standard echo/response song procedure.  You will need to give the students the answers before.  Since they are not copying you, this is more challenging than a simple echo song.
