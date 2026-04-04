@@ -14,7 +14,7 @@ tags:
   - visual supports
   - unctions of behavior
 categories: []
-image: ''
+image: /images/uploads/rotated-benches-on-train-platform.webp
 ---
 
 West Japan Railway had a problem that signage and staffing can't fully solve: passengers — particularly those who have been drinking — stand up from platform benches and fall onto the tracks.
@@ -48,7 +48,7 @@ Behavior doesn't happen randomly. Research in applied behavior analysis tells us
 
 Here is what makes E.A.T.S. so useful for music educators: once you know the function behind a behavior, you begin to see it in a different light and can design responses to it. Not just _in the moment_ responses but responses built into the architecture of your room itself.
 
-Additionally, your classroom layout can be \*\*_preventative_ **(designed to reduce the likelihood that behavior will occur) and** _supportive_\*\* (designed to offer a path through behavior when it does). Both matter and both are achievable with low cost and a roll of tape.
+Additionally, your classroom layout can be \*\*_preventative_ \*\*(designed to reduce the likelihood that behavior will occur) and\*\* _supportive_\*\* (designed to offer a path through behavior when it does). Both matter and both are achievable with low cost and a roll of tape.
 
 ***
 
