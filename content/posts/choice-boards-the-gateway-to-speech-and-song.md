@@ -27,7 +27,7 @@ There is a third path. It takes some planning. In in my classroom experience, it
 
 ## What a choice board actually is (and isn't)
 
-You've probably heard the term "choice board" and filed it mentally under "special ed stuff," the kind of thing that happens in a separate room, managed by someone else. Let's set that aside. Choice boards are a way to elicit student responses, plain and simple.
+ Choice boards are a way to elicit student responses, plain and simple.
 
 A choice board is a visual display of options. A student can point to one, tap one, select one on an AAC device, or communicate their choice through eye gaze. What makes it powerful in music class isn't the board itself; it's when you offer it.
 
