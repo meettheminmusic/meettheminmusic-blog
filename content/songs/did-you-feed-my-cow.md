@@ -8,6 +8,8 @@ card_image: /images/uploads/Did-you-Feed-My-Cow.webp
 musical_concepts:
   - Pickups
   - Call and Response
+  - Rhythmic elongation
+  - Syncopation
 social_concepts:
   - Responsibility
 keys:
@@ -24,4 +26,22 @@ source_url: https://books.googleusercontent.com/books/content?req=AKW5Qacnsh-sgE
 
 > The original words (recorded by Thomas Talley) described the death of the cow. I have slightly altered the words to match our modern sensibilities.  A link to the original words is on page 78 of the source book linked above.
 
+**<u>Activity:</u>**
+This is a standard echo/response song procedure.  You will need to give the students the answers before.  Since they are not copying you, this is more challenging than a simple echo song.
+
+_Adding movement:_
+
+| Word | Motion |
+| --- | --- |
+| Yes, sir! | Thumbs up or nodding|
+| Corn and hay | ASL for corn (https://www.handspeak.com/word/2788/) |
+| Squish, squish, squish | Mime milking a cow with both hands to the beat |
+| All puffed up | Hands on belly, bouncing out to imply getting larger |
+| Flap, flap flap | flap arms to the beat. Mime being a bird |
+
+**<u>Visual Support:</u>**
+
+
+{{< callout title="Additional sources:" >}}
 A recording of this song sung by Ella Jenkins can be found on [Youtube](https://www.youtube.com/watch?v=GPRHvu5ALGA) and in the [Smithsonian Folkways Recordings](https://folkways.si.edu/ella-jenkins/youll-sing-a-song-and-ill-sing-a-song/childrens/music/album/smithsonian).  Her version is more blues-y.
+{{< /callout >}}
