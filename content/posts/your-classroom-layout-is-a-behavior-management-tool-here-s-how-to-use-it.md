@@ -1,5 +1,5 @@
 ---
-title: "Your classroom layout is a behavior management tool: here's how to use it"
+title: Your classroom layout is a behavior management tool - here's how to use it
 date: 2026-04-04T14:32:00
 draft: true
 unlisted: false
@@ -13,15 +13,15 @@ tags:
   - sensory
   - visual supports
   - unctions of behavior
-categories: []
+categories:
+  - Classroom Design
+  - Behavior
 image: /images/uploads/rotated-benches-on-train-platform.webp
 ---
 
 West Japan Railway had a problem that signage and staffing can't fully solve: passengers — particularly those who have been drinking — stand up from platform benches and fall onto the tracks.
 
 Their solution was not to add a warning. It was to rotate the benches 90 degrees.
-
-![Benches on a train platform being rotated 90 degrees away from the tracks](/images/uploads/rotated-benches-on-train-platform.webp "Benches on a train platform being rotated 90 degrees away from the tracks")
 
 That is the idea behind this post.
 
@@ -48,7 +48,7 @@ Behavior doesn't happen randomly. Research in applied behavior analysis tells us
 
 Here is what makes E.A.T.S. so useful for music educators: once you know the function behind a behavior, you begin to see it in a different light and can design responses to it. Not just _in the moment_ responses but responses built into the architecture of your room itself.
 
-Additionally, your classroom layout can be \*\*_preventative_ \*\*(designed to reduce the likelihood that behavior will occur) and\*\* _supportive_\*\* (designed to offer a path through behavior when it does). Both matter and both are achievable with low cost and a roll of tape.
+Additionally, your classroom layout can be **_preventative_** (designed to reduce the likelihood that behavior will occur) and **_supportive_** (designed to offer a path through behavior when it does). Both matter and both are achievable with low cost and a roll of tape.
 
 ***
 
@@ -58,9 +58,9 @@ Additionally, your classroom layout can be \*\*_preventative_ \*\*(designed to
 
 Students who use escape-motivated behavior are usually communicating something real: the task feels too hard, the sensory input is overwhelming, or the social demand is too high. The goal isn't to eliminate escape it's to make sure the escape options you offer are intentional, not accidental. We are looking to help the student self-regulate so they can join in the learning.
 
-What does this look like in a layout? First, look at your seating arrangement. A semi-circle — rather than rows or clusters — removes the back row. There is no low-visibility corner where a student can quietly disengage and go unnoticed. The semi-circle makes participation the default architecture of the space.
+What does this look like in a layout? First, look at your seating arrangement. A semi-circle removes the back row. There is no low-visibility corner where a student can quietly disengage and go unnoticed. The semi-circle makes participation the default architecture of the space.
 
-Second, and more importantly: if escape-motivated behavior is common in your room, build in a planned escape. A cool-down corner — a designated, visually bounded area with a simple calm-down prompt and a neutral sensory tool — gives students a legitimate way to step away temporarily. When students who have sensory sensitivities or anxiety know there is a sanctioned path out of an overwhelming moment (and that you will respect their request to use it!), they are less likely to create an unsanctioned one.
+Second, and more importantly: if escape-motivated behavior is common in your room, build in a planned escape. A cool-down corner  (a designated, visually bounded area with a simple calm-down prompt and a neutral sensory tool) gives students a legitimate way to step away temporarily. When students who have sensory sensitivities or anxiety know there is a sanctioned path out of an overwhelming moment (and that you will respect their request to use it!), they are less likely to create an unsanctioned one.
 
 ![photograph of a classroom with chairs in a semicircle](/images/uploads/my-classroom-semicircle.webp "photograph of a classroom with chairs in a semicircle")
 
@@ -76,9 +76,11 @@ Intentional placement within the semi-circle matters here. Students who frequent
 
 ### Tangible: show them when it's coming
 
-Behavior driven by tangibles — instruments, props, visual materials — tends to spike during transitions and distributions. A student who has difficulty waiting reaches for the drum before the lesson is ready. A student who has difficulty stopping keeps playing after the cue. A student who just really wants to touch a ukulele, will run over and touch a ukulele!
+Behavior driven by tangibles can spike during transitions. A student who has difficulty waiting reaches for the drum before the lesson is ready. A student who has difficulty stopping keeps playing after the cue. A student who just really wants to touch a ukulele, will run over and touch a ukulele!
 
-Your layout can address this through visual schedules and physical structure. A visual schedule at the front of the room or on the board tells students when instruments are coming. That preview reduces anticipatory behavior because the tangible is no longer a surprise — it's a promised event with a known timeline. Red tape on the floor between the circle and the instrument storage area provides a physical "wait here" boundary that makes the transition cleaner. Students who have difficulty with impulse control can feel and see the line, which reduces the cognitive load of self-managing that moment.
+Your layout can address this through visual schedules and physical structure. A visual schedule at the front of the room or on the board tells students when instruments are coming. That preview reduces anticipatory behavior because the tangible is no longer a surprise. It's a promised event with a known timeline. 
+
+Red tape on the floor between the circle and the instrument storage area provides a physical "wait here" boundary that makes the transition cleaner. Students who have difficulty with impulse control can feel and see the line, which reduces the cognitive load of self-managing that moment.
 
 For situations where a red line is not enough to redirect a child who REALLY wants to play the xylophones, a bedsheet or curtain can be useful. Hiding an item from view may help inhibit or delay a desire to grab a xylophone. However, if you cover it up but they know it is there because they went for it the past 3 weeks ... they are still going to go for it. Cover it and move it.
 
