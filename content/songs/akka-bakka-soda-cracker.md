@@ -1,12 +1,12 @@
 ---
 title: Akka Bakka Soda Cracker
 date: 2026-03-31
-description: "Akka Bakka Soda Cracker is a duple meter chant. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers."
+card_image: /images/uploads/akka-bakka-soda-cracker-3.webp
 musical_concepts:
   - Steady beat
   - Marching
 social_concepts:
-  - Turn taking
+  - Taking Turns
 keys:
   - unpitched
 modes:
@@ -16,7 +16,7 @@ meters:
   - 2/4
 source: ''
 source_url: ''
-card_image: "/images/uploads/akka-bakka-soda-cracker-3.webp"
+description: Akka Bakka Soda Cracker is a duple meter chant. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
 
 ![Unpitched Notation for the song Akka Bakka Soda Cracker](/images/uploads/akka-bakka-soda-cracker-3.webp "Akka Bakka Soda Cracker (Chant)")
