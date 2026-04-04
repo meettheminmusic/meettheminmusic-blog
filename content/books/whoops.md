@@ -5,5 +5,5 @@ draft: false
 author: Suzi Moore
 amazon_url: https://amzn.to/4v9uMcn
 cover_image: /images/books/Whoops.webp
-description: ''
+description: Vocal Exploration
 ---
