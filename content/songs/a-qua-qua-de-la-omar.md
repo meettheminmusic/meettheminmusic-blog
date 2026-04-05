@@ -1,10 +1,10 @@
 ---
 title: A Qua Qua De La Omar
 date: 2026-04-05T17:14:00
-draft: true
+draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/A-Qua-Qua-De-La-Omar.webp
+card_image: /images/uploads/AQuaQuaDeLaOmar.webp
 musical_concepts:
   - Pickups
   - Passing game
@@ -22,4 +22,4 @@ source: ''
 source_url: ''
 ---
 
-![](/images/uploads/A-Qua-Qua-De-La-Omar.webp)
+![Notation for A Qua Qua De La Omar](/images/uploads/AQuaQuaDeLaOmar.webp "Notation for A Qua Qua De La Omar")
