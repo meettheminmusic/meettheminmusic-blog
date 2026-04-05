@@ -3,8 +3,38 @@
   <h1>{{ .Title }}</h1>
   {{ with .Content }}<div class="book-disclosure">{{ . }}</div>{{ end }}
 
+  <h2>For Kids</h2>
   <div class="book-grid">
-    {{ range .Pages }}
+    {{ range where .Pages "Params.audience" "kids" }}
+    {{ if not .Params.draft }}
+    <div class="book-card">
+      {{ with .Params.cover_image }}
+      <div class="book-card__cover">
+        <img src="{{ . }}" alt="Cover of {{ $.Title }}">
+      </div>
+      {{ end }}
+      <div class="book-card__body">
+        <h2 class="book-card__title">{{ .Title }}</h2>
+        {{ with .Params.description }}
+        <p class="book-card__excerpt">{{ . }}</p>
+        {{ end }}
+        {{ with .Params.author }}
+        <p class="book-card__author">{{ . }}</p>
+        {{ end }}
+        {{ with .Params.amazon_url }}
+        <a href="{{ . }}" class="book-card__buy" target="_blank" rel="noopener sponsored">
+          Buy on Amazon
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+
+  <h2 style="margin-top: 3rem;">For Teachers</h2>
+  <div class="book-grid">
+    {{ range where .Pages "Params.audience" "teachers" }}
     {{ if not .Params.draft }}
     <div class="book-card">
       {{ with .Params.cover_image }}
