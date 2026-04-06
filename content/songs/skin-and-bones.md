@@ -1,7 +1,7 @@
 ---
 title: Skin and Bones
 date: 2026-04-04T22:32:00
-draft: true
+draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/There-Was-an-Old-Woman-All-Skin-and-Bone.webp
