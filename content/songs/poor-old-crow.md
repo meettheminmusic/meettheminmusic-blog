@@ -1,7 +1,7 @@
 ---
 title: Poor Old Crow
 date: 2026-04-05T18:47:00
-draft: true
+draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Poor-Old-Crow.webp
