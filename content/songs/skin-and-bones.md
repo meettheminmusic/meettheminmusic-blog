@@ -61,7 +61,7 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
-abc_tempo: null
+abc_tempo: 80
 ---
 
 I chose to write out each phrase individually as the rhythm is not consistent between all phrases.
