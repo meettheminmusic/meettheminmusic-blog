@@ -88,7 +88,7 @@ abc_scores:
       [D,4A,4]| [D,4A,4]|[D,4A,4]|[D,4A,4]||
       [D,4A,4]| [D,4A,4]|[D,4A,4]|[D,4A,4]||
       [D,4A,4]| [D,4A,4]|[D,4A,4]|[D,4A,4]||
-      [D,4A,4]| [D,4A,4]|[D,4A,4]|[D,4A,4]|| 
+      [D,4A,4]| [D,4A,4]|[D,4A,4]|[D,4A,4]|] 
       %%textfont arial 9
       %%center .
       %%center © 2026 All Rights Reserved.
