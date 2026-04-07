@@ -109,8 +109,6 @@ I use bass bars but use the largest Orﬀ instrument you have, removing everythi
 
 If your students have a hard time playing both notes at the same time, have them hold one mallet in both hands and play a single note.  After a few attempts, move back to separate hands.
 
-**<u>Bordun Notation:**</u>
-
 **<u>Choice:**</u>
 
 Give students the opportunity to replace the food the crows are looking for.  Instead of "meat" maybe they will eat donuts!
