@@ -26,7 +26,7 @@ abc_notation: |-
   %%barsperstaff 5
   %%stretchlast 1
   K:E
-  E2 | B3B B2A2 | E2E2 z2E2 |B3B B2A2| E2E2 z2EE2 ||
+  E2 | B3B B2A2 | E2E2 z2E2 |B3B B2A2| E2E2 z2EE ||
   w: Oh, John the Rab-bit. OH YES! Oh, John the Rab-bit OH YES! Had a might-y fine hab-it
   M:2/4
    EEE2 E2E2| E2E2 z2 E2 |EEEE E2E2| E2E2 z2E2||
