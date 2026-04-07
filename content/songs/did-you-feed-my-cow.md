@@ -34,6 +34,7 @@ abc_notation: |-
   %%vocalfont Arial 11
   %%staffsep 90
   %%printtempo 0
+  %%stretchlast 1
   K:F
   "^Call"C2 D2C2 | F2 F4 (A2A8) | "^Response"F8 F2 "^Call" C2 D2C2 | F2 F4 (A2A8) | "^Response"F8 F2 "^Call" C2 D2C2 |
   w:1.~Oh, did you feed my cow?  _ Yes, sir. Oh, did you feed my cow?  _ Yes, sir. Well, tell me
