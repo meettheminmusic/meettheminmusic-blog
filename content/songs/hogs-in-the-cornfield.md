@@ -1,7 +1,7 @@
 ---
 title: Hogs in the Cornfield
 date: 2026-03-31
-description: "Hogs in the Cornfield is a major duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers."
+card_image: /images/uploads/Hogs_in_the_Cornfield.webp
 musical_concepts:
   - 16th notes
   - 8th notes
@@ -14,10 +14,10 @@ meters:
   - 2/4
 source: Traditional
 source_url: ''
-card_image: "/images/uploads/hogs-in-the-cornfield-2.webp"
+description: Hogs in the Cornfield is a major duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
 
-![Notation for Hogs in the Cornfield](/images/uploads/hogs-in-the-cornfield-2.webp "Hogs in the Cornfield")
+![Notation for Hogs in the Cornfield](/images/uploads/Hogs_in_the_Cornfield.webp "Hogs in the Cornfield")
 
 **Activity:**
 
