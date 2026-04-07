@@ -34,29 +34,43 @@ abc_notation: |-
   %%vocalfont Arial 11
   %%staffsep 90
   %%printtempo 0
+  %%barsperstaff 6
+  %%stretchlast 1
   K:F
-  "^Call"C2 D2C2 | F2 F4 (A2A8) | "^Response"F8 F2 "^Call" C2 D2C2 | F2 F4 (A2A8) | "^Response"F8 F2 "^Call" C2 D2C2 |
-  w:1.~Oh, did you feed my cow?  _ Yes, sir. Oh, did you feed my cow?  _ Yes, sir. Well, tell me
-  w:2.~Oh, did you milk her well?  _ Yes, sir. Oh, did you milk her well? _ Yes, sir. Well, show me
-  w:3.~Well, did my cow get sick? _ Yes, sir. Well, did my cow get sick? _ Yes, sir. Well, tell me
-  w:4.~Now did the buzz-ards come? _ Yes, sir. Now did the buzz-ards come? _ Yes, sir. Well, tell me
+  "^Call"C2 D2C2 | F2 F4 (A2-A8) | "^Resp."F8 F2 "^Call" C2 D2C2 ||
+  w:1.~Oh, did you feed my cow?  _ Yes, sir. Oh, did you
+  w:2.~Oh, did you milk her well?  _ Yes, sir. Oh, did you 
+  w:3.~Well, did my cow get sick? _ Yes, sir. Well, did my 
+  w:4.~Now did the buzz-ards come? _ Yes, sir. Now did the 
+  M:4/4
+  F2 F4 (A2-A8) | "^Resp."F8 F2 "^Call" C2 D2C2 ||
+  w: 1.~feed my cow?  _ Yes, sir. Well, tell me
+  w: 2.~milk her well? _ Yes, sir. Well, show me
+  w: 3.~cow get sick? _ Yes, sir. Well, tell me
+  w: 4.~buzz-ards come? _ Yes, sir. Well, tell me
   M: 4/4
-  A2(A2 A2)B2 A2 F6 | "^Response"F4 F4 F2 "^Call" C2 D2C2 |A2(A2 A2)B2 A2 F6 | "^Response"F4 F4 F2 ||
-  w: 1.~what did _  you feed her? Corn and hay! Well, tell me what did _  you feed her? Corn and hay!
-  w: 2.~how did _ you milk her?  Squish, squish, squish! Well, show me how did_ you milk her? Squish, squish, squish.
-  w: 3.~how was _ she si-ck? All puffed up! Well, tell me how was _ she si-ck? All puffed up!
-  w: 4.~how did _ they co-me? Flap, flap, flap. Well, tell me how did _ they co-me? Flap, flap, flap.
+  A2(A2 -A2)B2 A2 F6 | "^Resp."F4 F4 F2 "^Call" C2 D2C2 ||
+  w: 1.~what did _  you feed her? Corn and hay! Well, tell me 
+  w: 2.~how did _ you milk her?  Squish, squish, squish! Well, show me 
+  w: 3.~how was _ she si-ck? All puffed up! Well, tell me 
+  w: 4.~how did _ they co-me? Flap, flap, flap. Well, tell me 
+  M:4/4
+  A2(A2 -A2)B2 A2 F6 | "^Resp."F4 F4 F2 |]
+  w: 1.~what did _  you feed her? Corn and hay!
+  w: 2.~how did_ you milk her? Squish, squish, squish.
+  w: 3.~how was _ she si-ck? All puffed up!
+  w: 4.~how did _ they co-me? Flap, flap, flap.
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
-abc_tempo: null
+abc_tempo: 112
 ---
 
 {{< callout title="Original source:" >}}
 The original words (recorded by Thomas Talley) described the death of the cow. I have slightly altered the words to match our modern sensibilities.  A link to the original words is on page 78 of the source book linked above.
 {{< /callout >}}
 
->_If this song is too complicated with its multiple responses, try John the Rabbit.  It assesses responding on tonic with different words than prompted._
+>_If this song is too complicated with its multiple responses, try_[ _John the Rabbit_](https://meettheminmusic.com/songs/john-the-rabbit/)_.  It assesses responding on tonic with different words than prompted._
 
 **<u>Activity:</u>**
 This is a standard echo/response song procedure.  You will need to give the students the answers before.  Since they are not copying you, this is more challenging than a simple echo song.

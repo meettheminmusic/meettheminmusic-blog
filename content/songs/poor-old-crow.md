@@ -7,7 +7,7 @@ featured: false
 card_image: /images/uploads/Poor-Old-Crow.webp
 musical_concepts:
   - Bordun
-  - sixteenth notes
+  - 16th notes
 social_concepts:
   - Choice
 keys:
