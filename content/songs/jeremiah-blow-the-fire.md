@@ -32,6 +32,9 @@ abc_notation: |-
   dA BA | dA BA | F2 E2 | D2 z2 |
   w: Je-re-mi-ah blow the fi-re, puff, puff, puff! 
   M:2/4
+  dA BA | dA BA | F2 E2 | D2 z2 |
+  w: Je-re-mi-ah blow the fi-re, puff, puff, puff! 
+  M:2/4
   dA BA | dA BA | F2 !breath!z2| E2 !breath!z2| | D2 z2 |]
   w: Je-re-mi-ah blow the fi-re, puff, puff, puff! "WOO!"
   %%textfont arial 9
@@ -45,7 +48,7 @@ description: Jeremiah Blow the Fire is a major duple meter song. Includes pedago
 
 Give every child a scarf.  Have them copy your movement as move it from one side of your body to the other to the steady beat.  Try other motions such as passing between hands, holding the scarf in both hands at once, trying to keep the scarf balanced on an elbow, resting it on a toe, or flowing with the scarf on your head.  An challenging extension is to place the scarf over your face and blow on the word "blow."
 
-On the "Woo!" toss the scarf in the air and sing a high pitched "Wooooo."  This is a great way to activate the head voice in a non-stressful way.
+On the rest at the end of lines 1 and 2,  toss the scarf in the air and sing a high pitched "Wooooo."  This is a great way to activate the head voice in a non-stressful way.
 
 **<u>Assessment Opportunity:</u>**
 
