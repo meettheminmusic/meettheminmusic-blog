@@ -112,8 +112,6 @@ If your students have a hard time playing both notes at the same time, have them
 
 **<u>Bordun Notation:**</u>
 
-![notation for Poor Old Crow arranged by P. Eric Bottorff](/images/uploads/Poor-Old-Crow-2.webp "notation for Poor Old Crow arranged by P. Eric Bottorff")
-
 **<u>Choice:**</u>
 
 Give students the opportunity to replace the food the crows are looking for.  Instead of "meat" maybe they will eat donuts!
