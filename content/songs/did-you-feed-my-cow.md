@@ -49,7 +49,7 @@ abc_notation: |-
   w: 3.~cow get sick? _ Yes, sir. Well, tell me
   w: 4.~buzz-ards come? _ Yes, sir. Well, tell me
   M: 4/4
-  A2(A2-A2)B2 A2 F6 | "^Resp."F4 F4 F2 "^Call" C2 D2C2 ||
+  A2(A2 -A2)B2 A2 F6 | "^Resp."F4 F4 F2 "^Call" C2 D2C2 ||
   w: 1.~what did _  you feed her? Corn and hay! Well, tell me 
   w: 2.~how did _ you milk her?  Squish, squish, squish! Well, show me 
   w: 3.~how was _ she si-ck? All puffed up! Well, tell me 
