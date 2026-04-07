@@ -37,7 +37,7 @@ abc_notation: |-
   %%barsperstaff 6
   %%stretchlast 1
   K:F
-  "^Call"C2 D2C2 | F2 F4 (A2A8) | "^Response"F8 F2 "^Call" C2 D2C2 | F2 F4 (A2A8) | "^Response"F8 F2 "^Call" C2 D2C2 |
+  "^Call"C2 D2C2 | F2 F4 (A2A8) | "^Response"F8 F2 "^Call" C2 D2C2 | F2 F4 (A2A8) | "^Response"F8 F2 "^Call" C2 D2C2 ||
   w:1.~Oh, did you feed my cow?  _ Yes, sir. Oh, did you feed my cow?  _ Yes, sir. Well, tell me
   w:2.~Oh, did you milk her well?  _ Yes, sir. Oh, did you milk her well? _ Yes, sir. Well, show me
   w:3.~Well, did my cow get sick? _ Yes, sir. Well, did my cow get sick? _ Yes, sir. Well, tell me
