@@ -52,6 +52,7 @@ abc_scores:
       A: arr. P. Eric Bottorff
       M:2/4
       L:1/8
+      Q:1/4=116
       %%titlefont Arial 24
       %%vocalfont Arial 9
       %%staffsep 70
