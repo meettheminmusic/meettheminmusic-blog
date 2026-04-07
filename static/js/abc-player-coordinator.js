@@ -146,6 +146,20 @@
     }
     player.abcText = _decodeEntities(abcDataEl.textContent);
 
+    // If this is a percussion staff (K:perc), inject drummap directives
+    // that route every note letter to MIDI 38 (acoustic snare).
+    // %%MIDI directives are audio-only — they have no effect on the
+    // drawn score, so the notated rhythm pattern is preserved visually.
+    if (/^K\s*:\s*perc/im.test(player.abcText)) {
+      var snareMaps = ['A','B','C','D','E','F','G'].map(function (n) {
+        return '%%MIDI drummap ' + n + ' 38';
+      }).join('\n');
+      player.abcText = player.abcText.replace(
+        /^(X:\s*\d+[^\n]*\n)/m,
+        '$1' + snareMaps + '\n'
+      );
+    }
+
     // ----------------------------------------------------------------
     // 1. Render score
     // ----------------------------------------------------------------
@@ -160,8 +174,11 @@
     // 2. Extract metadata
     // ----------------------------------------------------------------
     if (player.visualObj) {
-      // Tempo
-      var detectedBpm = player.visualObj.getBpm ? player.visualObj.getBpm() : null;
+      // Tempo — only trust getBpm() when the notation contains an explicit
+      // Q: field. Without one, ABCJS returns 180 as a hardcoded default
+      // which would override the per-score tempo set in frontmatter.
+      var hasQField   = /^Q\s*:/im.test(player.abcText);
+      var detectedBpm = (hasQField && player.visualObj.getBpm) ? player.visualObj.getBpm() : null;
       player.currentBpm = (detectedBpm && detectedBpm > 0)
         ? Math.round(detectedBpm)
         : player.defaultTempo;

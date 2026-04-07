@@ -14,17 +14,26 @@ https://github.com/paulrosen/midi-js-soundfonts/tree/gh-pages/abcjs
 You can clone just the required instrument(s) with a sparse checkout, or download individual folders
 from the GitHub UI.
 
-## Minimum required instrument
+## Installed instruments
 
-| Folder name                   | GM number | Used for          |
-|-------------------------------|-----------|-------------------|
-| `acoustic_grand_piano-mp3`    | 0         | default playback  |
+| Folder name                   | GM number | Used for                        |
+|-------------------------------|-----------|----------------------------------|
+| `acoustic_grand_piano-mp3`    | 0         | default pitched playback        |
+| `percussion-mp3`              | —         | `K:perc` rhythmic notation      |
 
 abcjs constructs soundfont URLs as `soundFontUrl + instrumentName + '-mp3/' + note + '.mp3'`,
 so the folder name must include the `-mp3` suffix.
 
-Additional instruments are only needed if your ABC tunes specify `%%MIDI program N` with a non-zero
-program number.
+### Percussion behaviour
+
+`K:perc` scores use MIDI channel 10. The coordinator automatically maps every
+note letter (A–G) to MIDI note 38 (acoustic snare, `D2.mp3`) so rhythmic
+notation plays consistently regardless of which note is written on the staff.
+This is done via injected `%%MIDI drummap` directives and does not affect the
+visual score.
+
+Additional pitched instruments are only needed if your ABC tunes specify
+`%%MIDI program N` with a non-zero program number.
 
 ## How to place them
 
