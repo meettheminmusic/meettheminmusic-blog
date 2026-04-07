@@ -14,10 +14,29 @@ meters:
   - 2/4
 source: Traditional
 source_url: ''
+abc_notation: |-
+  X:1
+  T:Hogs in the Cornfield
+  C:arr. P. Eric Bottorff
+  A: MeetThemInMusic.com 
+  M:2/4
+  L:1/16
+  Q:1/4=116
+  %%printtempo 0
+  K:D 
+  %%barsperstaff 4
+  %%vocalfont Arial 8
+  V:S stem=up 
+  D2DD F2A2 | B2BB A2A2 | d2B2 AAG2| F2EE D2D2 ||
+  w: Hogs in the corn-field cows in the clov-er tell your sis-ter Kate we're com-ing ov-er
+  D2DD F2A2 | B2BB A4 | d2B2 AAGG| F2EE D4 |]
+  w: Hogs in the corn-field how do you know? Met a lit-tle boy and he told me so.
+  %%textfont arial 9
+  %%center .
+  %%center © 2026 All Rights Reserved.
+abc_tempo: null
 description: Hogs in the Cornfield is a major duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
-
-![Notation for Hogs in the Cornfield](/images/uploads/Hogs_in_the_Cornfield.webp "Hogs in the Cornfield")
 
 **Activity:**
 
