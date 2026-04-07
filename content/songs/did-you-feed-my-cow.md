@@ -33,7 +33,6 @@ abc_notation: |-
   %%titlefont Arial 24
   %%vocalfont Arial 11
   %%staffsep 90
-  %%barsperstaff 6
   %%stretchlast 1
   %%printtempo 0
   K:F
