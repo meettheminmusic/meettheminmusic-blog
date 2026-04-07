@@ -1,7 +1,7 @@
 ---
 title: Jeremiah Blow the Fire
 date: 2026-03-31
-description: "Jeremiah Blow the Fire is a major duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers."
+card_image: /images/uploads/jeremiah-blow-the-fire-5.webp
 musical_concepts:
   - 8th notes
   - Rests
@@ -14,10 +14,31 @@ meters:
   - 2/4
 source: ''
 source_url: ''
-card_image: "/images/uploads/jeremiah-blow-the-fire-5.webp"
+abc_notation: |-
+  %%textfont arial italic 9
+  X: 1
+  T:Jeremiah Blow the Fire
+  C:arr. P. Eric Bottorff
+  A: MeetThemInMusic.com 
+  M:2/4
+  L:1/8
+  %%titlefont Arial 24
+  %%vocalfont Arial 9
+  %%staffsep 70
+  %%stretchlast 1
+  %%printtempo 0
+  K:D
+  dA BA | dA BA | F2 E2 | D2 "WOO!"!fermata!z2 |
+  w: Je-re-mi-ah blow the fi-re, puff, puff, puff! "WOO!"
+  M:2/4
+  dA BA | dA BA | F2 !breath!z2| E2 !breath!z2| | D2 "WOO!"!fermata!z2 |]
+  w: Je-re-mi-ah blow the fi-re, puff, puff, puff! "WOO!"
+  %%textfont arial 9
+  %%center .
+  %%center © 2026 All Rights Reserved.
+abc_tempo: 116
+description: Jeremiah Blow the Fire is a major duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
-
-![Notation for the song Jeremiah Blow the Fire](/images/uploads/jeremiah-blow-the-fire-5.webp "Jeremiah Blow the Fire")
 
 **<u>Activity:</u>**
 
