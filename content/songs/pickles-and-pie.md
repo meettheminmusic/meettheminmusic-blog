@@ -40,7 +40,7 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
-abc_image: /images/uploads/pickles-and-pie-2.webp
+abc_image: ''
 abc_tempo: 116
 description: Pickles and Pie is a mixolydian duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
