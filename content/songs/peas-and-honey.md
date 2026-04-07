@@ -31,7 +31,6 @@ abc_notation: |-
   L:1/8
   C:arr. P. Eric Bottorff
   A: MeetThemInMusic.com 
-  Q:1/4=120
   %%printtempo 0
   %%gchordfont Arial 8
   %%vocalfont Arial 12
