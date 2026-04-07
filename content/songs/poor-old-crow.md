@@ -31,7 +31,6 @@ abc_scores:
       L:1/8
       C:arr. P. Eric Bottorff
       A: MeetThemInMusic.com 
-      Q:1/4=120
       %%printtempo 0
       %%gchordfont Arial 12
       %%vocalfont Arial 12
@@ -64,7 +63,6 @@ abc_scores:
       L:1/8
       C:arr. P. Eric Bottorff
       A: MeetThemInMusic.com 
-      Q:1/4=120
       %%printtempo 0
       %%gchordfont Arial 12
       %%vocalfont Arial 12
@@ -95,8 +93,6 @@ abc_scores:
     image: ''
     tempo: 100
 ---
-
-![Melody notation for Poor Old Crow arranged by P. Eric Bottorff](/images/uploads/Poor-Old-Crow.webp "Melody notation for Poor Old Crow arranged by P. Eric Bottorff")
 
 >If you are not accustomed to singing in Mixolydian, pay attention to the C natural.
 
