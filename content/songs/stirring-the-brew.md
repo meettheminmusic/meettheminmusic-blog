@@ -98,7 +98,3 @@ Hold a xylophone mallet as if it is a large stirring stick in a witch's cauldron
 **<u>Adjustments</u>**
 
 - This can be done seated.
-
-**<u>Alternate Version**:</u>
-
-![Music notation for Stirring the Brew with an added unpitched section](/images/uploads/stirring-the-brew-3.webp "Music notation for Stirring the Brew with an added unpitched section")
