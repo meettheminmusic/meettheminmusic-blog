@@ -42,7 +42,7 @@ abc_notation: |-
   w:3.~Well, did my cow get sick? _ Yes, sir. Well, did my cow get sick? _ Yes, sir. Well, tell me
   w:4.~Now did the buzz-ards come? _ Yes, sir. Now did the buzz-ards come? _ Yes, sir. Well, tell me
   M: 4/4
-  A2(A2 A2)B2 A2 F6 | "^Response"F4 F4 F2 "^Call" C2 D2C2 |A2(A2 A2)B2 A2 F6 | "^Response"F4 F4 F2 ||
+  A2(A2 A2)B2 A2 F6 | "^Response"F4 F4 F2 "^Call" C2 D2C2 |A2(A2 A2)B2 A2 F6 | "^Response"F4 F4 F2 |]
   w: 1.~what did _  you feed her? Corn and hay! Well, tell me what did _  you feed her? Corn and hay!
   w: 2.~how did _ you milk her?  Squish, squish, squish! Well, show me how did_ you milk her? Squish, squish, squish.
   w: 3.~how was _ she si-ck? All puffed up! Well, tell me how was _ she si-ck? All puffed up!
@@ -50,7 +50,7 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
-abc_tempo: null
+abc_tempo: 112
 ---
 
 {{< callout title="Original source:" >}}
