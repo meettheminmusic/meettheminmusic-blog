@@ -22,7 +22,6 @@ abc_notation: |-
   A: MeetThemInMusic.com 
   M:2/4
   L:1/8
-  Q:1/4=116
   %%printtempo 0
   %%titlefont Arial 24
   %%vocalfont Arial 9
