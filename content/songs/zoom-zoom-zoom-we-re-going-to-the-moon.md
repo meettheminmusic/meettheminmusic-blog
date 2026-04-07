@@ -17,6 +17,35 @@ meters:
   - 2/4
 source: ''
 source_url: ''
+abc_notation: |-
+  %%textfont arial italic 9
+  X:1 
+  T:Zoom, Zoom, Zoom
+  M:2/4
+  L:1/8
+  C:arr. P. Eric Bottorff
+  A: MeetThemInMusic.com 
+  Q:1/4=100
+  %%titlefont Arial 24
+  %%vocalfont Arial 11
+  %%staffsep 70
+  %%barsperstaff 6
+  %%stretchlast 1
+  %%printtempo 0
+  K:C
+  |:"C"C2 E2 |"G"G3 A | GF ED | "C"C4 :|
+  w: Zoom, zoom, zoom. We're go-ing to the moon.
+  M: 2/4
+  "G"DD B,B, | "C"EE C2 | "G"DD B,B, | "C"EE C2 ||
+  w: If you want to take a trip. Climb in-side my rock-et ship.
+  M:2/4
+  "C"C2 E2 |"G"G3 A | GF ED | "C"C4 ||
+  w: Zoom, zoom, zoom. We're go-ing to the moon.
+  M: 2/4
+  !style=x!B2 z2 |!style=x!B2 z2 |!style=x!B2 z2 |!style=x!B2 z2 |!style=x!B2 z2 | !style=x!B!style=x!B z2 |]
+  w: FIVE! FOUR! THREE! TWO! ONE! BLAST OFF!
+  %%textfont arial 9
+  %%center .
+  %%center © 2026 All Rights Reserved.
+abc_tempo: 116
 ---
-
-![Notation for Zoom Zoom Zoom](/images/uploads/Zoom-Zoom-Zoom.webp "Notation for Zoom Zoom Zoom")
