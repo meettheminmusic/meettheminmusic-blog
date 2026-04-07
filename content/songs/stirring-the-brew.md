@@ -6,9 +6,10 @@ unlisted: false
 featured: false
 card_image: /images/uploads/stirring-the-brew-4.webp
 musical_concepts:
-  - Flow
   - Tonic-Dominant
   - Do-Ti-La
+movement_concepts:
+  - Flow
 social_concepts:
   - Taking Turns
 keys:

@@ -8,6 +8,7 @@ card_image: /images/uploads/Clapping_Land.webp
 musical_concepts:
   - Pickups
   - I-IV-V
+movement_concepts:
   - Movement Themes
 social_concepts:
   - Welcoming

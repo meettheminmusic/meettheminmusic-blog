@@ -28,6 +28,22 @@
       </div>
     </div>
     <div class="filter-group">
+      <span class="filter-label">Movement concepts</span>
+      <div class="filter-buttons" data-filter="movement_concepts">
+        {{ range .Site.Taxonomies.movement_concepts }}
+          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+        {{ end }}
+      </div>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Supports/Adaptations</span>
+      <div class="filter-buttons" data-filter="supports_adaptations">
+        {{ range .Site.Taxonomies.supports_adaptations }}
+          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+        {{ end }}
+      </div>
+    </div>
+    <div class="filter-group">
       <span class="filter-label">Mode</span>
       <div class="filter-buttons" data-filter="mode">
         {{ range .Site.Taxonomies.modes }}
@@ -62,6 +78,8 @@
       data-url="{{ .Permalink }}"
       data-musical_concepts="{{ delimit (.Params.musical_concepts | default slice) "|" | lower }}"
       data-social_concepts="{{ delimit (.Params.social_concepts | default slice) "|" | lower }}"
+      data-movement_concepts="{{ delimit (.Params.movement_concepts | default slice) "|" | lower }}"
+      data-supports_adaptations="{{ delimit (.Params.supports_adaptations | default slice) "|" | lower }}"
       data-mode="{{ delimit .Params.modes "|" | lower }}"
       data-meter="{{ delimit .Params.meters "|" | lower }}"
       data-key="{{ delimit .Params.keys "|" | lower }}">
@@ -72,10 +90,12 @@
           {{ with .Params.modes }}<span class="song-meta-item">{{ index . 0 }}</span>{{ end }}
           {{ with .Params.meters }}<span class="song-meta-item">{{ index . 0 }}</span>{{ end }}
         </div>
-        {{ if or .Params.musical_concepts .Params.social_concepts }}
+        {{ if or .Params.musical_concepts .Params.social_concepts .Params.movement_concepts .Params.supports_adaptations }}
         <div class="song-concepts">
           {{ range .Params.musical_concepts }}<span class="tag">{{ . }}</span> {{ end }}
           {{ range .Params.social_concepts }}<span class="tag">{{ . }}</span> {{ end }}
+          {{ range .Params.movement_concepts }}<span class="tag">{{ . }}</span> {{ end }}
+          {{ range .Params.supports_adaptations }}<span class="tag">{{ . }}</span> {{ end }}
         </div>
         {{ end }}
       </div>
@@ -86,7 +106,7 @@
 
 <script>
 (function () {
-  const activeFilters = { musical_concepts: [], social_concepts: [], mode: [], meter: [], key: [] };
+  const activeFilters = { musical_concepts: [], social_concepts: [], movement_concepts: [], supports_adaptations: [], mode: [], meter: [], key: [] };
   const cards = Array.from(document.querySelectorAll('.song-card'));
   const countEl = document.getElementById('library-count');
   const clearBtn = document.getElementById('filter-clear');
@@ -164,7 +184,7 @@
     .then(r => r.json())
     .then(data => {
       fuse = new Fuse(data, {
-        keys: ['title', 'musical_concepts', 'social_concepts', 'modes', 'meters', 'keys'],
+        keys: ['title', 'musical_concepts', 'social_concepts', 'movement_concepts', 'supports_adaptations', 'modes', 'meters', 'keys'],
         threshold: 0.3,
         minMatchCharLength: 2
       });
@@ -178,7 +198,7 @@
   // Activate filters from URL params, e.g. /songs/?musical_concepts=Bordun&mode=Pentatonic
   const params = new URLSearchParams(window.location.search);
   let hadParams = false;
-  ['musical_concepts', 'social_concepts', 'mode', 'meter', 'key'].forEach(group => {
+  ['musical_concepts', 'social_concepts', 'movement_concepts', 'supports_adaptations', 'mode', 'meter', 'key'].forEach(group => {
     params.getAll(group).forEach(val => {
       const container = document.querySelector(`[data-filter="${group}"]`);
       if (!container) return;

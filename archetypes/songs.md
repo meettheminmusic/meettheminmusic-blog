@@ -3,7 +3,10 @@ title: "{{ replace .File.ContentBaseName "-" " " | title }}"
 date: {{ .Date }}
 draft: true
 unlisted: false
-concepts: []
+musical_concepts: []
+social_concepts: []
+movement_concepts: []
+supports_adaptations: []
 keys: []
 modes: []
 meters: []

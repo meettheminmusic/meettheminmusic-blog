@@ -4,6 +4,7 @@ date: 2026-03-31
 card_image: /images/uploads/akka-bakka-soda-cracker-3.webp
 musical_concepts:
   - Steady beat
+movement_concepts:
   - Marching
 social_concepts:
   - Taking Turns

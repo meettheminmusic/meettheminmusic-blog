@@ -6,9 +6,10 @@ unlisted: false
 featured: false
 card_image: /images/uploads/Peas-and-Honey.webp
 musical_concepts:
+  - Pickups
+movement_concepts:
   - Constrained Movement
   - Part vs Whole
-  - Pickups
 social_concepts:
   - Social differences
   - Choice

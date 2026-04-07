@@ -1,6 +1,6 @@
 {{- $result := slice -}}
 {{- range (where .Pages "Params.unlisted" "ne" true).ByTitle -}}
-  {{- $item := dict "title" .Title "url" .Permalink "musical_concepts" .Params.musical_concepts "social_concepts" .Params.social_concepts "modes" .Params.modes "meters" .Params.meters "keys" .Params.keys -}}
+  {{- $item := dict "title" .Title "url" .Permalink "musical_concepts" .Params.musical_concepts "social_concepts" .Params.social_concepts "movement_concepts" .Params.movement_concepts "supports_adaptations" .Params.supports_adaptations "modes" .Params.modes "meters" .Params.meters "keys" .Params.keys -}}
   {{- $result = $result | append $item -}}
 {{- end -}}
 {{ $result | jsonify }}
