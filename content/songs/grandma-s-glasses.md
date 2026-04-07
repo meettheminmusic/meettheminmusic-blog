@@ -18,7 +18,7 @@ source: ''
 source_url: ''
 abc_notation: |-
   X:1 
-  T:Grandma's Glasses
+  T:Grandmas Glasses
   M:2/4
   L:1/8
   C:arr. P. Eric Bottorff
@@ -33,13 +33,13 @@ abc_notation: |-
   K:C clef=perc stafflines=0
   AA AA AA zA| AA AA A2 |
   w: These are grand-ma's glass-es and this is grand-ma's hat
-  M:9/8
+  M:6/8
   AAA A2A | A2A A2A | AAA A2A |A3 z3|
   w: This is the way she folds her hands and plac-es them on her lap.
   M:2/4
   AA AA AA zA| AA AA A2 |
   w: These are grand-pa's glass-es and this is grand-pa's hat
-  M:9/8
+  M:6/8
   AAA A2A | A2A A3 | uA3uA3 |uA3 z3|]
   w: This is the way he folds his arms, just like that!
   %%textfont arial 9
