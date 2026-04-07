@@ -31,7 +31,6 @@ abc_scores:
       L:1/16
       C:arr. P. Eric Bottorff
       A: MeetThemInMusic.com 
-      Q:1/4=116
       %%printtempo 0
       %%titlefont Arial 24
       %%vocalfont Arial 9
@@ -58,7 +57,6 @@ abc_scores:
       L:1/16
       C:arr. P. Eric Bottorff
       A: MeetThemInMusic.com 
-      Q:1/4=100
       %%printtempo 0
       %%stretchlast 1
       %%gchordfont Arial 8
