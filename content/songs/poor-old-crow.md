@@ -84,8 +84,11 @@ abc_scores:
       w: Poor old crow. Poor old crow. Just as black as crows could be.
       V:2 clef=bass
       [D,4A,4]| [D,4A,4]|[D,4A,4]|[D,4A,4]||
+      M: 2/4
       [D,4A,4]| [D,4A,4]|[D,4A,4]|[D,4A,4]||
+      M: 2/4
       [D,4A,4]| [D,4A,4]|[D,4A,4]|[D,4A,4]||
+      M: 2/4
       [D,4A,4]| [D,4A,4]|[D,4A,4]|[D,4A,4]|] 
       %%textfont arial 9
       %%center .
