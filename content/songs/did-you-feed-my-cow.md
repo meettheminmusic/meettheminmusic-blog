@@ -38,13 +38,13 @@ abc_notation: |-
   %%barsperstaff 6
   %%stretchlast 1
   K:F
-  "^Call"C2 D2C2 | F2 F4 (A2A8) | "^Resp."F8 F2 "^Call" C2 D2C2 | F2 F4 (A2A8) | "^Resp."F8 F2 "^Call" C2 D2C2 ||
+  "^Call"C2 D2C2 | F2 F4 (A2-A8) | "^Resp."F8 F2 "^Call" C2 D2C2 |! F2 F4 (A2-A8) | "^Resp."F8 F2 "^Call" C2 D2C2 ||
   w:1.~Oh, did you feed my cow?  _ Yes, sir. Oh, did you feed my cow?  _ Yes, sir. Well, tell me
   w:2.~Oh, did you milk her well?  _ Yes, sir. Oh, did you milk her well? _ Yes, sir. Well, show me
   w:3.~Well, did my cow get sick? _ Yes, sir. Well, did my cow get sick? _ Yes, sir. Well, tell me
   w:4.~Now did the buzz-ards come? _ Yes, sir. Now did the buzz-ards come? _ Yes, sir. Well, tell me
   M: 4/4
-  A2(A2 A2)B2 A2 F6 | "^Resp."F4 F4 F2 "^Call" C2 D2C2 |A2(A2 A2)B2 A2 F6 | "^Resp."F4 F4 F2 |]
+  A2(A2-A2)B2 A2 F6 | "^Resp."F4 F4 F2 "^Call" C2 D2C2 |!A2(A2 -A2)B2 A2 F6 | "^Resp."F4 F4 F2 |]
   w: 1.~what did _  you feed her? Corn and hay! Well, tell me what did _  you feed her? Corn and hay!
   w: 2.~how did _ you milk her?  Squish, squish, squish! Well, show me how did_ you milk her? Squish, squish, squish.
   w: 3.~how was _ she si-ck? All puffed up! Well, tell me how was _ she si-ck? All puffed up!
