@@ -67,6 +67,5 @@ Nonverbal or minimally verbally responsive students may not respond as expected.
 |  | Not Approaching | Approaching with Support | Meeting Expectations |
 | --- | --- | --- | --- |
 | **Timing** | Not within rhythmic context or no response | Mostly within context | Matching context of song |
-
 | **Words** | No vocalization or response | Unrelated vocalization or response | Unrelated vocalization or response with appropriate rhythmic or tonal context | Expected or appropriate |
 | **Pitch** | No response | Unpitched response | Related pitch response (e.g., within tonal context but not matching expected response) | Accurate pitch response |
