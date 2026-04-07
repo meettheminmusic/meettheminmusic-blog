@@ -27,7 +27,6 @@ abc_scores:
       A: MeetThemInMusic.com
       M:2/4
       L:1/8
-      Q:1/4=100
       %%titlefont Arial 24
       %%vocalfont Arial 9
       %%staffsep 70
@@ -43,7 +42,7 @@ abc_scores:
       %%textfont arial 9
       %%center .
       %%center © 2026 All Rights Reserved.
-    image: /images/uploads/Akka_Bakka_Soda_Cracker-2.png
+    image: ''
     tempo: 116
   - label: Chant Notation
     notation: |-
@@ -53,7 +52,7 @@ abc_scores:
       A: arr. P. Eric Bottorff
       M:2/4
       L:1/8
-      Q:1/4=100
+      Q:1/4=116
       %%titlefont Arial 24
       %%vocalfont Arial 9
       %%staffsep 70
@@ -70,7 +69,7 @@ abc_scores:
       %%textfont arial 9
       %%center .
       %%center © 2026 All Rights Reserved.
-    image: /images/uploads/akka-bakka-soda-cracker-3.webp
+    image: ''
     tempo: 116
 description: Akka Bakka Soda Cracker is a duple meter chant. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---

@@ -24,7 +24,7 @@ abc_notation: |-
   A: MeetThemInMusic.com 
   M:2/4
   L:1/8
-  Q:1/4=100
+  Q:1/4=116
   %%titlefont Arial 24
   %%vocalfont Arial 9
   %%staffsep 70
@@ -40,14 +40,12 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
-abc_image: /images/uploads/pickles-and-pie-2.webp
+abc_image: ''
 abc_tempo: 116
 description: Pickles and Pie is a mixolydian duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
 
-![Notation for Pickles and Pie](/images/uploads/pickles-and-pie-2.webp "Pickles and Pie")
-
-I learned this song aurally from a friend.  Originally, my friend used a Lydian version of the tune.  I chose to re-arrange the song in Mixolydian to match my ears' preference.
+> I learned this song aurally from a friend.  Originally, my friend used a Lydian version of the tune.  I chose to re-arrange the song in Mixolydian to match my ears' preference.
 
 This is a great song to get students to open up and begin talking.  In the notation, I have put parenthesis around the word (Elephant).  Allow students to replace the word elephant with whatever they would like. It is up to the TEACHER to find a way to fit it in the song! Kids will enjoy trying to trick you and this builds a great opportunity to build relationships.
 

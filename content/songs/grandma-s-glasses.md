@@ -1,7 +1,7 @@
 ---
 title: Grandma's Glasses
 date: 2026-04-01
-description: "Grandma's Glasses is a mixed meter chant. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers."
+card_image: /images/uploads/grandmas-glasses-5.webp
 musical_concepts:
   - Fingerplay
   - Movement
@@ -16,10 +16,38 @@ meters:
   - triple
 source: ''
 source_url: ''
-card_image: "/images/uploads/grandmas-glasses-5.webp"
+abc_notation: |-
+  X:1 
+  T:Grandmas Glasses
+  M:2/4
+  L:1/8
+  C:arr. P. Eric Bottorff
+  A: MeetThemInMusic.com 
+  Q:1/4=116
+  %%titlefont Arial 24
+  %%vocalfont Arial 9
+  %%staffsep 50
+  %%barsperstaff 4
+  %%stretchlast 1
+  %%printtempo 0
+  K:C clef=perc stafflines=0
+  AA AA AA zA| AA AA A2 |
+  w: These are grand-mas glass-es and this is grand-mas hat
+  M:6/8
+  AAA A2A | A2A A2A | AAA A2A |A3 z3|
+  w: This is the way she folds her hands and plac-es them on her lap.
+  M:2/4
+  AA AA AA zA| AA AA A2 |
+  w: These are grand-pas glass-es and this is grand-pas hat
+  M:6/8
+  AAA A2A | A2A A3 | uA3uA3 |uA3 z3|]
+  w: This is the way he folds his arms, just like that!
+  %%textfont arial 9
+  %%center .
+  %%center © 2026 All Rights Reserved.
+abc_tempo: null
+description: Grandma's Glasses is a mixed meter chant. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
-
-![percussion notation for the fingerplay Grandma's Glasses](/images/uploads/grandmas-glasses-5.webp "Grandma's Glasses Notation")
 
 {{< callout title="" >}}
 
@@ -48,6 +76,7 @@ Have the students follow the hand moves while you sing the song.  The students c
 | This is the way she folds her hands and places them on her lap | gently put both hands in your lap |
 | These are grandpa's glasses | Make LARGE circles with fingers and place them in front of your eyes |
 | and this is grandpa's hat | Put arms straight up, representing a top hat |
+
 | This is the way he folds his arms JUST LIKE THAT | Cross your arms over your chest and bounce on each word |{.table-with-lines}
 
 .

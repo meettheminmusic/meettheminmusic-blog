@@ -1,7 +1,7 @@
 ---
 title: Jeremiah Blow the Fire
 date: 2026-03-31
-description: "Jeremiah Blow the Fire is a major duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers."
+card_image: /images/uploads/jeremiah-blow-the-fire-5.webp
 musical_concepts:
   - 8th notes
   - Rests
@@ -14,16 +14,41 @@ meters:
   - 2/4
 source: ''
 source_url: ''
-card_image: "/images/uploads/jeremiah-blow-the-fire-5.webp"
+abc_notation: |-
+  %%textfont arial italic 9
+  X: 1
+  T:Jeremiah Blow the Fire
+  C:arr. P. Eric Bottorff
+  A: MeetThemInMusic.com 
+  M:2/4
+  L:1/8
+  Q:1/4=116
+  %%printtempo 0
+  %%titlefont Arial 24
+  %%vocalfont Arial 9
+  %%staffsep 70
+  %%stretchlast 1
+  K:D
+  dA BA | dA BA | F2 E2 | D2 z2 |
+  w: Je-re-mi-ah blow the fi-re, puff, puff, puff! 
+  M:2/4
+  dA BA | dA BA | F2 E2 | D2 z2 |
+  w: Je-re-mi-ah blow the fi-re, puff, puff, puff! 
+  M:2/4
+  dA BA | dA BA | F2 !breath!z2| E2 !breath!z2| | D2 z2 |]
+  w: Je-re-mi-ah blow the fi-re, puff, puff, puff! "WOO!"
+  %%textfont arial 9
+  %%center .
+  %%center © 2026 All Rights Reserved.
+abc_tempo: 116
+description: Jeremiah Blow the Fire is a major duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
-
-![Notation for the song Jeremiah Blow the Fire](/images/uploads/jeremiah-blow-the-fire-5.webp "Jeremiah Blow the Fire")
 
 **<u>Activity:</u>**
 
 Give every child a scarf.  Have them copy your movement as move it from one side of your body to the other to the steady beat.  Try other motions such as passing between hands, holding the scarf in both hands at once, trying to keep the scarf balanced on an elbow, resting it on a toe, or flowing with the scarf on your head.  An challenging extension is to place the scarf over your face and blow on the word "blow."
 
-On the "Woo!" toss the scarf in the air and sing a high pitched "Wooooo."  This is a great way to activate the head voice in a non-stressful way.
+On the rest at the end of lines 1 and 2,  toss the scarf in the air and sing a high pitched "Wooooo."  This is a great way to activate the head voice in a non-stressful way.
 
 **<u>Assessment Opportunity:</u>**
 

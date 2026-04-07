@@ -14,10 +14,33 @@ meters:
   - 2/4
 source: ''
 source_url: ''
+abc_notation: |-
+  X:1
+  T:Great Big House in New Orleans
+  M:2/4
+  L:1/8
+  C:arr. P. Eric Bottorff
+  A: MeetThemInMusic.com 
+  Q:1/4=100
+  %%printtempo 0
+  %%vocalfont Arial 9
+  %%barsperstaff 4
+  %%stretchlast 1
+  K:D
+  V:1
+   Ac cd Ac c2 | Ac cd c4 | 
+  w: Great big house in New Or leans, for ty stor ies high. 
+  Ac cd Ac c2 | Ac AG F4 |] 
+  w: Ev ery room that I've been in, filled with (pump kin) pie
+  V:2 clef: bass
+  [F,,4C,][F,,4C,]| [F,,4C,][F,,4C,]|
+  [F,,4C,][F,,4C,]|[F,,4C,][F,,4C,]|]
+  %%textfont arial 9
+  %%center .
+  %%center © 2026 All Rights Reserved.
+abc_tempo: 116
 description: Great Big House in New Orleans is a pentatonic duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
-
-![Notation for Great Big House in New Orleans with a bass line bordun](/images/uploads/great-big-house-in-new-orleans-3.webp "Notation for Great Big House in New Oreleans")
 
 This is a great song to bring out the bass xylophone or bass bars.
 
