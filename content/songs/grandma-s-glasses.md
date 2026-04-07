@@ -4,7 +4,6 @@ date: 2026-04-01
 card_image: /images/uploads/grandmas-glasses-5.webp
 musical_concepts:
   - Fingerplay
-movement_concepts:
   - Movement
 social_concepts:
   - Family
@@ -76,7 +75,6 @@ Have the students follow the hand moves while you sing the song.  The students c
 | This is the way she folds her hands and places them on her lap | gently put both hands in your lap |
 | These are grandpa's glasses | Make LARGE circles with fingers and place them in front of your eyes |
 | and this is grandpa's hat | Put arms straight up, representing a top hat |
-
 | This is the way he folds his arms JUST LIKE THAT | Cross your arms over your chest and bounce on each word |{.table-with-lines}
 
 .
