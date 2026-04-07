@@ -193,6 +193,9 @@
     // 4. Ready
     // ----------------------------------------------------------------
     _setState(player, container, 'READY');
+    // Persistent flag — never removed by _setState's state cycling.
+    // Used by CSS to hide the fallback image for the lifetime of the page.
+    container.classList.add('abc-player--initialized');
   }
 
   /* ------------------------------------------------------------------
