@@ -16,10 +16,84 @@ meters:
   - 2/4
 source: ''
 source_url: ''
+abc_notation: |-
+  X:1
+  T:Akka Bakka Soda Cracker
+  C:arr. P. Eric Bottorff
+  A: MeetThemInMusic.com
+  M:2/4
+  L:1/8
+  Q:1/4=100
+  %%titlefont Arial 24
+  %%vocalfont Arial 9
+  %%staffsep 70
+  %%barsperstaff 4
+  %%stretchlast 1
+  K:D
+  V:S stem=up
+  AA BB AA FF|AA BB F2 z2 |
+  w: Ak-ka Ba-ka so-da crack-er, ak-ka ba-ka boo.
+  M:2/4
+  AA BB AA FF|F2 E2 D2 z2 ||
+  w: Ak-ka Ba-ka so-da crack-er, up goes YOU!
+  %%textfont arial 9
+  %%center .
+  %%center © 2026 All Rights Reserved.
+abc_tempo: 100
+abc_scores:
+  - label: Pitched Notation
+    notation: |-
+      X:1
+      T:Akka Bakka Soda Cracker
+      C:arr. P. Eric Bottorff
+      A: MeetThemInMusic.com
+      M:2/4
+      L:1/8
+      Q:1/4=100
+      %%titlefont Arial 24
+      %%vocalfont Arial 9
+      %%staffsep 70
+      %%barsperstaff 4
+      %%stretchlast 1
+      K:D
+      V:S stem=up
+      AA BB AA FF|AA BB F2 z2 |
+      w: Ak-ka Ba-ka so-da crack-er, ak-ka ba-ka boo.
+      M:2/4
+      AA BB AA FF|F2 E2 D2 z2 ||
+      w: Ak-ka Ba-ka so-da crack-er, up goes YOU!
+      %%textfont arial 9
+      %%center .
+      %%center © 2026 All Rights Reserved.
+    tempo: 116
+  - label: Chant Notation
+    notation: |-
+      X:1
+      T:Akka Bakka Soda Cracker
+      C:Folk Song
+      A: arr. P. Eric Bottorff
+      M:2/4
+      L:1/8
+      Q:1/4=100
+      %%titlefont Arial 24
+      %%vocalfont Arial 9
+      %%staffsep 70
+      %%barsperstaff 4
+      %%stretchlast 1
+      %%printtempo 0
+      K:C clef=perc stafflines=0
+      V:S stem=up 
+      AA AA AA AA|AA AA A2 z2 |
+      w: Ak-ka Ba-ka so-da crack-er, ak-ka ba-ka boo. 
+      M:2/4
+      AA AA AA AA|A2 A2 A2 z2 ||
+      w: Ak-ka Ba-ka so-da crack-er, up goes YOU!
+      %%textfont arial 9
+      %%center .
+      %%center © 2026 All Rights Reserved.
+    tempo: 116
 description: Akka Bakka Soda Cracker is a duple meter chant. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
-
-![Unpitched Notation for the song Akka Bakka Soda Cracker](/images/uploads/akka-bakka-soda-cracker-3.webp "Akka Bakka Soda Cracker (Chant)")
 
 **<u>Activity:</u>**
 

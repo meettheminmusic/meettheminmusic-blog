@@ -1,0 +1,54 @@
+{{/*
+  abc-player shortcode
+  Usage:
+    {{< abc-player tempo="120" cursor="true" >}}
+    X:1
+    T:My Tune
+    ...
+    {{< /abc-player >}}
+
+  Parameters:
+    tempo   (int, optional)  — fallback BPM if the ABC has no Q: field. Default: 120
+    cursor  (bool, optional) — highlight currently playing note in SVG. Default: true
+
+  Requires Hugo 0.123+ (.Page.Store).
+*/}}
+
+{{- $id     := printf "abcplayer-%s" (md5 .Inner) -}}
+{{- $tempo  := int (.Get "tempo"  | default "120") -}}
+{{- $cursor := .Get "cursor" | default "true" -}}
+
+{{/*-- Inject CSS exactly once per page --*/}}
+{{- if not (.Page.Store.Get "abc-css-loaded") -}}
+  {{- .Page.Store.Set "abc-css-loaded" true -}}
+  <link rel="stylesheet" href="/css/abc-player.css">
+{{- end -}}
+
+{{/*-- Inject JS exactly once per page (abcjs must come before coordinator) --*/}}
+{{- if not (.Page.Store.Get "abc-js-loaded") -}}
+  {{- .Page.Store.Set "abc-js-loaded" true -}}
+  <script src="/js/abcjs-6.4.4-min.js"></script>
+  <script src="/js/abc-player-coordinator.js"></script>
+{{- end -}}
+
+{{/*-- ABC notation stored in a <script type="text/abc"> element.
+       Hugo's Markdown renderer never touches this content because
+       <script> blocks are passed through verbatim.
+       The coordinator reads it via .textContent — never innerHTML. --*/}}
+<script type="text/abc" id="abc-data-{{ $id }}">{{ .Inner }}</script>
+
+{{/*-- Player container --*/}}
+<div class="abc-player" id="{{ $id }}" data-cursor="{{ $cursor }}">
+  <div class="abc-player-score"    id="score-{{ $id }}"></div>
+  <div class="abc-player-controls" id="controls-{{ $id }}"></div>
+</div>
+
+{{/*-- Register this player instance with the coordinator --*/}}
+<script>
+window.AbcPlayerCoordinator.registerPlayer({
+  id:                '{{ $id }}',
+  abcElementId:      'score-{{ $id }}',
+  controlsElementId: 'controls-{{ $id }}',
+  defaultTempo:      {{ $tempo }}
+});
+</script>

@@ -1,0 +1,393 @@
+/* =========================================================
+   ABC Player — component styles
+   Variables map to site tokens defined in style.css, with
+   hex fallbacks so the component works standalone.
+   ========================================================= */
+
+:root {
+  --abc-teal:       var(--teal,       #0F6E56);
+  --abc-charcoal:   var(--charcoal,   #2C2C2A);
+  --abc-warm-white: var(--warm-white, #FAFAF8);
+  --abc-teal-tint:  var(--teal-tint,  #E1F5EE);
+
+  --abc-border-radius: 6px;
+  --abc-font: 'Inter', system-ui, -apple-system, sans-serif;
+  --abc-shadow: 0 1px 4px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.06);
+}
+
+/* ---------------------------------------------------------
+   Card container — transparent so it flows with page bg
+   --------------------------------------------------------- */
+.abc-player {
+  background: transparent;
+  font-family: var(--abc-font);
+  color: var(--abc-charcoal);
+  margin: 1.5em 0;
+}
+
+/* ---------------------------------------------------------
+   Score area
+   --------------------------------------------------------- */
+.abc-player-score {
+  padding: 0.75rem 1rem 0.25rem;
+  background: #fff;
+  border-radius: var(--abc-border-radius);
+}
+
+/* abcjs sets an explicit width attribute; override so the score scales
+   down on narrow containers without horizontal scroll. */
+.abc-player-score svg {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  overflow: visible !important;
+}
+
+/* ---------------------------------------------------------
+   Controls bar — hairline separator, no teal-tint box
+   --------------------------------------------------------- */
+.abc-player-controls {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0 0.75rem;
+  background: transparent;
+  border-top: 0.5px solid var(--neutral-100, #D3D1C7);
+}
+
+/* ---------------------------------------------------------
+   Play / Stop button — matches site secondary button pattern
+   --------------------------------------------------------- */
+.abc-player-btn {
+  flex-shrink: 0;
+  min-width: 4.5rem;
+  padding: 0.3rem 0.9rem;
+  border: 0.5px solid var(--abc-teal);
+  border-radius: var(--abc-border-radius);
+  background: var(--abc-teal-tint);
+  color: var(--abc-teal);
+  font-family: var(--abc-font);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.4;
+}
+
+.abc-player-btn:hover:not(:disabled) {
+  background: var(--abc-teal);
+  color: #fff;
+}
+
+.abc-player-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* ---------------------------------------------------------
+   Octave selector — same structure as key selector
+   --------------------------------------------------------- */
+.abc-player-octave {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.abc-player-octave label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--abc-charcoal);
+  white-space: nowrap;
+}
+
+.abc-player-octave select {
+  font-family: var(--abc-font);
+  font-size: 0.82rem;
+  padding: 0.2rem 0.4rem;
+  border: 0.5px solid rgba(44,44,42,0.25);
+  border-radius: calc(var(--abc-border-radius) - 1px);
+  background: transparent;
+  color: var(--abc-charcoal);
+  cursor: pointer;
+  accent-color: var(--abc-teal);
+}
+
+.abc-player-octave select:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* ---------------------------------------------------------
+   Ghost / secondary button (Save score)
+   Pushed to the right end of the controls bar via margin-left: auto
+   --------------------------------------------------------- */
+.abc-player-btn--ghost {
+  background: transparent;
+  color: var(--abc-charcoal);
+  border-color: rgba(44,44,42,0.35);
+  opacity: 0.65;
+  margin-left: auto;
+  box-shadow: 0 0 0 2px rgba(15,110,86,0.18), 0 0 8px 0 rgba(15,110,86,0.13);
+}
+
+.abc-player-btn--ghost:hover:not(:disabled) {
+  background: var(--abc-charcoal);
+  color: var(--abc-warm-white);
+  opacity: 1;
+  box-shadow: 0 0 0 2px rgba(15,110,86,0.35), 0 0 12px 0 rgba(15,110,86,0.22);
+}
+
+/* ---------------------------------------------------------
+   Tempo control
+   --------------------------------------------------------- */
+.abc-player-tempo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.abc-player-tempo label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--abc-charcoal);
+  white-space: nowrap;
+}
+
+.abc-player-tempo input[type="range"] {
+  width: 90px;
+  accent-color: var(--abc-teal);
+  cursor: pointer;
+}
+
+.abc-player-tempo input[type="range"]:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.abc-player-tempo-value {
+  font-size: 0.78rem;
+  min-width: 2.2rem;
+  text-align: right;
+  color: var(--abc-charcoal);
+}
+
+/* ---------------------------------------------------------
+   Key selector
+   --------------------------------------------------------- */
+.abc-player-key {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.abc-player-key label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--abc-charcoal);
+  white-space: nowrap;
+}
+
+.abc-player-key select {
+  font-family: var(--abc-font);
+  font-size: 0.82rem;
+  padding: 0.2rem 0.4rem;
+  border: 0.5px solid rgba(44,44,42,0.25);
+  border-radius: calc(var(--abc-border-radius) - 1px);
+  background: transparent;
+  color: var(--abc-charcoal);
+  cursor: pointer;
+  accent-color: var(--abc-teal);
+}
+
+.abc-player-key select:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* ---------------------------------------------------------
+   Audio hint — inline message shown on WebAudio failure
+   --------------------------------------------------------- */
+.abc-player-audio-hint {
+  font-size: 0.78rem;
+  color: var(--warm-gray, #6B6B67);
+  font-style: italic;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.abc-player-audio-hint:empty {
+  display: none;
+}
+
+/* ---------------------------------------------------------
+   State: loading / transposing — dim controls
+   --------------------------------------------------------- */
+.abc-player--loading .abc-player-controls,
+.abc-player--transposing .abc-player-controls {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Loading placeholder */
+.abc-player--loading .abc-player-score::after {
+  content: 'Loading…';
+  display: block;
+  padding: 2rem;
+  text-align: center;
+  color: rgba(44,44,42,0.4);
+  font-size: 0.85rem;
+}
+
+/* ---------------------------------------------------------
+   Fallback image — shown by default; hidden on successful render.
+   Progressive enhancement: if JS never runs or fails at any point,
+   the image remains visible. Only abc-player--ready (set by the
+   coordinator after a confirmed successful render) hides it.
+   --------------------------------------------------------- */
+.abc-player-fallback {
+  margin: 0;
+}
+
+.abc-player-fallback img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--abc-border-radius);
+}
+
+.abc-player--ready .abc-player-fallback {
+  display: none;
+}
+
+/* Hide the white score box when ABCJS hasn't rendered into it yet.
+   :empty matches the div only while it has no child nodes, so it
+   disappears on no-JS and reappears the moment ABCJS injects the SVG. */
+.abc-player-score:empty {
+  display: none;
+}
+
+/* Error message injected into the score area on render/load failure */
+.abc-player-error {
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  color: var(--warm-gray, #6B6B67);
+  font-style: italic;
+  margin: 0;
+}
+
+/* ---------------------------------------------------------
+   Cursor / note highlighting
+   --------------------------------------------------------- */
+.abcjs-highlight {
+  fill: var(--abc-teal) !important;
+  opacity: 0.85;
+}
+
+.abcjs-highlight path,
+.abcjs-highlight rect,
+.abcjs-highlight ellipse,
+.abcjs-highlight polygon {
+  fill: var(--abc-teal) !important;
+}
+
+/* ---------------------------------------------------------
+   Tabbed scores interface
+   --------------------------------------------------------- */
+.abc-tabs {
+  margin: 2em 0 1.5em;
+}
+
+/* Optional section label rendered above the tab row */
+.abc-tabs-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--warm-gray, #6B6B67);
+  margin-bottom: 0.5rem;
+}
+
+/* Underline-style tab nav — clearly navigation, not tags */
+.abc-tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border-bottom: 2px solid var(--neutral-100, #D3D1C7);
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.abc-tab-btn {
+  padding: 0.45rem 1.1rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;           /* overlay the nav's bottom border */
+  border-radius: var(--abc-border-radius) var(--abc-border-radius) 0 0;
+  background: transparent;
+  color: var(--abc-charcoal);
+  font-family: var(--abc-font);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.abc-tab-btn:hover:not(.is-active) {
+  color: var(--abc-teal);
+  border-color: rgba(15,110,86,0.35);
+  background: var(--abc-teal-tint);
+}
+
+.abc-tab-btn.is-active {
+  color: var(--abc-teal);
+  border-color: var(--abc-teal);
+  font-weight: 600;
+}
+
+.abc-tab-panel:not(.is-active) {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.abc-tab-panel .abc-player {
+  margin-top: 0;
+}
+
+/* ---------------------------------------------------------
+   Responsive: narrow screens stack controls vertically
+   --------------------------------------------------------- */
+@media (max-width: 600px) {
+  .abc-player-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .abc-player-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .abc-player-btn--ghost {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .abc-player-tempo input[type="range"] {
+    width: 120px;
+  }
+}

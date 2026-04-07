@@ -43,6 +43,43 @@ collections:
       - { label: "Meters", name: "meters", widget: "list", required: false }
       - { label: "Source", name: "source", widget: "string", required: false }
       - { label: "Source URL", name: "source_url", widget: "string", required: false }
+      - label: "ABC Notation (single score)"
+        name: "abc_notation"
+        widget: "text"
+        required: false
+        hint: "Paste ABC notation here when the song has one score. Use 'Multiple scores' below for tabbed layouts."
+      - label: "Notation fallback image"
+        name: "abc_image"
+        widget: "image"
+        required: false
+        hint: "Shown if the interactive player fails to load (JS error, offline, etc.). Only used with 'ABC Notation' above."
+      - label: "Default tempo (BPM)"
+        name: "abc_tempo"
+        widget: "number"
+        default: 120
+        required: false
+        value_type: "int"
+      - label: "Multiple scores"
+        name: "abc_scores"
+        widget: "list"
+        required: false
+        hint: "Add two or more scores to show a tabbed player (e.g. Full score / Rhythm only)."
+        fields:
+          - { label: "Tab label", name: "label", widget: "string", hint: "e.g. Full score" }
+          - label: "Notation (ABC)"
+            name: "notation"
+            widget: "text"
+          - label: "Fallback image"
+            name: "image"
+            widget: "image"
+            required: false
+            hint: "Shown if the interactive player fails to load."
+          - label: "Tempo (BPM)"
+            name: "tempo"
+            widget: "number"
+            required: false
+            value_type: "int"
+            hint: "Leave blank to use the default tempo above."
       - { label: "Notes", name: "body", widget: "markdown", required: false }
 
   - name: "books"
