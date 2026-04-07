@@ -90,7 +90,7 @@
                  role="tabpanel"
                  id="abc-panel-{{ $.File.UniqueID }}-{{ $i }}"
                  aria-labelledby="abc-tab-{{ $.File.UniqueID }}-{{ $i }}">
-              <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $score.notation }}</script>
+              <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $score.notation | safeHTML }}</script>
               <div class="abc-player" id="{{ $abcId }}" data-cursor="true">
                 {{- with $score.image -}}<figure class="abc-player-fallback"><img src="{{ . }}" alt="{{ $score.label | default $.Title }} notation"></figure>{{- end -}}
                 <div class="abc-player-score"    id="score-{{ $abcId }}"></div>
@@ -134,7 +134,7 @@
         {{- $score    := index $scores 0 -}}
         {{- $abcId    := printf "abcplayer-%s" .File.UniqueID -}}
         {{- $abcTempo := int ($score.tempo | default $defTempo) -}}
-        <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $score.notation }}</script>
+        <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $score.notation | safeHTML }}</script>
         <div class="abc-player" id="{{ $abcId }}" data-cursor="true">
           {{- with $score.image -}}<figure class="abc-player-fallback"><img src="{{ . }}" alt="{{ $.Title }} notation"></figure>{{- end -}}
           <div class="abc-player-score"    id="score-{{ $abcId }}"></div>
@@ -153,7 +153,7 @@
 
         {{/* --- Legacy: abc_notation single string --- */}}
         {{- $abcId := printf "abcplayer-%s" .File.UniqueID -}}
-        <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $single }}</script>
+        <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $single | safeHTML }}</script>
         <div class="abc-player" id="{{ $abcId }}" data-cursor="true">
           {{- with .Params.abc_image -}}<figure class="abc-player-fallback"><img src="{{ . }}" alt="{{ $.Title }} notation"></figure>{{- end -}}
           <div class="abc-player-score"    id="score-{{ $abcId }}"></div>

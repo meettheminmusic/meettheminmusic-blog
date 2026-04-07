@@ -144,7 +144,7 @@
       console.error('AbcPlayerCoordinator: no #abc-data-' + config.id + ' element found');
       return;
     }
-    player.abcText = abcDataEl.textContent;
+    player.abcText = _decodeEntities(abcDataEl.textContent);
 
     // ----------------------------------------------------------------
     // 1. Render score
@@ -196,6 +196,17 @@
     // Persistent flag — never removed by _setState's state cycling.
     // Used by CSS to hide the fallback image for the lifetime of the page.
     container.classList.add('abc-player--initialized');
+  }
+
+  /* ------------------------------------------------------------------
+     HTML entity decoder — undoes any escaping the template engine
+     applied to the raw ABC text (e.g. &quot; → ", &amp; → &, etc.).
+     Uses a textarea so no script execution or child DOM is involved.
+     ------------------------------------------------------------------ */
+  function _decodeEntities(str) {
+    var el = document.createElement('textarea');
+    el.innerHTML = str;
+    return el.value;
   }
 
   /* ------------------------------------------------------------------
