@@ -4,13 +4,21 @@ date: 2026-04-07T17:18:00
 draft: false
 unlisted: false
 featured: false
-card_image: ''
-musical_concepts: []
-social_concepts: []
-keys: []
-modes: []
-meters: []
-source: ''
+card_image: /images/uploads/john-the-rabbit.png
+musical_concepts:
+  - Pickups
+  - Echo Song
+social_concepts:
+  - Farming
+  - Stealing
+keys:
+  - E
+modes:
+  - Major
+meters:
+  - Duple
+  - 2/4
+source: Traditional
 source_url: ''
 abc_notation: |-
   %%textfont arial italic 11
@@ -47,3 +55,16 @@ abc_image: ''
 abc_tempo: 112
 abc_scores: []
 ---
+
+<u>**Activity**</u>
+
+This is a traditional echo song.  Some classes do well starting with the whole group responding first while others do better by going around the room one at a time.
+
+<u>**Assessment:**</u>
+
+Nonverbal or minimally verbally responsive students may not respond as expected.  Listen for responses approaching the appropriate pitch and time.
+
+|  | **Not Approaching** | **Approaching with Support** | **Meeting Expectations** |
+| Timing | Not within rhythmic context or no response | Mostly within context | Matching context of song |
+| Words | No vocalization or response | Unrelated vocalization or response | Unrelated vocalization or response with appropriate rhythmic or tonal context | Expected or appropriate |
+| Pitch | No response | Unpitched response | Related pitch response (e.g., within tonal context but not matching expected response) | Accurate pitch response |
