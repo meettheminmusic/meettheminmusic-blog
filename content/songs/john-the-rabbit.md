@@ -29,7 +29,7 @@ abc_notation: |-
   C:arr. P. Eric Bottorff
   A: MeetThemInMusic.com 
   %%gchordfont Arial 12
-  %%vocalfont Arial 110
+  %%vocalfont Arial 10
   %%staffsep 70
   %%barsperstaff 5
   %%stretchlast 1
