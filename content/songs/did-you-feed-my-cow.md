@@ -33,7 +33,6 @@ abc_notation: |-
   %%titlefont Arial 24
   %%vocalfont Arial 11
   %%staffsep 90
-  %%stretchlast 1
   %%printtempo 0
   K:F
   "^Call"C2 D2C2 | F2 F4 (A2A8) | "^Response"F8 F2 "^Call" C2 D2C2 | F2 F4 (A2A8) | "^Response"F8 F2 "Call" C2 D2C2 |
