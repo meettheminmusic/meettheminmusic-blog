@@ -22,11 +22,12 @@ abc_notation: |-
   A: MeetThemInMusic.com 
   M:2/4
   L:1/8
+  Q:1/4=116
+  %%printtempo 0
   %%titlefont Arial 24
   %%vocalfont Arial 9
   %%staffsep 70
   %%stretchlast 1
-  %%printtempo 0
   K:D
   dA BA | dA BA | F2 E2 | D2 "WOO!"!fermata!z2 |
   w: Je-re-mi-ah blow the fi-re, puff, puff, puff! "WOO!"
