@@ -60,6 +60,8 @@ abc_scores: []
 
 This is a traditional echo song.  Some classes do well starting with the whole group responding first while others do better by going around the room one at a time.
 
+Be willing to wait necessary processing time for students who require lengthened processing time. I will wait up to 8 seconds for some students.
+
 <u>**Assessment:**</u>
 
 Nonverbal or minimally verbally responsive students may not respond as expected.  Listen for responses approaching the appropriate pitch and time.  A sample rubric is provided below.
@@ -67,5 +69,6 @@ Nonverbal or minimally verbally responsive students may not respond as expected.
 |  | Not Approaching | Approaching with Support | Meeting Expectations |
 | --- | --- | --- | --- |
 | **Timing** | Not within rhythmic context or no response | Mostly within context | Matching context of song |
+
 | **Words** | No vocalization or response | Unrelated vocalization or response | Unrelated vocalization or response with appropriate rhythmic or tonal context | Expected or appropriate |
 | **Pitch** | No response | Unpitched response | Related pitch response (e.g., within tonal context but not matching expected response) | Accurate pitch response |
