@@ -32,13 +32,13 @@ abc_notation: |-
   %%printtempo 0
   K:C clef=perc stafflines=0
   AA AA AA zA| AA AA A2 |
-  w: These are grand-ma's glass-es and this is grand-ma's hat
+  w: These are grand-mas glass-es and this is grand-mas hat
   M:6/8
   AAA A2A | A2A A2A | AAA A2A |A3 z3|
   w: This is the way she folds her hands and plac-es them on her lap.
   M:2/4
   AA AA AA zA| AA AA A2 |
-  w: These are grand-pa's glass-es and this is grand-pa's hat
+  w: These are grand-pas glass-es and this is grand-pas hat
   M:6/8
   AAA A2A | A2A A3 | uA3uA3 |uA3 z3|]
   w: This is the way he folds his arms, just like that!
