@@ -41,6 +41,11 @@
   height: auto !important;
   display: block;
   overflow: visible !important;
+  /* Disable tap/click on note elements. Without this, abcjs adds a red
+     selection class on tap with no way to deselect, which also bleeds
+     into PNG exports. Playback cursor highlighting is unaffected because
+     it is applied via classList in JS, not via pointer events. */
+  pointer-events: none;
 }
 
 /* ---------------------------------------------------------

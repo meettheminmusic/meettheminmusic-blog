@@ -262,6 +262,28 @@
     }
     var result = ABCJS.renderAbc(scoreEl.id, abcSource, opts);
     player.visualObj = result && result[0] ? result[0] : null;
+
+    // Strip any abcjs selection classes so red highlights never appear
+    // in the rendered score or in PNG exports.
+    var selected = scoreEl.querySelectorAll('[class*="abcjs-note_selected"], [class*="abcjs-note-selected"]');
+    for (var n = 0; n < selected.length; n++) {
+      selected[n].classList.remove('abcjs-note_selected', 'abcjs-note-selected');
+    }
+
+    // Without a viewBox, max-width:100% in CSS scales the SVG's bounding
+    // box but clips internal content on narrow screens. Adding viewBox lets
+    // the SVG scale proportionally like an image.
+    var svgs = scoreEl.querySelectorAll('svg');
+    for (var s = 0; s < svgs.length; s++) {
+      var svg = svgs[s];
+      if (!svg.getAttribute('viewBox')) {
+        var svgW = parseFloat(svg.getAttribute('width'));
+        var svgH = parseFloat(svg.getAttribute('height'));
+        if (svgW > 0 && svgH > 0) {
+          svg.setAttribute('viewBox', '0 0 ' + svgW + ' ' + svgH);
+        }
+      }
+    }
   }
 
   /* ------------------------------------------------------------------
