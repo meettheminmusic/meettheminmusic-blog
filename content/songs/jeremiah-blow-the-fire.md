@@ -29,10 +29,10 @@ abc_notation: |-
   %%staffsep 70
   %%stretchlast 1
   K:D
-  dA BA | dA BA | F2 E2 | D2 "WOO!"!fermata!z2 |
+  dA BA | dA BA | F2 E2 | D2 "WOO!"z2 |
   w: Je-re-mi-ah blow the fi-re, puff, puff, puff! "WOO!"
   M:2/4
-  dA BA | dA BA | F2 !breath!z2| E2 !breath!z2| | D2 "WOO!"!fermata!z2 |]
+  dA BA | dA BA | F2 !breath!z2| E2 !breath!z2| | D2 "WOO!"z2 |]
   w: Je-re-mi-ah blow the fi-re, puff, puff, puff! "WOO!"
   %%textfont arial 9
   %%center .
