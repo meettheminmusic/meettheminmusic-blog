@@ -1,7 +1,7 @@
 ---
 title: Pickles and Pie
 date: 2026-03-31
-description: "Pickles and Pie is a mixolydian duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers."
+card_image: /images/uploads/pickles-and-pie-2.webp
 musical_concepts:
   - Leading tone
   - Choice Board
@@ -14,7 +14,35 @@ meters:
   - 2/4
 source: ''
 source_url: ''
-card_image: "/images/uploads/pickles-and-pie-2.webp"
+abc_notation: |-
+  %%textfont arial italic 9
+  %%text Key: D
+  %%text Mode: Mixolydian
+  X: 1
+  T:Pickles and Pie
+  C:arr. P. Eric Bottorff
+  A: MeetThemInMusic.com 
+  M:2/4
+  L:1/8
+  Q:1/4=100
+  %%titlefont Arial 24
+  %%vocalfont Arial 9
+  %%staffsep 70
+  %%barsperstaff 4
+  %%stretchlast 1
+  %%printtempo 0
+  K:Dmix
+  D2 A2 A4 |BA G2 A4 | c2 dc BA G2 | F2 G2 A4 |
+  w:  Me oh my, pick-les and pie. I see an (el-e-phant) in the sky.
+  M:2/4
+  D2 A2 A4 |BA G2 A4 | G2 FE FE D2 | E2 =C2 D4 ||
+  w: Me oh my, pick-les and pie. How can an (el-e-phant) fly so high?
+  %%textfont arial 9
+  %%center .
+  %%center © 2026 All Rights Reserved.
+abc_image: /images/uploads/pickles-and-pie-2.webp
+abc_tempo: 116
+description: Pickles and Pie is a mixolydian duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
 
 ![Notation for Pickles and Pie](/images/uploads/pickles-and-pie-2.webp "Pickles and Pie")
