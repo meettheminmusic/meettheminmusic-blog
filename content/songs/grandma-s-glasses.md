@@ -23,7 +23,6 @@ abc_notation: |-
   L:1/8
   C:arr. P. Eric Bottorff
   A: MeetThemInMusic.com 
-  Q:1/4=116
   %%titlefont Arial 24
   %%vocalfont Arial 9
   %%staffsep 50
@@ -45,7 +44,7 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
-abc_tempo: null
+abc_tempo: 116
 description: Grandma's Glasses is a mixed meter chant. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
 
