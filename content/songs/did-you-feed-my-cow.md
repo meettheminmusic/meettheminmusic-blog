@@ -24,6 +24,7 @@ source: Thomas Talley (October 9, 1868 – July 11, 1952)
 source_url: https://books.googleusercontent.com/books/content?req=AKW5Qacnsh-sgEVrDf0T3XSmKaPXZJW_r4WRdyQ3Y9XJF643vZ_pcljdP6gf_Hl0SaCITrTtCVGKDYA6JS64YU9ulqEwK4uGsmfDxrizTbRugL0pBchUMqvCJdy8iuQ2SV121pVHmOt50xqggvzy7kHKyO7UwcGcWcq7jEIyR-54wqA3G2PwTlc6wjram8SN35Fjal-9iz0GVTQGaowr2v0RP8NNw745fd5FIGzp0BIM29AX0KgaKy0UpzbfQhfP5b7RtbGlBj3p
 abc_notation: |-
   %%textfont arial italic 9
+  %%scale 0.9
   X:1 
   T:Did you Feed My Cow?
   M:4/4
