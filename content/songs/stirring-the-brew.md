@@ -6,10 +6,9 @@ unlisted: false
 featured: false
 card_image: /images/uploads/stirring-the-brew-4.webp
 musical_concepts:
+  - Flow
   - Tonic-Dominant
   - Do-Ti-La
-movement_concepts:
-  - Flow
 social_concepts:
   - Taking Turns
 keys:
@@ -82,7 +81,7 @@ abc_scores:
 concepts: []
 ---
 
-If you can't do songs with witches in them, similar activities go with the songs _Frog in the Meadow_ and [Akka Bakka Soda Cracker](https://meettheminmusic.com/songs/akka-bakka-soda-cracker/). Those songs are in duple meter and major, though.
+> If you can't do songs with witches in them, similar activities go with the songs [_Frog in the Meadow_](https://meettheminmusic.com/songs/frog-in-the-meadow/) and [Akka Bakka Soda Cracker](https://meettheminmusic.com/songs/akka-bakka-soda-cracker/). Those songs are in duple meter and major, though.
 
 **<u>Activity</u>**
 
