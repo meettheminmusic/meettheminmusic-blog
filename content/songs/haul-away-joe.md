@@ -5,9 +5,13 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Haul-Away-Joe.webp
-musical_concepts: []
-social_concepts: []
-movement_concepts: []
+musical_concepts:
+  - Rhythmic Elongation
+  - v-i
+social_concepts:
+  - Rhyme
+movement_concepts:
+  - Stretchy Band
 supports_adaptations: []
 keys:
   - C
@@ -20,7 +24,7 @@ source: ''
 source_url: ''
 abc_notation: ''
 abc_image: ''
-abc_tempo: 120
+abc_tempo: null
 abc_scores:
   - label: Melody
     notation: |-
