@@ -65,7 +65,7 @@ abc_scores:
       %%stretchlast 1
       %%printtempo 0
       K:F
-      A2AA F2F2 | A2AA F2 z2 | AAAA F2F2 | A2AA F2 z2 |]
+      A2AA F2F2 | A2AA F2 z2 | AA AA F2F2 | A2AA F2 z2 |]
       %%textfont arial 9
       %%center .
       %%center © 2026 All Rights Reserved.
