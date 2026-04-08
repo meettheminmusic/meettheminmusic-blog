@@ -10,6 +10,10 @@ musical_concepts:
   - Mi-Do
 social_concepts:
   - Taking Turns
+movement_concepts:
+  - Stomping
+  - Weight
+  - Freeze
 keys:
   - F
 modes:
