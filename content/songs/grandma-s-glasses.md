@@ -4,7 +4,7 @@ date: 2026-04-01
 card_image: /images/uploads/grandmas-glasses-5.webp
 musical_concepts:
   - Fingerplay
-  - Movement
+  - Duple vs Triple
 social_concepts:
   - Family
 keys:
