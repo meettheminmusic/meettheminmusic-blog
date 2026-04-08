@@ -7,6 +7,7 @@ featured: false
 card_image: /images/uploads/john-the-rabbit.png
 musical_concepts:
   - Pickups
+  - Call and Response
   - Echo Song
 social_concepts:
   - Farming
