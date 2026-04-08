@@ -4,10 +4,10 @@ date: 2026-03-31
 card_image: /images/uploads/akka-bakka-soda-cracker-3.webp
 musical_concepts:
   - Steady beat
-movement_concepts:
-  - Marching
 social_concepts:
   - Taking Turns
+movement_concepts:
+  - Marching
 keys:
   - unpitched
 modes:
@@ -77,9 +77,9 @@ description: Akka Bakka Soda Cracker is a duple meter chant. Includes pedagogica
 
 **<u>Activity:</u>**
 
-_Turn taking game:_ One student stomps around the room to the beat of the song.  On the final quarter note ("you!"). The student points to another student to take their place.
+_Turn taking game:_ One student stomps around the room to the beat of the song.  On the final quarter note ("you!") the student points to another student to take their place.
 
-For students who are hesitant to participate, or who have movement difference, they can hold the hand of the teacher or their favorite paraprofessional.
+For students who are hesitant to participate, or who have movement difference, they can hold the hand of the teacher or their favorite paraprofessional.  Additionally, a seating chart and a finger/pointer can take the place of stomping around the room for students who cannot safely move around the room.
 
 **<u>Assessment Opportunity:</u>**
 
