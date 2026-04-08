@@ -4,6 +4,7 @@ date: 2026-03-31
 card_image: /images/uploads/pickles-and-pie-2.webp
 musical_concepts:
   - Leading tone
+supports_adaptations:
   - Choice Board
 keys:
   - D

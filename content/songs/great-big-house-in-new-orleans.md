@@ -3,8 +3,9 @@ title: Great Big House in New Orleans
 date: 2026-04-01
 card_image: /images/uploads/great-big-house-in-new-orleans-3.webp
 musical_concepts:
-  - Choice Board
   - Bordun
+supports_adaptations:
+  - Choice Board
 keys:
   - F
 modes:
