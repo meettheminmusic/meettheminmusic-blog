@@ -1,9 +1,9 @@
 ---
 title: Your lessons need a predictable structure
-date: 2026-04-09T20:16:00
+date: 2026-04-09T21:22:00
 draft: false
-unlisted: true
-featured: false
+unlisted: false
+featured: true
 description: A predictable lesson structure helps students with disabilities regulate and engage. Here's the 10-activity sequence I use in my special education music classes.
 tags:
   - lesson-planning
