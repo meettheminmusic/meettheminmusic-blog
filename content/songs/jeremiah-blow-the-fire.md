@@ -39,6 +39,14 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
+sanitized_abc: |-
+  K:D  M:2/4  L:1/8
+  M:2/4
+  L:1/8
+  K:D
+  dA BA | dA BA | F2 E2 | D2 z2 |
+  dA BA | dA BA | F2 E2 | D2 z2 |
+  dA BA | dA BA | F2 z2| E2 z2| | D2  z2 |]
 abc_tempo: 116
 description: Jeremiah Blow the Fire is a major duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
