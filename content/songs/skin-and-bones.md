@@ -58,6 +58,24 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
+sanitized_abc: |-
+  K:Gm  M:6/8  L:1/8
+  M:6/8
+  L:1/8
+  K:Gm
+  G| BBG BBG | B2c G3 | d3 c2B | G3 z2 |
+  M: 6/8
+  G|B2G B2G | B2c G3 | d3 c2B | G3 z2 ||
+  M: 6/8
+  G|B2G B2G | B2c G3 | d3 c2B | G3 z2 ||
+  M: 6/8
+  G|B2G B2G | B2c G3 | d3 c2B | G3 z2 ||
+  M: 6/8
+  G|B2G B3 | BBc G3 | d3 c2B | G3 z2 ||
+  M: 6/8
+  G| BBG BBG | B2c G3 | d3 c2B | G3 z2 |
+  M: 6/8
+  G| BBG B2G  | B3 |]
 abc_tempo: 80
 ---
 
