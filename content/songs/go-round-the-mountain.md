@@ -19,6 +19,13 @@ meters:
 source: ''
 source_url: ''
 abc_notation: ''
+sanitized_abc: |-
+  K:C  M:2/4  L:1/16
+  M:2/4
+  L:1/16
+  K:C
+  G4 G3G |E2 D6 | G2G2 EEE2 | G2G2 EEE2 |
+  G4 G3G |E2 D6 | G2G2 EEE2 | C4 z4 |]
 abc_tempo: null
 abc_scores:
   - label: 4 Note Version
