@@ -44,6 +44,18 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
+sanitized_abc: |-
+  K:C  M:6/8  L:1/8
+  M:2/4
+  L:1/8
+  K:C clef=perc stafflines=0
+  AA AA AA zA| AA AA A2 |
+  M:6/8
+  AAA A2A | A2A A2A | AAA A2A |A3 z3|
+  M:2/4
+  AA AA AA zA| AA AA A2 |
+  M:6/8
+  AAA A2A | A2A A3 | uA3uA3 |uA3 z3|]
 abc_tempo: 116
 description: Grandma's Glasses is a mixed meter chant. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
