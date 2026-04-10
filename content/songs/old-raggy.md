@@ -7,9 +7,17 @@ featured: false
 card_image: /images/uploads/Old_Raggy-2.webp
 musical_concepts:
   - So-Mi-Do
-social_concepts: []
-movement_concepts: []
-supports_adaptations: []
+  - Drumming
+  - Macrobeat/Microbeat
+social_concepts:
+  - Taking Turns
+  - Partners
+  - Games
+  - Accepting Losing
+movement_concepts:
+  - Longways Sets
+supports_adaptations:
+  - Movement Alteration
 keys:
   - F
 modes:
@@ -47,6 +55,17 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
+sanitized_abc: |-
+  K:F  M:6/8  L:1/8
+  M:6/8
+  L:1/8
+  K:F
+  cAF cAF| GAB AGF | cAF cAF| GAG F3 ||
+  M: 6/8
+  GAB AGF| GAB AGF |cAF cAF| GAG F3|]
+  F,3 F,3 | C,3 F,3 | F,3 F,3 | C,3 F,3||
+  M:6/8
+  C,6 | G,,6 | F,,3 G,,3| C,6|]
 abc_image: ''
 abc_tempo: 112
 abc_scores: []
