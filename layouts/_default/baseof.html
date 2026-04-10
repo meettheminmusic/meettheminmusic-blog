@@ -39,7 +39,15 @@
 
   <!-- Umami Analytics -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="c9aa1b7e-cd6a-43d4-89f9-f598ddd04091"></script>
-  {{ partial "analytics.html" . }}
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0T321CJLX4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0T321CJLX4');
+</script>
 </head>
 <body>
 
