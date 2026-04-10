@@ -17,6 +17,11 @@ card_image: ""
 # abc_image: ""   # optional fallback image shown if the player fails to load
 abc_notation: ""
 abc_tempo: 120
+# sanitized_abc: A clean copy of the ABC notation used for Music Braille translation.
+# Remove before saving: %% directive lines, w:/W: lyric lines, all header lines except
+# K: M: L:, inline "quoted" chord labels, and !style! or +decoration+ markers.
+# Keep: K: (with clef=perc if present), M:, L:, and all note/rest/barline content.
+# sanitized_abc: ""
 # Multiple scores (optional). Each item needs a label and notation field.
 # abc_scores:
 #   - label: "Full score"

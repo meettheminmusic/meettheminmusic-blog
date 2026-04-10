@@ -50,6 +50,16 @@ collections:
         widget: "text"
         required: false
         hint: "Paste ABC notation here when the song has one score. Use 'Multiple scores' below for tabbed layouts."
+      - label: "Sanitized ABC (Braille source)"
+        name: sanitized_abc
+        widget: text
+        required: false
+        hint: >
+          A clean copy of the ABC notation for Music Braille translation.
+          Remove before saving: %% directive lines · w:/W: lyric lines ·
+          all header fields except K: M: L: · inline "quoted" chord labels ·
+          !style! and +decoration+ markers.
+          Keep: K: (with clef=perc if present), M:, L:, and all note/rest/barline content.
       - label: "Notation fallback image"
         name: "abc_image"
         widget: "image"

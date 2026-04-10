@@ -1,0 +1,133 @@
+/* ── Music Braille Panel ────────────────────────────────
+   Tab structure mirrors .abc-tabs in abc-player.css so
+   both components look identical. CSS custom properties
+   let the site theme override colours.
+   ──────────────────────────────────────────────────────── */
+
+:root {
+  --braille-bg:          #1c1c1e;
+  --braille-border:      #3a3a3c;
+  --braille-ascii-color: #e8e4d8;
+  --braille-dots-color:  #93c5fd;
+}
+
+/* ── Tab wrapper ── */
+.braille-tabs {
+  margin: 0.75rem 0 1.5em;
+}
+
+.braille-tabs-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--warm-gray, #6B6B67);
+  margin-bottom: 0.5rem;
+}
+
+.braille-tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border-bottom: 2px solid var(--neutral-100, #D3D1C7);
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.braille-tab-btn {
+  padding: 0.45rem 1.1rem;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  border-radius: 6px 6px 0 0;
+  background: transparent;
+  color: var(--charcoal, #2C2C2A);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.braille-tab-btn:hover:not(.is-active) {
+  color: var(--teal, #0F6E56);
+  border-color: rgba(15,110,86,0.35);
+  background: var(--teal-tint, #E1F5EE);
+}
+
+.braille-tab-btn.is-active {
+  color: var(--teal, #0F6E56);
+  border-color: var(--teal, #0F6E56);
+  font-weight: 600;
+}
+
+.braille-tab-panel:not(.is-active) {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+/* ── Dark output area (inside each panel) ── */
+.braille-output {
+  background: var(--braille-bg);
+  border: 1.5px solid var(--braille-border);
+  border-radius: 6px;
+  overflow: hidden;
+  padding: 0.85rem 1.25rem;
+}
+
+/* Reset global pre styles */
+.braille-output pre {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  overflow-x: visible;
+  margin: 0;
+  font-family: "Menlo", "Consolas", "Courier New", monospace;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.braille-output pre.ascii-out {
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  color: var(--braille-ascii-color);
+  line-height: 2;
+}
+
+.braille-output pre.dots-out {
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+  color: var(--braille-dots-color);
+  line-height: 1.5;
+}
+
+/* ── High-contrast overrides — mirrors site's data-contrast system ── */
+[data-contrast="high"] {
+  --braille-bg:          #000000;
+  --braille-border:      #767676;
+  --braille-ascii-color: #ffffff;
+  --braille-dots-color:  #60a5fa;
+}
+
+@media (prefers-contrast: more) {
+  :root:not([data-contrast]) {
+    --braille-bg:          #000000;
+    --braille-border:      #767676;
+    --braille-ascii-color: #ffffff;
+    --braille-dots-color:  #60a5fa;
+  }
+}
+
+/* ── Error state ── */
+.braille-error {
+  background: #fdf0ee;
+  border: 1px solid #e8a09a;
+  border-radius: 6px;
+  color: #c0392b;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+}

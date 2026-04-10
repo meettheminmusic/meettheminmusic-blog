@@ -11,7 +11,7 @@
   <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
-  {{ with .Params.image }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+  {{ with .Params.image | default .Params.card_image }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
 
   <!-- Apply saved contrast preference before CSS loads to prevent flash -->
   <script>

@@ -1,0 +1,70 @@
+{{- $abc := .Params.sanitized_abc -}}
+{{- if $abc -}}
+  {{- if not (.Store.Get "braille-css-loaded") -}}
+    {{- .Store.Set "braille-css-loaded" true -}}
+    <link rel="stylesheet" href="/css/braille-panel.css">
+  {{- end -}}
+  {{- if not (.Store.Get "braille-js-loaded") -}}
+    {{- .Store.Set "braille-js-loaded" true -}}
+    <script src="/js/braille.js"></script>
+  {{- end -}}
+
+  {{- $id := printf "braille-%s" .File.UniqueID -}}
+  <script type="text/abc-sanitized" id="src-{{ $id }}">{{ $abc | safeHTML }}</script>
+  <div id="{{ $id }}"></div>
+  <script>
+  (function () {
+    var abc  = document.getElementById('src-{{ $id }}').textContent;
+    var host = document.getElementById('{{ $id }}');
+    function esc(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+    try {
+      var r = window.MusicBraille.renderBraille(abc);
+      var asciiId = '{{ $id }}-ascii';
+      var dotsId  = '{{ $id }}-dots';
+      host.innerHTML =
+        '<div class="braille-tabs">'
+        + '<div class="braille-tabs-label" aria-hidden="true">Music Braille</div>'
+        + '<div class="braille-tabs-nav" role="tablist" aria-label="Braille notation format">'
+        +   '<button class="braille-tab-btn is-active" role="tab" aria-selected="true"'
+        +     ' aria-controls="' + asciiId + '" id="tab-' + asciiId + '">ASCII</button>'
+        +   '<button class="braille-tab-btn" role="tab" aria-selected="false"'
+        +     ' aria-controls="' + dotsId + '" id="tab-' + dotsId + '">Braille dots</button>'
+        + '</div>'
+        + '<div class="braille-tab-panel is-active" role="tabpanel"'
+        +   ' id="' + asciiId + '" aria-labelledby="tab-' + asciiId + '">'
+        +   '<div class="braille-output">'
+        +     '<pre class="ascii-out" aria-label="ASCII music braille">' + esc(r.ascii) + '</pre>'
+        +   '</div>'
+        + '</div>'
+        + '<div class="braille-tab-panel" role="tabpanel"'
+        +   ' id="' + dotsId + '" aria-labelledby="tab-' + dotsId + '">'
+        +   '<div class="braille-output">'
+        +     '<pre class="dots-out" aria-label="Music Braille dot notation">' + esc(r.unicode) + '</pre>'
+        +   '</div>'
+        + '</div>'
+        + '</div>';
+
+      // Wire tab switching
+      host.querySelectorAll('.braille-tab-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          host.querySelectorAll('.braille-tab-btn').forEach(function (b) {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          host.querySelectorAll('.braille-tab-panel').forEach(function (p) {
+            p.classList.remove('is-active');
+          });
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-selected', 'true');
+          document.getElementById(btn.getAttribute('aria-controls')).classList.add('is-active');
+        });
+      });
+    } catch (e) {
+      host.innerHTML =
+        '<div class="braille-error" role="alert">Music Braille error: ' + esc(e.message) + '</div>';
+    }
+  }());
+  </script>
+{{- end -}}

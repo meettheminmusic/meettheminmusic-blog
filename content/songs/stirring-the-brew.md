@@ -21,6 +21,7 @@ meters:
 source: ''
 source_url: ''
 abc_notation: ''
+sanitized_abc: ''
 abc_tempo: null
 abc_scores:
   - label: Version 1
