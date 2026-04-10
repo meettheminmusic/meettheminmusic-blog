@@ -22,23 +22,12 @@ source: ''
 source_url: ''
 abc_notation: ''
 sanitized_abc: |-
-  K:Gm  M:6/8  L:1/8
+  K:Em  M:6/8  L:1/8
   M:6/8
   L:1/8
-  K:Gm
-  G| BBG BBG | B2c G3 | d3 c2B | G3 z2 |
-  M: 6/8
-  G|B2G B2G | B2c G3 | d3 c2B | G3 z2 ||
-  M: 6/8
-  G|B2G B2G | B2c G3 | d3 c2B | G3 z2 ||
-  M: 6/8
-  G|B2G B2G | B2c G3 | d3 c2B | G3 z2 ||
-  M: 6/8
-  G|B2G B3 | BBc G3 | d3 c2B | G3 z2 ||
-  M: 6/8
-  G| BBG BBG | B2c G3 | d3 c2B | G3 z2 |
-  M: 6/8
-  G| BBG B2G  | B3 |]
+  K:Em
+  GFE GFE|GFE B3 | (c3 B3) | (c3 B3)||
+  GFE GFE|GFE B3 | (c3 B3 | E3) z3|]
 abc_tempo: null
 abc_scores:
   - label: Version 1
