@@ -63,6 +63,15 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
+sanitized_abc: |-
+  K:F  M:4/4  L:1/16
+  M:4/4
+  L:1/16
+  K:F
+  C2 D2C2 | F2 F4 (A2-A8) | F8 F2  C2 D2C2 ||
+  F2 F4 (A2-A8) | F8 F2  C2 D2C2 ||
+  A2(A2 -A2)B2 A2 F6 | F4 F4 F2  C2 D2C2 ||
+  A2(A2 -A2)B2 A2 F6 | F4 F4 F2 |]
 abc_tempo: 112
 ---
 
