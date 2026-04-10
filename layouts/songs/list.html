@@ -11,68 +11,68 @@
       <label for="song-search" class="filter-label">Search</label>
       <input type="search" id="song-search" class="song-search-input" placeholder="Title, concept, mode…" autocomplete="off" spellcheck="false">
     </div>
-    <div class="filter-group">
-      <span class="filter-label">Musical concepts</span>
+    <fieldset class="filter-group">
+      <legend class="filter-label">Musical concepts</legend>
       <div class="filter-buttons" data-filter="musical_concepts">
         {{ range .Site.Taxonomies.musical_concepts }}
-          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+          <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </div>
-    <div class="filter-group">
-      <span class="filter-label">Social concepts</span>
+    </fieldset>
+    <fieldset class="filter-group">
+      <legend class="filter-label">Social concepts</legend>
       <div class="filter-buttons" data-filter="social_concepts">
         {{ range .Site.Taxonomies.social_concepts }}
-          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+          <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </div>
-    <div class="filter-group">
-      <span class="filter-label">Movement concepts</span>
+    </fieldset>
+    <fieldset class="filter-group">
+      <legend class="filter-label">Movement concepts</legend>
       <div class="filter-buttons" data-filter="movement_concepts">
         {{ range .Site.Taxonomies.movement_concepts }}
-          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+          <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </div>
-    <div class="filter-group">
-      <span class="filter-label">Supports/Adaptations</span>
+    </fieldset>
+    <fieldset class="filter-group">
+      <legend class="filter-label">Supports/Adaptations</legend>
       <div class="filter-buttons" data-filter="supports_adaptations">
         {{ range .Site.Taxonomies.supports_adaptations }}
-          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+          <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </div>
-    <div class="filter-group">
-      <span class="filter-label">Mode</span>
+    </fieldset>
+    <fieldset class="filter-group">
+      <legend class="filter-label">Mode</legend>
       <div class="filter-buttons" data-filter="mode">
         {{ range .Site.Taxonomies.modes }}
-          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+          <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </div>
-    <div class="filter-group">
-      <span class="filter-label">Meter</span>
+    </fieldset>
+    <fieldset class="filter-group">
+      <legend class="filter-label">Meter</legend>
       <div class="filter-buttons" data-filter="meter">
         {{ range .Site.Taxonomies.meters }}
-          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+          <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </div>
-    <div class="filter-group">
-      <span class="filter-label">Key</span>
+    </fieldset>
+    <fieldset class="filter-group">
+      <legend class="filter-label">Key</legend>
       <div class="filter-buttons" data-filter="key">
         {{ range .Site.Taxonomies.keys }}
-          <button class="filter-btn" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+          <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </div>
+    </fieldset>
     <button class="filter-clear" id="filter-clear" hidden>Clear filters</button>
   </div>
 
   <p class="library-count" id="library-count"></p>
 
-  <ul class="song-list" id="song-list">
+  <ul class="song-list" id="song-list" role="list">
     {{ range (where .Pages "Params.unlisted" "ne" true).ByTitle }}
     <li class="song-card"
       data-url="{{ .Permalink }}"
@@ -151,13 +151,17 @@
         activeFilters[group].splice(idx, 1);
         btn.classList.remove('active');
       }
+      btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
       applyFilters();
     });
   });
 
   clearBtn.addEventListener('click', () => {
     Object.keys(activeFilters).forEach(k => activeFilters[k] = []);
-    document.querySelectorAll('.filter-btn.active').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter-btn.active').forEach(b => {
+      b.classList.remove('active');
+      b.setAttribute('aria-pressed', 'false');
+    });
     searchInput.value = '';
     searchMatches = null;
     applyFilters();
@@ -207,6 +211,7 @@
       if (btn) {
         activeFilters[group].push(btn.dataset.value);
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
         hadParams = true;
       }
     });

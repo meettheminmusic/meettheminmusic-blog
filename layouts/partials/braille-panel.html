@@ -34,6 +34,10 @@
         + '</div>'
         + '<div class="braille-tab-panel is-active" role="tabpanel"'
         +   ' id="' + asciiId + '" aria-labelledby="tab-' + asciiId + '">'
+        +   '<p class="braille-ascii-description">'
+        +     'Braille music notation for <strong>{{ .Title }}</strong>. '
+        +     'Intended for use with a refreshable Braille display or Braille music reader software.'
+        +   '</p>'
         +   '<div class="braille-output">'
         +     '<pre class="ascii-out" aria-label="ASCII music braille">' + esc(r.ascii) + '</pre>'
         +   '</div>'
@@ -59,6 +63,16 @@
           btn.classList.add('is-active');
           btn.setAttribute('aria-selected', 'true');
           document.getElementById(btn.getAttribute('aria-controls')).classList.add('is-active');
+        });
+        btn.addEventListener('keydown', function (e) {
+          var allBtns = Array.from(host.querySelectorAll('.braille-tab-btn'));
+          var idx = allBtns.indexOf(btn);
+          var target = null;
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { target = allBtns[(idx + 1) % allBtns.length]; }
+          else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { target = allBtns[(idx - 1 + allBtns.length) % allBtns.length]; }
+          else if (e.key === 'Home') { target = allBtns[0]; }
+          else if (e.key === 'End')  { target = allBtns[allBtns.length - 1]; }
+          if (target) { e.preventDefault(); target.focus(); target.click(); }
         });
       });
     } catch (e) {

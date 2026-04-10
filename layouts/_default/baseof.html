@@ -43,6 +43,8 @@
 </head>
 <body>
 
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <header class="site-header">
     <div class="container">
       <a href="/" class="logo">
@@ -51,7 +53,7 @@
         <span class="logo-byline">by Dr. P. Eric Bottorff</span>
       </a>
       <div class="header-end">
-        <nav class="site-nav">
+        <nav class="site-nav" aria-label="Main navigation">
           {{ range sort .Site.Data.navigation.items "weight" }}
             <a href="{{ .url }}" {{ if or (eq $.RelPermalink .url) (and (ne .url "/") (strings.HasPrefix $.RelPermalink .url)) }}class="active"{{ end }}>
               {{ .name }}
@@ -70,7 +72,7 @@
     </div>
   </header>
 
-  <main class="site-main">
+  <main class="site-main" id="main-content" tabindex="-1">
     {{ block "main" . }}{{ end }}
   </main>
 

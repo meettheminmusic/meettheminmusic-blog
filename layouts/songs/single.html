@@ -160,6 +160,10 @@
             <div class="abc-tab-panel" role="tabpanel"
                  id="braille-ascii-{{ $uid }}"
                  aria-labelledby="braille-tab-ascii-{{ $uid }}">
+              <p class="braille-ascii-description">
+                Braille music notation for <strong>{{ .Title }}</strong>.
+                Intended for use with a refreshable Braille display or Braille music reader software.
+              </p>
               <div class="braille-output">
                 <pre class="ascii-out" aria-label="ASCII music braille" id="braille-ascii-pre-{{ $uid }}"></pre>
               </div>
@@ -187,6 +191,16 @@
                   btn.classList.add('is-active');
                   btn.setAttribute('aria-selected', 'true');
                   document.getElementById(btn.getAttribute('aria-controls')).classList.add('is-active');
+                });
+                btn.addEventListener('keydown', function (e) {
+                  var allBtns = Array.from(tabs.querySelectorAll('.abc-tab-btn'));
+                  var idx = allBtns.indexOf(btn);
+                  var target = null;
+                  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { target = allBtns[(idx + 1) % allBtns.length]; }
+                  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { target = allBtns[(idx - 1 + allBtns.length) % allBtns.length]; }
+                  else if (e.key === 'Home') { target = allBtns[0]; }
+                  else if (e.key === 'End')  { target = allBtns[allBtns.length - 1]; }
+                  if (target) { e.preventDefault(); target.focus(); target.click(); }
                 });
               });
             });
@@ -265,6 +279,10 @@
             <div class="abc-tab-panel" role="tabpanel"
                  id="braille-ascii-{{ $uid }}"
                  aria-labelledby="braille-tab-ascii-{{ $uid }}">
+              <p class="braille-ascii-description">
+                Braille music notation for <strong>{{ .Title }}</strong>.
+                Intended for use with a refreshable Braille display or Braille music reader software.
+              </p>
               <div class="braille-output">
                 <pre class="ascii-out" aria-label="ASCII music braille" id="braille-ascii-pre-{{ $uid }}"></pre>
               </div>
@@ -292,6 +310,16 @@
                   btn.classList.add('is-active');
                   btn.setAttribute('aria-selected', 'true');
                   document.getElementById(btn.getAttribute('aria-controls')).classList.add('is-active');
+                });
+                btn.addEventListener('keydown', function (e) {
+                  var allBtns = Array.from(tabs.querySelectorAll('.abc-tab-btn'));
+                  var idx = allBtns.indexOf(btn);
+                  var target = null;
+                  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { target = allBtns[(idx + 1) % allBtns.length]; }
+                  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { target = allBtns[(idx - 1 + allBtns.length) % allBtns.length]; }
+                  else if (e.key === 'Home') { target = allBtns[0]; }
+                  else if (e.key === 'End')  { target = allBtns[allBtns.length - 1]; }
+                  if (target) { e.preventDefault(); target.focus(); target.click(); }
                 });
               });
             });
@@ -379,6 +407,16 @@
                   btn.setAttribute('aria-selected', 'true');
                   document.getElementById(btn.getAttribute('aria-controls')).classList.add('is-active');
                 });
+                btn.addEventListener('keydown', function (e) {
+                  var allBtns = Array.from(tabs.querySelectorAll('.abc-tab-btn'));
+                  var idx = allBtns.indexOf(btn);
+                  var target = null;
+                  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { target = allBtns[(idx + 1) % allBtns.length]; }
+                  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { target = allBtns[(idx - 1 + allBtns.length) % allBtns.length]; }
+                  else if (e.key === 'Home') { target = allBtns[0]; }
+                  else if (e.key === 'End')  { target = allBtns[allBtns.length - 1]; }
+                  if (target) { e.preventDefault(); target.focus(); target.click(); }
+                });
               });
             });
           }());
@@ -444,6 +482,10 @@
           <div class="abc-tab-panel is-active" role="tabpanel"
                id="braille-ascii-{{ $uid }}"
                aria-labelledby="braille-tab-ascii-{{ $uid }}">
+            <p class="braille-ascii-description">
+              Braille music notation for <strong>{{ .Title }}</strong>.
+              Intended for use with a refreshable Braille display or Braille music reader software.
+            </p>
             <div class="braille-output">
               <pre class="ascii-out" aria-label="ASCII music braille" id="braille-ascii-pre-{{ $uid }}"></pre>
             </div>
@@ -505,9 +547,9 @@
   </article>
 </div>
 
-<div id="img-lightbox" class="img-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+<div id="img-lightbox" class="img-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" tabindex="-1">
   <div class="img-lightbox-inner">
-    <button class="img-lightbox-close" aria-label="Close">&times;</button>
+    <button class="img-lightbox-close" aria-label="Close image viewer">&times;</button>
     <img src="" alt="">
   </div>
 </div>

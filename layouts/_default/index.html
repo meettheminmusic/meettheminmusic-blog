@@ -66,9 +66,9 @@
           <li>
             <article class="song-grid__card">
 
-              {{ with .Params.card_image }}
+              {{ if .Params.card_image }}
                 <div class="song-grid__img-wrap">
-                  <img src="{{ . }}" alt="{{ $.Title }} notation"
+                  <img src="{{ .Params.card_image }}" alt="Sheet music notation for {{ .Title }}"
                        class="song-grid__img" loading="lazy">
                 </div>
               {{ end }}
