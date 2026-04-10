@@ -23,6 +23,18 @@ meters:
 source: ''
 source_url: ''
 abc_notation: ''
+sanitized_abc: |-
+  K:Cm  M:6/8  L:1/8
+  M:6/8
+  L:1/8
+  K:Cm
+  c3 c2 G| (B3 -B2) G| F2F E2F | G2AB3||
+  M: 6/8
+  c3 c2 G| (B3 -B2) G| F2F G3 | C3 z3 ||
+  M: 6/8
+  c3 c2 G| (B3 -B2) G| F2F E2F | G2AB3||
+  M: 6/8
+  c3 c2 G| (B3 -B2) G| F2F G3 | C3 z3 |]
 abc_image: ''
 abc_tempo: null
 abc_scores:
