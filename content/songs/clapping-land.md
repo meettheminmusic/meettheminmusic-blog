@@ -8,10 +8,10 @@ card_image: /images/uploads/Clapping_Land.webp
 musical_concepts:
   - Pickups
   - I-IV-V
-movement_concepts:
-  - Movement Themes
 social_concepts:
   - Welcoming
+movement_concepts:
+  - Movement Themes
 keys:
   - D
 modes:
@@ -50,6 +50,18 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
+sanitized_abc: |-
+  K:D  M:2/4  L:1/8
+  M:2/4
+  L:1/8
+  K:D
+  D | AA AA | BB AA | GG FF | EE DD ||
+  M: 2/4
+  AA AA | Bc dB | AG FE| E2Dz||
+  M: 2/4
+  AA AA | BB A2| GGF2|EE D2||
+  M: 2/4
+  AA AA | BB A2 | GG FF | EE D |]
 abc_tempo: 116
 ---
 
