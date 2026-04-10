@@ -7,13 +7,10 @@ featured: false
 description: A predictable lesson structure helps students with disabilities regulate and engage. Here's the 10-activity sequence I use in my special education music classes.
 tags:
   - lesson-planning
-  - special-education
   - universal-design-for-learning
   - classroom-structure
-  - adaptive-strategies
-  - behavior-support
-  - inclusive-music
-categories: []
+categories:
+  - teaching-strategies
 image: /images/uploads/lesson-structure0hero.png
 ---
 
