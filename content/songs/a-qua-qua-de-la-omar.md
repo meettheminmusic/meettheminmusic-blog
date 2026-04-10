@@ -47,6 +47,14 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
+sanitized_abc: |-
+  K:D  M:4/4  L:1/8
+  M:2/4
+  L:1/8
+  K:D
+  D|GG GD E2D2| E2 F2 G2 z2|G2 DDE2D2|EE FF G2 z d, |
+  M: 4/4
+  B,2 z d,B,2 zD| B,d, B,d, B,2 D2| G2 B2 B2 B2 | B2 B2 z2 z2|]
 abc_tempo: null
 ---
 
