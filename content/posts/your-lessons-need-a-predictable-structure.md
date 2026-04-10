@@ -73,7 +73,7 @@ The pictures don't need to be anything special. BoardMaker images, photos from U
 
 Keep the schedule visually clean. High contrast is best: black on white, clear images, simple fonts. Avoid using color to convey meaning, and avoid decorative fonts. Some students have visual processing differences, and a cluttered schedule can add to the cognitive load rather than reduce it.
 
-A printed copy can also serve as a "First __ __, then " behavioral support for individual students who need that added layer of predictability.
+A printed copy can also serve as a "First __ , Then __" behavioral support for individual students who need that added layer of predictability.
 
 My [Lesson Plan Sequence on TPT](https://www.teacherspayteachers.com/store/mrbottorff-music) uses Google Slides. A colleague of mine makes a physical poster. Either works. The only wrong approach is the one that doesn't actually support your students.
 
