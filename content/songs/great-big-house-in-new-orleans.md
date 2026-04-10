@@ -38,6 +38,13 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
+sanitized_abc: |-
+  K:D  M:2/4  L:1/8
+  M:2/4
+  L:1/8
+  K:D
+  Ac cd Ac c2 | Ac cd c4 |
+  Ac cd Ac c2 | Ac AG F4 |]
 abc_tempo: 116
 description: Great Big House in New Orleans is a pentatonic duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
