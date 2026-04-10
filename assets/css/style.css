@@ -48,7 +48,6 @@ p { margin-bottom: 1.5rem; }
 
 a {
   color: var(--teal);
-  text-decoration: underline;
 }
 a:hover { text-decoration: underline; }
 a:focus-visible {
