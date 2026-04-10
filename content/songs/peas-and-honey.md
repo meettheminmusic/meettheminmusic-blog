@@ -7,12 +7,12 @@ featured: false
 card_image: /images/uploads/Peas-and-Honey.webp
 musical_concepts:
   - Pickups
-movement_concepts:
-  - Constrained Movement
-  - Part vs Whole
 social_concepts:
   - Social differences
   - Choice
+movement_concepts:
+  - Constrained Movement
+  - Part vs Whole
 keys:
   - D
 modes:
@@ -47,5 +47,12 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
+sanitized_abc: |-
+  K:D  M:6/8  L:1/8
+  M:6/8
+  L:1/8
+  K:D
+  D| G2AB2d | B3 G2 D| G2AB2d | B3 z2 D||
+  G2A B2d |B2A E2F |G2A G2C| D3 z3|]
 abc_tempo: null
 ---
