@@ -52,6 +52,20 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
+sanitized_abc: |-
+  K:E  M:2/4  L:1/16
+  M:2/4
+  L:1/16
+  K:E
+  E2 | B3B B2A2 | E2E2 z2E2 |B3B B2A2| E2E2 z2EE ||
+  M:2/4
+  EEE2 E2E2| E2E2 z2 E2 |EEEE E2E2| E2E2 z2E2||
+  M:2/4
+  EEEE E2E2 | E2E2 z2 E2 |B3B A2G2| E2E2 z2 E2||
+  M:2/4
+  B3B A2G2| E2E2 z2 E2 |E2B2 A4 | E2E2 z2 E2 ||
+  M:2/4
+  E2B2 A4 | E2E2 z4 |E2B2 A4 | E2E2 z2 E2 | GGF2E4 |]
 abc_image: ''
 abc_tempo: 112
 abc_scores: []
