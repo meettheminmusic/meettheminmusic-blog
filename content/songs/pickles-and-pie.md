@@ -4,7 +4,6 @@ date: 2026-03-31
 card_image: /images/uploads/pickles-and-pie-2.webp
 musical_concepts:
   - Leading tone
-supports_adaptations:
   - Choice Board
 keys:
   - D
@@ -17,7 +16,6 @@ source: ''
 source_url: ''
 abc_notation: |-
   %%textfont arial italic 9
-  %%text Key: D
   %%text Mode: Mixolydian
   X: 1
   T:Pickles and Pie

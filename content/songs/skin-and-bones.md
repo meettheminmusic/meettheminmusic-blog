@@ -22,8 +22,6 @@ source: ''
 source_url: ''
 abc_notation: |-
   %%textfont arial italic 11
-  %%text original words by: 
-  %%text Shel Silverstein or Ogen Nash
   X:1 
   T:There Was an Old Woman All Skin and Bones
   M:6/8

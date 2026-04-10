@@ -64,10 +64,6 @@ Before class, give your para a quick heads-up: here's the song, here's the choic
 That partnership is worth cultivating.
 {{< /callout >}}
 
-I had a principal observe my class. She was a former speech-language pathologist who was watching my room with different eyes than most administrators bring. After the observation, she told me something I've thought about many times since.
-
-She noticed that students were using language more appropriately in my music class than elsewhere in the building. She connected it directly to the choice boards: the consistent structure and the embedded opportunity for communicative participation was designed into the activities.
-
 That framing matters, especially if you've ever felt like you need permission to invest this much energy into a strategy. Choice boards in music class are not just an accommodation. They are language development. They belong in your program.
 
 ***
