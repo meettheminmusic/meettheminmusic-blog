@@ -39,7 +39,7 @@ I have a [full year sequence of lesson plans available on Teachers Pay Teachers]
 
 Here is the sequence I use. Take what fits, leave what doesn't. The structure matters more than any individual activity.
 
-1. **Voice warm-up.** Something predictable and low-stakes. I use LineRider.com, my poem voice warm-ups, Google Chrome Lab Spectrometer, and vocal sirens. The goal is to get voices moving.
+1. **Voice warm-up.** Something predictable and low-stakes. I use [LineRider.com](https://www.LineRider.com), my poem voice warm-ups, Google Chrome Lab[ Spectrogram](https://musiclab.chromeexperiments.com/Spectrogram/), and vocal sirens. The goal is to get voices moving.
 2. **Echo song.** Start with a song where students only have to echo one short phrase or point to something. "[John the Rabbit]([http://meettheminmusic.com/songs/johntherabbit](https://meettheminmusic.com/songs/john-the-rabbit/))" is a strong entry point because the expected response is simple and clear.  As the process becomes more familiar, you can use harder recall and response songs like [Did You Feed My Cow](https://meettheminmusic.com/songs/did-you-feed-my-cow/)
 3. **Pattern instruction.** I toss a bean bag to each student and have them echo a rhythmic or tonal pattern from our current songs. When students show readiness, I flip it: they give me a pattern to echo. For classes that are ready, this is also where I introduce rhythm reading and writing.
 4. **Beat keeping or movement activity.** Whole-body engagement before we move toward finer motor work.
