@@ -14,7 +14,7 @@ tags:
   - behavior-support
   - inclusive-music
 categories: []
-image: ''
+image: /images/uploads/lesson-structure0hero.png
 ---
 
 When I started teaching students with disabilities, my entire formal preparation consisted of one undergraduate course where I learned  initialisms (ASD, MoCi, etc) and the word "differentiation." The rest I had to figure out in the room, with real students, through a lot of trial and a fair amount of error.
