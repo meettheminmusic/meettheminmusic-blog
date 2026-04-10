@@ -24,6 +24,12 @@ meters:
 source: ''
 source_url: ''
 abc_notation: ''
+sanitized_abc: |-
+  K:F  M:2/4  L:1/16
+  M:2/4
+  L:1/16
+  K:F
+  A2AA F2F2 | A2AA F4 | AAAA F2F2 | A2AA F4 |]
 abc_image: ''
 abc_tempo: null
 abc_scores:
