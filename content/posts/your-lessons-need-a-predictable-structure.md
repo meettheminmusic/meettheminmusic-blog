@@ -66,7 +66,6 @@ Whenever students are in the room, I have a visual schedule on the board. It sho
 The pictures don't need to be anything special. BoardMaker images, photos from Unsplash, pictures you took yourself in the room. What matters is that there is a picture, and that students learn to connect it to the song or activity. Over time, they will. Descriptive images also support students who are working on reading, which is a quiet UDL win that costs nothing extra.
 
 <!-- Picture of my schedule --> 
-![A visual schedule slide showing John the Rabbit, Whale Songs, Dancing, and Pickles and Pie with images to represent each](/images/uploads/visual-schedule.jpg "My Visual Schedule")
 
 Keep the schedule visually clean. High contrast is best: black on white, clear images, simple fonts. Avoid using color to convey meaning, and avoid decorative fonts. Some students have visual processing differences, and a cluttered schedule can add to the cognitive load rather than reduce it.
 
@@ -74,7 +73,7 @@ A printed copy can also serve as a "First __ , Then __" behavioral support for i
 
 My [Lesson Plan Sequence on TPT](https://www.teacherspayteachers.com/store/mrbottorff-music) uses Google Slides. A colleague of mine makes a physical poster. Either works. The only wrong approach is the one that doesn't actually support your students.
 
-{{< callout title="**A few more things that help**" >}}
+{{< callout title="A few more things that help" >}}
 Meet the class at the door. Transitions are high-anxiety moments and your presence at the door makes a real difference.
 
 [Your classroom layout is a behavior management tool](https://meettheminmusic.com/your-classroom-layout-is-a-behavior-management-tool-heres-how-to-use-it/): Arrange chairs in a semi-circle. It supports turn-taking, keeps students in their areas, and reduces elopement. Put a strip of red tape on the floor at the border of any area you don't want students to enter. SitSpots makes a long velcro tape that won't damage your floor. Similar options are available on Amazon.
