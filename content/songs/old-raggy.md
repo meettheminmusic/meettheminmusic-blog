@@ -51,3 +51,29 @@ abc_image: ''
 abc_tempo: 112
 abc_scores: []
 ---
+
+{{< callout title="Old Raggy" >}}
+Old Raggy is like a worse version of Santa Clause. He only brings presents you definitely don't want!
+{{< /callout >}}
+
+<u>**Activity 1:**</u>
+
+Have the students stand in Longways Sets, as if doing a folk dance.  Old Raggy stands between the lines, with their feet stuck to the floor.  After the students sing the song, Old Raggy tells them what is in the bag.  It is always gross, nasty presents like a plastic bag full of toenails, moldy pizza, or blood.  My one rule is "we NEVER use poop, pee, or people's names."
+
+When Old Raggy says "A dog that's going to eat you," the head group tries to get past them.  Whoever is tagged first becomes Old Raggy.
+
+{{< callout title="Longways Sets" >}}
+This is a good introduction to the concept of longways for folk dancing because it shows who the head group is, students naturally want to stay in the same order with a partner on the other side, and there is less of a stress on needing to be perfect with the steps of a folk dance.  This could transition naturally to [Chimes of Dunkirk](https://dancingmasters.com/product/chimes-of-dunkirk/) then [Alabama Gal](https://dancingmasters.com/product/alabama-gal-nine-never-fail-dancing-and-singing-games-for-children/).
+{{< /callout >}}
+
+<u>**Accommodated Activity**</u>
+
+For classes where the longways sets are not applicable (or as a precursor when learning the song for the first time), I this can become a drumming activity.  One person on the drum is Old Raggy and the other is trying not to be caught.  Both participants drum at the same time on the same drum. At the end, both raise their hands as if doing patty cake. Old Raggy says the gross, nasty presents and tries to catch the other player's hands.
+
+In some classes, kids take turns with me. In other classes, this is a whole group activity.
+
+<u>**Assessment Opportunity**</u>
+
+- When drumming, watch to see if students feet move or if they are able to constrain the drumming to just their hands.
+
+- Begin with hands together on the macrobeat, then hands apart, then transition to microbeats as students are able.
