@@ -20,6 +20,18 @@ meters:
 source: Traditional American
 source_url: ''
 abc_notation: ''
+sanitized_abc: |-
+  K:Gmix  M:2/4  L:1/8
+  M:2/4
+  L:1/8
+  K:Gmix
+  DD F2| DD F2 |AA AG|FE D2 ||
+  M: 2/4
+  DD F2| DD F2 |AA AG|FE D2 ||
+  M: 2/4
+  AA c3/2d/2 | AA c2 | dd/2d/2 dc | GF D2||
+  M: 2/4
+  DD F2| DD F2 |AA AG|FE D2 |]
 abc_tempo: null
 abc_scores:
   - label: Melody
