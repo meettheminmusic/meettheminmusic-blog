@@ -116,7 +116,9 @@ abc_scores:
     tempo: 100
 ---
 
->If you are not accustomed to singing in Mixolydian, pay attention to the C natural.
+{{< callout title="A Note on Mixolydian" >}}
+If you are not accustomed to singing in Mixolydian, pay attention to the C natural.
+{{< /callout >}}
 
 **<u>Activity:**</u>
 
