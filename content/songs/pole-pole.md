@@ -5,24 +5,33 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Pole-Pole.webp
-musical_concepts:
-  - Off Beat
-  - Pickup
+tonal_concepts:
+  - Mi-Do-La
   - Leading Tone
+rhythmic_concepts:
+  - Rhythmic Elongation
+activity_types:
+  - Echo Song
 social_concepts:
   - Different Culture
-movement_concepts: []
+movement_concepts:
+  - Bouncing
+  - Walking
+  - Sliding
 supports_adaptations:
   - Choice Board
+language_origins:
+  - Swahili
+  - English
 keys:
   - F
 modes:
-  - Minor
+  - Harmonic Minor
 meters:
   - Duple
   - 4/4
 source: Ella Jenkins - Smithsonian
-source_url: ''
+source_url: https://folkways.si.edu/ella-jenkins/pole-pole/childrens/music/track/smithsonian
 abc_notation: |-
   %%textfont arial italic 11
   X:1 
@@ -66,6 +75,10 @@ sanitized_abc: |-
 abc_image: ''
 abc_tempo: 100
 abc_scores: []
+musical_concepts:
+  - Off Beat
+  - Pickup
+  - Leading Tone
 ---
 
 {{< callout title="Swahili" >}}
@@ -76,6 +89,10 @@ The phrase can mean "drive slowly" on a dangerous road. It also is used as a man
 <u>**Activity</u>**
 
 This is a nice echo song using Swahili words and mentioning animals from Africa. Teach students to echo you as a group or by giving each student a solo turn.
+
+This can also become a movement activity (think Snail Snail or Going on a Bear Hunt).  Pretend to drive a truck on a safari, looking for animals.
+
+<u>**Adaptations</u>**
 
 Provide students a choice board of animals native to Africa, with pictures of each.
 
