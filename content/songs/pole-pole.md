@@ -116,3 +116,11 @@ A cultural lesson is [provided by NAfME](https://nafme.org/wp-content/uploads/20
 <u>**Recording</u>**
 
 A recording of Ella Jenkins singing the song is available on [Youtube](https://www.youtube.com/watch?v=3-EUxwowtIs).
+
+<u>**Books</u>**
+{{< books >}}
+{{< book "jambo-means-hello" >}}
+{{< book "moja-means-one" >}}
+{{< book "bringing-the-rain-to-kapiti-plain" >}}
+{{< book "we-all-went-on-safari" >}}
+{{< /books >}}
