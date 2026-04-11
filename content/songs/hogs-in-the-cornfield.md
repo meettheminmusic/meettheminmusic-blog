@@ -3,8 +3,19 @@ title: Hogs in the Cornfield
 date: 2026-03-31
 card_image: /images/uploads/Hogs_in_the_Cornfield.webp
 rhythmic_concepts:
-  - 16th notes
-  - 8th notes
+  - 1/16 Notes
+  - 1/8 Note
+activity_types:
+  - Game
+social_concepts:
+  - Accepting Losing
+movement_concepts:
+  - Steady Beat
+supports_adaptations:
+  - Visual Support
+  - Movement Alteration
+language_origins:
+  - English
 keys:
   - D
 modes:
