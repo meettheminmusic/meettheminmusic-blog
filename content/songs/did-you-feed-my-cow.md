@@ -16,6 +16,10 @@ activity_types:
 social_concepts:
   - Responsibility
   - Farm life
+supports_adaptations:
+  - Visual Supports
+language_origins:
+  - English
 keys:
   - F
 modes: []
@@ -99,22 +103,16 @@ _Adding movement:_
 | Flap, flap flap | flap arms to the beat. Mime being a bird |
 
 **<u>Visual Support:</u>**
-
+{{< slideshow >}}
 ![Did you feed my cow image 1](/images/uploads/1%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 1")
-
 ![Did you feed my cow image 2](/images/uploads/2%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 2")
-
 ![Did you feed my cow image 3](/images/uploads/3%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 3")
-
 ![Did you feed my cow image 4](/images/uploads/4%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 4")
-
 ![Did you feed my cow image 5](/images/uploads/5%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 5")
-
 ![Did you feed my cow image 6](/images/uploads/6%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 6")
-
 ![Did you feed my cow image 7](/images/uploads/7%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 7")
-
 ![Did you feed my cow image 8](/images/uploads/8%20Did%20you%20feed%20my%20cow%20Small.webp "Did you feed my cow image 8")
+{{< /slideshow >}}
 
 {{< callout title="Additional sources:" >}}
 A recording of this song sung by Ella Jenkins can be found on [Youtube](https://www.youtube.com/watch?v=GPRHvu5ALGA) and in the [Smithsonian Folkways Recordings](https://folkways.si.edu/ella-jenkins/youll-sing-a-song-and-ill-sing-a-song/childrens/music/album/smithsonian).  Her version is more blues-y.
