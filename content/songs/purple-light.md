@@ -90,7 +90,7 @@ These slides were created for me by an AP Art student in my district.  They may 
 {{< slideshow >}}
 ![Purple Light, In the canyon, thats where I long to be. With my 3 good companions. My guitar my pony and me](/images/uploads/PurpleLight-1.png) 
 ![Whipper will. In the willow. Sings a song. A melody.](/images/uploads/Purple-Light-2.png) 
-![ For my 3 good companions. My guitar my pony and me](/images/uploads/PurpleLight-1.png) 
+![For my 3 good companions. My guitar my pony and me](/images/uploads/PurpleLight-1.png) 
 ![Gonna hang. My sombrero. On the limb of a tree.](/images/uploads/Purple-Light-4.png) 
 ![O'er my 3 good companions. My guitar my pony and me](/images/uploads/PurpleLight-1.png) 
 ![No more cows, to be roping. No more strays shall I see.](/images/uploads/Purple-Light-6.png) 
