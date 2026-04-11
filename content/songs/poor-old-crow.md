@@ -8,7 +8,7 @@ card_image: /images/uploads/Poor-Old-Crow.webp
 tonal_concepts:
   - Bordun
 rhythmic_concepts:
-  - 16th notes
+  - 1/16 notes
 activity_types:
   - Xylophone
 social_concepts:
