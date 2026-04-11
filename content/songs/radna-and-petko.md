@@ -74,7 +74,7 @@ abc_tempo: 100
 abc_scores: []
 ---
 
-**<u>Activity<u>**
+**<u>Activity</u>**
 
 Give every student a beanbag to balance on the back of their hand (to represent an engagement ring).  While singing the song, smoothly flow the beanbag around being careful not to drop it.
 
@@ -98,16 +98,13 @@ Allow students to suggest other places to put the beanbag and fit this into the 
 Kids are going to want to put it on their heads. Why fight it?  Clean the beanbags or separate beanbags of questionable cleanliness from the others after the activity.
 {{< /callout >}}
 
-**<u>Assessment Opportunity:<u>**
+**<u>Assessment Opportunity:</u>**
 
 When collecting the beanbags, ask the students to echo a minor tonal pattern. My students like to drop them from their heads into a bin.
 
 <u>Minor Tonal patterns to use:</u>
 
 - Mi -la 
-
 - Do-ti-la 
-
 - La-si-La
-
 - Mi-do-la
