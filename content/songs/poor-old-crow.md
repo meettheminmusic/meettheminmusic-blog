@@ -9,8 +9,14 @@ tonal_concepts:
   - Bordun
 rhythmic_concepts:
   - 16th notes
+activity_types:
+  - Xylophone
 social_concepts:
   - Choice
+supports_adaptations:
+  - Altered Complexity
+language_origins:
+  - English
 keys:
   - D
 modes:
