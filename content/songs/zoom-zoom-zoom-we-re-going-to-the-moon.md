@@ -5,7 +5,7 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Zoom-Zoom-Zoom.webp
-musical_concepts:
+tonal_concepts:
   - Do-Mi-So
 social_concepts: []
 keys:

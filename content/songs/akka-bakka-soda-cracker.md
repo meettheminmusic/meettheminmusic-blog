@@ -2,7 +2,7 @@
 title: Akka Bakka Soda Cracker
 date: 2026-03-31
 card_image: /images/uploads/akka-bakka-soda-cracker-3.webp
-musical_concepts:
+rhythmic_concepts:
   - Steady beat
 social_concepts:
   - Taking Turns

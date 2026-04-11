@@ -5,7 +5,7 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Peas-and-Honey.webp
-musical_concepts:
+rhythmic_concepts:
   - Pickups
 social_concepts:
   - Social differences

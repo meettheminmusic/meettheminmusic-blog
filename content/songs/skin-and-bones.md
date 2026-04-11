@@ -5,9 +5,11 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/There-Was-an-Old-Woman-All-Skin-and-Bone.webp
-musical_concepts:
-  - Pickups
+tonal_concepts:
   - Do-La
+rhythmic_concepts:
+  - Pickups
+activity_types:
   - Call and Response
 social_concepts:
   - Responsibility

@@ -2,9 +2,10 @@
 title: Grandma's Glasses
 date: 2026-04-01
 card_image: /images/uploads/grandmas-glasses-5.webp
-musical_concepts:
-  - Fingerplay
+rhythmic_concepts:
   - Duple vs Triple
+activity_types:
+  - Fingerplay
 social_concepts:
   - Family
 keys:

@@ -2,8 +2,9 @@
 title: Pickles and Pie
 date: 2026-03-31
 card_image: /images/uploads/pickles-and-pie-2.webp
-musical_concepts:
+tonal_concepts:
   - Leading tone
+activity_types:
   - Choice Board
 keys:
   - D

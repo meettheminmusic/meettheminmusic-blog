@@ -5,8 +5,9 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/john-the-rabbit.png
-musical_concepts:
+rhythmic_concepts:
   - Pickups
+activity_types:
   - Call and Response
   - Echo Song
 social_concepts:

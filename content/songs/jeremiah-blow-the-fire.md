@@ -2,7 +2,7 @@
 title: Jeremiah Blow the Fire
 date: 2026-03-31
 card_image: /images/uploads/jeremiah-blow-the-fire-5.webp
-musical_concepts:
+rhythmic_concepts:
   - 8th notes
   - Rests
 keys:

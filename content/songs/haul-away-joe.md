@@ -5,9 +5,10 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Haul-Away-Joe.webp
-musical_concepts:
-  - Rhythmic Elongation
+tonal_concepts:
   - v-i
+rhythmic_concepts:
+  - Rhythmic Elongation
 social_concepts:
   - Rhyme
 movement_concepts:

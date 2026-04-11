@@ -11,62 +11,86 @@
       <label for="song-search" class="filter-label">Search</label>
       <input type="search" id="song-search" class="song-search-input" placeholder="Title, concept, mode…" autocomplete="off" spellcheck="false">
     </div>
-    <fieldset class="filter-group">
-      <legend class="filter-label">Musical concepts</legend>
-      <div class="filter-buttons" data-filter="musical_concepts">
-        {{ range .Site.Taxonomies.musical_concepts }}
+    <details class="filter-group" id="fg-tonal-concepts">
+      <summary class="filter-label">Tonal concepts</summary>
+      <div class="filter-buttons" data-filter="tonal_concepts">
+        {{ range .Site.Taxonomies.tonal_concepts }}
           <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </fieldset>
-    <fieldset class="filter-group">
-      <legend class="filter-label">Social concepts</legend>
+    </details>
+    <details class="filter-group" id="fg-rhythmic-concepts">
+      <summary class="filter-label">Rhythmic concepts</summary>
+      <div class="filter-buttons" data-filter="rhythmic_concepts">
+        {{ range .Site.Taxonomies.rhythmic_concepts }}
+          <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+        {{ end }}
+      </div>
+    </details>
+    <details class="filter-group" id="fg-activity-types">
+      <summary class="filter-label">Activity type</summary>
+      <div class="filter-buttons" data-filter="activity_types">
+        {{ range .Site.Taxonomies.activity_types }}
+          <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+        {{ end }}
+      </div>
+    </details>
+    <details class="filter-group" id="fg-social-concepts">
+      <summary class="filter-label">Social concepts</summary>
       <div class="filter-buttons" data-filter="social_concepts">
         {{ range .Site.Taxonomies.social_concepts }}
           <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </fieldset>
-    <fieldset class="filter-group">
-      <legend class="filter-label">Movement concepts</legend>
+    </details>
+    <details class="filter-group" id="fg-movement-concepts">
+      <summary class="filter-label">Movement concepts</summary>
       <div class="filter-buttons" data-filter="movement_concepts">
         {{ range .Site.Taxonomies.movement_concepts }}
           <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </fieldset>
-    <fieldset class="filter-group">
-      <legend class="filter-label">Supports/Adaptations</legend>
+    </details>
+    <details class="filter-group" id="fg-supports-adaptations">
+      <summary class="filter-label">Supports/Adaptations</summary>
       <div class="filter-buttons" data-filter="supports_adaptations">
         {{ range .Site.Taxonomies.supports_adaptations }}
           <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </fieldset>
-    <fieldset class="filter-group">
-      <legend class="filter-label">Mode</legend>
+    </details>
+    <details class="filter-group" id="fg-language-origins">
+      <summary class="filter-label">Language/Origin</summary>
+      <div class="filter-buttons" data-filter="language_origins">
+        {{ range .Site.Taxonomies.language_origins }}
+          <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
+        {{ end }}
+      </div>
+    </details>
+    <details class="filter-group" id="fg-mode">
+      <summary class="filter-label">Mode</summary>
       <div class="filter-buttons" data-filter="mode">
         {{ range .Site.Taxonomies.modes }}
           <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </fieldset>
-    <fieldset class="filter-group">
-      <legend class="filter-label">Meter</legend>
+    </details>
+    <details class="filter-group" id="fg-meter">
+      <summary class="filter-label">Meter</summary>
       <div class="filter-buttons" data-filter="meter">
         {{ range .Site.Taxonomies.meters }}
           <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </fieldset>
-    <fieldset class="filter-group">
-      <legend class="filter-label">Key</legend>
+    </details>
+    <details class="filter-group" id="fg-key">
+      <summary class="filter-label">Key</summary>
       <div class="filter-buttons" data-filter="key">
         {{ range .Site.Taxonomies.keys }}
           <button class="filter-btn" aria-pressed="false" data-value="{{ .Page.Title }}">{{ .Page.Title }}</button>
         {{ end }}
       </div>
-    </fieldset>
+    </details>
     <button class="filter-clear" id="filter-clear" hidden>Clear filters</button>
   </div>
 
@@ -76,10 +100,13 @@
     {{ range (where .Pages "Params.unlisted" "ne" true).ByTitle }}
     <li class="song-card"
       data-url="{{ .Permalink }}"
-      data-musical_concepts="{{ delimit (.Params.musical_concepts | default slice) "|" | lower }}"
+      data-tonal_concepts="{{ delimit (.Params.tonal_concepts | default slice) "|" | lower }}"
+      data-rhythmic_concepts="{{ delimit (.Params.rhythmic_concepts | default slice) "|" | lower }}"
+      data-activity_types="{{ delimit (.Params.activity_types | default slice) "|" | lower }}"
       data-social_concepts="{{ delimit (.Params.social_concepts | default slice) "|" | lower }}"
       data-movement_concepts="{{ delimit (.Params.movement_concepts | default slice) "|" | lower }}"
       data-supports_adaptations="{{ delimit (.Params.supports_adaptations | default slice) "|" | lower }}"
+      data-language_origins="{{ delimit (.Params.language_origins | default slice) "|" | lower }}"
       data-mode="{{ delimit .Params.modes "|" | lower }}"
       data-meter="{{ delimit .Params.meters "|" | lower }}"
       data-key="{{ delimit .Params.keys "|" | lower }}">
@@ -90,9 +117,11 @@
           {{ with .Params.modes }}<span class="song-meta-item">{{ index . 0 }}</span>{{ end }}
           {{ with .Params.meters }}<span class="song-meta-item">{{ index . 0 }}</span>{{ end }}
         </div>
-        {{ if or .Params.musical_concepts .Params.social_concepts .Params.movement_concepts .Params.supports_adaptations }}
+        {{ if or .Params.tonal_concepts .Params.rhythmic_concepts .Params.activity_types .Params.social_concepts .Params.movement_concepts .Params.supports_adaptations }}
         <div class="song-concepts">
-          {{ range .Params.musical_concepts }}<span class="tag">{{ . }}</span> {{ end }}
+          {{ range .Params.tonal_concepts }}<span class="tag">{{ . }}</span> {{ end }}
+          {{ range .Params.rhythmic_concepts }}<span class="tag">{{ . }}</span> {{ end }}
+          {{ range .Params.activity_types }}<span class="tag">{{ . }}</span> {{ end }}
           {{ range .Params.social_concepts }}<span class="tag">{{ . }}</span> {{ end }}
           {{ range .Params.movement_concepts }}<span class="tag">{{ . }}</span> {{ end }}
           {{ range .Params.supports_adaptations }}<span class="tag">{{ . }}</span> {{ end }}
@@ -106,7 +135,7 @@
 
 <script>
 (function () {
-  const activeFilters = { musical_concepts: [], social_concepts: [], movement_concepts: [], supports_adaptations: [], mode: [], meter: [], key: [] };
+  const activeFilters = { tonal_concepts: [], rhythmic_concepts: [], activity_types: [], social_concepts: [], movement_concepts: [], supports_adaptations: [], language_origins: [], mode: [], meter: [], key: [] };
   const cards = Array.from(document.querySelectorAll('.song-card'));
   const countEl = document.getElementById('library-count');
   const clearBtn = document.getElementById('filter-clear');
@@ -188,7 +217,7 @@
     .then(r => r.json())
     .then(data => {
       fuse = new Fuse(data, {
-        keys: ['title', 'musical_concepts', 'social_concepts', 'movement_concepts', 'supports_adaptations', 'modes', 'meters', 'keys'],
+        keys: ['title', 'tonal_concepts', 'rhythmic_concepts', 'activity_types', 'social_concepts', 'movement_concepts', 'supports_adaptations', 'language_origins', 'modes', 'meters', 'keys'],
         threshold: 0.3,
         minMatchCharLength: 2
       });
@@ -199,10 +228,19 @@
       }
     });
 
+  // Restore collapsed/expanded state from localStorage
+  document.querySelectorAll('details.filter-group').forEach(details => {
+    const saved = localStorage.getItem('filter-' + details.id);
+    if (saved === 'open') details.open = true;
+    details.addEventListener('toggle', () => {
+      localStorage.setItem('filter-' + details.id, details.open ? 'open' : 'closed');
+    });
+  });
+
   // Activate filters from URL params, e.g. /songs/?musical_concepts=Bordun&mode=Pentatonic
   const params = new URLSearchParams(window.location.search);
   let hadParams = false;
-  ['musical_concepts', 'social_concepts', 'movement_concepts', 'supports_adaptations', 'mode', 'meter', 'key'].forEach(group => {
+  ['tonal_concepts', 'rhythmic_concepts', 'activity_types', 'social_concepts', 'movement_concepts', 'supports_adaptations', 'language_origins', 'mode', 'meter', 'key'].forEach(group => {
     params.getAll(group).forEach(val => {
       const container = document.querySelector(`[data-filter="${group}"]`);
       if (!container) return;
@@ -213,6 +251,8 @@
         btn.classList.add('active');
         btn.setAttribute('aria-pressed', 'true');
         hadParams = true;
+        const details = btn.closest('details.filter-group');
+        if (details) { details.open = true; localStorage.setItem('filter-' + details.id, 'open'); }
       }
     });
   });

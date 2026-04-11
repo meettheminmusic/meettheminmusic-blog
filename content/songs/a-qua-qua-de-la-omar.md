@@ -5,12 +5,14 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/AQuaQuaDeLaOmar.webp
-musical_concepts:
-  - Pickups
-  - Passing game
+tonal_concepts:
   - Low So
   - Tonic-Dominant
+rhythmic_concepts:
+  - Pickups
   - Steady beat
+activity_types:
+  - Passing game
 social_concepts:
   - Accepting losing
   - Teamwork

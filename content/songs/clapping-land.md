@@ -5,9 +5,10 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Clapping_Land.webp
-musical_concepts:
-  - Pickups
+tonal_concepts:
   - I-IV-V
+rhythmic_concepts:
+  - Pickups
 social_concepts:
   - Welcoming
 movement_concepts:

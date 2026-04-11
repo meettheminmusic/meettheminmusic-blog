@@ -5,12 +5,14 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Did-you-Feed-My-Cow.webp
-musical_concepts:
+tonal_concepts:
+  - Tonic
+rhythmic_concepts:
   - Pickups
-  - Call and Response
   - Rhythmic elongation
   - Syncopation
-  - Tonic
+activity_types:
+  - Call and Response
 social_concepts:
   - Responsibility
   - Farm life

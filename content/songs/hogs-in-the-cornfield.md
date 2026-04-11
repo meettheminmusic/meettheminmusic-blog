@@ -2,7 +2,7 @@
 title: Hogs in the Cornfield
 date: 2026-03-31
 card_image: /images/uploads/Hogs_in_the_Cornfield.webp
-musical_concepts:
+rhythmic_concepts:
   - 16th notes
   - 8th notes
 keys:

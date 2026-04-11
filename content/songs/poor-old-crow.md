@@ -5,8 +5,9 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Poor-Old-Crow.webp
-musical_concepts:
+tonal_concepts:
   - Bordun
+rhythmic_concepts:
   - 16th notes
 social_concepts:
   - Choice

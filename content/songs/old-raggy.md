@@ -5,10 +5,12 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Old_Raggy-2.webp
-musical_concepts:
+tonal_concepts:
   - So-Mi-Do
-  - Drumming
+rhythmic_concepts:
   - Macrobeat/Microbeat
+activity_types:
+  - Drumming
 social_concepts:
   - Taking Turns
   - Partners

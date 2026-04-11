@@ -5,9 +5,10 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/go-round-the-mountain-4-note.webp
-musical_concepts:
-  - Steady Beat
+tonal_concepts:
   - Mi-Re-Do
+rhythmic_concepts:
+  - Steady Beat
 keys:
   - C
   - D

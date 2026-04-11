@@ -5,9 +5,10 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Frog-in-the-Meadow.webp
-musical_concepts:
-  - 16th notes
+tonal_concepts:
   - Mi-Do
+rhythmic_concepts:
+  - 16th notes
 social_concepts:
   - Taking Turns
 movement_concepts:
