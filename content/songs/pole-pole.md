@@ -81,6 +81,18 @@ Provide students a choice board of animals native to Africa, with pictures of ea
 
 <!-- Insert Choice Board-->
 
+- Lion
+- Leopard
+- African Elephant
+- Rhinoceros
+- Cape Buffalo
+- Giraffe
+- Zebras & Wildebeest
+- Cheetah
+- Hippo
+- Warthogs
+- Kudu
+
 <u>**Extension</u>**
 
 A cultural lesson is [provided by NAfME](https://nafme.org/wp-content/uploads/2020/01/Pole-Pole-FINAL.pdf), created by [Jennifer Bailey](https://singtokids.com).
