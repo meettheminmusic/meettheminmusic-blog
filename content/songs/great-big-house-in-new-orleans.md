@@ -4,8 +4,15 @@ date: 2026-04-01
 card_image: /images/uploads/great-big-house-in-new-orleans-3.webp
 tonal_concepts:
   - Bordun
+rhythmic_concepts:
+  - 1/2 Note
+  - 1/8 Note
+activity_types:
+  - Xylophone
 supports_adaptations:
   - Choice Board
+language_origins:
+  - English
 keys:
   - F
 modes:
