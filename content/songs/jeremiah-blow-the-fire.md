@@ -2,9 +2,19 @@
 title: Jeremiah Blow the Fire
 date: 2026-03-31
 card_image: /images/uploads/jeremiah-blow-the-fire-5.webp
+tonal_concepts:
+  - Mi-Re-Do
 rhythmic_concepts:
-  - 8th notes
+  - 1/8 notes
   - Rests
+activity_types:
+  - Scarf
+  - Movement
+movement_concepts:
+  - Flow
+  - Part vs Whole
+language_origins:
+  - English
 keys:
   - D
 modes:
