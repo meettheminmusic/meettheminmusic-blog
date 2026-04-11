@@ -95,7 +95,7 @@ Allow students to suggest other places to put the beanbag and fit this into the 
 - Neck (necklace)
 
 {{< callout title="A note:" >}}
-Kids are going to want to put it on their heads. Why fight it!?  <p>Clean the beanbags or separate beanbags of questionable cleanliness from the others after the activity.
+Kids are going to want to put it on their heads. Why fight it!?  <br>Clean the beanbags or separate beanbags of questionable cleanliness from the others after the activity.
 {{< /callout >}}
 
 **<u>Assessment Opportunity:</u>**
