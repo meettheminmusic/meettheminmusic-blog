@@ -8,13 +8,20 @@ card_image: /images/uploads/Frog-in-the-Meadow.webp
 tonal_concepts:
   - Mi-Do
 rhythmic_concepts:
-  - 16th notes
+  - 1/16 notes
+activity_types:
+  - Singing
 social_concepts:
   - Taking Turns
 movement_concepts:
   - Stomping
   - Weight
   - Freeze
+supports_adaptations:
+  - Visual Support
+  - Movement Alterations
+language_origins:
+  - English
 keys:
   - F
 modes:
