@@ -1,7 +1,7 @@
 ---
 title: Purple Light
 date: 2026-04-11T13:55:00
-draft: true
+draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Purple-light.webp
@@ -86,3 +86,13 @@ abc_scores: []
 This is a standard echo songs. Students echo the same as the teacher but the echoes line up in the middle of sentences making this feel a bit tricky for students at first.
 
 **<u>Visual Supports:</u>**
+These slides were created for me by an AP Art student in my district.  They may projected in your classroom but not altered or sold in anyway.
+{{< slideshow >}}
+![Purple Light, In the canyon, thats where I long to be. With my 3 good companions. My guitar my pony and me](/images/uploads/PurpleLight-1.png) 
+![Whipper will. In the willow. Sings a song. A melody.](/images/uploads/Purple-Light-2.png) 
+![ For my 3 good companions. My guitar my pony and me](/images/uploads/PurpleLight-1.png) 
+![Gonna hang. My sombrero. On the limb of a tree.](/images/uploads/Purple-Light-4.png) 
+![O'er my 3 good companions. My guitar my pony and me](/images/uploads/PurpleLight-1.png) 
+![No more cows, to be roping. No more strays shall I see.](/images/uploads/Purple-Light-6.png) 
+![Just my 3 good companions. My guitar my pony and me](/images/uploads/PurpleLight-1.png) 
+{{< /slideshow >}}
