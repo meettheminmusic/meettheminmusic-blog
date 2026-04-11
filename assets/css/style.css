@@ -744,6 +744,111 @@ img {
   margin-bottom: 0.5rem;
 }
 
+/* --- Slideshow --- */
+
+.slideshow {
+  position: relative;
+  margin: 2rem 0;
+  background: var(--charcoal);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.slideshow__slide {
+  display: none;
+}
+
+.slideshow__slide.is-active {
+  display: block;
+}
+
+.slideshow__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+  background: var(--charcoal);
+  border-radius: 0;
+}
+
+.slideshow__caption {
+  font-size: 0.875rem;
+  color: var(--warm-white);
+  padding: 0.5rem 1rem;
+  margin: 0;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.slideshow__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  background: var(--charcoal);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.slideshow__counter {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--warm-white);
+  flex: 1;
+  text-align: center;
+}
+
+.slideshow__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--warm-white);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  font-family: inherit;
+}
+
+.slideshow__btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.slideshow__btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.slideshow__btn--fullscreen {
+  margin-left: auto;
+}
+
+.slideshow:fullscreen,
+.slideshow:-webkit-full-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #000;
+  border-radius: 0;
+}
+
+.slideshow:fullscreen .slideshow__img,
+.slideshow:-webkit-full-screen .slideshow__img {
+  max-height: calc(100vh - 56px);
+  object-fit: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slideshow__slide {
+    transition: none;
+  }
+}
+
 /* --- Tables --- */
 
 table {
@@ -1768,4 +1873,20 @@ details.filter-group > summary:focus-visible {
 
 @media (max-width: 500px) {
   .book-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Book shelf (inline grid for song pages) ─────── */
+.book-shelf {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+@media (max-width: 600px) {
+  .book-shelf { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 380px) {
+  .book-shelf { grid-template-columns: 1fr; }
 }

@@ -1,0 +1,19 @@
+{{- $slug := .Get 0 -}}
+{{- $book := site.GetPage (printf "books/%s" $slug) -}}
+{{- with $book -}}
+<div class="book-card">
+  {{- with .Params.cover_image -}}
+  <div class="book-card__cover">
+    <img src="{{ . }}" alt="Cover of {{ $book.Title }}" class="book-cover-img" loading="lazy">
+  </div>
+  {{- end -}}
+  <div class="book-card__body">
+    <p class="book-card__title">{{ .Title }}</p>
+    {{- with .Params.description -}}<p class="book-card__excerpt">{{ . }}</p>{{- end -}}
+    {{- with .Params.author -}}<p class="book-card__author">{{ . }}</p>{{- end -}}
+    {{- with .Params.amazon_url -}}
+    <a href="{{ . }}" class="book-card__buy" target="_blank" rel="noopener sponsored">Buy on Amazon</a>
+    {{- end -}}
+  </div>
+</div>
+{{- end -}}

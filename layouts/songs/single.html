@@ -573,7 +573,7 @@
   var closeBtn = lightbox.querySelector('.img-lightbox-close');
   var lastFocus;
 
-  document.querySelectorAll('.post-content img').forEach(function (img) {
+  document.querySelectorAll('.post-content img:not(.slideshow__img):not(.book-cover-img)').forEach(function (img) {
     var wrap = document.createElement('div');
     wrap.className = 'img-expand-wrap';
     img.parentNode.insertBefore(wrap, img);
