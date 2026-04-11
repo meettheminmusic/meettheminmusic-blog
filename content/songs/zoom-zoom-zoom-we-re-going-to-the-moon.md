@@ -42,7 +42,6 @@ abc_notation: |-
   w: Zoom, zoom, zoom. We're go-ing to the moon.
   M: 2/4
   K:perc stafflines=1
-  %%MIDI channel 10
   !style=x!B2 z2 |!style=x!B2 z2 |!style=x!B2 z2 |!style=x!B2 z2 |!style=x!B2 z2 | !style=x!B!style=x!B z2 |]
   w: FIVE! FOUR! THREE! TWO! ONE! BLAST OFF!
   %%textfont arial 9
