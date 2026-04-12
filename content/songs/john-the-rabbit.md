@@ -13,6 +13,8 @@ activity_types:
 social_concepts:
   - Farming
   - Stealing
+language_origins:
+  - English
 keys:
   - E
 modes:
