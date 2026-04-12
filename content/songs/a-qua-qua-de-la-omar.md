@@ -13,6 +13,7 @@ rhythmic_concepts:
   - Steady beat
 activity_types:
   - Passing game
+  - Circle game
 social_concepts:
   - Accepting losing
   - Teamwork
