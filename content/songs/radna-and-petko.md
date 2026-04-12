@@ -3,7 +3,7 @@ title: Radna and Petko
 date: 2026-04-11T11:52:00
 draft: false
 unlisted: false
-featured: true
+featured: false
 card_image: /images/uploads/Radna-and-Petko.png
 tonal_concepts:
   - Mi-La
