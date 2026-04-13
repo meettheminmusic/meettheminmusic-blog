@@ -12,7 +12,7 @@ modes:
   - Mixolydian
 meters:
   - Duple
-  - 2/4
+  - 4/4
 source: ''
 source_url: ''
 abc_notation: |-
@@ -22,7 +22,7 @@ abc_notation: |-
   T:Pickles and Pie
   C:arr. P. Eric Bottorff
   A: MeetThemInMusic.com 
-  M:2/4
+  M:4/4
   L:1/8
   %%titlefont Arial 24
   %%vocalfont Arial 9
@@ -33,7 +33,7 @@ abc_notation: |-
   K:Dmix
   D2 A2 A4 |BA G2 A4 | c2 dc BA G2 | F2 G2 A4 |
   w:  Me oh my, pick-les and pie. I see an (el-e-phant) in the sky.
-  M:2/4
+  M:4/4
   D2 A2 A4 |BA G2 A4 | G2 FE FE D2 | E2 =C2 D4 ||
   w: Me oh my, pick-les and pie. How can an (el-e-phant) fly so high?
   %%textfont arial 9
@@ -41,7 +41,7 @@ abc_notation: |-
   %%center © 2026 All Rights Reserved.
 sanitized_abc: |-
   K:Dmix  M:2/4  L:1/8
-  M:2/4
+  M:4/4
   L:1/8
   K:Dmix
   D2 A2 A4 |BA G2 A4 | c2 dc BA G2 | F2 G2 A4 |
