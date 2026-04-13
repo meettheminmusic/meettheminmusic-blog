@@ -22,7 +22,6 @@ sanitized_abc: |-
   K:D  
   M:2/4  
   L:1/8
-  K:D
   AA BB | AA FF|AA BB | F2 z2 |
   AA BB |AA FF|F2 E2 | D2 z2 |
 abc_tempo: 100
