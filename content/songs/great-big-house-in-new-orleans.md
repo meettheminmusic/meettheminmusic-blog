@@ -1,7 +1,7 @@
 ---
 title: Great Big House in New Orleans
 date: 2026-04-01
-card_image: /images/uploads/great-big-house-in-new-orleans-3.webp
+card_image: /images/uploads/great-big-house-in-new-orleans.png
 tonal_concepts:
   - Bordun
 rhythmic_concepts:
