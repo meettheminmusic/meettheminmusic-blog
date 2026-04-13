@@ -174,19 +174,25 @@ function parseHeaders(sanitized) {
 
     const km = line.match(/^K:\s*(.+)/i);
     if (km) {
+      const kVal = km[1].trim();
       if (!set.has('K')) {
-        const kVal = km[1].trim();
         // First whitespace-delimited token is the key; the rest are modifiers (clef=, octave=, …)
         headers.K = kVal.split(/\s+/)[0];
-        if (/clef\s*=\s*perc/i.test(kVal)) headers.rhythmic = true;
         set.add('K');
       }
+      // Check every K: line for percussive clef — it may appear on a later K: line
+      if (/clef\s*=\s*perc/i.test(kVal)) headers.rhythmic = true;
       continue;
     }
 
     const mm = line.match(/^M:\s*(\S+)/i);
     if (mm) {
-      if (!set.has('M')) { headers.M = mm[1]; set.add('M'); }
+      if (!set.has('M')) {
+        headers.M = mm[1]; set.add('M');
+      } else {
+        // Mid-song meter change: inject as inline header so the lexer can emit a marker
+        noteLines.push('[M:' + mm[1] + ']');
+      }
       continue;
     }
 
@@ -230,6 +236,8 @@ function lexer(noteBodyStr) {
         if (hType === 'K') {
           // Emit a clef_change token so translateABC can update rhythmic state mid-piece
           tokens.push({ type: 'clef_change', rhythmic: /clef\s*=\s*perc/i.test(hVal) });
+        } else if (hType === 'M') {
+          tokens.push({ type: 'meter_change', meter: hVal.trim() });
         }
         i += inlineHdr[0].length;
         continue;
@@ -507,6 +515,10 @@ function translateABC(raw) {
     if (token.type === 'clef_change') {
       isRhythmic = token.rhythmic;
       octaveSM.reset(); // octave context is invalid across a clef change
+      continue;
+    }
+    if (token.type === 'meter_change') {
+      output += timeSignaturePrefix(token.meter);
       continue;
     }
     output += brailleMapper(token, headers.L, octaveSM, isRhythmic);
