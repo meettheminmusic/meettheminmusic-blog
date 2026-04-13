@@ -8,7 +8,7 @@ description: Jean Clinton is a Canadian developmental psychiatrist, and Love Bu
 tags: []
 categories:
   - Book Review
-image: ''
+image: /images/uploads/Love-Builds-Brains.webp
 ---
 
 {{< callout title="Quote of the Book" >}}
