@@ -63,7 +63,7 @@ description: Grandma's Glasses is a mixed meter chant. Includes pedagogical anal
 
 {{< callout title="" >}}
 
-I love this song as a way to get students used to the difference between duple and triple
+I love this song as a way to get students familiar with the difference between duple and triple meter.
 
 {{< /callout >}}
 
