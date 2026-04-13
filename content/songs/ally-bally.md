@@ -107,3 +107,21 @@ abc_scores:
     image: ''
     tempo: 100
 ---
+
+<u>**Activity**</u>
+
+Remove all but Do-Mi-So from the xylophones.  Invite students up to play with you or set up a few to have students play as a group.  On the "To buy some chocolate candy" have the students hold the mallets in both hands make an excited face (like when the kid says "it's so fluffy Im going to die!" from the movie _Despicable Me_)
+
+_The challenges with this song are:_
+
+- Crossing over the hands going from Mi to So
+
+- Pausing on the words "Ally Bally Be"
+
+<u>**Pre-teaching**</u>
+
+Practice playing the part on your laps.  Make sure the students are starting with their left hands (you may have to start with your right to help them).  Focus on crossing the left hand over the body.  If students are having a hard time on the rests, have them hold up their hands (like when a baby is tickled!)
+
+<u>**Visual Supports**</u>
+
+This is a fun opportunity to have students choose a different type of candy.  Create a choice board of the classes favorite candies.  _Any response is the right response!_  Ive had kids tell me "Dr. B Candy" and "Yoshi Candy" as well as real candy like "kit kats."  Nobody ever says my favorite candy (Redvines) 😢
