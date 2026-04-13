@@ -98,6 +98,18 @@ const ASCII_TO_UNICODE = {
 
   // ── Blank / barline ──
   ' ': '\u2800', // no dots     blank braille cell
+
+  // ── Number indicator & digits (for time signatures) ──
+  '#': '\u283C', // dots 3,4,5,6  number indicator
+  '1': '\u2801', // dot 1
+  '2': '\u2803', // dots 1,2
+  '3': '\u2809', // dots 1,4
+  '4': '\u2819', // dots 1,4,5
+  '5': '\u2811', // dots 1,5
+  '6': '\u280B', // dots 1,2,4
+  '7': '\u281B', // dots 1,2,4,5
+  '8': '\u2813', // dots 1,2,5
+  '9': '\u280A', // dots 2,4
 };
 
 /**
@@ -149,24 +161,34 @@ function sanitizeABC(raw) {
 // ── 2. parseHeaders ─────────────────────────────────────
 function parseHeaders(sanitized) {
   const headers = { L: [1, 8], K: 'C', M: '4/4' };
+  const set     = new Set(); // first-write-wins: ignore later K/M/L occurrences
   const lines   = sanitized.split('\n');
   const noteLines = [];
 
   for (const line of lines) {
     const lm = line.match(/^L:\s*(\d+)\/(\d+)/i);
-    if (lm) { headers.L = [parseInt(lm[1]), parseInt(lm[2])]; continue; }
+    if (lm) {
+      if (!set.has('L')) { headers.L = [parseInt(lm[1]), parseInt(lm[2])]; set.add('L'); }
+      continue;
+    }
 
     const km = line.match(/^K:\s*(.+)/i);
     if (km) {
-      const kVal = km[1].trim();
-      // First whitespace-delimited token is the key; the rest are modifiers (clef=, octave=, …)
-      headers.K = kVal.split(/\s+/)[0];
-      if (/clef\s*=\s*perc/i.test(kVal)) headers.rhythmic = true;
+      if (!set.has('K')) {
+        const kVal = km[1].trim();
+        // First whitespace-delimited token is the key; the rest are modifiers (clef=, octave=, …)
+        headers.K = kVal.split(/\s+/)[0];
+        if (/clef\s*=\s*perc/i.test(kVal)) headers.rhythmic = true;
+        set.add('K');
+      }
       continue;
     }
 
     const mm = line.match(/^M:\s*(\S+)/i);
-    if (mm) { headers.M = mm[1]; continue; }
+    if (mm) {
+      if (!set.has('M')) { headers.M = mm[1]; set.add('M'); }
+      continue;
+    }
 
     // Not a header line — treat as note body
     noteLines.push(line);
@@ -430,6 +452,33 @@ function brailleMapper(token, baseL, octaveSM, isRhythmic = false) {
   return octaveMark + accChar + noteChar + augDot;
 }
 
+// ── Key & time signature prefixes ───────────────────────
+function keySignaturePrefix(keyStr) {
+  const ACC = {
+    'C':0,  'G':1,  'D':2,  'A':3,  'E':4,  'B':5,  'F#':6, 'C#':7,
+    'F':-1, 'Bb':-2,'Eb':-3,'Ab':-4,'Db':-5,'Gb':-6,'Cb':-7,
+    'Am':0, 'Em':1, 'Bm':2, 'F#m':3,'C#m':4,'G#m':5,'D#m':6,'A#m':7,
+    'Dm':-1,'Gm':-2,'Cm':-3,'Fm':-4,'Bbm':-5,'Ebm':-6,'Abm':-7,
+  };
+  const count = ACC[keyStr] ?? 0;
+  if (count > 0) return '%'.repeat(count);   // sharps (dots 1,4,6)
+  if (count < 0) return '<'.repeat(-count);  // flats  (dots 1,2,6)
+  return '';
+}
+
+function timeSignaturePrefix(meterStr) {
+  let top, bot;
+  if (meterStr === 'C')       { top = '4'; bot = '4'; }
+  else if (meterStr === 'C|') { top = '2'; bot = '2'; }
+  else {
+    const m = meterStr.match(/^(\d+)\/(\d+)$/);
+    if (!m) return '';
+    top = m[1]; bot = m[2];
+  }
+  // Each digit char maps through ASCII_TO_UNICODE; '#' = number indicator (dots 3,4,5,6)
+  return '#' + top + '#' + bot;
+}
+
 // ── 7. translateABC ─────────────────────────────────────
 function translateABC(raw) {
   // Step 1: Sanitize
@@ -465,6 +514,10 @@ function translateABC(raw) {
 
   // Collapse runs of multiple spaces (consecutive barlines) into one
   output = output.replace(/ {2,}/g, ' ').trim();
+
+  // Prepend key and time signatures per Music Braille Code
+  const sigPrefix = keySignaturePrefix(headers.K) + timeSignaturePrefix(headers.M);
+  output = sigPrefix + output;
 
   return { sanitized, headers, output };
 }
