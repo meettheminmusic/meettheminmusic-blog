@@ -19,7 +19,9 @@ source: ''
 source_url: ''
 abc_notation: ''
 sanitized_abc: |-
-  K:D  M:2/4  L:1/8
+  K:D  
+  M:2/4  
+  L:1/8
   M:2/4
   L:1/8
   K:D
