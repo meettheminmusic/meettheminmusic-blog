@@ -1,7 +1,7 @@
 ---
 title: Great Big House in New Orleans
 date: 2026-04-01
-card_image: /images/uploads/great-big-house-in-new-orleans-3.webp
+card_image: /images/uploads/great-big-house-in-new-orleans.png
 tonal_concepts:
   - Bordun
 rhythmic_concepts:
@@ -19,13 +19,13 @@ modes:
   - Pentatonic
 meters:
   - duple
-  - 2/4
+  - 4/4
 source: ''
 source_url: ''
 abc_notation: |-
   X:1
   T:Great Big House in New Orleans
-  M:2/4
+  M:4/4
   L:1/8
   C:arr. P. Eric Bottorff
   A: MeetThemInMusic.com 

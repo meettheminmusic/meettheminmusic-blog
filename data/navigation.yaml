@@ -11,9 +11,12 @@ items:
   - name: Books
     url: /books/
     weight: 4
+  - name: Resources
+    url: https://www.teacherspayteachers.com/store/meet-them-in-music
+    weight: 5
   - name: About
     url: /about/
-    weight: 5
+    weight: 6
   - name: Contact
     url: /contact/
-    weight: 6
+    weight: 7

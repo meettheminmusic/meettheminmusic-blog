@@ -19,12 +19,11 @@ source: ''
 source_url: ''
 abc_notation: ''
 sanitized_abc: |-
-  K:D  M:2/4  L:1/8
-  M:2/4
+  K:D  
+  M:2/4  
   L:1/8
-  K:D
-  AA BB AA FF|AA BB F2 z2 |
-  AA BB AA FF|F2 E2 D2 z2 ||
+  AA BB | AA FF|AA BB | F2 z2 |
+  AA BB |AA FF|F2 E2 | D2 z2 |
 abc_tempo: 100
 abc_scores:
   - label: Pitched Notation
@@ -42,10 +41,10 @@ abc_scores:
       %%stretchlast 1
       K:D
       V:S stem=up
-      AA BB AA FF|AA BB F2 z2 |
+      AA BB |AA FF|AA BB |F2 z2 ||
       w: Ak-ka Ba-ka so-da crack-er, ak-ka ba-ka boo.
       M:2/4
-      AA BB AA FF|F2 E2 D2 z2 ||
+      AA BB |AA FF|F2 E2 |D2 z2 |]
       w: Ak-ka Ba-ka so-da crack-er, up goes YOU!
       %%textfont arial 9
       %%center .
@@ -69,10 +68,10 @@ abc_scores:
       %%printtempo 0
       K:C clef=perc stafflines=0
       V:S stem=up 
-      AA AA AA AA|AA AA A2 z2 |
+      AA AA |AA AA|AA AA |A2 z2 ||
       w: Ak-ka Ba-ka so-da crack-er, ak-ka ba-ka boo. 
       M:2/4
-      AA AA AA AA|A2 A2 A2 z2 ||
+      AA AA | AA AA|A2 A2 |A2 z2 |]
       w: Ak-ka Ba-ka so-da crack-er, up goes YOU!
       %%textfont arial 9
       %%center .
