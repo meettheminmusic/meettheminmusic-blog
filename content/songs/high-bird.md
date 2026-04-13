@@ -1,7 +1,7 @@
 ---
 title: High Bird
 date: 2026-04-12T20:21:00
-draft: true
+draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/High-Bird.webp
