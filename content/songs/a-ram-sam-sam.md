@@ -67,7 +67,7 @@ abc_scores: []
 ---
 
 {{< callout title="Language Note" >}}
-This song comes from Morocco and uses  Moroccan Arabic.  As a result of French influence, Moroccan Arabic is very different and, a times, unintelligible to speakers of Modern/Egyptian Arabic.
+This song comes from Morocco and uses  Moroccan Arabic.  As a result of French influence, Moroccan Arabic is very different and, at times, unintelligible to speakers of Modern/Egyptian Arabic.
 <p>When presenting this song to students, it would be better to describe it as "Moroccan" instead of "Arabic" to avoid cultural disambiguation.
 <p>I have attempted to check aspects of this song and language with my Arabic speaking and culturally Arabic university students.
 {{< /callout >}}
@@ -77,11 +77,12 @@ This song comes from Morocco and uses  Moroccan Arabic.  As a result of French i
 This is a action song (similar to [Atta Katta Moeva](https://meettheminmusic.com/songs/atta-katta-moeva/)) that does not require standing or walking.  Teach the students the following moves.  Increase and decrease speed for fun and comedic effect.<p>
 
 | Lyrics | Moves |
-|-|-|
+| --- | --- |
 | A Ram Sam Sam | Clasp your hands together, rotate back and forth |
-|Guli Guli Guli Guli Guli Ram Sam Sam |  Roll arms forward |
+| Guli Guli Guli Guli Guli Ram Sam Sam | Roll arms forward |
 | A rafiq, a rafiq | Mime sleeping. Hands on one side, then the other |
-|Guli Guli Guli Guli Guli Ram Sam Sam |  Roll arms forward |
+| Guli Guli Guli Guli Guli Ram Sam Sam | Roll arms forward |
+
 <p>
 
 {{< callout title="Authenticity Note" >}}
