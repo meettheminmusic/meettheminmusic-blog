@@ -66,14 +66,14 @@ sanitized_abc: |-
   A3A AAAA | c4 B4 | G3G GGGG | B4 A4 ||
   FFFF F2A2| GGGG G2B2| A2AA G2GG | FFFF F4 |]
 abc_image: ''
-abc_tempo: 112
+abc_tempo: 100
 abc_scores: []
 ---
 
 This is a Dutch song from the Netherlands that is used to help teach articulation and enunciation.  From what I can tell, the lyrics are mostly non-sense sounds but I welcome information otherwise.
 
 {{< callout title="Related Song" >}}
-A song with similar activities and skills is A Ram Sam Sam (coming soon)
+A song with similar activities and skills is [A Ram Sam Sam](https://meettheminmusic.com/songs/a-ram-sam-sam/).
 {{< /callout >}}
 
 As an English speaker, I like this song for enunciation because Dutch is very similar English with greater attack on the consonants.
