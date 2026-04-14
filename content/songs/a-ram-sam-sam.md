@@ -91,7 +91,7 @@ This is a action song (similar to [Atta Katta Moeva](https://meettheminmusic.com
 The song can be sung as a round as well.  A new entrance starts every 4 beats/2 measures.
 
 {{< callout title="Authenticity Note" >}}
- My movements for "A Rafiq" may differ than other publications.  A few years ago, I had a first grader move to my class directly from Morocco. I just happened to be teaching this song on her first day. To see the light in her eyes at recognizing something in a strong place was wonderful to see.
+ My movements for "A Rafiq" may differ than other publications.  A few years ago, I had a first grader move to my class directly from Morocco. I just happened to be teaching this song on her first day. To see the light in her eyes at recognizing something in a strange, new place was wonderful to see.
 
 This child did the sleeping move during the A Rafiq lyrics. I had been doing a sort of 2 hand chop prior.  I have since changed to match her authentically provided movements.
 {{< /callout >}}
