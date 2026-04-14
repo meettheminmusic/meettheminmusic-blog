@@ -19,7 +19,8 @@ movement_concepts:
   - Fine Motor
   - Gross Motor
   - Fast-slow
-supports_adaptations: []
+supports_adaptations:
+  - Seated
 language_origins:
   - Morocco
   - Arabic
@@ -31,7 +32,7 @@ meters:
   - Duple
   - 2/4
 source: ''
-source_url: ''
+source_url: https://en.wikipedia.org/wiki/A_Ram_Sam_Sam
 abc_notation: |-
   %%textfont arial italic 11
   X:1
