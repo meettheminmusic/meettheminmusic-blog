@@ -86,6 +86,10 @@ This is a action song (similar to [Atta Katta Moeva](https://meettheminmusic.com
 
 <p>
 
+<u>**Extension**</u>
+
+The song can be sung as a round as well.  A new entrance starts every 4 beats/2 measures.
+
 {{< callout title="Authenticity Note" >}}
  My movements for "A Rafiq" may differ than other publications.  A few years ago, I had a first grader move to my class directly from Morocco. I just happened to be teaching this song on her first day. To see the light in her eyes at recognizing something in a strong place was wonderful to see.
 
