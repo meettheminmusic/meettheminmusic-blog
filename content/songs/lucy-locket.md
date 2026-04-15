@@ -18,8 +18,10 @@ movement_concepts:
 supports_adaptations: []
 language_origins:
   - English
-keys: []
-modes: []
+keys:
+  - Unpitched
+modes:
+  - Chant
 meters:
   - Duple
   - 2/4
