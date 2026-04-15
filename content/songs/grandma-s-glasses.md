@@ -8,9 +8,12 @@ activity_types:
   - Fingerplay
 social_concepts:
   - Family
+movement_concepts:
+  - Fine motor
 keys:
   - unpitched
-modes: []
+modes:
+  - Chant
 meters:
   - mixed
   - duple
