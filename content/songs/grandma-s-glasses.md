@@ -8,9 +8,12 @@ activity_types:
   - Fingerplay
 social_concepts:
   - Family
+movement_concepts:
+  - Fine motor
 keys:
   - unpitched
-modes: []
+modes:
+  - Chant
 meters:
   - mixed
   - duple
@@ -63,7 +66,7 @@ description: Grandma's Glasses is a mixed meter chant. Includes pedagogical anal
 
 {{< callout title="" >}}
 
-I love this song as a way to get students used to the difference between duple and triple
+I love this song as a way to get students familiar with the difference between duple and triple meter.
 
 {{< /callout >}}
 
