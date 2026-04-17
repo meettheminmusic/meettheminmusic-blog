@@ -84,12 +84,12 @@ Sing the song for the students. Being an unfamiliar language it may take some ti
 
 This is a great "fast and slow" song.  The movements are simple enough that students will love to do it at a fast tempo and find success in doing so.<p>
 
-| Lyric | Movement |
-| --- | --- |
-| Atta Katta Moeva | Tap the rhythms of the lyrics on your legs |
-| E misa, de misa | Flex one arm then the other |
-| doe la misa dee | Tap the rhythms of the lyrics on your legs |
-| Hek sa koelamisa forte | Turn around then stand in a strong pose |
+| Lyric | Movement | Alternate Movement|
+| --- | --- |---|
+| Atta Katta Moeva | Tap the rhythms of the lyrics on your legs | Roll arms forward then backwards
+| E misa, de misa | Flex one arm then the other | |
+| doe la misa dee | Tap the rhythms of the lyrics on your legs | Keep flexing one arm.|
+| Hek sa koelamisa forte | Turn around then stand in a strong pose ||
 
 **<u>Movement Adaptations</u>**
 
