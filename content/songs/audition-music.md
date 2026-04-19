@@ -62,4 +62,4 @@ abc_scores:
     tempo: 70
 ---
 
-It is possible the trumpet part will not sound quite right.  If the notes song wrong on the turmpet, set the transpose label to Bb
+It is possible the trumpet part will not sound quite right.  If the notes song wrong on the turmpet, set the transpose label to Bb and the octave label to -1
