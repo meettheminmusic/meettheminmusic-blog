@@ -42,7 +42,23 @@ abc_scores:
     image: ''
     tempo: 60
   - label: Trumpet
-    notation: a
+    notation: |-
+      %%textfont arial italic 11
+      X:1 
+      T:Trumpet Audition
+      M:3/4
+      L:1/8
+      C:
+      A: MeetThemInMusic.com 
+      Q:1/4=60
+      %%gchordfont Arial 12
+      %%vocalfont Arial 10
+      %%staffsep 50
+      %%barsperstaff 5
+      %%stretchlast 1
+      K:Cm
+      cG2c2e|dG2d2f|e c2e2g|fedc=BA|GC/2D/2 E/2D/2C cA| FD/2E/2 F/2E/D d=B | AF/2G/2 A/2G/2F fd| =Bd/2c/2 =B/2A/2G/2F/2|E C2
+      %%textfont arial 9
     image: ''
     tempo: 60
 ---
