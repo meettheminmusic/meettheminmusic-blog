@@ -92,13 +92,13 @@ abc_scores:
       K:D
       D2F2 A2A2|BAGB A4|| 
       w:Al-ly Bal-ly, Al-ly Ba-ly Be.
-      M: 4/4  
+      M: 2/4  
       D2F2 A2A2 | G(F -F2) E4||
       w: Sit-ting on your dad-dy's _knee
-      M: 4/4
+      M: 2/4
       D2F2 A2A2 | d2B2 A3G|| 
       w: Want-ing for a sweet pen-ny to
-      M: 4/4
+      M: 2/4
       F3G A2F2 | E4 D4 |]
       w: buy some choco-late can-dy
       %%textfont arial 9
