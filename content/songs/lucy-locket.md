@@ -60,3 +60,23 @@ abc_image: ''
 abc_tempo: 100
 abc_scores: []
 ---
+
+<u>**Activity**</u>
+
+Sit students in a circle, close enough to pass an object to their neighbor.  Practice singing the song while everyone taps the ground in front of themselves. 
+
+Practice passing a baby shoe around the circle to the beat, repeating the word "pass" with every pass.  Remind students to place it on the ground, not toss it, hand it to their neighbors, or hold onto the shoe.
+
+Pass the shoe while singing the song.  Freeze on the word "shoe" and see who is holding the shoe.  
+
+{{< callout title="No Outs Game" >}}
+Often this is enough excitement that you do not need to play a game where students get out.
+{{< /callout >}}
+
+<u>**Adjustments</u>**
+
+If you cannot sit on the ground, this same activity can be done around a table.
+
+If a shoe is too much of a projectile, use a picture or a beanbag.
+
+You do not need perfection for this game.  There will always be a student here or there that struggles to pass on beat.
