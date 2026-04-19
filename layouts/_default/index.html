@@ -8,9 +8,10 @@
           featured post so it never appears twice on the page.
 */}}
 
-{{ $songs    := where (.Site.RegularPages.ByDate.Reverse) "Section" "songs" | first 3 }}
-{{ $featured := where .Site.RegularPages "Params.featured" true | first 1 }}
-{{ $allPosts := where (where .Site.RegularPages "Section" "posts") "Params.unlisted" "ne" true }}
+{{ $listable := where .Site.RegularPages "Params.unlisted" "ne" true }}
+{{ $songs    := where $listable.ByDate.Reverse "Section" "songs" | first 3 }}
+{{ $featured := where $listable "Params.featured" true | first 1 }}
+{{ $allPosts := where $listable "Section" "posts" }}
 {{ $recent   := $allPosts | complement $featured | first 4 }}
 
 
