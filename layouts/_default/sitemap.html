@@ -1,0 +1,59 @@
+{{ define "main" }}
+<div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+  <header class="sitemap-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="sitemap-lead">{{ . }}</p>{{ end }}
+  </header>
+
+  {{ $pages := where site.RegularPages "Section" "" }}
+  {{ $pages = where $pages "Params.unlisted" "ne" true }}
+  {{ $pages = where $pages "Draft" "ne" true }}
+  {{ $pages = where $pages "Params.sitemap_exclude" "ne" true }}
+
+  <section aria-labelledby="sitemap-pages-heading" class="sitemap-section">
+    <h2 id="sitemap-pages-heading">Pages</h2>
+    <ul class="sitemap-list">
+      <li><a href="{{ "/" | relURL }}">Home</a></li>
+      {{ range $pages.ByTitle }}
+        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  </section>
+
+  {{ $posts := where site.RegularPages "Section" "posts" }}
+  {{ $posts = where $posts "Params.unlisted" "ne" true }}
+  {{ $posts = where $posts "Draft" "ne" true }}
+
+  {{ with $posts }}
+    <section aria-labelledby="sitemap-posts-heading" class="sitemap-section">
+      <h2 id="sitemap-posts-heading">Blog posts</h2>
+      {{ range .GroupByDate "2006" }}
+        <h3 class="sitemap-year">{{ .Key }}</h3>
+        <ul class="sitemap-list">
+          {{ range .Pages.ByDate.Reverse }}
+            <li>
+              <a href="{{ .Permalink }}">{{ .Title }}</a>
+              <time class="sitemap-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2" }}</time>
+            </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    </section>
+  {{ end }}
+
+  {{ $songs := where site.RegularPages "Section" "songs" }}
+  {{ $songs = where $songs "Params.unlisted" "ne" true }}
+  {{ $songs = where $songs "Draft" "ne" true }}
+
+  {{ with $songs }}
+    <section aria-labelledby="sitemap-songs-heading" class="sitemap-section">
+      <h2 id="sitemap-songs-heading">Songs</h2>
+      <ul class="sitemap-list">
+        {{ range .ByTitle }}
+          <li><a href="{{ .Permalink }}"><em>{{ .Title }}</em></a></li>
+        {{ end }}
+      </ul>
+    </section>
+  {{ end }}
+</div>
+{{ end }}

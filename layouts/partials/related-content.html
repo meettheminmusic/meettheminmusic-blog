@@ -1,0 +1,50 @@
+{{ $page := . }}
+{{ $section := $page.Section }}
+{{ $otherSection := cond (eq $section "posts") "songs" "posts" }}
+
+{{ $samePool := where site.RegularPages "Section" $section }}
+{{ $samePool = where $samePool "Permalink" "!=" $page.Permalink }}
+{{ $samePool = where $samePool "Params.unlisted" "ne" true }}
+{{ $samePool = where $samePool "Draft" "ne" true }}
+{{ $same := $samePool.Related $page | first 4 }}
+
+{{ $otherPool := where site.RegularPages "Section" $otherSection }}
+{{ $otherPool = where $otherPool "Params.unlisted" "ne" true }}
+{{ $otherPool = where $otherPool "Draft" "ne" true }}
+{{ $other := $otherPool.Related $page | first 2 }}
+
+{{ $all := $same | append $other }}
+
+{{ with $all }}
+<aside class="related-content" aria-labelledby="related-heading">
+  <h2 id="related-heading" class="related-heading">Related songs and posts</h2>
+  <ul class="related-list" role="list">
+    {{ range . }}
+      <li class="related-item">
+        <h3 class="related-item__title">
+          <a href="{{ .Permalink }}">{{ if eq .Section "songs" }}<em>{{ .Title }}</em>{{ else }}{{ .Title }}{{ end }}</a>
+        </h3>
+
+        {{ if eq .Section "songs" }}
+          {{ $chips := slice }}
+          {{ with .Params.tonal_concepts }}{{ $chips = $chips | append . }}{{ end }}
+          {{ with .Params.rhythmic_concepts }}{{ $chips = $chips | append . }}{{ end }}
+          {{ with .Params.activity_types }}{{ $chips = $chips | append . }}{{ end }}
+          {{ with .Params.movement_concepts }}{{ $chips = $chips | append . }}{{ end }}
+          {{ with $chips }}
+            <ul class="related-item__tags" role="list" aria-label="Concepts">
+              {{ range . }}<li class="tag">{{ . }}</li>{{ end }}
+            </ul>
+          {{ end }}
+        {{ else }}
+          {{ with .Params.tags }}
+            <ul class="related-item__tags" role="list" aria-label="Topics">
+              {{ range . }}<li class="tag">{{ . }}</li>{{ end }}
+            </ul>
+          {{ end }}
+        {{ end }}
+      </li>
+    {{ end }}
+  </ul>
+</aside>
+{{ end }}

@@ -7,6 +7,21 @@
       "runtimeArgs": ["server", "--port", "1313"],
       "port": 1313,
       "autoPort": false
+    },
+    {
+      "name": "budget",
+      "runtimeExecutable": "/Users/eric/budget-app/backend/.venv/bin/uvicorn",
+      "runtimeArgs": [
+        "app.main:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8766",
+        "--app-dir",
+        "/Users/eric/budget-app/backend"
+      ],
+      "port": 8766,
+      "autoPort": false
     }
   ]
 }

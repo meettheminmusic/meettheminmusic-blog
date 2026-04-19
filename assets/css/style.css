@@ -2031,3 +2031,124 @@ details.filter-group > summary:focus-visible {
 @media (max-width: 380px) {
   .book-shelf { grid-template-columns: 1fr; }
 }
+
+/* --- Footer nav --- */
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+.footer-nav a {
+  color: var(--warm-white);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+.footer-nav a:hover,
+.footer-nav a:focus-visible {
+  border-bottom-color: var(--warm-white);
+}
+
+/* --- Related content aside --- */
+
+.related-content {
+  margin-top: 3rem;
+  padding: 1.75rem 1.75rem 2rem;
+  background: var(--neutral-50);
+  border-radius: 10px;
+  border-left: 4px solid var(--teal);
+}
+.related-heading {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 1.25rem;
+}
+.related-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+.related-item {
+  padding: 0;
+}
+.related-item__title {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 0.5rem;
+}
+.related-item__title a {
+  color: var(--dark-teal);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.related-item__title a:hover,
+.related-item__title a:focus-visible {
+  border-bottom-color: var(--dark-teal);
+}
+.related-item__tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+/* --- HTML sitemap page --- */
+
+.sitemap-header {
+  margin-bottom: 2rem;
+}
+.sitemap-lead {
+  color: var(--warm-gray);
+  margin-top: 0.5rem;
+}
+.sitemap-section {
+  margin-bottom: 2.5rem;
+}
+.sitemap-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--charcoal);
+}
+.sitemap-year {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--warm-gray);
+  margin: 1rem 0 0.5rem;
+}
+.sitemap-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.sitemap-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.625rem;
+}
+.sitemap-list a {
+  color: var(--dark-teal);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.sitemap-list a:hover,
+.sitemap-list a:focus-visible {
+  border-bottom-color: var(--dark-teal);
+}
+.sitemap-date {
+  font-size: 0.8125rem;
+  color: var(--warm-gray);
+}

@@ -45,6 +45,39 @@ title = "Meet Them in Music"
   meter = "meters"
   key = "keys"
 
+[related]
+  includeNewer = true
+  threshold = 20
+  toLower = true
+
+  [[related.indices]]
+    name = "tonal_concepts"
+    weight = 90
+  [[related.indices]]
+    name = "rhythmic_concepts"
+    weight = 90
+  [[related.indices]]
+    name = "activity_types"
+    weight = 70
+  [[related.indices]]
+    name = "movement_concepts"
+    weight = 60
+  [[related.indices]]
+    name = "social_concepts"
+    weight = 50
+  [[related.indices]]
+    name = "meters"
+    weight = 40
+  [[related.indices]]
+    name = "modes"
+    weight = 40
+  [[related.indices]]
+    name = "tags"
+    weight = 30
+  [[related.indices]]
+    name = "categories"
+    weight = 30
+
 [menu]
   [[menu.main]]
     name = "Home"

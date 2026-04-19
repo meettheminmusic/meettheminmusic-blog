@@ -11,7 +11,7 @@
 {{ $songs    := where (.Site.RegularPages.ByDate.Reverse) "Section" "songs" | first 3 }}
 {{ $featured := where .Site.RegularPages "Params.featured" true | first 1 }}
 {{ $allPosts := where (where .Site.RegularPages "Section" "posts") "Params.unlisted" "ne" true }}
-{{ $recent   := $allPosts | complement $featured | first 3 }}
+{{ $recent   := $allPosts | complement $featured | first 4 }}
 
 
 {{/* ── Hero ──────────────────────────────────────────────── */}}
@@ -31,7 +31,7 @@
     </p>
     <div class="home-hero__actions">
       <a href="{{ "/songs/" | relURL }}" class="btn-primary">
-        Explore the song library
+        Browse the song library
       </a>
       <a href="{{ "/posts/" | relURL }}" class="btn-ghost-light">
         Read the blog
@@ -55,8 +55,8 @@
         </p>
       </div>
       <a href="{{ "/songs/" | relURL }}" class="section-link"
-         aria-label="Browse all songs in the library">
-        Browse all songs →
+         aria-label="Find songs in the library by concept, meter, or mode">
+        Find songs by concept, meter, or mode →
       </a>
     </div>
 

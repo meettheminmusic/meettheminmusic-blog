@@ -87,13 +87,7 @@
 
   {{ partial "signup-cta.html" . }}
 
-  <footer class="site-footer">
-    <div class="container">
-      <p class="footer-name">Meet Them in Music</p>
-      <p class="footer-tagline">Music education that starts where they are.</p>
-      <p class="footer-copy">&copy; {{ now.Format "2006" }} Dr. P. Eric Bottorff. All rights reserved.</p>
-    </div>
-  </footer>
+  {{ partial "footer.html" . }}
 
   <script>
     (function () {
