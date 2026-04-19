@@ -48,9 +48,7 @@ abc_scores:
       T:Trumpet Audition
       M:3/4
       L:1/8
-      C:
       A: MeetThemInMusic.com 
-      Q:1/4=60
       %%gchordfont Arial 12
       %%vocalfont Arial 10
       %%staffsep 50
@@ -60,7 +58,7 @@ abc_scores:
       cG2c2e|dG2d2f|e c2e2g|fedc=BA|GC/2D/2 E/2D/2C cA| FD/2E/2 F/2E/D d=B | AF/2G/2 A/2G/2F fd| =Bd/2c/2 =B/2A/2G/2F/2|E C2
       %%textfont arial 9
     image: ''
-    tempo: 60
+    tempo: 70
 ---
 
 It is possible the trumpet part will not sound quite right.  If the notes song wrong on the turmpet, set the transpose label to Bb
