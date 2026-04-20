@@ -4,7 +4,7 @@ date: 2026-04-11T10:21:00
 draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/Pole-Pole.webp
+card_image: /images/uploads/Pole Pole Animals.png
 tonal_concepts:
   - Mi-Do-La
   - Leading Tone
