@@ -11,6 +11,7 @@ tonal_concepts:
   - Mi-So
 rhythmic_concepts:
   - 1/8 notes
+  - 1/16 notes
 activity_types:
   - Passing Game
   - Circle Game
