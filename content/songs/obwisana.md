@@ -105,6 +105,10 @@ Sit students in a circle.  Teach the song by rote (noting the repeat). Practice 
 
 > In the 8th note notation above, you will pass on the half-note.  The 16th note notation will pass on the quarter note beat.
 
+<u>**Accommodation**</u>
+
+For classes or students struggling to pass objects on the beat, use a stretchy band/Co-Op band.  Tie a scarf to one area of the band.  This becomes the object you are passing instead of 25 bean bags.
+
 <u>**Social Learning</u>**
 
 "There will be mistakes. That is part of learning.  If we make mistakes on accident, we can move on and try our best.  If we make mistakes on purpose to be silly, we make the game not fun for everyone else in the class."
