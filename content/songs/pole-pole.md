@@ -4,7 +4,7 @@ date: 2026-04-11T10:21:00
 draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/Pole-Pole.webp
+card_image: /images/uploads/Pole Pole Animals.png
 tonal_concepts:
   - Mi-Do-La
   - Leading Tone
@@ -112,6 +112,8 @@ Provide students a choice board of animals native to Africa, with pictures of ea
 <u>**Extension</u>**
 
 A cultural lesson is [provided by NAfME](https://nafme.org/wp-content/uploads/2020/01/Pole-Pole-FINAL.pdf), created by [Jennifer Bailey](https://singtokids.com).
+
+![Collage of  Animals to place into Pole Pole](/images/uploads/Pole%20Pole%20Animals.png "Collage of  Animals to place into Pole Pole")
 
 <u>**Recording</u>**
 
