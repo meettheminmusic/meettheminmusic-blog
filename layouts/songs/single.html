@@ -129,6 +129,10 @@
         {{- end -}}
         <script type="text/abc-sanitized" id="braille-src-{{ $uid }}">{{ $abc | safeHTML }}</script>
       {{- end -}}
+      {{- if $hasNote -}}
+        <link rel="stylesheet" href="/css/lyrics-panel.css">
+        <script src="/js/lyrics.js" defer></script>
+      {{- end -}}
 
       {{- if and $hasNote $abc -}}
 
@@ -550,6 +554,10 @@
 
       {{- end -}}
     {{- end }}
+
+    {{ if $hasNote }}
+    <div class="lyrics-panel-mount" data-song-uid="{{ $uid }}"></div>
+    {{ end }}
 
     {{ with .Content }}
     <div class="post-content">

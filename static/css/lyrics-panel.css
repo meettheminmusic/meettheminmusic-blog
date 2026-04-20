@@ -1,0 +1,145 @@
+/* ── Song Lyrics Panel ──────────────────────────────────────
+   Collapsible disclosure containing extracted `w:` lyrics
+   from the song's ABC notation. Native <details>/<summary>.
+   ────────────────────────────────────────────────────────── */
+
+:root {
+  --lyrics-bg:          #fbf8f2;
+  --lyrics-border:      #d9d2c3;
+  --lyrics-text:        #2a2a2a;
+  --lyrics-muted:       #6b6358;
+  --lyrics-accent:      #2a2a2a;
+  --lyrics-focus-ring:  #2a2a2a;
+}
+
+.lyrics-panel {
+  background: var(--lyrics-bg);
+  border: 1.5px solid var(--lyrics-border);
+  border-radius: 6px;
+  margin-top: 1.25rem;
+  color: var(--lyrics-text);
+}
+
+.lyrics-panel .lyrics-summary {
+  align-items: baseline;
+  cursor: pointer;
+  display: flex;
+  font-weight: 600;
+  gap: 0.5rem;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0.75rem 1.1rem;
+}
+
+.lyrics-panel .lyrics-summary::-webkit-details-marker { display: none; }
+
+.lyrics-panel .lyrics-summary::after {
+  content: "";
+  border-right: 2px solid var(--lyrics-accent);
+  border-bottom: 2px solid var(--lyrics-accent);
+  display: inline-block;
+  height: 0.5rem;
+  margin-left: 0.5rem;
+  transform: rotate(45deg);
+  transition: transform 0.15s ease;
+  width: 0.5rem;
+}
+
+.lyrics-panel[open] .lyrics-summary::after {
+  transform: rotate(-135deg);
+}
+
+.lyrics-panel .lyrics-summary:focus-visible {
+  outline: 2px solid var(--lyrics-focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.lyrics-panel .lyrics-summary-label {
+  flex: 1;
+}
+
+.lyrics-panel .lyrics-count {
+  color: var(--lyrics-muted);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.lyrics-panel .lyrics-body {
+  border-top: 1px solid var(--lyrics-border);
+  padding: 1rem 1.25rem 1.1rem;
+}
+
+.lyrics-panel .lyrics-verses {
+  list-style-position: outside;
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.lyrics-panel .lyrics-verses > li::marker {
+  color: var(--lyrics-muted);
+  font-weight: 600;
+}
+
+.lyrics-panel .lyrics-verse {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin: 0 0 1rem;
+  white-space: pre-line;
+}
+
+.lyrics-panel .lyrics-verses > li.lyrics-verse:last-child {
+  margin-bottom: 0;
+}
+
+.lyrics-panel .lyrics-copy {
+  background: transparent;
+  border: 1px solid var(--lyrics-border);
+  border-radius: 4px;
+  color: var(--lyrics-text);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.75rem;
+}
+
+.lyrics-panel .lyrics-copy:hover,
+.lyrics-panel .lyrics-copy:focus-visible {
+  background: #efe9db;
+  outline: none;
+}
+
+.lyrics-panel .lyrics-copy:focus-visible {
+  outline: 2px solid var(--lyrics-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ── Print: always expanded, no copy button ── */
+@media print {
+  .lyrics-panel { border: none; background: transparent; }
+  .lyrics-panel .lyrics-summary::after { display: none; }
+  .lyrics-panel .lyrics-body { display: block !important; border-top: none; padding: 0.5rem 0 0; }
+  .lyrics-panel .lyrics-copy { display: none; }
+}
+
+/* ── High-contrast overrides ── */
+[data-contrast="high"] {
+  --lyrics-bg:          #ffffff;
+  --lyrics-border:      #000000;
+  --lyrics-text:        #000000;
+  --lyrics-muted:       #333333;
+  --lyrics-accent:      #000000;
+  --lyrics-focus-ring:  #000000;
+}
+
+@media (prefers-contrast: more) {
+  :root:not([data-contrast]) {
+    --lyrics-bg:          #ffffff;
+    --lyrics-border:      #000000;
+    --lyrics-text:        #000000;
+    --lyrics-muted:       #333333;
+    --lyrics-accent:      #000000;
+    --lyrics-focus-ring:  #000000;
+  }
+}
