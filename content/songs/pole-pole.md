@@ -113,6 +113,8 @@ Provide students a choice board of animals native to Africa, with pictures of ea
 
 A cultural lesson is [provided by NAfME](https://nafme.org/wp-content/uploads/2020/01/Pole-Pole-FINAL.pdf), created by [Jennifer Bailey](https://singtokids.com).
 
+![Collage of  Animals to place into Pole Pole](/images/uploads/Pole%20Pole%20Animals.png "Collage of  Animals to place into Pole Pole")
+
 <u>**Recording</u>**
 
 A recording of Ella Jenkins singing the song is available on [Youtube](https://www.youtube.com/watch?v=3-EUxwowtIs).
