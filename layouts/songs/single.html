@@ -32,7 +32,9 @@
     </dl>
 
     {{ if or .Params.tonal_concepts .Params.rhythmic_concepts .Params.activity_types .Params.social_concepts .Params.movement_concepts .Params.supports_adaptations .Params.language_origins }}
-    <div class="song-concepts">
+    <details class="song-concepts-details">
+      <summary class="song-concepts-summary">Curriculum concepts</summary>
+      <div class="song-concepts">
       {{ with .Params.tonal_concepts }}
       <div class="concept-group" role="group" aria-labelledby="concept-tonal">
         <span class="filter-label" id="concept-tonal">Tonal concepts</span>
@@ -89,7 +91,9 @@
         </div>
       </div>
       {{ end }}
-    </div>
+      </div>
+    </details>
+    <script>if (!window.matchMedia('(max-width: 640px)').matches) { document.querySelector('.song-concepts-details').setAttribute('open', ''); }</script>
     {{ end }}
 
     {{- $scores   := .Params.abc_scores -}}
@@ -133,6 +137,8 @@
         <link rel="stylesheet" href="/css/lyrics-panel.css">
         <script src="/js/lyrics.js" defer></script>
       {{- end -}}
+
+      <div class="song-notation-block">
 
       {{- if and $hasNote $abc -}}
 
@@ -553,11 +559,9 @@
         </script>
 
       {{- end -}}
+      {{ if $hasNote }}<div class="lyrics-panel-mount" data-song-uid="{{ $uid }}"></div>{{ end }}
+      </div>{{/* end .song-notation-block */}}
     {{- end }}
-
-    {{ if $hasNote }}
-    <div class="lyrics-panel-mount" data-song-uid="{{ $uid }}"></div>
-    {{ end }}
 
     {{ with .Content }}
     <div class="post-content">

@@ -523,6 +523,51 @@ img {
   border-left: 2px solid var(--teal);
 }
 
+/* --- Concepts disclosure (details/summary) --- */
+
+/* On desktop: hide the summary toggle; content is always visible via open attr */
+.song-concepts-details > summary {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .song-concepts-details > summary {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.5rem 0;
+    margin-bottom: 0.75rem;
+    user-select: none;
+  }
+  .song-concepts-details > summary::-webkit-details-marker { display: none; }
+  .song-concepts-details > summary::after {
+    content: "▾";
+    font-size: 0.75rem;
+    transition: transform 0.15s ease;
+  }
+  .song-concepts-details[open] > summary::after {
+    transform: rotate(-180deg);
+  }
+
+  /* Mobile flex ordering: push notation above concept tags */
+  article.song-single {
+    display: flex;
+    flex-direction: column;
+  }
+  article.song-single > h1               { order: 1; }
+  article.song-single > .song-details    { order: 2; }
+  article.song-single > .song-notation-block { order: 3; }
+  article.song-single > .song-concepts-details { order: 4; }
+  article.song-single > .post-content    { order: 5; }
+}
+
 /* --- Song single --- */
 
 .song-back {
