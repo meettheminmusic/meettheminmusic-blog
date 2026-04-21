@@ -49,7 +49,7 @@ abc_scores:
     notation: |-
       %%textfont arial italic 11
       X:1
-      T:Obswisana
+      T:Obwisana
       M:4/4
       L:1/8
       C:arr. P. Eric Bottorff
@@ -74,7 +74,7 @@ abc_scores:
     notation: |-
       %%textfont arial italic 11
       X:1
-      T:Obswisana
+      T:Obwisana
       M:2/4
       L:1/16
       C:arr. P. Eric Bottorff
