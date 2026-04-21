@@ -128,15 +128,20 @@
 
 /* ---------------------------------------------------------
    Ghost / secondary button (Save score)
-   Pushed to the right end of the controls bar via margin-left: auto
    --------------------------------------------------------- */
 .abc-player-btn--ghost {
   background: transparent;
   color: var(--abc-charcoal);
   border-color: rgba(44,44,42,0.35);
   opacity: 0.65;
-  margin-left: auto;
   box-shadow: 0 0 0 2px rgba(15,110,86,0.18), 0 0 8px 0 rgba(15,110,86,0.13);
+}
+
+/* Save score is a direct child of .abc-player, sits below the score */
+.abc-player-btn--save {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
 .abc-player-btn--ghost:hover:not(:disabled) {
@@ -165,21 +170,40 @@
   white-space: nowrap;
 }
 
-.abc-player-tempo input[type="range"] {
-  width: 90px;
-  accent-color: var(--abc-teal);
+.abc-player-tempo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 0;
+  border: 0.5px solid var(--abc-teal);
+  border-radius: var(--abc-border-radius);
+  background: var(--abc-teal-tint);
+  color: var(--abc-teal);
+  font-size: 1rem;
+  font-family: var(--abc-font);
+  line-height: 1;
   cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
 }
 
-.abc-player-tempo input[type="range"]:disabled {
+.abc-player-tempo-btn:hover:not(:disabled) {
+  background: var(--abc-teal);
+  color: #fff;
+}
+
+.abc-player-tempo-btn:disabled {
   opacity: 0.45;
   cursor: default;
 }
 
 .abc-player-tempo-value {
-  font-size: 0.78rem;
-  min-width: 2.2rem;
-  text-align: right;
+  font-size: 0.82rem;
+  font-weight: 600;
+  min-width: 2.4rem;
+  text-align: center;
   color: var(--abc-charcoal);
 }
 
@@ -375,24 +399,44 @@
    Responsive: narrow screens stack controls vertically
    --------------------------------------------------------- */
 @media (max-width: 600px) {
-  .abc-player-controls {
+  .abc-tabs {
+    margin: 0.75rem 0 0.5rem;
+  }
+
+  .abc-player {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+  }
+
+  .abc-player-controls {
+    order: -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.5rem;
+    border-top: none;
+    border-bottom: 0.5px solid var(--neutral-100, #D3D1C7);
+    padding: 0.5rem 0;
   }
 
   .abc-player-btn {
-    width: 100%;
+    flex: 0 0 100%;
     text-align: center;
   }
 
-  .abc-player-btn--ghost {
-    margin-left: 0;
-    width: 100%;
-    text-align: center;
+  .abc-player-tempo,
+  .abc-player-key,
+  .abc-player-octave {
+    flex: 1 1 0;
+    min-width: 0;
   }
 
-  .abc-player-tempo input[type="range"] {
-    width: 120px;
+  .abc-player-tempo label {
+    display: none;
+  }
+
+  .abc-player-key label,
+  .abc-player-octave label {
+    font-size: 0.68rem;
   }
 }

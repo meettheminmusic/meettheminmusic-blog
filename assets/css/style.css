@@ -531,10 +531,17 @@ img {
 }
 
 @media (max-width: 640px) {
+  .song-concepts-details {
+    background: var(--lyrics-bg, #fbf8f2);
+    border: 1.5px solid var(--lyrics-border, #d9d2c3);
+    border-radius: 6px;
+    margin-top: 1.25rem;
+  }
+
   .song-concepts-details > summary {
     display: flex;
-    align-items: center;
-    gap: 0.4rem;
+    align-items: baseline;
+    justify-content: space-between;
     cursor: pointer;
     list-style: none;
     font-size: 0.8125rem;
@@ -542,18 +549,29 @@ img {
     color: var(--warm-gray);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    padding: 0.5rem 0;
-    margin-bottom: 0.75rem;
+    padding: 0.75rem 1.1rem;
     user-select: none;
   }
   .song-concepts-details > summary::-webkit-details-marker { display: none; }
   .song-concepts-details > summary::after {
-    content: "▾";
-    font-size: 0.75rem;
+    content: "";
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    display: inline-block;
+    height: 0.5rem;
+    width: 0.5rem;
+    transform: rotate(45deg);
     transition: transform 0.15s ease;
+    flex-shrink: 0;
   }
   .song-concepts-details[open] > summary::after {
-    transform: rotate(-180deg);
+    transform: rotate(-135deg);
+  }
+
+  .song-concepts-details > .song-concepts {
+    border-top: 1px solid var(--lyrics-border, #d9d2c3);
+    padding: 1rem 1.1rem 1.1rem;
+    margin-bottom: 0;
   }
 
   /* Mobile flex ordering: push notation above concept tags */

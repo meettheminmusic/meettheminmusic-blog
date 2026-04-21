@@ -318,27 +318,28 @@
 
     var tempoLabel = document.createElement('label');
     tempoLabel.textContent = 'Tempo';
-    var tempoLabelId = 'tempo-label-' + player.id;
-    tempoLabel.setAttribute('for', 'tempo-' + player.id);
-    tempoLabel.id = tempoLabelId;
 
-    var tempoSlider = document.createElement('input');
-    tempoSlider.type  = 'range';
-    tempoSlider.id    = 'tempo-' + player.id;
-    tempoSlider.min   = '40';
-    tempoSlider.max   = '200';
-    tempoSlider.step  = '1';
-    tempoSlider.value = String(player.currentBpm);
-    tempoSlider.setAttribute('aria-labelledby', tempoLabelId);
+    var tempoMinus = document.createElement('button');
+    tempoMinus.type      = 'button';
+    tempoMinus.className = 'abc-player-tempo-btn';
+    tempoMinus.textContent = '−';
+    tempoMinus.setAttribute('aria-label', 'Decrease tempo');
 
     var tempoDisplay = document.createElement('span');
     tempoDisplay.className   = 'abc-player-tempo-value';
     tempoDisplay.textContent = String(player.currentBpm);
     tempoDisplay.setAttribute('aria-live', 'polite');
 
+    var tempoPlus = document.createElement('button');
+    tempoPlus.type      = 'button';
+    tempoPlus.className = 'abc-player-tempo-btn';
+    tempoPlus.textContent = '+';
+    tempoPlus.setAttribute('aria-label', 'Increase tempo');
+
     tempoWrap.appendChild(tempoLabel);
-    tempoWrap.appendChild(tempoSlider);
+    tempoWrap.appendChild(tempoMinus);
     tempoWrap.appendChild(tempoDisplay);
+    tempoWrap.appendChild(tempoPlus);
 
     // --- Key dropdown ---
     var keyWrap  = document.createElement('div');
@@ -450,7 +451,10 @@
     controlsEl.appendChild(tempoWrap);
     controlsEl.appendChild(keyWrap);
     controlsEl.appendChild(octaveWrap);
-    controlsEl.appendChild(dlBtn);
+
+    // Save score lives outside controls so CSS can place it below the score
+    dlBtn.className = 'abc-player-btn abc-player-btn--ghost abc-player-btn--save';
+    container.appendChild(dlBtn);
 
     // ----------------------------------------------------------------
     // Event: Play / Stop
@@ -465,22 +469,21 @@
     });
 
     // ----------------------------------------------------------------
-    // Event: Tempo slider
+    // Event: Tempo +/- buttons
     // ----------------------------------------------------------------
-    tempoSlider.addEventListener('input', function () {
-      player.currentBpm       = parseInt(tempoSlider.value, 10);
-      tempoDisplay.textContent = String(player.currentBpm);
-    });
-
-    tempoSlider.addEventListener('change', function () {
-      player.currentBpm       = parseInt(tempoSlider.value, 10);
-      tempoDisplay.textContent = String(player.currentBpm);
+    function _adjustTempo(delta) {
+      var next = Math.min(200, Math.max(40, player.currentBpm + delta));
+      if (next === player.currentBpm) { return; }
+      player.currentBpm        = next;
+      tempoDisplay.textContent = String(next);
       if (player.state === 'PLAYING') {
-        // Stop → rebuild synth with new tempo → restart
         _stopPlayback(player);
         _startPlayback(player, container, btn);
       }
-    });
+    }
+
+    tempoMinus.addEventListener('click', function () { _adjustTempo(-5); });
+    tempoPlus.addEventListener('click',  function () { _adjustTempo(5);  });
 
     // ----------------------------------------------------------------
     // Event: Key selector
@@ -501,7 +504,8 @@
     // Store references on the player object for use in playback functions
     player._btn           = btn;
     player._audioHint     = audioHint;
-    player._tempoSlider   = tempoSlider;
+    player._tempoMinus    = tempoMinus;
+    player._tempoPlus     = tempoPlus;
     player._tempoDisplay  = tempoDisplay;
     player._keySelect     = keySelect;
     player._octaveSelect  = octaveSelect;
@@ -544,7 +548,8 @@
       player._btn.disabled      = disabled;
       player._btn.textContent   = (state === 'PLAYING') ? 'Stop' : 'Play';
     }
-    if (player._tempoSlider)  { player._tempoSlider.disabled  = disabled; }
+    if (player._tempoMinus)   { player._tempoMinus.disabled   = disabled; }
+    if (player._tempoPlus)    { player._tempoPlus.disabled    = disabled; }
     if (player._keySelect)    { player._keySelect.disabled    = disabled; }
     if (player._octaveSelect) { player._octaveSelect.disabled = disabled; }
     if (player._dlBtn)        { player._dlBtn.disabled        = disabled; }
