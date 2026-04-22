@@ -68,7 +68,7 @@ abc_scores: []
 ---
 
 {{< callout title="Language Note" >}}
-This song comes from Morocco and uses  Moroccan Arabic.  As a result of French influence, Moroccan Arabic is very different and, at times, unintelligible to speakers of Modern/Egyptian Arabic.
+This song comes from Morocco and uses  Moroccan Arabic.  As a result of French influence, Moroccan Arabic is very different and, at times, inaccessible to speakers of other forms of Arabic.
 <p>When presenting this song to students, it would be better to describe it as "Moroccan" instead of "Arabic" to avoid cultural disambiguation.
 <p>I have attempted to check aspects of this song and language with my Arabic speaking and culturally Arabic university students.
 {{< /callout >}}
