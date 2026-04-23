@@ -57,3 +57,21 @@ abc_image: ''
 abc_tempo: 120
 abc_scores: []
 ---
+
+<u>**Activity**</u>
+
+I introduce this by saying "the points of this song is that it is challenging. It is hard to keep up with the hand movements!"  _Productive Struggle is important!<p>_
+
+| Word | Movement |
+| --- | --- |
+| Bim | Both hand tap legs |
+| Bum | Clap |
+| Biddy Biddy | Snap or tap thumb and fingers |
+
+> A lot of kids can't snap.   I call tapping the thumb and fingers "crab clapping."  This also helps with speed.
+
+<u>**Extension**</u>
+As the teacher, you get a ton of practice. Kids will notice and ask how you are able to do it so fast.  Turn it into a math question!
+"I have been teaching this to 5 classes this week and I practiced it with you 10 times ... I got 50 practices this week. BUT! I have been teaching for 15 years ... "
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RbfyJNrGorY?si=NMi4HTY2rOs3pxZQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
