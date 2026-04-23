@@ -74,4 +74,8 @@ I introduce this by saying "the points of this song is that it is challenging. I
 As the teacher, you get a ton of practice. Kids will notice and ask how you are able to do it so fast.  Turn it into a math question!
 "I have been teaching this to 5 classes this week and I practiced it with you 10 times ... I got 50 practices this week. BUT! I have been teaching for 15 years ... "
 
+<u>**Example Teaching**</u>
+
+This video just shows the first few minutes of doing rote practice.  The goal is to talk to kids about what their brains are doing when they try hard things, start meta-cognition, and getting students to discover ways to push through the challenges.  I am not the "sage on the stage."
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/RbfyJNrGorY?si=NMi4HTY2rOs3pxZQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
