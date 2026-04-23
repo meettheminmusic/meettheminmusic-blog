@@ -119,12 +119,12 @@
         </div>
         {{ if or .Params.tonal_concepts .Params.rhythmic_concepts .Params.activity_types .Params.social_concepts .Params.movement_concepts .Params.supports_adaptations }}
         <div class="song-concepts">
-          {{ range .Params.tonal_concepts }}<span class="tag">{{ . }}</span> {{ end }}
-          {{ range .Params.rhythmic_concepts }}<span class="tag">{{ . }}</span> {{ end }}
-          {{ range .Params.activity_types }}<span class="tag">{{ . }}</span> {{ end }}
-          {{ range .Params.social_concepts }}<span class="tag">{{ . }}</span> {{ end }}
-          {{ range .Params.movement_concepts }}<span class="tag">{{ . }}</span> {{ end }}
-          {{ range .Params.supports_adaptations }}<span class="tag">{{ . }}</span> {{ end }}
+          {{ range .Params.tonal_concepts }}<button class="tag" data-group="tonal_concepts" data-value="{{ . }}">{{ . }}</button> {{ end }}
+          {{ range .Params.rhythmic_concepts }}<button class="tag" data-group="rhythmic_concepts" data-value="{{ . }}">{{ . }}</button> {{ end }}
+          {{ range .Params.activity_types }}<button class="tag" data-group="activity_types" data-value="{{ . }}">{{ . }}</button> {{ end }}
+          {{ range .Params.social_concepts }}<button class="tag" data-group="social_concepts" data-value="{{ . }}">{{ . }}</button> {{ end }}
+          {{ range .Params.movement_concepts }}<button class="tag" data-group="movement_concepts" data-value="{{ . }}">{{ . }}</button> {{ end }}
+          {{ range .Params.supports_adaptations }}<button class="tag" data-group="supports_adaptations" data-value="{{ . }}">{{ . }}</button> {{ end }}
         </div>
         {{ end }}
       </div>
@@ -258,6 +258,20 @@
   });
 
   hadParams ? applyFilters() : updateCount(cards.length);
+
+  document.getElementById('song-list').addEventListener('click', e => {
+    const tag = e.target.closest('button.tag[data-group]');
+    if (!tag) return;
+    const container = document.querySelector(`[data-filter="${tag.dataset.group}"]`);
+    if (!container) return;
+    const btn = Array.from(container.querySelectorAll('.filter-btn'))
+      .find(b => b.dataset.value.toLowerCase() === tag.dataset.value.toLowerCase());
+    if (!btn) return;
+    btn.click();
+    const details = btn.closest('details.filter-group');
+    if (details) { details.open = true; localStorage.setItem('filter-' + details.id, 'open'); }
+    document.getElementById('library-filters').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
 })();
 </script>
 {{ end }}

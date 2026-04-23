@@ -216,6 +216,7 @@ img {
   text-decoration: none;
 }
 .tag:hover { background: #C0E8D9; text-decoration: none; }
+button.tag { cursor: pointer; font: inherit; border: none; }
 
 /* --- Buttons --- */
 
