@@ -1,0 +1,65 @@
+<div class="sticky-email-bar" id="sticky-email-bar" role="complementary" aria-label="Newsletter signup">
+  <div class="sticky-email-bar__inner">
+    <p class="sticky-email-bar__label">Want to teach songs like this one?</p>
+    <form class="sticky-bar-form" id="sticky-bar-form"
+          action="https://buttondown.com/api/emails/embed-subscribe/meettheminmusic"
+          method="post"
+          aria-label="Email signup">
+      <label for="sticky-bar-email" class="sr-only">Your email address</label>
+      <input id="sticky-bar-email" type="email" name="email"
+             placeholder="Your email address"
+             required autocomplete="email" aria-required="true">
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="sticky-bar-confirm" id="sticky-bar-confirm" hidden aria-live="polite">You're in. I'll be in touch.</p>
+    <button class="sticky-dismiss" id="sticky-dismiss" type="button" aria-label="Dismiss">&times;</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var bar     = document.getElementById('sticky-email-bar');
+  var form    = document.getElementById('sticky-bar-form');
+  var confirm = document.getElementById('sticky-bar-confirm');
+  var dismiss = document.getElementById('sticky-dismiss');
+
+  if (sessionStorage.getItem('sticky-bar-dismissed')) return;
+
+  var shown = false;
+
+  function showBar() {
+    if (!shown) {
+      shown = true;
+      bar.classList.add('is-visible');
+      window.removeEventListener('scroll', onScroll);
+    }
+  }
+
+  function onScroll() {
+    var docHeight = document.body.scrollHeight - window.innerHeight;
+    if (docHeight > 0 && window.scrollY / docHeight >= 0.15) showBar();
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  setTimeout(showBar, 7000);
+
+  dismiss.addEventListener('click', function () {
+    bar.classList.remove('is-visible');
+    sessionStorage.setItem('sticky-bar-dismissed', '1');
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+      .then(function () {
+        form.hidden = true;
+        confirm.hidden = false;
+        setTimeout(function () {
+          bar.classList.remove('is-visible');
+          sessionStorage.setItem('sticky-bar-dismissed', '1');
+        }, 3500);
+      })
+      .catch(function () { form.submit(); });
+  });
+}());
+</script>

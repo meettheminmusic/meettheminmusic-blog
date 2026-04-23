@@ -32,7 +32,7 @@
     </dl>
 
     {{ if or .Params.tonal_concepts .Params.rhythmic_concepts .Params.activity_types .Params.social_concepts .Params.movement_concepts .Params.supports_adaptations .Params.language_origins }}
-    <details class="song-concepts-details">
+    <details class="song-concepts-details" id="song-concepts-{{ .File.UniqueID }}">
       <summary class="song-concepts-summary">Curriculum concepts</summary>
       <div class="song-concepts">
       {{ with .Params.tonal_concepts }}
@@ -568,6 +568,40 @@
       {{ . }}
     </div>
     {{ end }}
+
+    <div class="song-inline-cta">
+      <p class="song-inline-cta__heading">Want more songs like this?</p>
+      <p class="song-inline-cta__desc">I add new entries with full adaptation notes regularly. No spam, just songs.</p>
+      <form class="inline-cta-form" id="inline-cta-form-{{ .File.UniqueID }}"
+            action="https://buttondown.com/api/emails/embed-subscribe/meettheminmusic"
+            method="post"
+            aria-label="Email signup">
+        <label for="inline-cta-email-{{ .File.UniqueID }}" class="sr-only">Your email address</label>
+        <input id="inline-cta-email-{{ .File.UniqueID }}" type="email" name="email"
+               placeholder="Your email address" required autocomplete="email" aria-required="true">
+        <button type="submit">Get new songs</button>
+      </form>
+      <p class="inline-cta-confirm" id="inline-cta-confirm-{{ .File.UniqueID }}" hidden aria-live="polite">You're in. I'll be in touch.</p>
+      <p class="inline-cta-reassurance">Free. Unsubscribe anytime.</p>
+    </div>
+    <script>
+    (function () {
+      var uid = '{{ .File.UniqueID }}';
+      var form = document.getElementById('inline-cta-form-' + uid);
+      var confirmEl = document.getElementById('inline-cta-confirm-' + uid);
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+          .then(function () {
+            form.hidden = true;
+            confirmEl.hidden = false;
+            sessionStorage.setItem('sticky-bar-dismissed', '1');
+          })
+          .catch(function () { form.submit(); });
+      });
+    }());
+    </script>
   </article>
 
   {{ partial "related-content.html" . }}
@@ -623,4 +657,5 @@
   });
 })();
 </script>
+{{ partial "sticky-email-bar.html" . }}
 {{ end }}
