@@ -7,7 +7,7 @@ featured: false
 description: Choosing songs designed for toddlers isn't neutral. Here's why age-appropriate repertoire is a dignity issue — and how to fix it without overhauling your program.
 tags: []
 categories: []
-image: ''
+image: /images/uploads/Dignity Hero.webp
 ---
 
 You've taught _Five Little Speckled Frogs_ a hundred times. You know exactly how it goes over: the movement, the call and response, the way reluctant kids start to participate. It works. That matters.
@@ -80,15 +80,15 @@ Age-appropriate song choice is part of transition planning. It is one of the mos
 
 This requires a few deliberate choices, made consistently.
 
-**Audit what you're already teaching.** Write down every song you've used with your self-contained classes this year. Next to each one, note the age range it was designed for. Then look at the list without explaining it to yourself. What do you see?
+\*\*Audit what you're already teaching.\*\* Write down every song you've used with your self-contained classes this year. Next to each one, note the age range it was designed for. Then look at the list without explaining it to yourself. What do you see?
 
-**Start with your general education curriculum.** Your self-contained students' grade-level peers are already learning specific songs. Those are your starting songs. Use them. Adapt the procedures - slow the pacing, add visual supports, build in more repetition, use a choice board - but begin from the same repertoire.
+\*\*Start with your general education curriculum.\*\* Your self-contained students' grade-level peers are already learning specific songs. Those are your starting songs. Use them. Adapt the procedures - slow the pacing, add visual supports, build in more repetition, use a choice board - but begin from the same repertoire.
 
-**Ask the student.** What music do they hear at home? In the car? What does their older sibling play too loud? Musical preference is not a prerequisite skill. Every student has one, and most students with disabilities have never been asked about theirs in a music classroom setting.
+\*\*Ask the student.\*\* What music do they hear at home? In the car? What does their older sibling play too loud? Musical preference is not a prerequisite skill. Every student has one, and most students with disabilities have never been asked about theirs in a music classroom setting.
 
-**Lean on folk songs.** Public domain folk repertoire is culturally rich, structurally simple, and adaptable across a wide range of abilities and ages. A well-chosen folk song works for a kindergartener and a fifth grader, for different reasons and with different expectations.  _The reason these songs have lasted is because they support language the way we speak it and culture the way we live it._
+\*\*Lean on folk songs.\*\* Public domain folk repertoire is culturally rich, structurally simple, and adaptable across a wide range of abilities and ages. A well-chosen folk song works for a kindergartener and a fifth grader, for different reasons and with different expectations.  _The reason these songs have lasted is because they support language the way we speak it and culture the way we live it._
 
-**Check yourself in the moment.** Before you press play or begin leading a song, ask one question: would I use this with my general education class at this grade level? If the answer is no, sit with that for a second before you proceed.
+\*\*Check yourself in the moment.\*\* Before you press play or begin leading a song, ask one question: would I use this with my general education class at this grade level? If the answer is no, sit with that for a second before you proceed.
 
 {{< callout title="A quick gut-check" >}} Before adding a song to your self-contained rotation, ask:
 
