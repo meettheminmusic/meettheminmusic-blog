@@ -22,7 +22,7 @@ Nobody selects a song to be unkind. That's what makes this conversation hard. It
 
 Music teachers who work with self-contained special education classes are, in most cases, figuring it out on their own. VanWeelden and Whipple (2014) surveyed over 1,100 music educators and found that fewer than one in four had completed any coursework specifically addressing music instruction for students with disabilities. The rest arrived at the self-contained classroom door having never been taught what to do when they got there.
 
-So teachers do what any reasonable person does when they're underprepared and a little scared: they reach for what feels manageable. Songs with simple, repetitive structures. Predictable call-and-response. Minimal demands on language or attention. Low stakes if something goes sideways.
+So teachers do what any reasonable person does when they're underprepared and a little scared: they reach for what feels manageable. Songs with super simple, repetitive structures. Minimal demands on language or attention. Low stakes if something goes sideways.
 
 Those songs exist. They work. And they were written for infants.
 
