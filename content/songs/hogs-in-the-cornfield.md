@@ -4,7 +4,7 @@ date: 2026-03-31
 card_image: /images/uploads/Hogs_in_the_Cornfield.webp
 rhythmic_concepts:
   - 1/16 Notes
-  - 1/8 Note
+  - 1/8 Notes
 activity_types:
   - Game
 social_concepts:
