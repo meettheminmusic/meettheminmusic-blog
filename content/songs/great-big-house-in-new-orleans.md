@@ -5,8 +5,8 @@ card_image: /images/uploads/great-big-house-in-new-orleans.png
 tonal_concepts:
   - Bordun
 rhythmic_concepts:
-  - 1/2 Note
-  - 1/8 Note
+  - 1/2 Notes
+  - 1/8 Notes
 activity_types:
   - Xylophone
 supports_adaptations:
