@@ -464,9 +464,21 @@ select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-col
 .footer-sep { opacity: 0.4; }
 
 @media (max-width: 600px) {
-  .main { padding: 12px 12px 60px; gap: 12px; }
+  .main { padding: 12px 12px 155px; gap: 12px; }
   .dur-btn { min-width: 52px; padding: 8px 8px; }
   .dur-symbol { font-size: 1.1rem; }
+  .notation-card {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 200;
+    border-radius: 12px 12px 0 0;
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -4px 18px rgba(0,0,0,.18);
+    padding: 8px 12px 10px;
+    max-height: 140px;
+    overflow-y: auto;
+  }
+  .notation-card .card-label { display: none; }
 }
 </style>
 </head>
@@ -571,7 +583,7 @@ select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-col
   </div>
 
   <!-- Notation preview -->
-  <div class="card">
+  <div class="card notation-card">
     <div class="card-label">Notation Preview</div>
     <div class="notation-wrap">
       <div id="notation-render">
@@ -872,7 +884,7 @@ function renderNotation() {
     return;
   }
 
-  var pw = Math.min(780, (wrap.parentElement.clientWidth || 820) - 40);
+  var pw = Math.min(780, (wrap.parentElement.clientWidth || window.innerWidth || 820) - 40);
   try {
     var result = ABCJS.renderAbc('notation-render', abc, {
       add_classes:   true,
