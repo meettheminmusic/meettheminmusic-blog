@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rhythm Builder | Meet Them in Music</title>
+<script src="https://cdn.jsdelivr.net/npm/abcjs@6.4.4/dist/abcjs-basic-min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f7f6f3;
+  --card: #ffffff;
+  --border: #e2ddd5;
+  --text: #1e2b24;
+  --text-muted: #6b6b60;
+  --accent: #3e7b56;
+  --accent-dark: #2b5c3e;
+  --accent-hover: #336648;
+  --accent-light: #e6f0ea;
+  --danger: #c0564b;
+  --radius: 6px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* Header */
+.app-header {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: var(--shadow);
+}
+.app-header h1 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.btn:hover { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #fff; }
+.btn-danger { border-color: #e0b5b2; color: var(--danger); }
+.btn-danger:hover { background: #fdf0ef; border-color: var(--danger); color: var(--danger); }
+
+.brand-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  line-height: 1.2;
+}
+.brand-wordmark { display: block; line-height: 1.3; }
+.brand-meet  { font-size: 1.05rem; font-weight: 500; color: var(--text); letter-spacing: -0.01em; }
+.brand-in    { font-size: 1.05rem; font-weight: 500; color: var(--accent); letter-spacing: -0.01em; }
+.brand-music { font-size: 1.05rem; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+.brand-sub   { font-size: 0.68rem; color: var(--text-muted); font-weight: 400; }
+.brand-logo:hover .brand-in { color: var(--accent-hover); }
+
+.back-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s;
+}
+.back-link:hover { color: var(--accent); }
+
+/* Layout */
+.main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+}
+.card-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+/* Settings */
+.settings-row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.setting-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.setting-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+select {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 0.875rem;
+  color: var(--text);
+  background: var(--bg);
+  font-family: inherit;
+  cursor: pointer;
+}
+select:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.tempo-range { width: 110px; cursor: pointer; accent-color: var(--accent); }
+.tempo-num { font-size: 0.875rem; font-weight: 700; color: var(--accent); min-width: 32px; text-align: right; }
+.tempo-unit { font-size: 0.75rem; color: var(--text-muted); }
+
+/* Duration palette */
+.palette-section { display: flex; flex-direction: column; gap: 10px; }
+.palette-row { display: flex; align-items: stretch; gap: 6px; flex-wrap: wrap; }
+.row-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  padding-top: 2px;
+}
+.dur-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 9px 11px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  background: var(--card);
+  font-family: inherit;
+  min-width: 62px;
+  transition: transform 0.1s, border-color 0.15s, background 0.15s;
+}
+.dur-btn:active { transform: scale(0.95); }
+.dur-btn.note { border-color: #c0d8d2; background: #f4f9f8; }
+.dur-btn.note:hover { border-color: var(--accent); background: var(--accent-light); }
+.dur-btn.rest { border-color: #d5cfc4; background: #f8f6f2; }
+.dur-btn.rest:hover { border-color: #9a8e78; background: #f0ece1; }
+
+@keyframes addedNote {
+  0%   { background: var(--accent); border-color: var(--accent); }
+  100% { background: #f4f9f8; border-color: #c0d8d2; }
+}
+@keyframes addedRest {
+  0%   { background: #9a8e78; border-color: #9a8e78; }
+  100% { background: #f8f6f2; border-color: #d5cfc4; }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%  { transform: translateX(-5px); }
+  60%  { transform: translateX(5px); }
+}
+.dur-btn.flash-note { animation: addedNote 0.35s ease forwards; }
+.dur-btn.flash-rest { animation: addedRest 0.35s ease forwards; }
+.dur-btn.shake-err  { animation: shake 0.3s ease; border-color: var(--danger) !important; }
+
+.dur-symbol { font-size: 1.3rem; line-height: 1; color: var(--text); }
+.dur-btn.rest .dur-symbol { opacity: 0.45; }
+.dur-name { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); text-align: center; }
+.dur-beats { font-size: 0.6rem; color: #aaa; }
+
+/* Note options (stem + beam) */
+.options-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.opt-group { display: flex; align-items: center; gap: 4px; }
+.opt-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-right: 2px;
+}
+.opt-btn {
+  padding: 4px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  background: var(--card);
+  color: var(--text-muted);
+  font-size: 0.775rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+.opt-btn:hover { border-color: var(--accent); color: var(--accent); }
+.opt-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.opt-hint { font-size: 0.67rem; color: var(--text-muted); }
+
+/* Measure progress */
+.measure-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.measure-title { font-size: 0.8rem; color: var(--text-muted); }
+.measure-count { font-size: 0.8rem; font-weight: 700; color: var(--accent); }
+.progress-track { height: 8px; background: #e8e4de; border-radius: 4px; overflow: hidden; margin-bottom: 14px; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.15s ease; }
+.progress-fill.overflow { background: var(--danger); }
+
+/* Beat tape */
+.beat-tape {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 50px;
+  align-items: flex-end;
+}
+.tape-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 18px 5px 4px;
+  background: #fdfcfa;
+}
+.beam-grp {
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  position: relative;
+}
+.beam-grp::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 2px;
+  right: 2px;
+  height: 5px;
+  background: var(--accent-dark);
+  border-radius: 3px;
+}
+.beam-grp .tape-chip { border-radius: 0; }
+.beam-grp .tape-chip:first-child { border-radius: 3px 0 0 3px; }
+.beam-grp .tape-chip:last-child  { border-radius: 0 3px 3px 0; }
+
+.tape-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  height: 28px;
+  min-width: 18px;
+}
+.tape-chip.note { background: var(--accent); color: #fff; }
+.tape-chip.rest { background: #cec9bd; color: #6b6560; }
+.tape-chip.clickable { cursor: pointer; }
+.tape-chip.clickable:hover { filter: brightness(1.18); }
+
+.chip-stem-ind {
+  position: absolute;
+  bottom: 1px;
+  right: 2px;
+  font-size: 0.42rem;
+  line-height: 1;
+  opacity: 0.65;
+  cursor: pointer;
+  color: rgba(255,255,255,0.9);
+  pointer-events: all;
+}
+.chip-stem-ind:hover { opacity: 1; }
+
+.tape-empty { color: var(--text-muted); font-size: 0.8rem; padding: 10px 0; }
+
+/* Action row */
+.action-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.action-row .spacer { flex: 1; }
+.bar-tally { font-size: 0.78rem; color: var(--text-muted); }
+
+/* Notation preview */
+.notation-wrap { min-height: 80px; overflow-x: auto; }
+.notation-empty {
+  text-align: center;
+  padding: 36px 20px;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Visibility toggles */
+.vis-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.vis-check {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+.vis-check input[type="checkbox"] {
+  accent-color: var(--accent);
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: #2c2c2c;
+  color: #fff;
+  padding: 9px 18px;
+  border-radius: 20px;
+  font-size: 0.8125rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 100;
+  white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 20px 24px 28px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+.footer-brand {
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+}
+.footer-brand:hover { color: var(--accent); }
+.footer-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+.footer-link:hover { color: var(--accent-hover); text-decoration: underline; }
+.footer-sep { opacity: 0.4; }
+
+@media (max-width: 600px) {
+  .main { padding: 12px 12px 60px; gap: 12px; }
+  .dur-btn { min-width: 52px; padding: 8px 8px; }
+  .dur-symbol { font-size: 1.1rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <a href="https://meettheminmusic.com" class="brand-logo">
+    <div class="brand-wordmark"><span class="brand-meet">Meet Them</span><span class="brand-in"> in </span><span class="brand-music">Music</span></div>
+    <div class="brand-sub">Rhythm Builder &bull; by Dr. P. Eric Bottorff</div>
+  </a>
+  <div class="header-actions">
+    <button id="play-btn" class="btn btn-primary">&#9654; Play</button>
+    <button id="stop-btn" class="btn" disabled>&#9632; Stop</button>
+    <button id="export-btn" class="btn">&#8595; Save PNG</button>
+    <button id="export-svg-btn" class="btn">&#8595; Save SVG</button>
+    <button id="copy-abc-btn" class="btn">&#128203; Copy ABC</button>
+    <a href="https://meettheminmusic.com" class="back-link">&#8592; meettheminmusic.com</a>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- Settings -->
+  <div class="card">
+    <div class="settings-row">
+      <div class="setting-group">
+        <label for="time-sig">Time Signature</label>
+        <select id="time-sig">
+          <option value="4/4">4/4</option>
+          <option value="3/4">3/4</option>
+          <option value="2/4">2/4</option>
+          <option value="6/8">6/8</option>
+          <option value="12/8">12/8</option>
+          <option value="2/2">2/2 (cut)</option>
+          <option value="5/4">5/4</option>
+          <option value="7/8">7/8</option>
+        </select>
+      </div>
+      <div class="setting-group">
+        <label for="tempo-slider">Tempo</label>
+        <input type="range" id="tempo-slider" class="tempo-range" min="40" max="208" value="100" step="2">
+        <span class="tempo-num" id="tempo-display">100</span>
+        <span class="tempo-unit">BPM</span>
+      </div>
+    </div>
+    <div class="vis-row">
+      <span class="opt-label">Show</span>
+      <label class="vis-check"><input type="checkbox" id="vis-tempo">           Tempo</label>
+      <label class="vis-check"><input type="checkbox" id="vis-timesig" checked> Time Sig</label>
+      <label class="vis-check"><input type="checkbox" id="vis-clef"    checked> Clef</label>
+      <label class="vis-check"><input type="checkbox" id="vis-barlines"checked> Bar Lines</label>
+    </div>
+  </div>
+
+  <!-- Duration palette + note options -->
+  <div class="card">
+    <div class="card-label">Add Notes &amp; Rests</div>
+    <div class="palette-section">
+      <div class="palette-row">
+        <span class="row-tag">Notes</span>
+        <div id="note-btns" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+      </div>
+      <div class="palette-row">
+        <span class="row-tag">Rests</span>
+        <div id="rest-btns" style="display:flex;gap:6px;flex-wrap:wrap;"></div>
+      </div>
+    </div>
+
+    <div class="options-row">
+      <div class="opt-group">
+        <span class="opt-label">Stem</span>
+        <button id="stem-up-btn"   class="opt-btn active" title="Stem up for next note">&#x2191; Up</button>
+        <button id="stem-down-btn" class="opt-btn"        title="Stem down for next note">&#x2193; Down</button>
+      </div>
+      <div class="opt-group">
+        <span class="opt-label">Beam</span>
+        <button id="beam-auto-btn"  class="opt-btn active" title="Auto-beam with adjacent eligible notes">Auto</button>
+        <button id="beam-break-btn" class="opt-btn"        title="Force a beam break before next note">Break</button>
+      </div>
+      <span class="opt-hint">&#x2191;&#x2193; badge on chip = flip stem &bull; click beamed chip = split beam</span>
+    </div>
+  </div>
+
+  <!-- Progress + tape + actions -->
+  <div class="card">
+    <div class="measure-header">
+      <span class="measure-title">Current Measure</span>
+      <span class="measure-count" id="beat-count">0 / 4</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+    <div class="beat-tape" id="beat-tape">
+      <span class="tape-empty">Your rhythm will appear here as you add notes.</span>
+    </div>
+    <div class="action-row">
+      <button id="undo-btn"  class="btn"          disabled>&#8617; Undo</button>
+      <button id="clear-btn" class="btn btn-danger" disabled>&#10005; Clear All</button>
+      <span class="spacer"></span>
+      <span class="bar-tally" id="bar-tally"></span>
+    </div>
+  </div>
+
+  <!-- Notation preview -->
+  <div class="card">
+    <div class="card-label">Notation Preview</div>
+    <div class="notation-wrap">
+      <div id="notation-render">
+        <div class="notation-empty">
+          Use the buttons above to build your rhythm.<br>
+          The notation will appear here automatically.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<footer class="site-footer">
+  <a href="https://meettheminmusic.com" class="footer-brand">Meet Them in Music</a>
+  <span class="footer-sep">&bull;</span>
+  <span>by Dr. P. Eric Bottorff</span>
+  <span class="footer-sep">&bull;</span>
+  <a href="https://meettheminmusic.com" class="footer-link">meettheminmusic.com</a>
+</footer>
+
+<script>
+// Duration definitions: beats = quarter-note units; abcMult appended to note letter (L:1/4 base)
+const DURATIONS = [
+  { id: 'whole',     label: 'Whole',     symbol: '○', beats: 4,    abcMult: '4',   short: 'W'   },
+  { id: 'half',      label: 'Half',      symbol: '◑', beats: 2,    abcMult: '2',   short: 'H'   },
+  { id: 'quarter',   label: 'Quarter',   symbol: '♩', beats: 1,    abcMult: '',    short: 'Q'   },
+  { id: 'dq',        label: 'Dot. ¼', symbol: '♩.', beats: 1.5,  abcMult: '3/2', short: 'Q.'  },
+  { id: 'eighth',    label: 'Eighth',    symbol: '♪', beats: 0.5,  abcMult: '/2',  short: '⅛' },
+  { id: 'de',        label: 'Dot. ⅛', symbol: '♪.', beats: 0.75, abcMult: '3/4', short: '⅛.' },
+  { id: 'sixteenth', label: '16th',      symbol: '♫', beats: 0.25, abcMult: '/4',  short: '16' },
+];
+
+// State — item shape: { id, label, symbol, beats, abcMult, short, isRest, stem, newBeamGroup }
+let sequence     = [];
+let barBeats     = 0;
+let currentTune  = null;
+let synthControl = null;
+let audioCtx     = null;
+let isPlaying    = false;
+let renderTimer  = null;
+let toastTimer   = null;
+
+let lastStem = 'up';     // 'up' | 'down'
+let beamMode = 'auto';   // 'auto' | 'break'
+
+// Helpers
+function getTimeSig() { return document.getElementById('time-sig').value; }
+function getTempo()   { return parseInt(document.getElementById('tempo-slider').value, 10); }
+
+function beatsPerBar() {
+  const [num, den] = getTimeSig().split('/').map(Number);
+  return num * (4 / den);
+}
+
+function toDisplayBeats(qb) {
+  const den = parseInt(getTimeSig().split('/')[1], 10);
+  return qb * (den / 4);
+}
+function bpbDisplay() { return parseInt(getTimeSig().split('/')[0], 10); }
+
+function near(a, b)   { return Math.abs(a - b) < 0.001; }
+function formatNum(n) { return n === Math.floor(n) ? String(n) : n.toFixed(2).replace(/\.?0+$/, ''); }
+
+function isBeamable(item) { return !item.isRest && item.beats < 1; }
+
+// Build palette
+function buildPalette() {
+  const noteWrap = document.getElementById('note-btns');
+  const restWrap = document.getElementById('rest-btns');
+  DURATIONS.forEach(function(dur) {
+    var bl = formatNum(dur.beats) + '♩';
+    noteWrap.appendChild(makeBtn(dur, false, bl));
+    restWrap.appendChild(makeBtn(dur, true,  bl));
+  });
+}
+
+function makeBtn(dur, isRest, beatLabel) {
+  var btn = document.createElement('button');
+  btn.className = 'dur-btn ' + (isRest ? 'rest' : 'note');
+  btn.title = (isRest ? dur.label + ' rest' : dur.label + ' note') + ' (' + beatLabel + ')';
+  btn.innerHTML =
+    '<span class="dur-symbol">' + dur.symbol + '</span>' +
+    '<span class="dur-name">'   + (isRest ? dur.label + ' rest' : dur.label) + '</span>' +
+    '<span class="dur-beats">'  + beatLabel + '</span>';
+  btn.addEventListener('click', function() { addItem(dur, isRest, btn); });
+  return btn;
+}
+
+// Stem / Beam UI
+function setStem(dir) {
+  lastStem = dir;
+  document.getElementById('stem-up-btn').classList.toggle('active',   dir === 'up');
+  document.getElementById('stem-down-btn').classList.toggle('active', dir === 'down');
+}
+
+function setBeamMode(mode) {
+  beamMode = mode;
+  document.getElementById('beam-auto-btn').classList.toggle('active',  mode === 'auto');
+  document.getElementById('beam-break-btn').classList.toggle('active', mode === 'break');
+}
+
+// Retroactive stem flip on a single chip
+function toggleStem(seqIdx) {
+  var item = sequence[seqIdx];
+  if (!item || item.isRest) return;
+  var newStem = (item.stem === 'down') ? 'up' : 'down';
+  sequence[seqIdx] = Object.assign({}, item, { stem: newStem });
+  refresh();
+}
+
+// Add / Undo / Clear
+function addItem(dur, isRest, btn) {
+  var bpb       = beatsPerBar();
+  var remaining = bpb - barBeats;
+
+  if (dur.beats > remaining + 0.001) {
+    triggerClass(btn, 'shake-err');
+    var disp = formatNum(toDisplayBeats(remaining));
+    showToast("Won't fit — " + disp + ' beat' + (disp !== '1' ? 's' : '') + ' left in this measure');
+    return;
+  }
+
+  var stem         = isRest ? null : lastStem;
+  var newBeamGroup = determineNewBeamGroup(dur, isRest);
+
+  sequence.push(Object.assign({}, dur, { isRest: isRest, stem: stem, newBeamGroup: newBeamGroup }));
+  barBeats += dur.beats;
+  if (near(barBeats, bpb)) barBeats = 0;
+
+  triggerClass(btn, isRest ? 'flash-rest' : 'flash-note');
+  refresh();
+}
+
+function determineNewBeamGroup(dur, isRest) {
+  if (isRest || dur.beats >= 1) return true;
+  if (beamMode === 'break')     return true;
+  if (sequence.length === 0)    return true;
+  if (barBeats === 0)           return true;
+  var prev = sequence[sequence.length - 1];
+  if (!isBeamable(prev))        return true;
+  return false;
+}
+
+// Toggle beam break before a specific chip
+function toggleBeam(seqIdx) {
+  if (seqIdx === 0) return;
+  var item = sequence[seqIdx];
+  if (!isBeamable(item)) return;
+
+  if (item.newBeamGroup) {
+    var prev = sequence[seqIdx - 1];
+    if (!isBeamable(prev)) {
+      showToast("Previous note isn't beamable — must be an eighth or shorter.");
+      return;
+    }
+  }
+
+  sequence[seqIdx] = Object.assign({}, item, { newBeamGroup: !item.newBeamGroup });
+  refresh();
+}
+
+function undo() {
+  if (!sequence.length) return;
+  sequence.pop();
+  recalcBarBeats();
+  refresh();
+}
+
+function clearAll() {
+  if (!sequence.length) return;
+  if (!confirm('Clear all notes and rests?')) return;
+  sequence = [];
+  barBeats = 0;
+  stopPlayback();
+  refresh();
+}
+
+function recalcBarBeats() {
+  var bpb = beatsPerBar();
+  var acc = 0;
+  for (var i = 0; i < sequence.length; i++) {
+    acc += sequence[i].beats;
+    if (near(acc, bpb)) acc = 0;
+  }
+  barBeats = acc;
+}
+
+// ABC generation
+function generateABC() {
+  if (!sequence.length) return null;
+
+  var timeSig = getTimeSig();
+  var tempo   = getTempo();
+  var bpb     = beatsPerBar();
+  var kField  = 'K:C clef=perc stafflines=0\n';
+
+  var hasDown = sequence.some(function(i) { return !i.isRest && i.stem === 'down'; });
+
+  if (!hasDown) {
+    var hdr = 'X:1\nT:\nM:' + timeSig + '\nL:1/4\nQ:' + tempo + '\nV:1 stem=up\n' + kField;
+    return hdr + buildVoiceBody(sequence, bpb);
+  }
+
+  // Mixed stems: two voices on one staff
+  var v1Seq = sequence.map(function(i) {
+    return (!i.isRest && i.stem === 'down') ? Object.assign({}, i, { _sp: true }) : i;
+  });
+  var v2Seq = sequence.map(function(i) {
+    return (!i.isRest && i.stem === 'down') ? i : Object.assign({}, i, { _sp: true });
+  });
+
+  var hdr2 = 'X:1\nT:\nM:' + timeSig + '\nL:1/4\nQ:' + tempo +
+    '\n%%staves (1 2)\nV:1 stem=up\nV:2 stem=down\n' + kField;
+
+  return hdr2 +
+    '[V:1] ' + buildVoiceBody(v1Seq, bpb) + '\n' +
+    '[V:2] ' + buildVoiceBody(v2Seq, bpb);
+}
+
+function buildVoiceBody(items, bpb) {
+  var body         = '';
+  var barAcc       = 0;
+  var afterBarline = true;
+
+  for (var i = 0; i < items.length; i++) {
+    var item   = items[i];
+    var spacer = !!item._sp;
+    var prev   = i > 0 ? items[i - 1] : null;
+
+    var canBeam = !spacer && isBeamable(item) && !item.newBeamGroup && !afterBarline &&
+                  prev && !prev._sp && isBeamable(prev);
+    if (!afterBarline && !canBeam) body += ' ';
+    afterBarline = false;
+
+    body += (spacer ? 'x' : item.isRest ? 'z' : 'B') + item.abcMult;
+
+    barAcc += item.beats;
+    if (near(barAcc, bpb)) {
+      body += ' |';
+      barAcc       = 0;
+      afterBarline = true;
+    }
+  }
+
+  return body.endsWith('|') ? body + ']' : body + ' |]';
+}
+
+// Visibility overrides
+var VIS_RULES = [
+  { id: 'vis-tempo',    cls: 'abcjs-tempo'          },
+  { id: 'vis-timesig',  cls: 'abcjs-time-signature' },
+  { id: 'vis-clef',     cls: 'abcjs-clef'           },
+  { id: 'vis-barlines', cls: 'abcjs-bar'            },
+];
+
+function applyVisibilityOverrides() {
+  var css = '';
+  VIS_RULES.forEach(function(rule) {
+    if (!document.getElementById(rule.id).checked) {
+      css += '#notation-render .' + rule.cls + ' { visibility: hidden; }\n';
+    }
+  });
+  var style = document.getElementById('vis-style');
+  if (!style) {
+    style = document.createElement('style');
+    style.id = 'vis-style';
+    document.head.appendChild(style);
+  }
+  style.textContent = css;
+}
+
+function applyVisibilityToSvg(svg) {
+  VIS_RULES.forEach(function(rule) {
+    if (!document.getElementById(rule.id).checked) {
+      svg.querySelectorAll('.' + rule.cls).forEach(function(el) {
+        el.style.setProperty('visibility', 'hidden', 'important');
+      });
+    }
+  });
+}
+
+// Render notation
+function scheduleRender() {
+  clearTimeout(renderTimer);
+  renderTimer = setTimeout(renderNotation, 120);
+}
+
+function renderNotation() {
+  var wrap = document.getElementById('notation-render');
+  var abc  = generateABC();
+
+  if (!abc) {
+    wrap.innerHTML = '<div class="notation-empty">Use the buttons above to build your rhythm.<br>The notation will appear here automatically.</div>';
+    currentTune = null;
+    return;
+  }
+
+  var pw = Math.min(780, (wrap.parentElement.clientWidth || 820) - 40);
+  try {
+    var result = ABCJS.renderAbc('notation-render', abc, {
+      add_classes:   true,
+      responsive:    'resize',
+      staffwidth:    pw,
+      paddingleft:   20,
+      paddingright:  20,
+      paddingtop:    20,
+      paddingbottom: 14,
+      scale:         1.4,
+    });
+    currentTune = result && result[0] ? result[0] : null;
+    applyVisibilityOverrides();
+  } catch (e) {
+    console.warn('ABCJS render error:', e);
+  }
+}
+
+// UI refresh
+function refresh() {
+  var bpb = beatsPerBar();
+  var pct = Math.min(100, (barBeats / bpb) * 100);
+
+  var fill = document.getElementById('progress-fill');
+  fill.style.width = pct + '%';
+  fill.classList.toggle('overflow', barBeats > bpb + 0.001);
+
+  document.getElementById('beat-count').textContent =
+    formatNum(toDisplayBeats(barBeats)) + ' / ' + bpbDisplay();
+
+  renderTape();
+
+  var bars = 0, acc = 0;
+  for (var i = 0; i < sequence.length; i++) {
+    acc += sequence[i].beats;
+    if (near(acc, bpb)) { bars++; acc = 0; }
+  }
+  var tally = document.getElementById('bar-tally');
+  tally.textContent = sequence.length
+    ? bars + ' bar' + (bars !== 1 ? 's' : '') + (acc > 0.001 ? ' + partial' : '')
+    : '';
+
+  document.getElementById('undo-btn').disabled  = sequence.length === 0;
+  document.getElementById('clear-btn').disabled = sequence.length === 0;
+
+  scheduleRender();
+}
+
+// Beat tape
+function renderTape() {
+  var tape = document.getElementById('beat-tape');
+  tape.innerHTML = '';
+
+  if (!sequence.length) {
+    tape.innerHTML = '<span class="tape-empty">Your rhythm will appear here as you add notes.</span>';
+    return;
+  }
+
+  var bpb        = beatsPerBar();
+  var barEntries = [];
+  var barAcc     = 0;
+
+  function flushBar(entries) {
+    var barDiv = document.createElement('div');
+    barDiv.className = 'tape-bar';
+
+    computeBeamGroups(entries).forEach(function(group) {
+      if (group.beamable && group.entries.length >= 2) {
+        var grpDiv = document.createElement('div');
+        grpDiv.className = 'beam-grp';
+        group.entries.forEach(function(e) { grpDiv.appendChild(makeChip(e.item, e.seqIdx)); });
+        barDiv.appendChild(grpDiv);
+      } else {
+        group.entries.forEach(function(e) { barDiv.appendChild(makeChip(e.item, e.seqIdx)); });
+      }
+    });
+
+    tape.appendChild(barDiv);
+  }
+
+  for (var i = 0; i < sequence.length; i++) {
+    barEntries.push({ item: sequence[i], seqIdx: i });
+    barAcc += sequence[i].beats;
+    if (near(barAcc, bpb)) {
+      flushBar(barEntries);
+      barEntries = [];
+      barAcc     = 0;
+    }
+  }
+  if (barEntries.length) flushBar(barEntries);
+}
+
+function computeBeamGroups(entries) {
+  var groups  = [];
+  var current = null;
+  entries.forEach(function(e) {
+    var bm = isBeamable(e.item);
+    if (!bm || e.item.newBeamGroup || !current) {
+      if (current) { groups.push(current); current = null; }
+      if (bm) {
+        current = { beamable: true,  entries: [e] };
+      } else {
+        groups.push({ beamable: false, entries: [e] });
+      }
+    } else {
+      current.entries.push(e);
+    }
+  });
+  if (current) groups.push(current);
+  return groups;
+}
+
+function makeChip(item, seqIdx) {
+  var chip = document.createElement('div');
+  chip.className = 'tape-chip ' + (item.isRest ? 'rest' : 'note');
+
+  var bpb = beatsPerBar();
+  var w   = Math.max(18, Math.min(120, Math.round((item.beats / bpb) * 140)));
+  chip.style.width = w + 'px';
+  chip.textContent = item.short;
+
+  var titleParts = [(item.isRest ? 'Rest' : 'Note') + ': ' + item.label];
+  if (!item.isRest) titleParts.push('Stem: ' + item.stem);
+
+  if (!item.isRest) {
+    var ind = document.createElement('span');
+    ind.className = 'chip-stem-ind';
+    ind.textContent = item.stem === 'down' ? '↓' : '↑';
+    ind.title = 'Click to flip stem';
+    ind.addEventListener('click', (function(idx) {
+      return function(e) { e.stopPropagation(); toggleStem(idx); };
+    }(seqIdx)));
+    chip.appendChild(ind);
+  }
+
+  if (isBeamable(item) && seqIdx > 0) {
+    chip.classList.add('clickable');
+    var action = item.newBeamGroup ? 'Join beam with previous' : 'Split beam here';
+    titleParts.push(action + ' → click to toggle');
+    chip.addEventListener('click', (function(idx) {
+      return function() { toggleBeam(idx); };
+    }(seqIdx)));
+  }
+
+  chip.title = titleParts.join('\n');
+  return chip;
+}
+
+// Playback
+async function togglePlay() {
+  if (isPlaying) { stopPlayback(); return; }
+  if (!currentTune) { showToast('Add some notes first!'); return; }
+
+  var playBtn = document.getElementById('play-btn');
+  var stopBtn = document.getElementById('stop-btn');
+
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') await audioCtx.resume();
+
+    playBtn.textContent = '▶ Loading…';
+    playBtn.disabled    = true;
+
+    var synth = new ABCJS.synth.CreateSynth();
+    await synth.init({
+      audioContext: audioCtx,
+      visualObj:   currentTune,
+      options: { onEnded: function() { if (isPlaying) stopPlayback(); } }
+    });
+    await synth.prime();
+    synth.start();
+
+    synthControl        = synth;
+    isPlaying           = true;
+    playBtn.textContent = '▶ Playing…';
+    playBtn.disabled    = true;
+    stopBtn.disabled    = false;
+
+  } catch (err) {
+    console.error('Playback error:', err);
+    showToast('Playback failed — check browser audio permissions');
+    playBtn.textContent = '▶ Play';
+    playBtn.disabled    = false;
+    isPlaying = false;
+  }
+}
+
+function stopPlayback() {
+  if (synthControl) { try { synthControl.stop(); } catch(e) {} synthControl = null; }
+  isPlaying = false;
+  var playBtn = document.getElementById('play-btn');
+  var stopBtn = document.getElementById('stop-btn');
+  playBtn.textContent = '▶ Play';
+  playBtn.disabled    = false;
+  stopBtn.disabled    = true;
+}
+
+// Export PNG
+function exportPNG() {
+  var abc = generateABC();
+  if (!abc) { showToast('Nothing to export yet!'); return; }
+
+  var scratch = document.createElement('div');
+  scratch.style.cssText = 'position:absolute;left:-9999px;top:0;width:820px;background:white;padding:20px;';
+  document.body.appendChild(scratch);
+  ABCJS.renderAbc(scratch, abc, {
+    staffwidth: 780, paddingtop: 24, paddingbottom: 24, scale: 1.5, add_classes: true
+  });
+
+  var svg = scratch.querySelector('svg');
+  if (!svg) {
+    document.body.removeChild(scratch);
+    showToast('Export failed — try again after notation loads');
+    return;
+  }
+  applyVisibilityToSvg(svg);
+
+  var SCALE = 2;
+  var vb    = svg.viewBox.baseVal;
+  var W     = (vb.width  || parseFloat(svg.getAttribute('width'))  || 820) * SCALE;
+  var H     = (vb.height || parseFloat(svg.getAttribute('height')) || 200) * SCALE;
+
+  var canvas = document.createElement('canvas');
+  canvas.width  = W;
+  canvas.height = H;
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, W, H);
+  ctx.scale(SCALE, SCALE);
+
+  var svgStr = new XMLSerializer().serializeToString(svg);
+  var blob   = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+  var url    = URL.createObjectURL(blob);
+
+  var img = new Image();
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0);
+    URL.revokeObjectURL(url);
+    document.body.removeChild(scratch);
+    canvas.toBlob(function(pngBlob) {
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(pngBlob);
+      a.download = 'rhythm.png';
+      a.click();
+      showToast('PNG saved!');
+    }, 'image/png');
+  };
+  img.onerror = function() {
+    document.body.removeChild(scratch);
+    showToast('Export failed');
+  };
+  img.src = url;
+}
+
+// Export SVG
+function exportSVG() {
+  var abc = generateABC();
+  if (!abc) { showToast('Nothing to export yet!'); return; }
+
+  var scratch = document.createElement('div');
+  scratch.style.cssText = 'position:absolute;left:-9999px;top:0;width:820px;background:white;padding:20px;';
+  document.body.appendChild(scratch);
+  ABCJS.renderAbc(scratch, abc, {
+    staffwidth: 780, paddingtop: 24, paddingbottom: 24, scale: 1.5, add_classes: true
+  });
+
+  var svg = scratch.querySelector('svg');
+  if (!svg) {
+    document.body.removeChild(scratch);
+    showToast('Export failed — try again after notation loads');
+    return;
+  }
+  applyVisibilityToSvg(svg);
+
+  svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  var svgStr = new XMLSerializer().serializeToString(svg);
+  document.body.removeChild(scratch);
+
+  var blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'rhythm.svg';
+  a.click();
+  showToast('SVG saved!');
+}
+
+// Toast
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() { t.classList.remove('show'); }, 3000);
+}
+
+function triggerClass(el, cls) {
+  el.classList.remove(cls);
+  void el.offsetWidth;
+  el.classList.add(cls);
+  setTimeout(function() { el.classList.remove(cls); }, 500);
+}
+
+// Event wiring
+document.getElementById('play-btn').addEventListener('click', togglePlay);
+document.getElementById('stop-btn').addEventListener('click', stopPlayback);
+document.getElementById('export-btn').addEventListener('click', exportPNG);
+document.getElementById('export-svg-btn').addEventListener('click', exportSVG);
+document.getElementById('undo-btn').addEventListener('click', undo);
+document.getElementById('clear-btn').addEventListener('click', clearAll);
+
+document.getElementById('stem-up-btn').addEventListener('click',   function() { setStem('up'); });
+document.getElementById('stem-down-btn').addEventListener('click', function() { setStem('down'); });
+document.getElementById('beam-auto-btn').addEventListener('click',  function() { setBeamMode('auto'); });
+document.getElementById('beam-break-btn').addEventListener('click', function() { setBeamMode('break'); });
+
+document.getElementById('copy-abc-btn').addEventListener('click', function() {
+  var abc = generateABC();
+  if (!abc) { showToast('Nothing to copy yet.'); return; }
+  navigator.clipboard.writeText(abc).then(function() {
+    showToast('ABC notation copied to clipboard!');
+  }).catch(function(err) {
+    console.error('Clipboard error:', err);
+    showToast('Failed to copy to clipboard.');
+  });
+});
+
+document.getElementById('tempo-slider').addEventListener('input', function() {
+  document.getElementById('tempo-display').textContent = this.value;
+  scheduleRender();
+});
+
+VIS_RULES.forEach(function(rule) {
+  document.getElementById(rule.id).addEventListener('change', applyVisibilityOverrides);
+});
+
+document.getElementById('time-sig').addEventListener('change', function() {
+  sequence = [];
+  barBeats = 0;
+  stopPlayback();
+  refresh();
+});
+
+// Init
+buildPalette();
+applyVisibilityOverrides();
+refresh();
+</script>
+</body>
+</html>
