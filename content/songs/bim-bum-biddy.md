@@ -7,7 +7,7 @@ featured: false
 card_image: /images/uploads/Bim_Bum_Biddy.webp
 tonal_concepts: []
 rhythmic_concepts:
-  - 1/16 note
+  - 1/16 notes
 activity_types:
   - Hand game
 social_concepts:

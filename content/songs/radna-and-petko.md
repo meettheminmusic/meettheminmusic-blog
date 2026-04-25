@@ -10,7 +10,7 @@ tonal_concepts:
   - Do-La
   - La-Si-La
 rhythmic_concepts:
-  - Eighth Notes
+  - 1/8 Notes
 activity_types:
   - Beanbag
 social_concepts:

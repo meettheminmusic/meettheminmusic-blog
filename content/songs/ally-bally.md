@@ -8,10 +8,11 @@ card_image: /images/uploads/Ally_Bally.webp
 tonal_concepts:
   - Do-Mi-So
 rhythmic_concepts:
-  - 1/8 Note
-  - 1/6 Note
+  - 1/8 Notes
+  - 1/16 Notes
 activity_types:
   - Xylophone
+  - Choice Song
 social_concepts: []
 movement_concepts:
   - Unilateral

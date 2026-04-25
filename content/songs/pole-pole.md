@@ -12,6 +12,7 @@ rhythmic_concepts:
   - Rhythmic Elongation
 activity_types:
   - Echo Song
+  - Choice Song
 social_concepts:
   - Different Culture
 movement_concepts:
