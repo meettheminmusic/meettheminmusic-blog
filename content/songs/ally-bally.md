@@ -12,6 +12,7 @@ rhythmic_concepts:
   - 1/16 Notes
 activity_types:
   - Xylophone
+  - Choice Song
 social_concepts: []
 movement_concepts:
   - Unilateral
