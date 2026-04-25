@@ -5,7 +5,11 @@ card_image: /images/uploads/pickles-and-pie-2.webp
 tonal_concepts:
   - Leading tone
 activity_types:
+  - Choice Song
+supports_adaptations:
   - Choice Board
+language_origins:
+  - English
 keys:
   - D
 modes:
