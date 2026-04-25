@@ -9,6 +9,7 @@ rhythmic_concepts:
   - 1/8 Notes
 activity_types:
   - Xylophone
+  - Choice Song
 supports_adaptations:
   - Choice Board
 language_origins:
