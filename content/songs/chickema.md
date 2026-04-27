@@ -21,9 +21,13 @@ supports_adaptations: []
 language_origins:
   - English
   - Gaelic
-keys: []
-modes: []
-meters: []
+keys:
+  - G
+modes:
+  - Major
+meters:
+  - Triple
+  - 6/8
 source: ''
 source_url: ''
 abc_notation: |-
@@ -40,10 +44,10 @@ abc_notation: |-
   %%stretchlast 1
   %%barsperstaff 4
   K:G
-  ccc ccc| c2A G3 | ccc c2c| c2A G3 |
+  ccc ccc| c2A G3 | ccc c2c| c2A G3 ||
   w:Chick-e-ma Chick-e-ma Cra-ney Crow. Went to the well to wash his toe. 
   M: 6/8
-  ccc c2c| ccA G2 G| c2G c2A| G3 |
+  ccc c2c| ccA G2 G| c2G c2A| G3 |]
   w:when he got back his chick-ens were gone. What time is it old witch?
   %%textfont arial 9
   %%center .
@@ -55,6 +59,17 @@ sanitized_abc: |-
   ccc ccc| c2A G3 | ccc c2c| c2A G3 |
   ccc c2c| ccA G2 G| c2G c2A| G3 |
 abc_image: ''
-abc_tempo: 120
+abc_tempo: 100
 abc_scores: []
 ---
+
+<u>**Activity</u>**
+
+This is a four corners game.  Assign a number to each corner of the playing area.  One student (or the teacher) will guess which corner they think other students have snuck to.
+
+{{< callout title="Language/Cultural Note" >}}
+This is a song where the lyrics have been adjusted based upon the who was taking transcriptions. In the song "Chickema" is originally "A Chicken" or "a Chickey"<p>
+The word "Craney" is the Gaelic word for the color black.  This makes sense given the song was collected from the Ozark mountains and a large number of Irish and Scottish immigrants settled in these areas.
+{{< /callout >}}
+
+> An alternate version of the song and game is available from [The Kodaly Center for Music Education](https://kodalycollection.org/song.cfm?id=1307)
