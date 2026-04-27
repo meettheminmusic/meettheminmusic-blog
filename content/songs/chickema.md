@@ -30,7 +30,7 @@ abc_notation: |-
   %%staffsep 50
   %%stretchlast 1
   %%barsperstaff 4
-  K:C aeo
+  K:G
   ccc ccc| c2A G3 | ccc c2c| c2A G3 |
   w:Chick-e-ma Chick-e-ma Cra-ney Crow. Went to the well to wash his toe. 
   M: 6/8
