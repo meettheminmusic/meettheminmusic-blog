@@ -39,7 +39,12 @@ abc_notation: |-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
-sanitized_abc: ''
+sanitized_abc: |-
+  K:G  M:6/8  L:1/8
+  L:1/8
+  K:G
+  ccc ccc| c2A G3 | ccc c2c| c2A G3 |
+  ccc c2c| ccA G2 G| c2G c2A| G3 |
 abc_image: ''
 abc_tempo: 120
 abc_scores: []
