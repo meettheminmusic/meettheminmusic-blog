@@ -65,7 +65,13 @@ abc_scores: []
 
 <u>**Activity</u>**
 
-This is a four corners game.  Assign a number to each corner of the playing area.  One student (or the teacher) will guess which corner they think other students have snuck to.
+This is a four corners game.  Assign a number to each corner of the playing area.  One student (or the teacher) will guess which corner they think other students have snuck to.  When students are "caught" they sit in the center of the room and sing the song. Only students who get out have the opportunity to be the guesser.
+
+<u>**Teaching Tips**</u>
+
+- Make the rule that you if you make a noise to fool the guesser, you are automatically out and don't get a turn that round.  You can compliment the student for being clever, but talk about how it is unfair and what it would feel like if they got out because somebody did that to them.
+
+- When there are 4 or fewer students, do not allow the sharing of corners.  This makes the game more fun!
 
 {{< callout title="Language/Cultural Note" >}}
 This is a song where the lyrics have been adjusted based upon the who was taking transcriptions. In the song "Chickema" is originally "A Chicken" or "a Chickey"<p>
