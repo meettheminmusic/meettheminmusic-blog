@@ -5,13 +5,22 @@ draft: false
 unlisted: true
 featured: false
 card_image: ''
-tonal_concepts: []
-rhythmic_concepts: []
-activity_types: []
-social_concepts: []
+tonal_concepts:
+  - Fa-Re-Do
+rhythmic_concepts:
+  - Quarter-Eighth
+activity_types:
+  - Four Corners
+  - Singing
+social_concepts:
+  - Accepting Losing
+  - Attention
+  - Teamwork
 movement_concepts: []
 supports_adaptations: []
-language_origins: []
+language_origins:
+  - English
+  - Gaelic
 keys: []
 modes: []
 meters: []
