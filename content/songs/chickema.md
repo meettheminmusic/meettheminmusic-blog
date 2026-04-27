@@ -4,7 +4,7 @@ date: 2026-04-27T11:06:00
 draft: false
 unlisted: true
 featured: false
-card_image: ''
+card_image: /images/uploads/chickema.webp
 tonal_concepts:
   - Fa-Re-Do
 rhythmic_concepts:
