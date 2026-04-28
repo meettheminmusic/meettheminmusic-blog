@@ -4,7 +4,7 @@ date: 2026-04-02T21:43:00
 draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/Screenshot 2026-04-27 at 9.37.19 PM.png
+card_image: /images/uploads/drum-mountain.webp
 tonal_concepts:
   - Mi-Re-Do
 rhythmic_concepts:
