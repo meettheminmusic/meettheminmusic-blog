@@ -11,12 +11,17 @@ items:
   - name: Books
     url: /books/
     weight: 4
+  - name: Tools
+    weight: 5
+    children:
+      - name: Rhythm Builder
+        url: /rhythm-builder/
   - name: Resources
     url: https://www.teacherspayteachers.com/store/meet-them-in-music
-    weight: 5
+    weight: 6
   - name: About
     url: /about/
-    weight: 6
+    weight: 7
   - name: Contact
     url: /contact/
-    weight: 7
+    weight: 8

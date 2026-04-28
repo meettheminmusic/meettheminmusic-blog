@@ -157,6 +157,46 @@ img {
   border-bottom: 2px solid var(--teal);
 }
 
+/* --- Nav dropdown --- */
+.nav-dropdown { position: relative; display: flex; align-items: center; padding-bottom: 2px; }
+.nav-dropdown:hover,
+.nav-dropdown:has(.nav-dropdown-toggle.active) { border-bottom: 2px solid var(--teal); }
+.nav-dropdown-toggle {
+  background: none; border: none; cursor: pointer;
+  font-size: 0.875rem; font-weight: 500; color: var(--charcoal);
+  padding: 0;
+  display: flex; align-items: center; gap: 4px; font-family: inherit;
+}
+.nav-dropdown-toggle:hover,
+.nav-dropdown-toggle.active { color: var(--teal); }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px); left: 0;
+  background: var(--warm-white);
+  border: 0.5px solid var(--neutral-100);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  min-width: 160px;
+  flex-direction: column;
+  z-index: 200;
+  padding: 4px 0;
+}
+.nav-dropdown-toggle[aria-expanded="true"] + .nav-dropdown-menu {
+  display: flex;
+}
+.nav-dropdown-menu a {
+  padding: 8px 14px;
+  font-size: 0.875rem; font-weight: 500;
+  color: var(--charcoal); text-decoration: none;
+  border-bottom: none;
+}
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a.active {
+  color: var(--teal); background: var(--teal-tint);
+  border-bottom: none;
+}
+
 /* --- Post list --- */
 
 .post-list { list-style: none; }
@@ -1909,6 +1949,11 @@ details.filter-group > summary:focus-visible {
   .site-header .container { flex-direction: column; gap: 1rem; }
   .header-end { gap: 1rem; }
   .site-nav { gap: 1rem; }
+  .nav-dropdown-menu {
+    position: static; box-shadow: none; border: none;
+    padding: 0; background: transparent; min-width: 0;
+    padding-left: 1rem;
+  }
   .hero-title { font-size: 2.1rem; }
   .hero { padding: 3rem 0 2.5rem; }
   .about-eric__photo { float: none; width: 100%; max-width: 320px; margin: 0 0 1.5rem 0; }
