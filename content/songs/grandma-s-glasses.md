@@ -1,7 +1,7 @@
 ---
 title: Grandma's Glasses
 date: 2026-04-01
-card_image: /images/uploads/grandmas-glasses-5.webp
+card_image: /images/uploads/repentand-seekchristjesus-y0I85D5QKvs-unsplash.jpg
 rhythmic_concepts:
   - Duple vs Triple
 activity_types:

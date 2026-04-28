@@ -4,7 +4,7 @@ date: 2026-04-04T12:47:00
 draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/Did-you-Feed-My-Cow.webp
+card_image: /images/uploads/5 Did you feed my cow.png
 tonal_concepts:
   - Tonic
 rhythmic_concepts:
