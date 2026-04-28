@@ -4,7 +4,7 @@ date: 2026-04-02T21:43:00
 draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/go-round-the-mountain-4-note.webp
+card_image: /images/uploads/Screenshot 2026-04-27 at 9.37.19 PM.png
 tonal_concepts:
   - Mi-Re-Do
 rhythmic_concepts:
