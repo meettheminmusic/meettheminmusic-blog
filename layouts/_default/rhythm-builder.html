@@ -111,6 +111,19 @@ body { background: var(--rb-bg); }
   cursor: pointer;
 }
 .rb-select:focus { outline: 2px solid var(--rb-accent); outline-offset: 1px; border-color: var(--rb-accent); }
+.custom-timesig { display: inline-flex; align-items: center; gap: 4px; margin-left: 4px; }
+.rb-input-num {
+  width: 48px;
+  border: 1px solid var(--rb-border); border-radius: 4px;
+  padding: 5px 6px; font-size: 0.875rem;
+  color: var(--rb-text); background: var(--rb-bg);
+  font-family: inherit; text-align: center;
+  -moz-appearance: textfield;
+}
+.rb-input-num::-webkit-inner-spin-button,
+.rb-input-num::-webkit-outer-spin-button { opacity: 1; }
+.rb-input-num:focus { outline: 2px solid var(--rb-accent); outline-offset: 1px; border-color: var(--rb-accent); }
+.timesig-slash { font-size: 1rem; font-weight: 600; color: var(--rb-text-muted); }
 .tempo-range { width: 110px; cursor: pointer; accent-color: var(--rb-accent); }
 .tempo-num { font-size: 0.875rem; font-weight: 700; color: var(--rb-accent); min-width: 32px; text-align: right; }
 .tempo-unit { font-size: 0.75rem; color: var(--rb-text-muted); }
@@ -401,12 +414,28 @@ body { background: var(--rb-bg); }
           <option value="4/4">4/4</option>
           <option value="3/4">3/4</option>
           <option value="2/4">2/4</option>
-          <option value="6/8">6/8</option>
-          <option value="12/8">12/8</option>
           <option value="2/2">2/2 (cut)</option>
           <option value="5/4">5/4</option>
+          <option value="7/4">7/4</option>
+          <option value="3/8">3/8</option>
+          <option value="5/8">5/8</option>
+          <option value="6/8">6/8</option>
           <option value="7/8">7/8</option>
+          <option value="9/8">9/8</option>
+          <option value="11/8">11/8</option>
+          <option value="12/8">12/8</option>
+          <option value="custom">Custom…</option>
         </select>
+        <span id="custom-timesig" class="custom-timesig" hidden>
+          <input id="custom-num" type="number" min="1" max="32" value="5" class="rb-input-num">
+          <span class="timesig-slash">/</span>
+          <select id="custom-den" class="rb-select">
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="8" selected>8</option>
+            <option value="16">16</option>
+          </select>
+        </span>
       </div>
       <div class="setting-group">
         <label for="tempo-slider">Tempo</label>
@@ -516,7 +545,14 @@ let lastStem = 'up';     // 'up' | 'down'
 let beamMode = 'auto';   // 'auto' | 'break'
 
 // Helpers
-function getTimeSig() { return document.getElementById('time-sig').value; }
+function getTimeSig() {
+  var val = document.getElementById('time-sig').value;
+  if (val !== 'custom') return val;
+  var num = parseInt(document.getElementById('custom-num').value, 10);
+  if (!num || num < 1 || num > 32) return '4/4';
+  var den = parseInt(document.getElementById('custom-den').value, 10);
+  return num + '/' + den;
+}
 function getTempo()   { return parseInt(document.getElementById('tempo-slider').value, 10); }
 
 function beatsPerBar() {
@@ -534,6 +570,14 @@ function near(a, b)   { return Math.abs(a - b) < 0.001; }
 function formatNum(n) { return n === Math.floor(n) ? String(n) : n.toFixed(2).replace(/\.?0+$/, ''); }
 
 function isBeamable(item) { return !item.isRest && item.beats < 1; }
+
+function beatUnit() {
+  var ts = getTimeSig().split('/').map(Number);
+  var num = ts[0], den = ts[1];
+  if (num % 3 === 0 && num >= 6 && den === 8)  return 1.5;
+  if (num % 3 === 0 && num >= 6 && den === 16) return 0.75;
+  return 4 / den;
+}
 
 // Build palette
 function buildPalette() {
@@ -607,9 +651,11 @@ function determineNewBeamGroup(dur, isRest) {
   if (isRest || dur.beats >= 1) return true;
   if (beamMode === 'break')     return true;
   if (sequence.length === 0)    return true;
-  if (barBeats === 0)           return true;
   var prev = sequence[sequence.length - 1];
   if (!isBeamable(prev))        return true;
+  var bu  = beatUnit();
+  var rem = barBeats % bu;
+  if (near(rem, 0) || near(rem, bu)) return true;
   return false;
 }
 
@@ -1104,11 +1150,25 @@ VIS_RULES.forEach(function(rule) {
 });
 
 document.getElementById('time-sig').addEventListener('change', function() {
+  var isCustom = this.value === 'custom';
+  document.getElementById('custom-timesig').hidden = !isCustom;
   sequence = [];
   barBeats = 0;
   stopPlayback();
   refresh();
 });
+
+function applyCustomTimeSig() {
+  var num = parseInt(document.getElementById('custom-num').value, 10);
+  if (num >= 1 && num <= 32) {
+    sequence = [];
+    barBeats = 0;
+    stopPlayback();
+    refresh();
+  }
+}
+document.getElementById('custom-num').addEventListener('input', applyCustomTimeSig);
+document.getElementById('custom-den').addEventListener('change', applyCustomTimeSig);
 
 // Init
 buildPalette();
