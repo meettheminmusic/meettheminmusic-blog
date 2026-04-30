@@ -43,6 +43,8 @@ body { background: var(--rb-bg); }
 .rb-btn-primary:hover { background: var(--rb-accent-hover); border-color: var(--rb-accent-hover); color: #fff; }
 .rb-btn-danger { border-color: #e0b5b2; color: var(--rb-danger); }
 .rb-btn-danger:hover { background: #fdf0ef; border-color: var(--rb-danger); color: var(--rb-danger); }
+.rb-inline-check { display: inline-flex; align-items: center; gap: 5px; font-size: 0.8125rem; color: var(--rb-text-muted); cursor: pointer; padding: 0 4px; }
+.rb-inline-check input { cursor: pointer; accent-color: var(--rb-accent); }
 
 /* Action toolbar */
 .action-toolbar {
@@ -398,6 +400,9 @@ body { background: var(--rb-bg); }
 <div class="action-toolbar">
   <button id="play-btn" class="rb-btn rb-btn-primary">&#9654; Play</button>
   <button id="stop-btn" class="rb-btn" disabled>&#9632; Stop</button>
+  <label class="rb-inline-check">
+    <input type="checkbox" id="count-in"> Count in
+  </label>
   <button id="export-btn" class="rb-btn">&#8595; Save PNG</button>
   <button id="export-svg-btn" class="rb-btn">&#8595; Save SVG</button>
   <button id="copy-abc-btn" class="rb-btn">&#128203; Copy ABC</button>
@@ -420,13 +425,13 @@ body { background: var(--rb-bg); }
           <option value="3/8">3/8</option>
           <option value="5/8">5/8</option>
           <option value="6/8">6/8</option>
-          <option value="7/8">7/8</option>
+          {{/*<option value="7/8">7/8</option> */}}
           <option value="9/8">9/8</option>
-          <option value="11/8">11/8</option>
+          {{/*<option value="11/8">11/8</option> */}}
           <option value="12/8">12/8</option>
-          <option value="custom">Custom…</option>
+          {{/* <option value="custom">Custom…</option> */}}
         </select>
-        <span id="custom-timesig" class="custom-timesig" hidden>
+        {{/* <span id="custom-timesig" class="custom-timesig" hidden>
           <input id="custom-num" type="number" min="1" max="32" value="5" class="rb-input-num">
           <span class="timesig-slash">/</span>
           <select id="custom-den" class="rb-select">
@@ -435,7 +440,7 @@ body { background: var(--rb-bg); }
             <option value="8" selected>8</option>
             <option value="16">16</option>
           </select>
-        </span>
+        </span> */}}
       </div>
       <div class="setting-group">
         <label for="tempo-slider">Tempo</label>
@@ -524,6 +529,7 @@ body { background: var(--rb-bg); }
 const DURATIONS = [
   { id: 'whole',     label: 'Whole',     symbol: '○', beats: 4,    abcMult: '4',   short: 'W'   },
   { id: 'half',      label: 'Half',      symbol: '◑', beats: 2,    abcMult: '2',   short: 'H'   },
+  { id: 'dh',      label: 'dot Half',      symbol: '◑.', beats: 3,    abcMult: '3',   short: 'H'   },
   { id: 'quarter',   label: 'Quarter',   symbol: '♩', beats: 1,    abcMult: '',    short: 'Q'   },
   { id: 'dq',        label: 'Dot. ¼', symbol: '♩.', beats: 1.5,  abcMult: '3/2', short: 'Q.'  },
   { id: 'eighth',    label: 'Eighth',    symbol: '♪', beats: 0.5,  abcMult: '/2',  short: '⅛' },
@@ -546,12 +552,13 @@ let beamMode = 'auto';   // 'auto' | 'break'
 
 // Helpers
 function getTimeSig() {
-  var val = document.getElementById('time-sig').value;
-  if (val !== 'custom') return val;
-  var num = parseInt(document.getElementById('custom-num').value, 10);
-  if (!num || num < 1 || num > 32) return '4/4';
-  var den = parseInt(document.getElementById('custom-den').value, 10);
-  return num + '/' + den;
+  return document.getElementById('time-sig').value;
+  // custom time sig commented out:
+  // if (val !== 'custom') return val;
+  // var num = parseInt(document.getElementById('custom-num').value, 10);
+  // if (!num || num < 1 || num > 32) return '4/4';
+  // var den = parseInt(document.getElementById('custom-den').value, 10);
+  // return num + '/' + den;
 }
 function getTempo()   { return parseInt(document.getElementById('tempo-slider').value, 10); }
 
@@ -704,18 +711,27 @@ function recalcBarBeats() {
 }
 
 // ABC generation
+function beatUnitABC() {
+  var bu = beatUnit();
+  if (near(bu, 0.5))  return '1/8';
+  if (near(bu, 0.75)) return '3/16';
+  if (near(bu, 1.5))  return '3/8';
+  if (near(bu, 2))    return '1/2';
+  return '1/4';
+}
+
 function generateABC() {
   if (!sequence.length) return null;
 
   var timeSig = getTimeSig();
-  var tempo   = getTempo();
+  var qField  = 'Q:' + beatUnitABC() + '=' + getTempo();
   var bpb     = beatsPerBar();
   var kField  = 'K:C clef=perc stafflines=0\n';
 
   var hasDown = sequence.some(function(i) { return !i.isRest && i.stem === 'down'; });
 
   if (!hasDown) {
-    var hdr = 'X:1\nT:\nM:' + timeSig + '\nL:1/4\nQ:' + tempo + '\nV:1 stem=up\n' + kField;
+    var hdr = 'X:1\nT:\nM:' + timeSig + '\nL:1/4\n' + qField + '\nV:1 stem=up\n' + kField;
     return hdr + buildVoiceBody(sequence, bpb);
   }
 
@@ -727,7 +743,7 @@ function generateABC() {
     return (!i.isRest && i.stem === 'down') ? i : Object.assign({}, i, { _sp: true });
   });
 
-  var hdr2 = 'X:1\nT:\nM:' + timeSig + '\nL:1/4\nQ:' + tempo +
+  var hdr2 = 'X:1\nT:\nM:' + timeSig + '\nL:1/4\n' + qField +
     '\n%%staves (1 2)\nV:1 stem=up\nV:2 stem=down\n' + kField;
 
   return hdr2 +
@@ -963,6 +979,39 @@ function makeChip(item, seqIdx) {
 }
 
 // Playback
+function generatePlaybackABC() {
+  var abc = generateABC();
+  if (!abc) return null;
+  return abc
+    .replace('K:C clef=perc stafflines=0', '%%MIDI program 0\nK:C')
+    .replace(/B([0-9]*(?:\/[0-9]+)?)/g, 'C$1');
+}
+
+function scheduleClick(time, isDownbeat) {
+  var osc  = audioCtx.createOscillator();
+  var gain = audioCtx.createGain();
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.type = 'triangle';
+  osc.frequency.value = isDownbeat ? 880 : 660;
+  gain.gain.setValueAtTime(0.4, time);
+  gain.gain.exponentialRampToValueAtTime(0.001, time + 0.08);
+  osc.start(time);
+  osc.stop(time + 0.1);
+}
+
+function doCountIn() {
+  return new Promise(function(resolve) {
+    var macroBeats = Math.round(beatsPerBar() / beatUnit());
+    var interval   = 60 / getTempo();
+    var start      = audioCtx.currentTime + 0.05;
+    for (var i = 0; i < macroBeats; i++) {
+      scheduleClick(start + i * interval, i === 0);
+    }
+    setTimeout(resolve, (macroBeats * interval + 0.1) * 1000);
+  });
+}
+
 async function togglePlay() {
   if (isPlaying) { stopPlayback(); return; }
   if (!currentTune) { showToast('Add some notes first!'); return; }
@@ -977,13 +1026,35 @@ async function togglePlay() {
     playBtn.textContent = '▶ Loading…';
     playBtn.disabled    = true;
 
+    // Build and prime synth BEFORE count-in so the soundfont is ready
+    var playAbc = generatePlaybackABC();
+    if (!playAbc) { showToast('Add some notes first!'); return; }
+
+    var scratch = document.createElement('div');
+    scratch.style.cssText = 'position:absolute;left:-9999px;top:0;';
+    document.body.appendChild(scratch);
+    var pr = ABCJS.renderAbc(scratch, playAbc);
+    document.body.removeChild(scratch);
+    var playTune = pr && pr[0] ? pr[0] : null;
+    if (!playTune) { showToast('Playback error'); return; }
+
     var synth = new ABCJS.synth.CreateSynth();
     await synth.init({
       audioContext: audioCtx,
-      visualObj:   currentTune,
+      visualObj:   playTune,
       options: { onEnded: function() { if (isPlaying) stopPlayback(); } }
     });
     await synth.prime();
+
+    // Count-in after synth is ready — music starts the moment count-in ends
+    if (document.getElementById('count-in').checked) {
+      isPlaying           = true;
+      stopBtn.disabled    = false;
+      playBtn.textContent = '▶ Count in…';
+      await doCountIn();
+      if (!isPlaying) { try { synth.stop(); } catch(e) {} return; }
+    }
+
     synth.start();
 
     synthControl        = synth;
@@ -1150,25 +1221,25 @@ VIS_RULES.forEach(function(rule) {
 });
 
 document.getElementById('time-sig').addEventListener('change', function() {
-  var isCustom = this.value === 'custom';
-  document.getElementById('custom-timesig').hidden = !isCustom;
+  // var isCustom = this.value === 'custom';
+  // document.getElementById('custom-timesig').hidden = !isCustom;
   sequence = [];
   barBeats = 0;
   stopPlayback();
   refresh();
 });
 
-function applyCustomTimeSig() {
-  var num = parseInt(document.getElementById('custom-num').value, 10);
-  if (num >= 1 && num <= 32) {
-    sequence = [];
-    barBeats = 0;
-    stopPlayback();
-    refresh();
-  }
-}
-document.getElementById('custom-num').addEventListener('input', applyCustomTimeSig);
-document.getElementById('custom-den').addEventListener('change', applyCustomTimeSig);
+// function applyCustomTimeSig() {
+//   var num = parseInt(document.getElementById('custom-num').value, 10);
+//   if (num >= 1 && num <= 32) {
+//     sequence = [];
+//     barBeats = 0;
+//     stopPlayback();
+//     refresh();
+//   }
+// }
+// document.getElementById('custom-num').addEventListener('input', applyCustomTimeSig);
+// document.getElementById('custom-den').addEventListener('change', applyCustomTimeSig);
 
 // Init
 buildPalette();
