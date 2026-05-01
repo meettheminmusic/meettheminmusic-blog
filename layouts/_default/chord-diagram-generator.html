@@ -1,0 +1,102 @@
+{{ define "extra_head" }}
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="/js/chord-diagram-component.js"></script>
+<script type="text/babel" src="/js/chord-tool-component.js"></script>
+<script type="text/babel">
+ReactDOM.createRoot(document.getElementById('chord-root')).render(React.createElement(window.ChordTool));
+</script>
+<style>
+/* --mtim-* design tokens scoped to this tool */
+.chord-tool-root {
+  --mtim-charcoal:    #2C2C2A;
+  --mtim-warm-gray:   #5F5E5A;
+  --mtim-teal:        #0F6E56;
+  --mtim-teal-200:    #5DCAA5;
+  --mtim-teal-800:    #085041;
+  --mtim-warm-white:  #FAFAF8;
+  --mtim-teal-tint:   #E1F5EE;
+  --mtim-neutral-50:  #F1EFE8;
+  --mtim-neutral-800: #444441;
+  --mtim-border:      #D3D1C7;
+  --mtim-font-sans:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.chord-tool-root { color-scheme: light; }
+.chord-tool-root *, .chord-tool-root *::before, .chord-tool-root *::after { box-sizing: border-box; }
+.chord-tool-root { font-family: var(--mtim-font-sans); color: var(--mtim-charcoal); -webkit-font-smoothing: antialiased; }
+
+.chord-tool-root .page { max-width: 860px; margin: 0 auto; padding: 32px 24px 64px; }
+.chord-tool-root .tool-header { padding-bottom: 24px; border-bottom: 0.5px solid var(--mtim-border); margin-bottom: 24px; }
+.chord-tool-root .tool-header h1 { font-size: 30px; font-weight: 500; letter-spacing: -0.02em; margin: 0 0 6px; }
+.chord-tool-root .tool-header p { font-size: 15px; color: var(--mtim-warm-gray); margin: 0; max-width: 580px; line-height: 1.6; }
+
+.chord-tool-root .controls { background: #fff; border: 0.5px solid var(--mtim-border); border-radius: 12px; padding: 18px 20px; margin-bottom: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px 18px; }
+.chord-tool-root .field { display: flex; flex-direction: column; gap: 6px; }
+.chord-tool-root .field label { font-size: 11px; font-weight: 600; color: var(--mtim-warm-gray); text-transform: uppercase; letter-spacing: 0.1em; }
+.chord-tool-root .field input, .chord-tool-root .field select { background: #fff; border: 0.5px solid var(--mtim-border); border-radius: 8px; padding: 8px 12px; font: 400 14px var(--mtim-font-sans); color: var(--mtim-charcoal); min-height: 40px; }
+.chord-tool-root .field input:focus, .chord-tool-root .field select:focus { outline: 2px solid var(--mtim-teal); outline-offset: 1px; border-color: var(--mtim-teal); }
+
+.chord-tool-root .actions { display: flex; gap: 8px; flex-wrap: wrap; padding: 14px 20px; background: var(--mtim-neutral-50); border: 0.5px solid var(--mtim-border); border-radius: 12px; margin-bottom: 24px; align-items: center; }
+.chord-tool-root .actions .spacer { flex: 1; }
+.chord-tool-root .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; font: 500 13px var(--mtim-font-sans); letter-spacing: 0.02em; padding: 8px 14px; border-radius: 8px; border: 0.5px solid transparent; cursor: pointer; min-height: 38px; transition: background 150ms ease, color 150ms ease, border-color 150ms ease; font-family: inherit; }
+.chord-tool-root .btn:focus-visible { outline: 2px solid var(--mtim-teal); outline-offset: 2px; }
+.chord-tool-root .btn-primary { background: var(--mtim-teal); color: #fff; }
+.chord-tool-root .btn-primary:hover { background: var(--mtim-teal-800); }
+.chord-tool-root .btn-secondary { background: #fff; color: var(--mtim-teal); border-color: var(--mtim-teal); }
+.chord-tool-root .btn-secondary:hover { background: var(--mtim-teal-tint); }
+.chord-tool-root .btn-ghost { background: transparent; color: var(--mtim-charcoal); border-color: var(--mtim-border); }
+.chord-tool-root .btn-ghost:hover { border-color: var(--mtim-teal); color: var(--mtim-teal); }
+
+.chord-tool-root .mode-row { display: flex; align-items: center; gap: 10px; padding: 10px 20px; background: #fff; border: 0.5px solid var(--mtim-border); border-radius: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.chord-tool-root .mode-label { font-size: 11px; font-weight: 600; color: var(--mtim-warm-gray); text-transform: uppercase; letter-spacing: 0.1em; }
+.chord-tool-root .seg { display: inline-flex; background: var(--mtim-neutral-50); border: 0.5px solid var(--mtim-border); border-radius: 8px; padding: 2px; }
+.chord-tool-root .seg button { background: transparent; border: none; font: 500 13px var(--mtim-font-sans); color: var(--mtim-charcoal); padding: 6px 12px; border-radius: 6px; cursor: pointer; min-height: 32px; }
+.chord-tool-root .seg button[aria-pressed="true"] { background: #fff; color: var(--mtim-teal); box-shadow: 0 0 0 0.5px var(--mtim-border); }
+.chord-tool-root .finger-row { display: flex; gap: 4px; align-items: center; }
+.chord-tool-root .finger-row .seg button { padding: 6px 10px; min-width: 30px; font-variant-numeric: tabular-nums; }
+
+.chord-tool-root .canvas-wrap { background: #fff; border: 0.5px solid var(--mtim-border); border-radius: 12px; padding: 24px; display: flex; justify-content: center; }
+.chord-tool-root .canvas-wrap.dark { background: var(--mtim-charcoal); border-color: #444441; }
+.chord-tool-root .canvas-wrap svg { display: block; max-width: 100%; height: auto; cursor: pointer; }
+.chord-tool-root .canvas-wrap svg:focus { outline: 2px solid var(--mtim-teal); outline-offset: 4px; }
+
+.chord-tool-root .library { margin-top: 24px; padding-top: 20px; border-top: 0.5px solid var(--mtim-border); }
+.chord-tool-root .library-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; }
+.chord-tool-root .library-head h2 { font-size: 16px; font-weight: 500; margin: 0; }
+.chord-tool-root .library-count { font-size: 12px; color: var(--mtim-warm-gray); }
+.chord-tool-root .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+.chord-tool-root .library-empty { font-size: 14px; color: var(--mtim-warm-gray); padding: 24px; text-align: center; background: var(--mtim-neutral-50); border-radius: 10px; }
+.chord-tool-root .lib-card { background: #fff; border: 0.5px solid var(--mtim-border); border-radius: 10px; padding: 10px; cursor: pointer; text-align: center; display: flex; flex-direction: column; gap: 4px; align-items: center; transition: box-shadow 150ms ease; position: relative; }
+.chord-tool-root .lib-card:hover { box-shadow: 0 0 0 1.5px var(--mtim-teal); }
+.chord-tool-root .lib-card svg { width: 100%; height: auto; max-height: 110px; }
+.chord-tool-root .lib-card .name { font-size: 12px; font-weight: 500; color: var(--mtim-charcoal); }
+.chord-tool-root .lib-card .meta { font-size: 10px; color: var(--mtim-warm-gray); }
+.chord-tool-root .lib-card .delete { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border: none; background: transparent; color: var(--mtim-warm-gray); border-radius: 4px; cursor: pointer; opacity: 0; transition: opacity 100ms ease; }
+.chord-tool-root .lib-card:hover .delete, .chord-tool-root .lib-card:focus-within .delete { opacity: 1; }
+.chord-tool-root .lib-card .delete:hover { color: #9A1B1B; background: var(--mtim-neutral-50); }
+
+.chord-tool-root .help { margin-top: 14px; font-size: 13px; color: var(--mtim-warm-gray); line-height: 1.6; padding: 12px 16px; background: var(--mtim-teal-tint); border-radius: 8px; border-left: 3px solid var(--mtim-teal); }
+.chord-tool-root .help strong { color: var(--mtim-teal-800); font-weight: 600; }
+
+.chord-tool-root .live { position: absolute; left: -9999px; }
+
+/* Color swatches */
+.chord-tool-root .color-swatch-row { display: flex; gap: 6px; align-items: center; }
+.chord-tool-root .color-btn { width: 24px; height: 24px; border-radius: 50%; border: 2.5px solid transparent; cursor: pointer; flex-shrink: 0; transition: box-shadow 100ms ease, border-color 100ms ease; outline: none; }
+.chord-tool-root .color-btn.active { border-color: #fff; box-shadow: 0 0 0 2.5px var(--mtim-charcoal); }
+.chord-tool-root .color-btn:focus-visible { box-shadow: 0 0 0 3px var(--mtim-teal); }
+
+@media (max-width: 600px) {
+  .chord-tool-root .controls { grid-template-columns: 1fr 1fr; }
+  .chord-tool-root .tool-header h1 { font-size: 24px; }
+}
+</style>
+{{ end }}
+
+{{ define "main" }}
+<div class="chord-tool-root">
+  <div id="chord-root"></div>
+</div>
+{{ end }}

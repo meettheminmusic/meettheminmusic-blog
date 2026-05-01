@@ -16,6 +16,8 @@ items:
     children:
       - name: Rhythm Builder
         url: /rhythm-builder/
+      - name: Chord diagram generator
+        url: /chord-diagram-generator/
   - name: Resources
     url: https://www.teacherspayteachers.com/store/meet-them-in-music
     weight: 6
