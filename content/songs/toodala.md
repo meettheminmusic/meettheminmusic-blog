@@ -72,3 +72,11 @@ abc_image: ''
 abc_tempo: 100
 abc_scores: []
 ---
+
+<u>**Activity**</u>
+
+Sing the song while standing as still as possible. When you get to the B section ("Mighty pretty motion") do a simple dance. Examples of a dance are waving your hands in the air, patting your heat to the beat, hopping in place, etc.  
+
+Invite students to create dance moves to put in the song.  Remind the students to freeze before each repetition of the song.
+
+The same activity fits with the song [Clapping Land](https://meettheminmusic.com/songs/clapping-land/)
