@@ -1,8 +1,8 @@
 ---
 title: Chickema
-date: 2026-04-27T11:06:00
+date: 2026-05-01T12:39:00
 draft: false
-unlisted: true
+unlisted: false
 featured: false
 card_image: /images/uploads/chickema.webp
 tonal_concepts:
@@ -70,7 +70,6 @@ This is a four corners game.  Assign a number to each corner of the playing area
 <u>**Teaching Tips**</u>
 
 - Make the rule that you if you make a noise to fool the guesser, you are automatically out and don't get a turn that round.  You can compliment the student for being clever, but talk about how it is unfair and what it would feel like if they got out because somebody did that to them.
-
 - When there are 4 or fewer students, do not allow the sharing of corners.  This makes the game more fun!
 
 {{< callout title="Language/Cultural Note" >}}
