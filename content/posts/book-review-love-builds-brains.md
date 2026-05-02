@@ -3,7 +3,7 @@ title: 'Book Review: Love Builds Brains'
 date: 2026-04-13T07:53:00
 draft: false
 unlisted: false
-featured: true
+featured: false
 description: Jean Clinton is a Canadian developmental psychiatrist, and Love Builds Brains is her accessible, practitioner-facing argument that children's behavior, learning, and long-term wellbeing are not primarily a matter of discipline or motivation. They are a matter of neuroscience, and more specifically, of relationships.
 tags: []
 categories:

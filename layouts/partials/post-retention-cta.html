@@ -1,0 +1,52 @@
+<aside class="post-retention-cta" aria-labelledby="post-retention-heading">
+  <div>
+    <h2 id="post-retention-heading" class="post-retention-cta__heading">
+      Want the next practical inclusion idea?
+    </h2>
+    <p class="post-retention-cta__desc">
+      Get occasional research-informed strategies, adaptable song resources,
+      and classroom tools for music teachers.
+    </p>
+  </div>
+  <form class="inline-cta-form"
+        id="post-retention-form-{{ .File.UniqueID }}"
+        action="https://buttondown.com/api/emails/embed-subscribe/meettheminmusic"
+        method="post"
+        aria-label="Email signup">
+    <label for="post-retention-email-{{ .File.UniqueID }}" class="sr-only">Your email address</label>
+    <input
+      id="post-retention-email-{{ .File.UniqueID }}"
+      type="email"
+      name="email"
+      placeholder="Your email address"
+      required
+      autocomplete="email"
+      aria-required="true"
+    >
+    <button type="submit">Subscribe</button>
+  </form>
+  <p class="inline-cta-confirm"
+     id="post-retention-confirm-{{ .File.UniqueID }}"
+     hidden
+     aria-live="polite">You're in. I'll be in touch.</p>
+  <p class="inline-cta-reassurance">Free. Unsubscribe anytime.</p>
+</aside>
+
+<script>
+(function () {
+  var uid = '{{ .File.UniqueID }}';
+  var form = document.getElementById('post-retention-form-' + uid);
+  var confirmEl = document.getElementById('post-retention-confirm-' + uid);
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' })
+      .then(function () {
+        form.hidden = true;
+        confirmEl.hidden = false;
+        sessionStorage.setItem('sticky-bar-dismissed', '1');
+      })
+      .catch(function () { form.submit(); });
+  });
+}());
+</script>

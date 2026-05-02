@@ -2,7 +2,7 @@
 title: 'Choice Boards: The Gateway to Speech and Song'
 date: 2026-04-03T16:45:00
 draft: false
-featured: true
+featured: false
 description: Choice boards aren't a workaround. They're a musical tool that gives students  a  voice in your class.
 tags:
   - Choice Boards

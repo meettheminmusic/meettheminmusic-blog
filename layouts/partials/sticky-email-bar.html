@@ -1,6 +1,8 @@
 <div class="sticky-email-bar" id="sticky-email-bar" role="complementary" aria-label="Newsletter signup">
   <div class="sticky-email-bar__inner">
-    <p class="sticky-email-bar__label">Want to teach songs like this one?</p>
+    <p class="sticky-email-bar__label">
+      {{ if eq .Section "songs" }}Want to teach songs like this one?{{ else }}Want the next practical inclusion idea?{{ end }}
+    </p>
     <form class="sticky-bar-form" id="sticky-bar-form"
           action="https://buttondown.com/api/emails/embed-subscribe/meettheminmusic"
           method="post"

@@ -10,9 +10,13 @@
 
 {{ $listable := where .Site.RegularPages "Params.unlisted" "ne" true }}
 {{ $songs    := where $listable.ByDate.Reverse "Section" "songs" | first 3 }}
-{{ $featured := where $listable "Params.featured" true | first 1 }}
-{{ $allPosts := where $listable "Section" "posts" }}
-{{ $recent   := $allPosts | complement $featured | first 4 }}
+{{ $allPosts := where $listable.ByDate.Reverse "Section" "posts" }}
+{{ $featured := where $allPosts "Params.featured" true | first 1 }}
+{{ $practicalPosts := slice }}
+{{ with .Site.GetPage "posts/it-s-a-dignity-issue-age-appropriate-music-for-your-self-contained-students" }}{{ $practicalPosts = $practicalPosts | append . }}{{ end }}
+{{ with .Site.GetPage "posts/your-classroom-layout-is-a-behavior-management-tool-here-s-how-to-use-it" }}{{ $practicalPosts = $practicalPosts | append . }}{{ end }}
+{{ with .Site.GetPage "posts/choice-boards-the-gateway-to-speech-and-song" }}{{ $practicalPosts = $practicalPosts | append . }}{{ end }}
+{{ $recent := $practicalPosts | complement $featured | first 4 }}
 
 
 {{/* ── Hero ──────────────────────────────────────────────── */}}
@@ -20,26 +24,237 @@
 <section class="home-hero" aria-labelledby="home-hero-heading">
   {{ partial "hero-beams.html" . }}
   <div class="container-wide home-hero__content">
-    <p class="home-hero__overline" aria-hidden="true">
-      Music education that starts where they are.
-    </p>
-    <h1 class="home-hero__heading" id="home-hero-heading">
-      Your students belong in the music room.
-    </h1>
-    <p class="home-hero__lead">
-      Research-informed strategies, adapted songs, and practical tools
-      for general music teachers who want to meet every learner where they are.
-    </p>
-    <div class="home-hero__actions">
-      <a href="{{ "/songs/" | relURL }}" class="btn-primary">
-        Browse the song library
-      </a>
-      <a href="{{ "/posts/" | relURL }}" class="btn-ghost-light">
-        Read the blog
-      </a>
+
+    <div class="home-hero__text">
+      <p class="home-hero__overline" aria-hidden="true">
+        For general music teachers
+      </p>
+      <h1 class="home-hero__heading" id="home-hero-heading">
+        Your students belong in the music room.
+      </h1>
+      <p class="home-hero__lead">
+        Inclusive music teaching should not require guesswork. Meet Them in
+        Music gives music teachers research-informed strategies, adaptable
+        songs, and practical classroom tools for reaching every learner.
+      </p>
+      <div class="home-hero__actions">
+        <a href="{{ "/songs/" | relURL }}" class="btn-primary">
+          Find an adapted song
+        </a>
+        <a href="{{ "/your-lessons-need-a-predictable-structure/" | relURL }}" class="btn-ghost-light">
+          Read inclusion strategies
+        </a>
+      </div>
     </div>
+
+    <aside class="home-hero__author" aria-label="About the author">
+      <div class="home-hero__portrait">
+        <img
+          src="/images/uploads/bottorff-headshot-cutout.webp"
+          alt="Dr. P. Eric Bottorff"
+          class="home-hero__portrait-img"
+          width="744"
+          height="900"
+          loading="eager"
+        >
+      </div>
+      <p class="home-hero__author-name">Dr. P. Eric Bottorff</p>
+      <p class="home-hero__author-role">K&ndash;4 music teacher, Southeast Michigan</p>
+      <ul class="home-hero__creds" role="list">
+        <li>Michigan Music Teacher of the Year, 2023</li>
+        <li>Ed.D., Educational Leadership</li>
+      </ul>
+      <a href="{{ "/about/" | relURL }}" class="home-hero__author-link">
+        More about Eric &rarr;
+      </a>
+    </aside>
+
   </div>
 </section>
+
+
+{{/* ── For you if... ─────────────────────────────────────── */}}
+
+<section class="home-foryou" aria-labelledby="foryou-heading">
+  <div class="container-wide">
+    <p class="overline" id="foryou-heading">This is for you if...</p>
+    <ul class="foryou-list" role="list">
+      <li class="foryou-item">
+        <span class="foryou-check" aria-hidden="true">&#10003;</span>
+        <span>You have students with IEPs, 504s, or sensory needs, and
+          music class feels like guesswork.</span>
+      </li>
+      <li class="foryou-item">
+        <span class="foryou-check" aria-hidden="true">&#10003;</span>
+        <span>You want every child to feel like they belong in the music
+          room, not just the ones who are easiest to reach.</span>
+      </li>
+      <li class="foryou-item">
+        <span class="foryou-check" aria-hidden="true">&#10003;</span>
+        <span>You don't have time to reinvent your curriculum, but you
+          know the current approach isn't working for everyone.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+{{/* Start here */}}
+
+<section class="home-section" aria-labelledby="start-heading">
+  <div class="container-wide">
+
+    <div class="home-section__header">
+      <div>
+        <h2 id="start-heading">Start here</h2>
+        <p class="home-section__subhead">
+          Choose the path that helps with tomorrow's music class.
+        </p>
+      </div>
+    </div>
+
+    <ul class="start-grid" role="list">
+      <li>
+        <article class="start-card" aria-labelledby="start-song-title">
+          <h3 class="start-card__title" id="start-song-title">
+            Find a song you can adapt tomorrow
+          </h3>
+          <p class="start-card__desc">
+            Search songs by concept, meter, mode, grade level, and
+            participation affordance.
+          </p>
+          <a href="{{ "/songs/" | relURL }}" class="start-card__link">
+            Browse the song library &rarr;
+          </a>
+        </article>
+      </li>
+
+      <li>
+        <article class="start-card" aria-labelledby="start-strategy-title">
+          <h3 class="start-card__title" id="start-strategy-title">
+            Build a more predictable music room
+          </h3>
+          <p class="start-card__desc">
+            Read practical strategies for structure, sensory needs, behavior
+            support, and belonging.
+          </p>
+          <a href="{{ "/your-lessons-need-a-predictable-structure/" | relURL }}" class="start-card__link">
+            Start with predictable structure &rarr;
+          </a>
+        </article>
+      </li>
+
+      <li>
+        <article class="start-card" aria-labelledby="start-tool-title">
+          <h3 class="start-card__title" id="start-tool-title">
+            Use a classroom tool
+          </h3>
+          <p class="start-card__desc">
+            Try simple interactive tools designed for elementary music
+            teaching.
+          </p>
+          <a href="{{ "/rhythm-builder/" | relURL }}" class="start-card__link">
+            Try the rhythm builder &rarr;
+          </a>
+        </article>
+      </li>
+    </ul>
+
+    <aside class="home-email-nudge" aria-label="Email list">
+      <p>Want the next inclusive music resource when it is ready?</p>
+      <a href="#signup" class="section-link">Join the email list &rarr;</a>
+    </aside>
+
+  </div>
+</section>
+
+
+{{/* ── Content pillars ──────────────────────────────────── */}}
+
+<section class="home-section" aria-labelledby="pillars-heading">
+  <div class="container-wide">
+
+    <div class="home-section__header">
+      <div>
+        <h2 id="pillars-heading">What you'll find here</h2>
+        <p class="home-section__subhead">
+          Practical resources for teachers who want inclusion to feel more
+          planned and less improvised.
+        </p>
+      </div>
+    </div>
+
+    <ul class="pillar-grid" role="list">
+
+      <li>
+        <article class="pillar-card" aria-labelledby="pillar-songs">
+          <div class="pillar-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18V5l12-2v13"/>
+              <circle cx="6" cy="18" r="3"/>
+              <circle cx="18" cy="16" r="3"/>
+            </svg>
+          </div>
+          <h3 class="pillar-card__title" id="pillar-songs">Song library</h3>
+          <p class="pillar-card__desc">
+            Songs selected and analyzed for musical concepts, participation
+            affordances, and adaptations. Searchable by meter, mode, grade,
+            and concept.
+          </p>
+          <a href="{{ "/songs/" | relURL }}" class="pillar-card__link"
+             aria-label="Browse the song library">Browse songs &rarr;</a>
+        </article>
+      </li>
+
+      <li>
+        <article class="pillar-card" aria-labelledby="pillar-blog">
+          <div class="pillar-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h3 class="pillar-card__title" id="pillar-blog">Research and strategies</h3>
+          <p class="pillar-card__desc">
+            Research-informed writing for the music room, not the journal.
+            Structure, access, sensory supports, behavior, and belonging.
+          </p>
+          <a href="{{ "/posts/" | relURL }}" class="pillar-card__link"
+             aria-label="Read the blog">Read the blog &rarr;</a>
+        </article>
+      </li>
+
+      <li>
+        <article class="pillar-card" aria-labelledby="pillar-tools">
+          <div class="pillar-card__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </div>
+          <h3 class="pillar-card__title" id="pillar-tools">Classroom tools</h3>
+          <p class="pillar-card__desc">
+            Interactive tools built for the music room: the rhythm builder,
+            chord diagram generator, and more added over time.
+          </p>
+          <a href="{{ "/rhythm-builder/" | relURL }}" class="pillar-card__link"
+             aria-label="Try the classroom tools">Try the tools &rarr;</a>
+        </article>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+
 
 
 {{/* ── Song library teaser ────────────────────────────────── */}}
@@ -51,13 +266,13 @@
       <div>
         <h2 id="songs-heading">Song library</h2>
         <p class="home-section__subhead">
-          Songs with original pedagogical analysis
-          and participation affordances. Ready for the classroom!
+          Songs with original pedagogical analysis, participation affordances,
+          and adaptation ideas you can use in planning.
         </p>
       </div>
       <a href="{{ "/songs/" | relURL }}" class="section-link"
          aria-label="Find songs in the library by concept, meter, or mode">
-        Find songs by concept, meter, or mode →
+        Find songs by concept, meter, or mode &rarr;
       </a>
     </div>
 
@@ -86,18 +301,38 @@
                 <a href="{{ .Permalink }}">{{ .Title }}</a>
               </h3>
 
-              <p class="song-grid__meta">
-                {{- with .Params.meter -}}{{ . }}{{ end -}}
-                {{- with .Params.tonality }} &middot; {{ . }}{{ end -}}
-                {{- with .Params.origin }} &middot; {{ . }}{{ end -}}
-              </p>
-
-              {{ with .Params.activity_type }}
-                <ul class="song-grid__activities" role="list" aria-label="Activity types">
-                  {{ range . }}
-                    <li class="activity-tag">{{ . }}</li>
-                  {{ end }}
-                </ul>
+              {{ $songMeta := slice }}
+              {{ range first 1 (default (slice) .Params.movement_concepts) }}
+                {{ if and . (not (in $songMeta .)) }}{{ $songMeta = $songMeta | append . }}{{ end }}
+              {{ end }}
+              {{ range first 1 (default (slice) .Params.activity_types) }}
+                {{ if and . (not (in $songMeta .)) }}{{ $songMeta = $songMeta | append . }}{{ end }}
+              {{ end }}
+              {{ range first 1 (default (slice) .Params.social_concepts) }}
+                {{ if and . (not (in $songMeta .)) }}{{ $songMeta = $songMeta | append . }}{{ end }}
+              {{ end }}
+              {{ if lt (len $songMeta) 3 }}
+                {{ range first 1 (default (slice) .Params.rhythmic_concepts) }}
+                  {{ if and . (not (in $songMeta .)) }}{{ $songMeta = $songMeta | append . }}{{ end }}
+                {{ end }}
+              {{ end }}
+              {{ if lt (len $songMeta) 3 }}
+                {{ range first 1 (default (slice) .Params.tonal_concepts) }}
+                  {{ if and . (not (in $songMeta .)) }}{{ $songMeta = $songMeta | append . }}{{ end }}
+                {{ end }}
+              {{ end }}
+              {{ if lt (len $songMeta) 3 }}
+                {{ range first 1 (default (slice) .Params.supports_adaptations) }}
+                  {{ if and . (not (in $songMeta .)) }}{{ $songMeta = $songMeta | append . }}{{ end }}
+                {{ end }}
+              {{ end }}
+              {{ if gt (len $songMeta) 0 }}
+                <p class="song-grid__meta">
+                  {{- range $index, $label := first 3 $songMeta -}}
+                    {{- if $index }} <span aria-hidden="true">&middot;</span> {{ end -}}
+                    {{- $label -}}
+                  {{- end -}}
+                </p>
               {{ end }}
 
             </article>
@@ -109,7 +344,7 @@
       <div class="song-grid-empty" role="status">
         <p>The song library is coming soon. Check back after launch.</p>
         <a href="{{ "/posts/" | relURL }}" class="section-link">
-          Read the blog in the meantime →
+          Read the blog in the meantime &rarr;
         </a>
       </div>
     {{ end }}
@@ -125,7 +360,16 @@
            aria-labelledby="featured-heading">
     <div class="container-wide">
 
-      <p class="overline" aria-hidden="true">Featured</p>
+      <p class="overline" aria-hidden="true">Start with structure</p>
+      <div class="home-section__header">
+        <div>
+          <h2 id="featured-heading">Make inclusion more predictable first</h2>
+          <p class="home-section__subhead">
+            A practical first read for reducing guesswork in tomorrow's music
+            class.
+          </p>
+        </div>
+      </div>
 
       <article class="featured-card" aria-labelledby="featured-post-title">
         <div class="featured-card__meta">
@@ -139,10 +383,11 @@
         <h2 class="featured-card__title" id="featured-post-title">
           <a href="{{ .Permalink }}">{{ .Title }}</a>
         </h2>
-        <p class="featured-card__excerpt">{{ .Summary }}</p>
+        {{ $featuredExcerpt := .Params.description | default .Summary | plainify | htmlUnescape | replaceRE "\\s*[\\x{2014}\\x{2013}]\\s*" ", " | truncate 180 }}
+        <p class="featured-card__excerpt">{{ $featuredExcerpt }}</p>
         <a href="{{ .Permalink }}" class="read-link"
            aria-label="Read: {{ .Title }}">
-          Read this piece →
+          Read this piece &rarr;
         </a>
       </article>
 
@@ -151,17 +396,23 @@
 {{ end }}
 
 
-{{/* ── Recent posts ────────────────────────────────────────── */}}
+{{/* ── Practical strategy path ─────────────────────────────── */}}
 
 {{ if $recent }}
   <section class="home-section" aria-labelledby="recent-heading">
     <div class="container-wide">
 
       <div class="home-section__header">
-        <h2 id="recent-heading">Recent posts</h2>
+        <div>
+          <h2 id="recent-heading">More practical strategies</h2>
+          <p class="home-section__subhead">
+            Keep building a music room with clearer structure, stronger access,
+            and more meaningful participation.
+          </p>
+        </div>
         <a href="{{ "/posts/" | relURL }}" class="section-link"
            aria-label="View all blog posts">
-          All posts →
+          All posts &rarr;
         </a>
       </div>
 
@@ -180,7 +431,8 @@
                 <a href="{{ .Permalink }}">{{ .Title }}</a>
               </h3>
 
-              <p class="post-grid__excerpt">{{ .Summary | truncate 120 }}</p>
+              {{ $postExcerpt := .Params.description | default .Summary | plainify | htmlUnescape | replaceRE "\\s*[\\x{2014}\\x{2013}]\\s*" ", " | truncate 120 }}
+              <p class="post-grid__excerpt">{{ $postExcerpt }}</p>
 
               <time class="post-grid__date"
                     datetime="{{ .Date.Format "2006-01-02" }}">

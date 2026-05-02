@@ -1,0 +1,41 @@
+{{ $page := . }}
+{{ $path := slice }}
+{{ with site.GetPage "posts/your-lessons-need-a-predictable-structure" }}
+  {{ $path = $path | append (dict "page" . "label" "Start with structure" "desc" "Use predictable routines and a visual schedule to lower uncertainty for every learner.") }}
+{{ end }}
+{{ with site.GetPage "posts/your-classroom-layout-is-a-behavior-management-tool-here-s-how-to-use-it" }}
+  {{ $path = $path | append (dict "page" . "label" "Set up the room" "desc" "Use layout choices to prevent common behavior problems before they start.") }}
+{{ end }}
+{{ with site.GetPage "posts/choice-boards-the-gateway-to-speech-and-song" }}
+  {{ $path = $path | append (dict "page" . "label" "Add student choice" "desc" "Give non-speaking and minimally verbal students a real way into the music.") }}
+{{ end }}
+{{ with site.GetPage "posts/it-s-a-dignity-issue-age-appropriate-music-for-your-self-contained-students" }}
+  {{ $path = $path | append (dict "page" . "label" "Choose age-appropriate music" "desc" "Keep repertoire respectful, grade-adjacent, and connected to students' real worlds.") }}
+{{ end }}
+
+{{ $items := slice }}
+{{ range $path }}
+  {{ if ne .page.RelPermalink $page.RelPermalink }}
+    {{ $items = $items | append . }}
+  {{ end }}
+{{ end }}
+
+{{ with first 3 $items }}
+  <aside class="strategy-path" aria-labelledby="strategy-path-heading">
+    <p class="overline" aria-hidden="true">Keep going</p>
+    <h2 id="strategy-path-heading" class="strategy-path__heading">
+      Build the next layer of inclusion
+    </h2>
+    <ol class="strategy-path__list">
+      {{ range . }}
+        <li class="strategy-path__item">
+          <p class="strategy-path__label">{{ .label }}</p>
+          <h3 class="strategy-path__title">
+            <a href="{{ .page.RelPermalink }}">{{ .page.Title }}</a>
+          </h3>
+          <p class="strategy-path__desc">{{ .desc }}</p>
+        </li>
+      {{ end }}
+    </ol>
+  </aside>
+{{ end }}

@@ -3,15 +3,57 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ with .Params.seo_title }}{{ . }}{{ else }}{{ if .IsHome }}{{ .Site.Title }} | {{ .Site.Params.seo_tagline }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}{{ end }}</title>
-  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  {{ $pageTitle := "" }}
+  {{ with .Params.seo_title }}
+    {{ $pageTitle = . }}
+  {{ else }}
+    {{ if .IsHome }}
+      {{ $pageTitle = printf "%s | %s" .Site.Title .Site.Params.seo_tagline }}
+    {{ else }}
+      {{ $pageTitle = printf "%s | %s" .Title .Site.Title }}
+    {{ end }}
+  {{ end }}
+  {{ $metaDescription := .Description | default .Site.Params.description | plainify }}
+  {{ $ogTitle := .Title | default .Site.Title }}
+  {{ if .IsHome }}
+    {{ $ogTitle = .Params.og_title | default .Site.Title }}
+  {{ end }}
+  {{ $ogDescription := .Params.og_description | default $metaDescription | plainify }}
+  {{ $socialImage := .Params.image | default .Params.card_image | default .Site.Params.social_image }}
+  {{ $socialImageAlt := "" }}
+  {{ if or (eq $socialImage .Site.Params.social_image) (not (or .Params.image .Params.card_image)) }}
+    {{ $socialImageAlt = .Site.Params.social_image_alt }}
+  {{ else }}
+    {{ $socialImageAlt = .Params.image_alt | default .Params.card_image_alt }}
+  {{ end }}
+  <title>{{ $pageTitle }}</title>
+  <meta name="description" content="{{ $metaDescription }}">
+  <link rel="canonical" href="{{ .Permalink }}">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="{{ .Title }}">
-  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:title" content="{{ $ogTitle }}">
+  <meta property="og:description" content="{{ $ogDescription }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
-  {{ with .Params.image | default .Params.card_image }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+  {{ with $socialImage }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+  {{ with $socialImageAlt }}<meta property="og:image:alt" content="{{ . }}">{{ end }}
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ $ogTitle }}">
+  <meta name="twitter:description" content="{{ $ogDescription }}">
+  {{ with $socialImage }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
+  {{ with $socialImageAlt }}<meta name="twitter:image:alt" content="{{ . }}">{{ end }}
+
+  {{ if .IsHome }}
+    {{ $personId := printf "%s#person" .Site.BaseURL }}
+    {{ $websiteId := printf "%s#website" .Site.BaseURL }}
+    {{ $person := dict "@type" "Person" "@id" $personId "name" .Site.Params.author "url" ("/about/" | absURL) "image" ("/images/uploads/bottorff-headshots.webp" | absURL) }}
+    {{ $website := dict "@type" "WebSite" "@id" $websiteId "name" .Site.Title "url" .Site.BaseURL "description" $metaDescription "publisher" (dict "@id" $personId) }}
+    {{ $schema := dict "@context" "https://schema.org" "@graph" (slice $person $website) }}
+    <script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+  {{ end }}
 
   <!-- Apply saved contrast preference before CSS loads to prevent flash -->
   <script>
