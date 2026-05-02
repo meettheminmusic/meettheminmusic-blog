@@ -4,7 +4,7 @@ date: 2026-04-19T21:23:00
 draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/Bim_Bum_Biddy.webp
+card_image: /images/uploads/bimbumbiddy.webp
 tonal_concepts: []
 rhythmic_concepts:
   - 1/16 notes
@@ -79,3 +79,5 @@ As the teacher, you get a ton of practice. Kids will notice and ask how you are 
 This video just shows the first few minutes of doing rote practice.  The goal is to talk to kids about what their brains are doing when they try hard things, start meta-cognition, and getting students to discover ways to push through the challenges.  I am not the "sage on the stage."
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/RbfyJNrGorY?si=NMi4HTY2rOs3pxZQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+![movement cards for pat clap and snap](/images/uploads/Movement%20cards.png "movement cards for pat clap and snap")

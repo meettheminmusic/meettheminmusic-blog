@@ -4,7 +4,7 @@ date: 2026-04-07T21:19:00
 draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/Frog-in-the-Meadow.webp
+card_image: /images/uploads/frog in grass.jpg
 tonal_concepts:
   - Mi-Do
 rhythmic_concepts:

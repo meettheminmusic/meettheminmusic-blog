@@ -4,7 +4,7 @@ date: 2026-04-07T22:08:00
 draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/Haul-Away-Joe.webp
+card_image: /images/uploads/haul away joe.webp
 tonal_concepts:
   - v-i
 rhythmic_concepts:
