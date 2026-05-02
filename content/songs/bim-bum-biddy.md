@@ -4,7 +4,7 @@ date: 2026-04-19T21:23:00
 draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/Bim_Bum_Biddy.webp
+card_image: /images/uploads/bimbumbiddy.webp
 tonal_concepts: []
 rhythmic_concepts:
   - 1/16 notes
