@@ -7,7 +7,7 @@ featured: false
 description: Choosing songs designed for toddlers isn't neutral. Here's why age-appropriate repertoire is a dignity issue — and how to fix it without overhauling your program.
 tags: []
 categories: []
-image: /images/uploads/Dignity Hero.webp
+image: /images/uploads/dignity-hero.webp
 ---
 
 You've taught _Five Little Speckled Frogs_ a hundred times. You know exactly how it goes over: the movement, the call and response, the way reluctant kids start to participate. It works. That matters.
