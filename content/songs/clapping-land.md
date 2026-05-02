@@ -4,7 +4,7 @@ date: 2026-04-06T09:02:00
 draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/Clapping_Land.webp
+card_image: /images/uploads/clapping land.png
 tonal_concepts:
   - I-IV-V
 rhythmic_concepts:
