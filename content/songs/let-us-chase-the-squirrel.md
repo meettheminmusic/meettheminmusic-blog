@@ -49,7 +49,6 @@ abc_notation: |-
   M:2/4
   FF FG | A2 c2 | FF GG | F2z2 ||
   w: let us chase the squi-rrel. Up the hick-'ry tree
-
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
