@@ -1,7 +1,7 @@
 ---
 title: Let Us Chase the Squirrel
 date: 2026-05-04T12:41:00
-draft: true
+draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/let us chase the squirrel.jpg
