@@ -4,7 +4,7 @@ date: 2026-05-04T12:41:00
 draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/let us chase the squirrel.jpg
+card_image: /images/uploads/let us chase the squirrel-1.jpg
 tonal_concepts:
   - Do-Re-Mi-So
 rhythmic_concepts:
