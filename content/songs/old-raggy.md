@@ -37,7 +37,7 @@ abc_notation: |-
   L:1/8
   C:arr. P. Eric Bottorff
   A: MeetThemInMusic.com 
-  Q:1/4=100
+  Q:1/4.=100
   %%gchordfont Arial 12
   %%vocalfont Arial 12
   %%staffsep 50
@@ -53,7 +53,7 @@ abc_notation: |-
   V:2 clef: bass
   F,3 F,3 | C,3 F,3 | F,3 F,3 | C,3 F,3||
   M:6/8
-  C,3 F,,3 | C,3 F,,3 | F,,3 F,,3|G,,3 C,3|]
+  C,3 F,,3 | C,3 F,,3 | F,,3 F,,3|C,3 F,3|]
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
@@ -69,7 +69,7 @@ sanitized_abc: |-
   M:6/8
   C,6 | G,,6 | F,,3 G,,3| C,6|]
 abc_image: ''
-abc_tempo: 112
+abc_tempo: 160
 abc_scores: []
 ---
 
