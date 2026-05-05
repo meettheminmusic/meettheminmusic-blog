@@ -10,7 +10,7 @@ categories: []
 image: /images/uploads/dignity-hero.webp
 ---
 
-You've taught _Five Little Speckled Frogs_ a hundred times. You know exactly how it goes over: the movement, the call and response, the way reluctant kids start to participate. It works. That matters.
+You've taught _Five Little Speckled Frogs_ a hundred times. You know exactly how it goes. It works. That matters.
 
 And somewhere in the back of your mind, maybe you've wondered whether it's the right fit for every student in the room. Maybe you haven't. You're busy. The lesson loads fine. The class leaves happy. It is familiar but it was made for two-year-olds.
 
@@ -26,19 +26,19 @@ So teachers do what any reasonable person does when they're underprepared and a 
 
 Those songs exist. They work. And they were written for infants.
 
-The intention here is survival. That deserves to be said plainly, without condescension. When you have eight students with complex support needs, two paraprofessionals, forty minutes, and no training, you are not in a position to be adventurous. You grab the nearest handhold.
+The intention here is survival. That deserves to be said without condescension. When you have eight students with complex support needs, two paraprofessionals, forty minutes, and no training, you are not in a position to be adventurous. You grab the nearest handhold.
 
-But the effect of that choice is something else entirely. And the longer it goes unnamed, the longer it continues.
+But the effect of that choice is something else entirely.
 
 ## The dignity issue
 
 When a ten-year-old who receives special education services sits in music class singing a song marketed to toddlers, several things happen at once.
 
-The student receives a message about what the adults in the room believe they are capable of. The paraprofessionals, who take their cues from the teacher, receive the same message and begin to calibrate their expectations accordingly. Any peer who glimpses that class through an open door receives a message about that student's status in the school community. And the student loses another opportunity to encounter music that actually belongs to their world.
+The student receives a message about what the adults in the room believe they are capable of. The paraprofessionals, who take their cues from the teacher, receive the same message. Any peer who glimpses that class through an open door receives a message about that student's status in the school community. And the student loses another opportunity to encounter music that actually belongs to their world.
 
 None of this requires anyone to have bad intentions. The message is sent anyway.
 
-Here is the thing that needs to be said directly: students with disabilities are not developmentally frozen at the age their disability was diagnosed. A student with significant cognitive support needs who is ten years old is a ten-year-old. They have a ten-year-old's awareness of their social world. They know what the other fourth graders are doing. They know what music sounds like on the radio, in the car, at their older sibling's birthday party. They have preferences, associations, and a growing sense of what is and is not meant for them.
+Here is the thing that needs to be said directly: students with disabilities are not developmentally frozen at the age their disability was diagnosed. A student with significant cognitive support needs who is ten years old is a ten-year-old. They have their own social world. They can see  what the other fourth graders are doing. They know what music sounds like on the radio, in the car, at their older sibling's birthday party. They have preferences, associations, and a growing sense of what is and is not meant for them.
 
 A student who uses a wheelchair doesn't sit in a stroller. A student who uses an AAC device doesn't carry a rattle. The music in their classroom should meet the same standard.
 
@@ -48,13 +48,11 @@ Cognitive, physical, and communication differences do not determine musical tast
 
 Before you close this tab: age-appropriate does not mean throwing your students into repertoire they aren't ready for. It does not mean removing scaffolding, eliminating adaptation, or pretending that a student with significant support needs is starting from the same musical place as their same-aged peer.
 
-It means something simpler and more specific than that.
-
 Age-appropriate means the cultural and social register of the music matches the student's chronological age and the world they actually live in. A fourth grader with complex support needs can still engage with the folk songs their grade-level peers are learning in general music. They can still hear music from their own era. They can still be asked what they listen to at home and have that answer honored.
 
-The adaptations live in how you teach the music. Not in which music you choose.
+The adaptations live in how you teach the music. 
 
-A folk song your general education third graders are learning can be taught to a self-contained class of third graders using visual supports, a slower pace, repeated exposures over several weeks, and a choice board for the fill-in-the-blank sections. The song is the same. The approach is different. That is differentiation. That is not lowering the bar. That is finding the least restrictive connection between who your students are and what they deserve to learn.
+A folk song your general education third graders are learning can be taught to a self-contained class of third graders using visual supports, a slower pace, repeated exposures over several weeks, and a choice board for the fill-in-the-blank sections. The song is the same. The strategies are more nuanced. That is differentiation. That is not lowering the bar. That is finding the least restrictive connection between who your students are and what they deserve to learn.
 
 This is also, not coincidentally, where inverted lesson planning pays off. When you begin your planning process by designing for your self-contained students first and then add complexity outward toward your general education classes, you stop reaching automatically for the infant repertoire shelf. You ask instead: what would work here, and how do I build from it? The answer is almost never _Baby Shark_.
 
@@ -62,15 +60,17 @@ This is also, not coincidentally, where inverted lesson planning pays off. When 
 Choosing 'baby songs' has the benefit of being familiar to the student and require less from the teacher. The this is: teachers gotta teach. Repeating an old familiar nursery rhyme is not teaching, it is recalling. Teaching is more than that!
 {{< /callout >}}
 
-## The mainstreaming argument
+## The "mainstreaming" perspective
 
 For many students in self-contained placements, the long-term goal is to spend more of their school day alongside general education peers. This is the principle of the Least Restrictive Environment, and it shapes the educational trajectory of students across the elementary years.
 
-//Add chart from NCES on where students spend their days.
+![LRE Percentages Chart](/images/uploads/LRE.jpg "LRE Percentages Chart")
+
+> 15% of students nationally receive some sort of special education services.  10% of THESE students spend less than 40% of their day in general education classes. (NCES, 2023)
 
 Here is the question that I ask when planning: what happens to that student on the day they walk into a general education music class for the first time?
 
-If their music instruction has been running on a completely separate track (different songs, different repertoire, a different musical world entirely) they will arrive without any shared reference points. The songs their classmates have been building on for two years will be unfamiliar. The routines, the musical vocabulary, the repertoire that has become common ground in the general education room will be foreign to them.
+If their music instruction has been running on a completely separate track (different songs, different repertoire, a different musical world entirely) they will arrive without any shared reference points. The songs their classmates have been building on for two years will be unfamiliar. The routines, the musical vocabulary, the repertoire that has become common ground in the general education room will be foreign to them. The excitement will become contempt.
 
 For a student already navigating the stress of a new environment, arriving without shared musical knowledge is one more barrier between them and belonging.
 
@@ -95,8 +95,7 @@ This requires a few deliberate choices, made consistently.
 - Would a same-age peer recognize this as music for their age?
 - Would this student encounter this song outside of a special education setting?
 - Am I choosing this because it's appropriate or because it's easy?
-
-There's no shame in the third answer. But there's important information in it. {{< /callout >}}
+{{< /callout >}}
 
 ## The lesson, again
 
