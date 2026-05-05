@@ -326,6 +326,19 @@ button.tag { cursor: pointer; font: inherit; border: none; }
   color: #6b6966;
   margin-bottom: 0;
 }
+.footer-copy a {
+  color: var(--warm-white);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+}
+.footer-copy a:hover,
+.footer-copy a:focus-visible {
+  text-decoration-color: var(--warm-white);
+}
+.footer-copy img {
+  vertical-align: middle;
+  opacity: 0.7;
+}
 
 /* --- Hero --- */
 
