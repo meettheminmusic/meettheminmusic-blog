@@ -53,7 +53,7 @@ abc_notation: |-
   V:2 clef: bass
   F,3 F,3 | C,3 F,3 | F,3 F,3 | C,3 F,3||
   M:6/8
-  C,6 | G,,6 | F,,3 G,,3| C,6|]
+  C,3 F,,3 | C,3 F,,3 | F,,3 F,,3|G,,3 C,3|]
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
@@ -96,5 +96,4 @@ In some classes, kids take turns with me. In other classes, this is a whole grou
 <u>**Assessment Opportunity**</u>
 
 - When drumming, watch to see if students feet move or if they are able to constrain the drumming to just their hands.
-
 - Begin with hands together on the macrobeat, then hands apart, then transition to microbeats as students are able.
