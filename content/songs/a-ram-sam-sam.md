@@ -4,7 +4,7 @@ date: 2026-04-14T08:35:00
 draft: false
 unlisted: false
 featured: false
-card_image: /images/uploads/A_Ram_Sam_Sam.png
+card_image: /images/uploads/aramsamsam.png
 tonal_concepts:
   - So-Do
   - Low So
