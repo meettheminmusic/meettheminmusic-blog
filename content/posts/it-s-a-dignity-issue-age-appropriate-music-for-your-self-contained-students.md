@@ -1,8 +1,8 @@
 ---
 title: "It's a dignity issue: age-appropriate music for your self-contained students"
-date: 2026-04-24T09:29:00
-draft: true
-unlisted: false
+date: 2026-05-04T21:25:00
+draft: false
+unlisted: true
 featured: false
 description: Choosing songs designed for toddlers isn't neutral. Here's why age-appropriate repertoire is a dignity issue — and how to fix it without overhauling your program.
 tags: []
