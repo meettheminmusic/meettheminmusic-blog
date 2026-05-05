@@ -39,7 +39,7 @@ abc_notation: |-
   A: MeetThemInMusic.com 
   Q:1/4.=120
   %%gchordfont Arial 12
-  %%vocalfont Arial 12
+  %%vocalfont Arial 9
   %%staffsep 50
   %%barsperstaff 5
   %%stretchlast 1
