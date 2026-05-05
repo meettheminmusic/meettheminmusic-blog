@@ -89,7 +89,7 @@ This is a good introduction to the concept of longways for folk dancing because 
 
 <u>**Accommodated Activity**</u>
 
-For classes where the longways sets are not applicable (or as a precursor when learning the song for the first time), I this can become a drumming activity.  One person on the drum is Old Raggy and the other is trying not to be caught.  Both participants drum at the same time on the same drum. At the end, both raise their hands as if doing patty cake. Old Raggy says the gross, nasty presents and tries to catch the other player's hands.
+For classes where the longways sets are not applicable (or as a precursor when learning the song for the first time),  this can become a drumming activity.  One person on the drum is Old Raggy and the other is trying not to be caught.  Both participants drum at the same time on the same drum. At the end, both raise their hands as if doing patty cake. Old Raggy says the gross, nasty presents and tries to catch the other player's hands.
 
 In some classes, kids take turns with me. In other classes, this is a whole group activity.
 
