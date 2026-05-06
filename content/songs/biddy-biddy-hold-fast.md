@@ -4,7 +4,7 @@ date: 2026-05-06T09:46:00
 draft: false
 unlisted: true
 featured: false
-card_image: ''
+card_image: /images/uploads/gold ring.jpg
 tonal_concepts:
   - So-Mi
 rhythmic_concepts:
