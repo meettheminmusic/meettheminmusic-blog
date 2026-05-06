@@ -33,7 +33,7 @@ abc_notation: |-
   cccc A2c2 F2A2 A2A2 | GA2B A2G2 AA2AA4||
   w: Bid-dy bid-dy hold fast. Lost my gold ring, one went to kings-ton. Come back a-gain.
   M: 4/4
-  cccc A2c2 F2A2 A2A2 | GA2B A2G2 FF2FF4|]
+  cccc A2c2 F2A2 A2A2 | GA2B A2G2 FF2FF4:|]
   w: Bid-dy bid-dy hold fast. Lost my gold ring, one went to kings-ton. Come back a-gain.
   %%textfont arial 9
   %%center .
