@@ -5,16 +5,29 @@ draft: false
 unlisted: true
 featured: false
 card_image: ''
-tonal_concepts: []
-rhythmic_concepts: []
-activity_types: []
-social_concepts: []
-movement_concepts: []
+tonal_concepts:
+  - So-Mi
+rhythmic_concepts:
+  - 1/16 notes
+activity_types:
+  - Hidden object
+  - Circle
+social_concepts:
+  - Teamwork
+  - Others perspective
+movement_concepts:
+  - Sneaking
+  - Hiding
 supports_adaptations: []
-language_origins: []
-keys: []
-modes: []
-meters: []
+language_origins:
+  - Jamaica
+keys:
+  - F
+modes:
+  - Major
+meters:
+  - 4/4
+  - Duple
 source: ''
 source_url: ''
 abc_notation: |-
@@ -40,6 +53,6 @@ abc_notation: |-
   %%center © 2026 All Rights Reserved.
 sanitized_abc: ''
 abc_image: ''
-abc_tempo: 120
+abc_tempo: 105
 abc_scores: []
 ---
