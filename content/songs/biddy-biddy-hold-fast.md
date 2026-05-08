@@ -73,6 +73,6 @@ I originally heard the location in the lyrics of this song with multiple locatio
 
 This is a great opportunity to talk about how other people have different perspectives and viewpoints.  There will always be some students who say "its obvious who has the ring!"  Point out that the person who is trying to find the ring can't see the same things as they can.  This connects with different areas of life - some people can ride bikes or swim while others haven't learned how to yet.
 
-There is a great, related XKCD comic:
+There is a great, related XKCD comic:<center>
 
-[![](/images/uploads/ten_thousand.png)](https://m.xkcd.com/1053/)
+[![](/images/uploads/ten_thousand.png)](https://m.xkcd.com/1053/)</center>
