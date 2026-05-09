@@ -37,7 +37,7 @@ sanitized_abc: |-
   M: 6/8
   c3 c2 G| (B3 -B2) G| F2F G3 | C3 z3 |]
 abc_image: ''
-abc_tempo: null
+abc_tempo: 120
 abc_scores:
   - label: Melody
     notation: |-
