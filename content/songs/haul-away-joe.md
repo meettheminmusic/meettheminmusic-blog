@@ -116,9 +116,11 @@ abc_scores:
 
 Sit students in a circle around a stretchy-band/coop-band. Practice passing the band in around the circle while saying "pass" to a beat.  After students are familiar with the song and are ready to sing, ask them to sing the "Way Haul Away" while you sing the other words.  Practice going back and forth.
 
-For extra fun, tie a ribbon or scarf around the stretchy-band.  Cheer with the class when it lands on a different student. If there is a student who really needs to have it land on them ... CHEAT!
+For extra fun, tie a ribbon or scarf around the stretchy-band.  Cheer with the class when it lands on a different student. If there is a student who really needs to have it land on them ... CHEAT!<center> 
 
 ![](/images/uploads/haul%20away%20joe.webp)
+
+</center>
 
 <u>**Extension**</u>
 
