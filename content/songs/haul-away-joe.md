@@ -118,6 +118,8 @@ Sit students in a circle around a stretchy-band/coop-band. Practice passing the 
 
 For extra fun, tie a ribbon or scarf around the stretchy-band.  Cheer with the class when it lands on a different student. If there is a student who really needs to have it land on them ... CHEAT!
 
+![](/images/uploads/haul%20away%20joe.webp)
+
 <u>**Extension**</u>
 
 After a few lessons learning this song, my kids love trying to come up with new phrases that would fit in the song with a rhyme.  Think "my wallet's made of leather" or "your teacher's name is Heather" or "birds have lots of feathers" or "you guys are very clever."
