@@ -109,5 +109,19 @@ abc_scores:
       %%center .
       %%center © 2026 All Rights Reserved.
     image: ''
-    tempo: 100
+    tempo: 125
 ---
+
+<u>**Activity**</u>
+
+Sit students in a circle around a stretchy-band/coop-band. Practice passing the band in around the circle while saying "pass" to a beat.  After students are familiar with the song and are ready to sing, ask them to sing the "Way Haul Away" while you sing the other words.  Practice going back and forth.
+
+For extra fun, tie a ribbon or scarf around the stretchy-band.  Cheer with the class when it lands on a different student. If there is a student who really needs to have it land on them ... CHEAT!
+
+<u>**Extension**</u>
+
+After a few lessons learning this song, my kids love trying to come up with new phrases that would fit in the song with a rhyme.  Think "my wallet's made of leather" or "your teacher's name is Heather" or "birds have lots of feathers" or "you guys are very clever."
+
+<u>**Teamwork**</u>
+
+My classes have a tradition when putting away the stretchy-band.  We lean back, pulling it tight, and count to a specific number (skip counting if they can!) or letter.  When we get to the agreed upon point, we all let go.  If all students let go at the right time, it lands on my lap. If they dont, it doesnt and we get to talk about how teamwork can make games more fun and one person trying to be silly or greedy can ruin the game.
