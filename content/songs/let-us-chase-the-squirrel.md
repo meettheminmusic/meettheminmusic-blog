@@ -62,4 +62,10 @@ This is best done outdoors on grass.
 
 <u>**Activity**</u>
 
-Stand students in a circle with their arms outstretched.  They should be just far enough apart to touch fingers with their neighbors.  Assign one student to be the squirrel and one to be the dog.  The squirrel can run in and out of the circle but the dog must stay on the outside.
+Stand students in a circle with their arms outstretched.  They should be just far enough apart to touch fingers with their neighbors.  Assign one student to be the squirrel and one to be the dog.  The squirrel can run in and out of the circle but the dog must stay on the outside.  When the squirrel runs through a hole in the tree, the door closes and they cant go back through.
+
+{{< callout title="The nature of squirrels" >}}
+Some students realize that they can just stay on the opposite side of the circle from the 'dog' and never be caught.  When this happens I ask "Have you ever watched a squirrel?  They are jerks!  They love taunting dogs to chase them."
+
+It cant help to tell a story (even if it is made up) about an experience between your dog and a squirrel.  I say "last summer, there was a squirrel on the power line in my yard.  He was chirping at my dog and even dropped some nuts at him!  Poor Bo didnt want to do, he just wanted to play!"
+{{< /callout >}}
