@@ -57,3 +57,9 @@ abc_image: ''
 abc_tempo: 120
 abc_scores: []
 ---
+
+This is best done outdoors on grass.
+
+<u>**Activity**</u>
+
+Stand students in a circle with their arms outstretched.  They should be just far enough apart to touch fingers with their neighbors.  Assign one student to be the squirrel and one to be the dog.  The squirrel can run in and out of the circle but the dog must stay on the outside.
