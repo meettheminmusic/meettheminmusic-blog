@@ -69,3 +69,5 @@ Some students realize that they can just stay on the opposite side of the circle
 
 It cant help to tell a story (even if it is made up) about an experience between your dog and a squirrel.  I say "last summer, there was a squirrel on the power line in my yard.  He was chirping at my dog and even dropped some nuts at him!  Poor Bo didnt want to do, he just wanted to play!"
 {{< /callout >}}
+
+If your students do a one-room school house field trip, this is a great game to teach as it is an appropriate kids game from that time period.  The directions with a different song were included in the packet provided my 2nd grade teachers for the local one room school house.
