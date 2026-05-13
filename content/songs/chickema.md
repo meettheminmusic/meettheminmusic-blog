@@ -59,7 +59,7 @@ sanitized_abc: |-
   ccc ccc| c2A G3 | ccc c2c| c2A G3 |
   ccc c2c| ccA G2 G| c2G c2A| G3 |
 abc_image: ''
-abc_tempo: 100
+abc_tempo: 145
 abc_scores: []
 ---
 
