@@ -598,10 +598,9 @@
         // Set state before starting so the button shows "Stop"
         _setState(player, container, 'PLAYING');
 
-        // Cursor / timing callbacks
-        if (player.cursorEnabled) {
-          _startTimingCallbacks(player, container);
-        }
+        // Always start timing callbacks so onFinished fires when playback
+        // ends naturally — cursor highlighting is gated inside the callback.
+        _startTimingCallbacks(player, container);
 
         synth.start();
       }).catch(function (err) {
@@ -648,9 +647,10 @@
       qpm:              player.currentBpm,
       beatSubdivisions: 2,
       onStart: function () {
-        _clearCursor(player);
+        if (player.cursorEnabled) { _clearCursor(player); }
       },
       onEvent: function (ev) {
+        if (!player.cursorEnabled) { return; }
         _clearCursor(player);
         if (ev && ev.elements) {
           // ev.elements is an array of arrays (one per staff/voice)

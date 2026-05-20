@@ -139,7 +139,7 @@ function ChordTool() {
     triggerDownload(new Blob([xml], { type: 'image/svg+xml' }), `${(shape.name || 'chord').replace(/[^a-z0-9]+/gi, '_')}.svg`);
   };
 
-  const exportPNG = () => {
+  const exportPNG = (scale = 4) => {
     const svg = document.querySelector('.chord-tool-root .canvas-wrap svg');
     if (!svg) return;
     const clone = svg.cloneNode(true);
@@ -149,8 +149,11 @@ function ChordTool() {
     const img = new Image();
     img.onload = () => {
       const c = document.createElement('canvas');
-      c.width = 520; c.height = 760;
+      c.width = 260 * scale;
+      c.height = 380 * scale;
       const ctx = c.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
       ctx.fillStyle = theme === 'dark' ? '#2C2C2A' : '#FFFFFF';
       ctx.fillRect(0, 0, c.width, c.height);
       ctx.drawImage(img, 0, 0, c.width, c.height);
@@ -277,7 +280,8 @@ function ChordTool() {
         <button type="button" className="btn btn-secondary" onClick={saveCurrent}>Save to library</button>
         <span className="spacer" />
         <button type="button" className="btn btn-ghost" onClick={exportSVG}>Export SVG</button>
-        <button type="button" className="btn btn-primary" onClick={exportPNG}>Export PNG</button>
+        <button type="button" className="btn btn-primary" onClick={() => exportPNG(4)}>Export PNG (4×)</button>
+        <button type="button" className="btn btn-primary" onClick={() => exportPNG(8)}>Export PNG (8×)</button>
       </div>
 
       <div className="help" role="note">

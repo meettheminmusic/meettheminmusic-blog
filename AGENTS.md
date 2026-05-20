@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
 ## Commands
 
@@ -21,11 +21,11 @@ Hugo static site with a fully custom theme (no external theme package). All temp
 - **Content types**: `content/songs/`, `content/posts/`, `content/books/`, plus static pages
 - **Templates**: `layouts/_default/` (base, single, list, about, sitemap, sitemap.xml, taxonomy, term), `layouts/songs/`, `layouts/posts/`, `layouts/books/`
 - **Shortcodes**: `layouts/shortcodes/` — abc-player, callout, book, books, slides, slideshow
-- **Partials**: `layouts/partials/` — braille-panel, related-content, author-bio, signup-cta, sticky-email-bar, post-retention-cta, strategy-path, analytics, footer, hero-beams
+- **Partials**: `layouts/partials/` — braille-panel, related-content, author-bio, signup-cta, sticky-email-bar, analytics, footer, hero-beams
 - **Assets**: `assets/css/style.css` fingerprinted via Hugo pipes; brand SVG logos in `assets/`. Page-specific styles live in `static/css/` (abc-player.css, braille-panel.css, lyrics-panel.css) and are loaded conditionally on relevant pages.
 - **CMS**: Netlify CMS config at `static/admin/config.yml` — GitHub-backed headless editor for posts, songs, and books. Not required for local dev.
 - **Navigation**: driven by `data/navigation.yaml`; supports top-level links and dropdown groups (items with a `children` array); dropdown JS and CSS live in `baseof.html` and `style.css`
-- **Tool pages**: page-specific CSS/JS injected via the `{{ block "extra_head" . }}` hook in `baseof.html`. Current tools: `content/rhythm-builder.md` + `layouts/_default/rhythm-builder.html`; `content/chord-diagram-generator.md` + `layouts/_default/chord-diagram-generator.html`
+- **Tool pages**: `content/rhythm-builder.md` + `layouts/_default/rhythm-builder.html`; page-specific CSS/JS injected via the `{{ block "extra_head" . }}` hook in `baseof.html`
 - **Archetypes**: `archetypes/songs.md` and `archetypes/books.md` define frontmatter templates for new content
 
 Site config, brand colors, taxonomy definitions, and related-content index weights are all in `hugo.toml`.
@@ -67,8 +67,6 @@ Songs are the most complex content type. Key frontmatter fields:
 
 `layouts/songs/list.html` powers the song library page. Client-side search uses Fuse.js (loaded from CDN: `fuse.js@7.0.0`). Multi-dimension filtering maps to the 10 song taxonomies. Filter state persists in `localStorage` (keys prefixed `filter-fg-`). URL parameters support deep-linking to pre-filtered results.
 
-`layouts/songs/list.json` outputs all non-unlisted songs as a JSON array (title, url, and all taxonomy fields) consumed by the client-side Fuse.js search.
-
 ## Books
 
 `content/books/` + `layouts/books/`. The `audience` frontmatter field (`"kids"` or `"teachers"`) controls which display grid a book appears in on the list page. Archetype: `archetypes/books.md`.
@@ -76,16 +74,6 @@ Songs are the most complex content type. Key frontmatter fields:
 ## Rhythm Builder
 
 `/rhythm-builder/` is a Hugo page (not a static file). Layout: `layouts/_default/rhythm-builder.html`, content stub: `content/rhythm-builder.md`. All tool CSS uses `--rb-` prefixed custom properties to avoid conflicts with global variables. The `extra_head` block injects the ABCJS CDN script and tool styles into `<head>`. Action buttons (Play/Stop/Save PNG/Save SVG/Copy ABC) live in `.action-toolbar` above the cards, not in a header.
-
-## Chord Diagram Generator
-
-`/chord-diagram-generator/` is a Hugo page. Layout: `layouts/_default/chord-diagram-generator.html`, content stub: `content/chord-diagram-generator.md`. Unlike Rhythm Builder, this tool is React-based: the layout loads React 18.3.1, ReactDOM, and Babel Standalone 7.29.0 from unpkg CDN, then mounts `ChordTool` into `#chord-root` via `<script type="text/babel">`.
-
-JavaScript components (both in `static/js/`):
-- `chord-diagram-component.js` — pure SVG renderer (`ChordDiagram`). Accepts a `shape` object (`strings`, `frets`, `fingers`, `barres`, `nut`, `baseFret`, `name`, `dotSize`, `lineWeight`, `dotColor`, `theme`, `labelPos`). Theme-aware with shared brand palette constants.
-- `chord-tool-component.js` — full interactive UI (`ChordTool`). Supports Guitar (6 strings) and Ukulele (4 strings); finger placement and barre modes; color/size/weight customization. Chord library persists to `localStorage` key `mtim_chord_library`.
-
-CSS uses `--mtim-*` prefixed custom properties (same namespace as global brand tokens, unlike Rhythm Builder's isolated `--rb-` prefix).
 
 ## Related content
 
