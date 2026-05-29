@@ -62,6 +62,8 @@ Pair up students for rock-paper-scissors game.  If a student wins, they find a n
 
 _Adjusting for movement differences:_ Create cards for each of the hand signs,  select from a visual choice board, or AAC. Alternatively, students who are capable of doing the hand signs but not in time with the chant can hold their hand behind their back or turn around to reveal their choice.
 
+![](/images/uploads/rock-paper-scissors.webp)
+
 **Social Emotional Connection:**
 
 Losing a game is hard! Discuss ways to be happy for your friends who are still in the game.  Sometimes giving students a phrase "If I lose that is okay. I will get another chance to try!"
