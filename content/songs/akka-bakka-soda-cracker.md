@@ -103,4 +103,4 @@ Does the student end preceisely on the word "you!" or do they run to choose a ne
 
 **---**
 
-**Note:** While I have not seen evidence that convinces me that there are negative racial stereotypes associated with this song, some teachers have chosen to remove this song from their rotations. If you choose to remove this song from your classroom, _Frog in the Meadow_ can serve a similar purpose.
+**Note:** While I have not seen evidence that convinces me that there are negative racial stereotypes associated with this song, some teachers have chosen to remove this song from their rotations. If you choose to remove this song from your classroom, [_Frog in the Meadow_](https://meettheminmusic.com/songs/frog-in-the-meadow/) can serve a similar purpose.
