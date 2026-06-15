@@ -81,5 +81,5 @@ abc_scores:
       %%center .
       %%center © 2026 All Rights Reserved.
     image: ''
-    tempo: 100
+    tempo: 180
 ---
