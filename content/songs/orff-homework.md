@@ -32,6 +32,7 @@ abc_scores:
       C:Shell Silverstein
       A: arr. P. Eric Bottorff
       Q:1/4=100
+      %%printtempo 0
       %%gchordfont Arial 12
       %%vocalfont Arial 8
       %%staffsep 50
@@ -64,6 +65,7 @@ abc_scores:
       C:Ogden Nash
       A: arr. P. Eric Bottorff
       Q:1/4=100
+      %%printtempo 0
       %%gchordfont Arial 12
       %%vocalfont Arial 8
       %%staffsep 50
