@@ -1,6 +1,6 @@
 ---
 title: Orff Homework
-date: 2026-06-15T19:34:00
+date: 2026-06-15T19:34
 draft: false
 unlisted: true
 featured: false
@@ -31,7 +31,7 @@ abc_scores:
       L:1/8
       C:Shell Silverstein
       A: arr. P. Eric Bottorff
-      Q:1/4=100
+      Q:1/4
       %%printtempo 0
       %%gchordfont Arial 12
       %%vocalfont Arial 8
@@ -64,7 +64,7 @@ abc_scores:
       L:1/8
       C:Ogden Nash
       A: arr. P. Eric Bottorff
-      Q:1/4=100
+      Q:1/4
       %%printtempo 0
       %%gchordfont Arial 12
       %%vocalfont Arial 8
