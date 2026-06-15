@@ -20,7 +20,7 @@ source_url: ''
 abc_notation: ''
 sanitized_abc: ''
 abc_image: ''
-abc_tempo: 120
+abc_tempo: null
 abc_scores:
   - label: Listen
     notation: |-
