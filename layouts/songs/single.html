@@ -96,471 +96,87 @@
     <script>if (!window.matchMedia('(max-width: 640px)').matches) { document.querySelector('.song-concepts-details').setAttribute('open', ''); }</script>
     {{ end }}
 
-    {{- $scores   := .Params.abc_scores -}}
-    {{- $single   := .Params.abc_notation -}}
-    {{- $defTempo := int (.Params.abc_tempo | default 120) -}}
-    {{- $abc      := .Params.sanitized_abc -}}
-    {{- $uid      := .File.UniqueID -}}
-    {{- $hasNote  := or $scores $single -}}
+    {{- $single    := .Params.abc_notation -}}
+    {{- $scoresL   := .Params.abc_scores -}}
+    {{- $defTempo  := int (.Params.abc_tempo | default 120) -}}
+    {{- $abcLegacy := .Params.sanitized_abc -}}
+    {{- $panels    := .Params.panels -}}
+    {{- $uid       := .File.UniqueID -}}
 
-    {{- if or $hasNote $abc -}}
+    {{/* page-level capability flags across legacy fields AND panels */}}
+    {{- $anyNote    := or $scoresL $single -}}
+    {{- $anyBraille := $abcLegacy -}}
+    {{- range $panels -}}
+      {{- if gt (len .scores) 0 -}}{{- $anyNote = true -}}{{- end -}}
+      {{- if .sanitized_abc -}}{{- $anyBraille = true -}}{{- end -}}
+    {{- end -}}
 
-      {{/* ── Asset loading ── */}}
-      {{- if $hasNote -}}
-        {{- if not (.Store.Get "abc-css-loaded") -}}
-          {{- .Store.Set "abc-css-loaded" true -}}
-          <link rel="stylesheet" href="/css/abc-player.css">
-        {{- end -}}
-        {{- if not (.Store.Get "abc-js-loaded") -}}
-          {{- .Store.Set "abc-js-loaded" true -}}
-          <script src="/js/abcjs-6.4.4-min.js"></script>
-          <script src="/js/abc-player-coordinator.js"></script>
-        {{- end -}}
+    {{- if or $anyNote $anyBraille -}}
+
+      {{/* ── Asset loading (once per page) ── */}}
+      {{- if $anyNote -}}
+        {{- if not ($.Store.Get "abc-css-loaded") -}}{{- $.Store.Set "abc-css-loaded" true -}}<link rel="stylesheet" href="/css/abc-player.css">{{- end -}}
+        {{- if not ($.Store.Get "abc-js-loaded") -}}{{- $.Store.Set "abc-js-loaded" true -}}<script src="/js/abcjs-6.4.4-min.js"></script><script src="/js/abc-player-coordinator.js"></script>{{- end -}}
       {{- end -}}
-      {{- if $abc -}}
-        {{- if not (.Store.Get "abc-css-loaded") -}}
-          {{/* braille-only: still need abc-player.css for tab styles */}}
-          {{- .Store.Set "abc-css-loaded" true -}}
-          <link rel="stylesheet" href="/css/abc-player.css">
-        {{- end -}}
-        {{- if not (.Store.Get "braille-css-loaded") -}}
-          {{- .Store.Set "braille-css-loaded" true -}}
-          <link rel="stylesheet" href="/css/braille-panel.css">
-        {{- end -}}
-        {{- if not (.Store.Get "braille-js-loaded") -}}
-          {{- .Store.Set "braille-js-loaded" true -}}
-          <script src="/js/braille.js"></script>
-        {{- end -}}
-        <script type="text/abc-sanitized" id="braille-src-{{ $uid }}">{{ $abc | safeHTML }}</script>
+      {{- if $anyBraille -}}
+        {{- if not ($.Store.Get "abc-css-loaded") -}}{{- $.Store.Set "abc-css-loaded" true -}}<link rel="stylesheet" href="/css/abc-player.css">{{- end -}}
+        {{- if not ($.Store.Get "braille-css-loaded") -}}{{- $.Store.Set "braille-css-loaded" true -}}<link rel="stylesheet" href="/css/braille-panel.css">{{- end -}}
+        {{- if not ($.Store.Get "braille-js-loaded") -}}{{- $.Store.Set "braille-js-loaded" true -}}<script src="/js/braille.js"></script>{{- end -}}
       {{- end -}}
-      {{- if $hasNote -}}
+      {{- if $anyNote -}}
         <link rel="stylesheet" href="/css/lyrics-panel.css">
         <script src="/js/lyrics.js" defer></script>
       {{- end -}}
 
       <div class="song-notation-block">
-
-      {{- if and $hasNote $abc -}}
-
-        {{/* ════════════════════════════════════════════════
-             CASE A: notation + braille — unified tab row
-             ════════════════════════════════════════════════ */}}
-
-        {{- if and $scores (gt (len $scores) 1) -}}
-
-          {{/* ── A1: multiple scores + braille ── */}}
-          <div class="abc-tabs">
-            <div class="abc-tabs-label" aria-hidden="true">Notation</div>
-            <div class="abc-tabs-nav" role="tablist" aria-label="Score and braille views">
-              {{- range $i, $score := $scores -}}
-                <button class="abc-tab-btn{{ if eq $i 0 }} is-active{{ end }}"
-                        role="tab"
-                        aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}"
-                        aria-controls="abc-panel-{{ $uid }}-{{ $i }}"
-                        id="abc-tab-{{ $uid }}-{{ $i }}">
-                  {{- $score.label | default (printf "Score %d" (add $i 1)) -}}
-                </button>
-              {{- end -}}
-              <button class="abc-tab-btn" role="tab" aria-selected="false"
-                      aria-controls="braille-ascii-{{ $uid }}"
-                      id="braille-tab-ascii-{{ $uid }}">Braille ASCII</button>
-              <button class="abc-tab-btn" role="tab" aria-selected="false"
-                      aria-controls="braille-dots-{{ $uid }}"
-                      id="braille-tab-dots-{{ $uid }}">Braille dots</button>
-            </div>
-            {{- range $i, $score := $scores -}}
-              {{- $abcId    := printf "abcplayer-%s-%d" $uid $i -}}
-              {{- $abcTempo := int ($score.tempo | default $defTempo) -}}
-              <div class="abc-tab-panel{{ if eq $i 0 }} is-active{{ end }}"
-                   role="tabpanel"
-                   id="abc-panel-{{ $uid }}-{{ $i }}"
-                   aria-labelledby="abc-tab-{{ $uid }}-{{ $i }}">
-                <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $score.notation | safeHTML }}</script>
-                <div class="abc-player" id="{{ $abcId }}" data-cursor="true">
-                  {{- with $score.image -}}<figure class="abc-player-fallback"><img src="{{ . }}" alt="{{ $score.label | default $.Title }} notation"></figure>{{- end -}}
-                  <div class="abc-player-score"    id="score-{{ $abcId }}"></div>
-                  <div class="abc-player-controls" id="controls-{{ $abcId }}"></div>
-                </div>
-                <script>
-                window.AbcPlayerCoordinator.registerPlayer({
-                  id:                '{{ $abcId }}',
-                  abcElementId:      'score-{{ $abcId }}',
-                  controlsElementId: 'controls-{{ $abcId }}',
-                  defaultTempo:      {{ $abcTempo }}
-                });
-                </script>
-              </div>
-            {{- end -}}
-            <div class="abc-tab-panel" role="tabpanel"
-                 id="braille-ascii-{{ $uid }}"
-                 aria-labelledby="braille-tab-ascii-{{ $uid }}">
-              <div class="braille-output">
-                <pre class="ascii-out" aria-label="ASCII music braille" id="braille-ascii-pre-{{ $uid }}"></pre>
-              </div>
-            </div>
-            <div class="abc-tab-panel" role="tabpanel"
-                 id="braille-dots-{{ $uid }}"
-                 aria-labelledby="braille-tab-dots-{{ $uid }}">
-              <div class="braille-output">
-                <pre class="dots-out" aria-label="Music Braille dot notation" id="braille-dots-pre-{{ $uid }}"></pre>
-              </div>
-            </div>
-          </div>
-          <script>
-          (function () {
-            document.querySelectorAll('.abc-tabs').forEach(function (tabs) {
-              tabs.querySelectorAll('.abc-tab-btn').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                  tabs.querySelectorAll('.abc-tab-btn').forEach(function (b) {
-                    b.classList.remove('is-active');
-                    b.setAttribute('aria-selected', 'false');
-                  });
-                  tabs.querySelectorAll('.abc-tab-panel').forEach(function (p) {
-                    p.classList.remove('is-active');
-                  });
-                  btn.classList.add('is-active');
-                  btn.setAttribute('aria-selected', 'true');
-                  document.getElementById(btn.getAttribute('aria-controls')).classList.add('is-active');
-                });
-                btn.addEventListener('keydown', function (e) {
-                  var allBtns = Array.from(tabs.querySelectorAll('.abc-tab-btn'));
-                  var idx = allBtns.indexOf(btn);
-                  var target = null;
-                  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { target = allBtns[(idx + 1) % allBtns.length]; }
-                  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { target = allBtns[(idx - 1 + allBtns.length) % allBtns.length]; }
-                  else if (e.key === 'Home') { target = allBtns[0]; }
-                  else if (e.key === 'End')  { target = allBtns[allBtns.length - 1]; }
-                  if (target) { e.preventDefault(); target.focus(); target.click(); }
-                });
-              });
-            });
-          }());
-          </script>
-          <script>
-          (function () {
-            function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-            try {
-              var abc = document.getElementById('braille-src-{{ $uid }}').textContent;
-              var r   = window.MusicBraille.renderBraille(abc);
-              document.getElementById('braille-ascii-pre-{{ $uid }}').textContent = r.ascii;
-              document.getElementById('braille-dots-pre-{{ $uid }}').textContent  = r.unicode;
-            } catch (e) {
-              var msg = e.message;
-              ['braille-ascii-{{ $uid }}', 'braille-dots-{{ $uid }}'].forEach(function (panelId) {
-                var p = document.getElementById(panelId);
-                if (p) p.innerHTML = '<div class="braille-error" role="alert">' + esc(msg) + '</div>';
-              });
-            }
-          }());
-          </script>
-
-        {{- else -}}
-
-          {{/* ── A2: single score (or legacy) + braille ── */}}
-          {{- $abcId    := printf "abcplayer-%s" $uid -}}
-          {{- $tabLabel := "Notation" -}}
-          {{- $abcTempo := $defTempo -}}
-          {{- if $scores -}}
-            {{- $s0 := index $scores 0 -}}
-            {{- if $s0.label -}}{{- $tabLabel = $s0.label -}}{{- end -}}
-            {{- if $s0.tempo -}}{{- $abcTempo = int $s0.tempo -}}{{- end -}}
-          {{- end -}}
-          <div class="abc-tabs">
-            <div class="abc-tabs-label" aria-hidden="true">Notation</div>
-            <div class="abc-tabs-nav" role="tablist" aria-label="Score and braille views">
-              <button class="abc-tab-btn is-active" role="tab" aria-selected="true"
-                      aria-controls="abc-single-panel-{{ $uid }}"
-                      id="abc-single-tab-{{ $uid }}">{{ $tabLabel }}</button>
-              <button class="abc-tab-btn" role="tab" aria-selected="false"
-                      aria-controls="braille-ascii-{{ $uid }}"
-                      id="braille-tab-ascii-{{ $uid }}">Braille ASCII</button>
-              <button class="abc-tab-btn" role="tab" aria-selected="false"
-                      aria-controls="braille-dots-{{ $uid }}"
-                      id="braille-tab-dots-{{ $uid }}">Braille dots</button>
-            </div>
-            <div class="abc-tab-panel is-active" role="tabpanel"
-                 id="abc-single-panel-{{ $uid }}"
-                 aria-labelledby="abc-single-tab-{{ $uid }}">
-              {{- if $scores -}}
-                {{- $s0 := index $scores 0 -}}
-                <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $s0.notation | safeHTML }}</script>
-                <div class="abc-player" id="{{ $abcId }}" data-cursor="true">
-                  {{- with $s0.image -}}<figure class="abc-player-fallback"><img src="{{ . }}" alt="{{ $tabLabel }} notation"></figure>{{- end -}}
-                  <div class="abc-player-score"    id="score-{{ $abcId }}"></div>
-                  <div class="abc-player-controls" id="controls-{{ $abcId }}"></div>
-                </div>
-              {{- else -}}
-                <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $single | safeHTML }}</script>
-                <div class="abc-player" id="{{ $abcId }}" data-cursor="true">
-                  {{- with .Params.abc_image -}}<figure class="abc-player-fallback"><img src="{{ . }}" alt="{{ $.Title }} notation"></figure>{{- end -}}
-                  <div class="abc-player-score"    id="score-{{ $abcId }}"></div>
-                  <div class="abc-player-controls" id="controls-{{ $abcId }}"></div>
-                </div>
-              {{- end -}}
-              <script>
-              window.AbcPlayerCoordinator.registerPlayer({
-                id:                '{{ $abcId }}',
-                abcElementId:      'score-{{ $abcId }}',
-                controlsElementId: 'controls-{{ $abcId }}',
-                defaultTempo:      {{ $abcTempo }}
-              });
-              </script>
-            </div>
-            <div class="abc-tab-panel" role="tabpanel"
-                 id="braille-ascii-{{ $uid }}"
-                 aria-labelledby="braille-tab-ascii-{{ $uid }}">
-              <div class="braille-output">
-                <pre class="ascii-out" aria-label="ASCII music braille" id="braille-ascii-pre-{{ $uid }}"></pre>
-              </div>
-            </div>
-            <div class="abc-tab-panel" role="tabpanel"
-                 id="braille-dots-{{ $uid }}"
-                 aria-labelledby="braille-tab-dots-{{ $uid }}">
-              <div class="braille-output">
-                <pre class="dots-out" aria-label="Music Braille dot notation" id="braille-dots-pre-{{ $uid }}"></pre>
-              </div>
-            </div>
-          </div>
-          <script>
-          (function () {
-            document.querySelectorAll('.abc-tabs').forEach(function (tabs) {
-              tabs.querySelectorAll('.abc-tab-btn').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                  tabs.querySelectorAll('.abc-tab-btn').forEach(function (b) {
-                    b.classList.remove('is-active');
-                    b.setAttribute('aria-selected', 'false');
-                  });
-                  tabs.querySelectorAll('.abc-tab-panel').forEach(function (p) {
-                    p.classList.remove('is-active');
-                  });
-                  btn.classList.add('is-active');
-                  btn.setAttribute('aria-selected', 'true');
-                  document.getElementById(btn.getAttribute('aria-controls')).classList.add('is-active');
-                });
-                btn.addEventListener('keydown', function (e) {
-                  var allBtns = Array.from(tabs.querySelectorAll('.abc-tab-btn'));
-                  var idx = allBtns.indexOf(btn);
-                  var target = null;
-                  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { target = allBtns[(idx + 1) % allBtns.length]; }
-                  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { target = allBtns[(idx - 1 + allBtns.length) % allBtns.length]; }
-                  else if (e.key === 'Home') { target = allBtns[0]; }
-                  else if (e.key === 'End')  { target = allBtns[allBtns.length - 1]; }
-                  if (target) { e.preventDefault(); target.focus(); target.click(); }
-                });
-              });
-            });
-          }());
-          </script>
-          <script>
-          (function () {
-            function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-            try {
-              var abc = document.getElementById('braille-src-{{ $uid }}').textContent;
-              var r   = window.MusicBraille.renderBraille(abc);
-              document.getElementById('braille-ascii-pre-{{ $uid }}').textContent = r.ascii;
-              document.getElementById('braille-dots-pre-{{ $uid }}').textContent  = r.unicode;
-            } catch (e) {
-              var msg = e.message;
-              ['braille-ascii-{{ $uid }}', 'braille-dots-{{ $uid }}'].forEach(function (panelId) {
-                var p = document.getElementById(panelId);
-                if (p) p.innerHTML = '<div class="braille-error" role="alert">' + esc(msg) + '</div>';
-              });
-            }
-          }());
-          </script>
-
+      {{- if $panels -}}
+        {{- range $i, $p := $panels -}}
+          {{- $sfx := printf "%s-p%d" $uid $i -}}
+          <section class="song-notation-panel">
+            {{- with $p.heading -}}<h2 class="song-panel-heading">{{ . }}</h2>{{- end -}}
+            {{- partial "notation-panel.html" (dict "page" $ "suffix" $sfx "scores" $p.scores "sanitizedAbc" $p.sanitized_abc "defaultTempo" $defTempo) -}}
+            {{- if gt (len $p.scores) 0 -}}<div class="lyrics-panel-mount" data-song-uid="{{ $sfx }}"></div>{{- end -}}
+          </section>
         {{- end -}}
-
-      {{- else if $hasNote -}}
-
-        {{/* ════════════════════════════════════════════════
-             CASE B: notation only — original behavior
-             ════════════════════════════════════════════════ */}}
-
-        {{- if and $scores (gt (len $scores) 1) -}}
-
-          {{/* Multiple scores: original tabbed interface */}}
-          <div class="abc-tabs">
-            <div class="abc-tabs-label" aria-hidden="true">Notation</div>
-            <div class="abc-tabs-nav" role="tablist" aria-label="Score views">
-              {{- range $i, $score := $scores -}}
-                <button class="abc-tab-btn{{ if eq $i 0 }} is-active{{ end }}"
-                        role="tab"
-                        aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}"
-                        aria-controls="abc-panel-{{ $uid }}-{{ $i }}"
-                        id="abc-tab-{{ $uid }}-{{ $i }}">
-                  {{- $score.label | default (printf "Score %d" (add $i 1)) -}}
-                </button>
-              {{- end -}}
-            </div>
-            {{- range $i, $score := $scores -}}
-              {{- $abcId    := printf "abcplayer-%s-%d" $uid $i -}}
-              {{- $abcTempo := int ($score.tempo | default $defTempo) -}}
-              <div class="abc-tab-panel{{ if eq $i 0 }} is-active{{ end }}"
-                   role="tabpanel"
-                   id="abc-panel-{{ $uid }}-{{ $i }}"
-                   aria-labelledby="abc-tab-{{ $uid }}-{{ $i }}">
-                <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $score.notation | safeHTML }}</script>
-                <div class="abc-player" id="{{ $abcId }}" data-cursor="true">
-                  {{- with $score.image -}}<figure class="abc-player-fallback"><img src="{{ . }}" alt="{{ $score.label | default $.Title }} notation"></figure>{{- end -}}
-                  <div class="abc-player-score"    id="score-{{ $abcId }}"></div>
-                  <div class="abc-player-controls" id="controls-{{ $abcId }}"></div>
-                </div>
-                <script>
-                window.AbcPlayerCoordinator.registerPlayer({
-                  id:                '{{ $abcId }}',
-                  abcElementId:      'score-{{ $abcId }}',
-                  controlsElementId: 'controls-{{ $abcId }}',
-                  defaultTempo:      {{ $abcTempo }}
-                });
-                </script>
-              </div>
-            {{- end -}}
-          </div>
-          <script>
-          (function () {
-            document.querySelectorAll('.abc-tabs').forEach(function (tabs) {
-              tabs.querySelectorAll('.abc-tab-btn').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                  tabs.querySelectorAll('.abc-tab-btn').forEach(function (b) {
-                    b.classList.remove('is-active');
-                    b.setAttribute('aria-selected', 'false');
-                  });
-                  tabs.querySelectorAll('.abc-tab-panel').forEach(function (p) {
-                    p.classList.remove('is-active');
-                  });
-                  btn.classList.add('is-active');
-                  btn.setAttribute('aria-selected', 'true');
-                  document.getElementById(btn.getAttribute('aria-controls')).classList.add('is-active');
-                });
-                btn.addEventListener('keydown', function (e) {
-                  var allBtns = Array.from(tabs.querySelectorAll('.abc-tab-btn'));
-                  var idx = allBtns.indexOf(btn);
-                  var target = null;
-                  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { target = allBtns[(idx + 1) % allBtns.length]; }
-                  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { target = allBtns[(idx - 1 + allBtns.length) % allBtns.length]; }
-                  else if (e.key === 'Home') { target = allBtns[0]; }
-                  else if (e.key === 'End')  { target = allBtns[allBtns.length - 1]; }
-                  if (target) { e.preventDefault(); target.focus(); target.click(); }
-                });
-              });
-            });
-          }());
-          </script>
-
-        {{- else if $scores -}}
-
-          {{/* Single score in abc_scores — original non-tabbed */}}
-          {{- $score    := index $scores 0 -}}
-          {{- $abcId    := printf "abcplayer-%s" $uid -}}
-          {{- $abcTempo := int ($score.tempo | default $defTempo) -}}
-          <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $score.notation | safeHTML }}</script>
-          <div class="abc-player" id="{{ $abcId }}" data-cursor="true">
-            {{- with $score.image -}}<figure class="abc-player-fallback"><img src="{{ . }}" alt="{{ $.Title }} notation"></figure>{{- end -}}
-            <div class="abc-player-score"    id="score-{{ $abcId }}"></div>
-            <div class="abc-player-controls" id="controls-{{ $abcId }}"></div>
-          </div>
-          <script>
-          window.AbcPlayerCoordinator.registerPlayer({
-            id:                '{{ $abcId }}',
-            abcElementId:      'score-{{ $abcId }}',
-            controlsElementId: 'controls-{{ $abcId }}',
-            defaultTempo:      {{ $abcTempo }}
-          });
-          </script>
-
-        {{- else -}}
-
-          {{/* Legacy: abc_notation single string */}}
-          {{- $abcId := printf "abcplayer-%s" $uid -}}
-          <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $single | safeHTML }}</script>
-          <div class="abc-player" id="{{ $abcId }}" data-cursor="true">
-            {{- with .Params.abc_image -}}<figure class="abc-player-fallback"><img src="{{ . }}" alt="{{ $.Title }} notation"></figure>{{- end -}}
-            <div class="abc-player-score"    id="score-{{ $abcId }}"></div>
-            <div class="abc-player-controls" id="controls-{{ $abcId }}"></div>
-          </div>
-          <script>
-          window.AbcPlayerCoordinator.registerPlayer({
-            id:                '{{ $abcId }}',
-            abcElementId:      'score-{{ $abcId }}',
-            controlsElementId: 'controls-{{ $abcId }}',
-            defaultTempo:      {{ $defTempo }}
-          });
-          </script>
-
-        {{- end -}}
-
       {{- else -}}
+        {{/* legacy: normalize old fields into a single virtual panel */}}
+        {{- $scores := slice -}}
+        {{- if $scoresL -}}
+          {{- $scores = $scoresL -}}
+        {{- else if $single -}}
+          {{- $scores = slice (dict "notation" $single "image" $.Params.abc_image) -}}
+        {{- end -}}
+        {{- partial "notation-panel.html" (dict "page" $ "suffix" $uid "scores" $scores "sanitizedAbc" $abcLegacy "defaultTempo" $defTempo) -}}
+        {{- if $anyNote -}}<div class="lyrics-panel-mount" data-song-uid="{{ $uid }}"></div>{{- end -}}
+      {{- end -}}
+      </div>{{/* end .song-notation-block */}}
 
-        {{/* ════════════════════════════════════════════════
-             CASE C: braille only — standalone tabs
-             ════════════════════════════════════════════════ */}}
-        <div class="abc-tabs">
-          <div class="abc-tabs-label" aria-hidden="true">Music Braille</div>
-          <div class="abc-tabs-nav" role="tablist" aria-label="Braille notation format">
-            <button class="abc-tab-btn is-active" role="tab" aria-selected="true"
-                    aria-controls="braille-ascii-{{ $uid }}"
-                    id="braille-tab-ascii-{{ $uid }}">Braille ASCII</button>
-            <button class="abc-tab-btn" role="tab" aria-selected="false"
-                    aria-controls="braille-dots-{{ $uid }}"
-                    id="braille-tab-dots-{{ $uid }}">Braille dots</button>
-          </div>
-          <div class="abc-tab-panel is-active" role="tabpanel"
-               id="braille-ascii-{{ $uid }}"
-               aria-labelledby="braille-tab-ascii-{{ $uid }}">
-            <div class="braille-output">
-              <pre class="ascii-out" aria-label="ASCII music braille" id="braille-ascii-pre-{{ $uid }}"></pre>
-            </div>
-          </div>
-          <div class="abc-tab-panel" role="tabpanel"
-               id="braille-dots-{{ $uid }}"
-               aria-labelledby="braille-tab-dots-{{ $uid }}">
-            <div class="braille-output">
-              <pre class="dots-out" aria-label="Music Braille dot notation" id="braille-dots-pre-{{ $uid }}"></pre>
-            </div>
-          </div>
-        </div>
-        <script>
-        (function () {
-          document.querySelectorAll('.abc-tabs').forEach(function (tabs) {
-            tabs.querySelectorAll('.abc-tab-btn').forEach(function (btn) {
-              btn.addEventListener('click', function () {
-                tabs.querySelectorAll('.abc-tab-btn').forEach(function (b) {
-                  b.classList.remove('is-active');
-                  b.setAttribute('aria-selected', 'false');
-                });
-                tabs.querySelectorAll('.abc-tab-panel').forEach(function (p) {
-                  p.classList.remove('is-active');
-                });
-                btn.classList.add('is-active');
-                btn.setAttribute('aria-selected', 'true');
-                document.getElementById(btn.getAttribute('aria-controls')).classList.add('is-active');
-              });
+      {{/* generic tab switcher (once per page; scoped per .abc-tabs) */}}
+      <script>
+      (function () {
+        document.querySelectorAll('.abc-tabs').forEach(function (tabs) {
+          tabs.querySelectorAll('.abc-tab-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              tabs.querySelectorAll('.abc-tab-btn').forEach(function (b) { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); });
+              tabs.querySelectorAll('.abc-tab-panel').forEach(function (p) { p.classList.remove('is-active'); });
+              btn.classList.add('is-active');
+              btn.setAttribute('aria-selected', 'true');
+              document.getElementById(btn.getAttribute('aria-controls')).classList.add('is-active');
+            });
+            btn.addEventListener('keydown', function (e) {
+              var allBtns = Array.from(tabs.querySelectorAll('.abc-tab-btn'));
+              var idx = allBtns.indexOf(btn);
+              var target = null;
+              if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { target = allBtns[(idx + 1) % allBtns.length]; }
+              else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { target = allBtns[(idx - 1 + allBtns.length) % allBtns.length]; }
+              else if (e.key === 'Home') { target = allBtns[0]; }
+              else if (e.key === 'End')  { target = allBtns[allBtns.length - 1]; }
+              if (target) { e.preventDefault(); target.focus(); target.click(); }
             });
           });
-        }());
-        </script>
-        <script>
-        (function () {
-          function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-          try {
-            var abc = document.getElementById('braille-src-{{ $uid }}').textContent;
-            var r   = window.MusicBraille.renderBraille(abc);
-            document.getElementById('braille-ascii-pre-{{ $uid }}').textContent = r.ascii;
-            document.getElementById('braille-dots-pre-{{ $uid }}').textContent  = r.unicode;
-          } catch (e) {
-            var msg = e.message;
-            ['braille-ascii-{{ $uid }}', 'braille-dots-{{ $uid }}'].forEach(function (panelId) {
-              var p = document.getElementById(panelId);
-              if (p) p.innerHTML = '<div class="braille-error" role="alert">' + esc(msg) + '</div>';
-            });
-          }
-        }());
-        </script>
-
-      {{- end -}}
-      {{ if $hasNote }}<div class="lyrics-panel-mount" data-song-uid="{{ $uid }}"></div>{{ end }}
-      </div>{{/* end .song-notation-block */}}
+        });
+      }());
+      </script>
     {{- end }}
 
     {{ with .Content }}
