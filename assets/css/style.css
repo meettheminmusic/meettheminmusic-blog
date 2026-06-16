@@ -643,6 +643,19 @@ button.tag { cursor: pointer; font: inherit; border: none; }
 
 /* --- Song single --- */
 
+/* Stacked notation panels */
+.song-notation-panel + .song-notation-panel {
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 0.5px solid var(--neutral-100);
+}
+.song-panel-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+  color: var(--charcoal, #2C2C2A);
+}
+
 .song-back {
   font-size: 0.875rem;
   margin-bottom: 1.5rem;
