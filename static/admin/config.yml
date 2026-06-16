@@ -48,7 +48,28 @@ collections:
       - { label: "Meters", name: "meters", widget: "list", required: false }
       - { label: "Source", name: "source", widget: "string", required: false }
       - { label: "Source URL", name: "source_url", widget: "string", required: false }
-      - label: "ABC Notation (single score)"
+      - label: "Notation panels"
+        name: panels
+        widget: list
+        required: false
+        hint: "Stack multiple notation sections down the page. Each panel can hold one score or several tabbed scores. Leave empty to use the legacy single-block fields below."
+        fields:
+          - { label: "Heading", name: heading, widget: string, required: false }
+          - label: "Sanitized ABC (Braille source)"
+            name: sanitized_abc
+            widget: text
+            required: false
+            hint: "Optional. Fill to add Braille ASCII/dots tabs to this panel."
+          - label: "Scores"
+            name: scores
+            widget: list
+            hint: "One score shows a single player; two or more show tabs."
+            fields:
+              - { label: "Tab label", name: label, widget: string, required: false }
+              - { label: "Notation (ABC)", name: notation, widget: text }
+              - { label: "Fallback image", name: image, widget: image, required: false }
+              - { label: "Tempo (BPM)", name: tempo, widget: number, required: false, value_type: int }
+      - label: "ABC Notation (legacy single block)"
         name: "abc_notation"
         widget: "text"
         required: false
@@ -58,7 +79,7 @@ collections:
         widget: text
         required: false
         hint: >
-          A clean copy of the ABC notation for Music Braille translation.
+          Legacy single-block field. A clean copy of the ABC notation for Music Braille translation.
           Remove before saving: %% directive lines · w:/W: lyric lines ·
           all header fields except K: M: L: · inline "quoted" chord labels ·
           !style! and +decoration+ markers.
@@ -74,7 +95,7 @@ collections:
         default: 120
         required: false
         value_type: "int"
-      - label: "Multiple scores"
+      - label: "Multiple scores (legacy single block)"
         name: "abc_scores"
         widget: "list"
         required: false
