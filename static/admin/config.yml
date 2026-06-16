@@ -14,7 +14,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
       - { label: "Draft", name: "draft", widget: "boolean", default: true }
       - { label: "Unlisted", name: "unlisted", widget: "boolean", default: false }
       - { label: "Featured on homepage", name: "featured", widget: "boolean", default: false, required: false }
@@ -31,7 +31,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
       - { label: "Draft", name: "draft", widget: "boolean", default: true }
       - { label: "Unlisted", name: "unlisted", widget: "boolean", default: false }
       - { label: "Featured on homepage", name: "featured", widget: "boolean", default: false, required: false }
@@ -106,7 +106,7 @@ collections:
     public_folder: "/images/books"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
       - { label: "Author", name: "author", widget: "string", required: false }
       - { label: "Amazon affiliate URL", name: "amazon_url", widget: "string", required: false }
