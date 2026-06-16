@@ -69,8 +69,8 @@
     });
   }
 
-  function findAbcWithLyrics() {
-    var scripts = document.querySelectorAll('script[type="text/abc"]');
+  function findAbcWithLyrics(root) {
+    var scripts = (root || document).querySelectorAll('script[type="text/abc"]');
     for (var i = 0; i < scripts.length; i++) {
       var text = scripts[i].textContent;
       if (text && /(^|\n)\s*w:/.test(text)) return text;
@@ -140,10 +140,13 @@
   function init() {
     var mounts = document.querySelectorAll('.lyrics-panel-mount');
     if (!mounts.length) return;
-    var abc = findAbcWithLyrics();
-    if (!abc) return;
-    var verses = stripVerseNumbers(assemble(parseVerses(abc)));
-    mounts.forEach(function (m) { render(m, verses); });
+    mounts.forEach(function (m) {
+      var scope = m.closest('.song-notation-panel');
+      var abc = findAbcWithLyrics(scope || document);
+      if (!abc) return;
+      var verses = stripVerseNumbers(assemble(parseVerses(abc)));
+      render(m, verses);
+    });
   }
 
   if (document.readyState === 'loading') {
