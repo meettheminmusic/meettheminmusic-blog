@@ -19,8 +19,10 @@ source: ''
 source_url: ''
 panels:
   - heading: Listen to the Mustn'ts
+    sanitized_abc: ''
     scores:
-      - notation: |-
+      - label: ''
+        notation: |-
           %%textfont arial italic 11
           X:1
           T:Listen to the Mustn'ts
@@ -52,8 +54,10 @@ panels:
           %%center © 2026 All Rights Reserved.
         tempo: 100
   - heading: Peas and Honey
+    sanitized_abc: ''
     scores:
-      - notation: |-
+      - label: ''
+        notation: |-
           %%textfont arial italic 11
           X:1
           T:Peas and Honey
@@ -78,4 +82,42 @@ panels:
           %%center .
           %%center © 2026 All Rights Reserved.
         tempo: 180
+  - heading: Peas and Honey (with Body Percussion)
+    sanitized_abc: ''
+    scores:
+      - label: ''
+        notation: |-
+          %%textfont arial italic 11
+          X:1
+          T:Peas and Honey
+          M:6/8
+          L:1/8
+          C:Ogden Nash
+          A: arr. P. Eric Bottorff
+          Q:1/4=100
+          %%gchordfont Arial 12
+          %%vocalfont Arial 8
+          %%staffsep 50
+          %%stretchlast 1
+          %%barsperstaff 3
+          K:C cle clef=perc stafflines=1
+          V:1 name="" snm=""
+          V:2 clef=perc stafflines=1 name="B.P." snm="B.P."
+          V:1
+          A| A2AA2A | A3 A2 A| A2AA2A | A3 z2 A|
+          w: I eat my peas with hon-ey. I have done my whole life. It
+          M: 6/8
+          A2A A2A |A2A A2A |A2A A2A| A3 z3|]
+          w: makes them taste real fun-ny but it keeps them on my knife!
+          V:2
+          %%MIDI channel 10
+          %%MIDI program 0
+          z| A3 AAA | A3 AAA| A3 AAA | A3 AAA|
+          w: It's so stick-y Don't make a mess. It's so stick-y Don't make a mess.
+          M: 6/8
+          A3 AAA | A3 AAA| A3 AAA | A3 AAA|]
+          w: It's so stick-y Don't make a mess. It's so stick-y Don't make a mess.
+        image: ''
+        tempo: null
+abc_notation: ''
 ---
