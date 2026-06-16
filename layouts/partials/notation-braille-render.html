@@ -1,0 +1,18 @@
+{{- $uid := . -}}
+<script>
+(function () {
+  function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  try {
+    var abc = document.getElementById('braille-src-{{ $uid }}').textContent;
+    var r   = window.MusicBraille.renderBraille(abc);
+    document.getElementById('braille-ascii-pre-{{ $uid }}').textContent = r.ascii;
+    document.getElementById('braille-dots-pre-{{ $uid }}').textContent  = r.unicode;
+  } catch (e) {
+    var msg = e.message;
+    ['braille-ascii-{{ $uid }}', 'braille-dots-{{ $uid }}'].forEach(function (panelId) {
+      var p = document.getElementById(panelId);
+      if (p) p.innerHTML = '<div class="braille-error" role="alert">' + esc(msg) + '</div>';
+    });
+  }
+}());
+</script>

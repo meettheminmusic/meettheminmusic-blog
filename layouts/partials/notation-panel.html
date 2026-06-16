@@ -1,0 +1,164 @@
+{{- /* Renders one notation panel's inner content.
+       Params: page, suffix, scores (slice of {label,notation,image,tempo}),
+               sanitizedAbc (string), defaultTempo (int). */ -}}
+{{- $page    := .page -}}
+{{- $uid     := .suffix -}}
+{{- $scores  := .scores -}}
+{{- $abc     := .sanitizedAbc -}}
+{{- $defTempo := .defaultTempo -}}
+{{- $title   := $page.Title -}}
+{{- $hasNote := gt (len $scores) 0 -}}
+
+{{- if $abc -}}
+<script type="text/abc-sanitized" id="braille-src-{{ $uid }}">{{ $abc | safeHTML }}</script>
+{{- end -}}
+
+{{- if and $hasNote $abc -}}
+
+  {{- if gt (len $scores) 1 -}}
+  {{- /* A1: multiple scores + braille */ -}}
+  <div class="abc-tabs">
+    <div class="abc-tabs-label" aria-hidden="true">Notation</div>
+    <div class="abc-tabs-nav" role="tablist" aria-label="Score and braille views">
+      {{- range $i, $score := $scores -}}
+        <button class="abc-tab-btn{{ if eq $i 0 }} is-active{{ end }}" role="tab"
+                aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}"
+                aria-controls="abc-panel-{{ $uid }}-{{ $i }}" id="abc-tab-{{ $uid }}-{{ $i }}">
+          {{- $score.label | default (printf "Score %d" (add $i 1)) -}}
+        </button>
+      {{- end -}}
+      <button class="abc-tab-btn" role="tab" aria-selected="false"
+              aria-controls="braille-ascii-{{ $uid }}" id="braille-tab-ascii-{{ $uid }}">Braille ASCII</button>
+      <button class="abc-tab-btn" role="tab" aria-selected="false"
+              aria-controls="braille-dots-{{ $uid }}" id="braille-tab-dots-{{ $uid }}">Braille dots</button>
+    </div>
+    {{- range $i, $score := $scores -}}
+      {{- $abcId := printf "abcplayer-%s-%d" $uid $i -}}
+      {{- $abcTempo := int ($score.tempo | default $defTempo) -}}
+      <div class="abc-tab-panel{{ if eq $i 0 }} is-active{{ end }}" role="tabpanel"
+           id="abc-panel-{{ $uid }}-{{ $i }}" aria-labelledby="abc-tab-{{ $uid }}-{{ $i }}">
+        <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $score.notation | safeHTML }}</script>
+        <div class="abc-player" id="{{ $abcId }}" data-cursor="true">
+          {{- with $score.image -}}<figure class="abc-player-fallback"><img src="{{ . }}" alt="{{ $score.label | default $title }} notation"></figure>{{- end -}}
+          <div class="abc-player-score" id="score-{{ $abcId }}"></div>
+          <div class="abc-player-controls" id="controls-{{ $abcId }}"></div>
+        </div>
+        <script>
+        window.AbcPlayerCoordinator.registerPlayer({ id: '{{ $abcId }}', abcElementId: 'score-{{ $abcId }}', controlsElementId: 'controls-{{ $abcId }}', defaultTempo: {{ $abcTempo }} });
+        </script>
+      </div>
+    {{- end -}}
+    <div class="abc-tab-panel" role="tabpanel" id="braille-ascii-{{ $uid }}" aria-labelledby="braille-tab-ascii-{{ $uid }}">
+      <div class="braille-output"><pre class="ascii-out" aria-label="ASCII music braille" id="braille-ascii-pre-{{ $uid }}"></pre></div>
+    </div>
+    <div class="abc-tab-panel" role="tabpanel" id="braille-dots-{{ $uid }}" aria-labelledby="braille-tab-dots-{{ $uid }}">
+      <div class="braille-output"><pre class="dots-out" aria-label="Music Braille dot notation" id="braille-dots-pre-{{ $uid }}"></pre></div>
+    </div>
+  </div>
+  {{ partial "notation-braille-render.html" $uid }}
+
+  {{- else -}}
+  {{- /* A2: single score + braille */ -}}
+  {{- $score := index $scores 0 -}}
+  {{- $abcId := printf "abcplayer-%s" $uid -}}
+  {{- $tabLabel := $score.label | default "Notation" -}}
+  {{- $abcTempo := int ($score.tempo | default $defTempo) -}}
+  <div class="abc-tabs">
+    <div class="abc-tabs-label" aria-hidden="true">Notation</div>
+    <div class="abc-tabs-nav" role="tablist" aria-label="Score and braille views">
+      <button class="abc-tab-btn is-active" role="tab" aria-selected="true"
+              aria-controls="abc-single-panel-{{ $uid }}" id="abc-single-tab-{{ $uid }}">{{ $tabLabel }}</button>
+      <button class="abc-tab-btn" role="tab" aria-selected="false"
+              aria-controls="braille-ascii-{{ $uid }}" id="braille-tab-ascii-{{ $uid }}">Braille ASCII</button>
+      <button class="abc-tab-btn" role="tab" aria-selected="false"
+              aria-controls="braille-dots-{{ $uid }}" id="braille-tab-dots-{{ $uid }}">Braille dots</button>
+    </div>
+    <div class="abc-tab-panel is-active" role="tabpanel" id="abc-single-panel-{{ $uid }}" aria-labelledby="abc-single-tab-{{ $uid }}">
+      <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $score.notation | safeHTML }}</script>
+      <div class="abc-player" id="{{ $abcId }}" data-cursor="true">
+        {{- with $score.image -}}<figure class="abc-player-fallback"><img src="{{ . }}" alt="{{ $tabLabel }} notation"></figure>{{- end -}}
+        <div class="abc-player-score" id="score-{{ $abcId }}"></div>
+        <div class="abc-player-controls" id="controls-{{ $abcId }}"></div>
+      </div>
+      <script>
+      window.AbcPlayerCoordinator.registerPlayer({ id: '{{ $abcId }}', abcElementId: 'score-{{ $abcId }}', controlsElementId: 'controls-{{ $abcId }}', defaultTempo: {{ $abcTempo }} });
+      </script>
+    </div>
+    <div class="abc-tab-panel" role="tabpanel" id="braille-ascii-{{ $uid }}" aria-labelledby="braille-tab-ascii-{{ $uid }}">
+      <div class="braille-output"><pre class="ascii-out" aria-label="ASCII music braille" id="braille-ascii-pre-{{ $uid }}"></pre></div>
+    </div>
+    <div class="abc-tab-panel" role="tabpanel" id="braille-dots-{{ $uid }}" aria-labelledby="braille-tab-dots-{{ $uid }}">
+      <div class="braille-output"><pre class="dots-out" aria-label="Music Braille dot notation" id="braille-dots-pre-{{ $uid }}"></pre></div>
+    </div>
+  </div>
+  {{ partial "notation-braille-render.html" $uid }}
+  {{- end -}}
+
+{{- else if $hasNote -}}
+
+  {{- if gt (len $scores) 1 -}}
+  {{- /* B: multiple scores, no braille */ -}}
+  <div class="abc-tabs">
+    <div class="abc-tabs-label" aria-hidden="true">Notation</div>
+    <div class="abc-tabs-nav" role="tablist" aria-label="Score views">
+      {{- range $i, $score := $scores -}}
+        <button class="abc-tab-btn{{ if eq $i 0 }} is-active{{ end }}" role="tab"
+                aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}"
+                aria-controls="abc-panel-{{ $uid }}-{{ $i }}" id="abc-tab-{{ $uid }}-{{ $i }}">
+          {{- $score.label | default (printf "Score %d" (add $i 1)) -}}
+        </button>
+      {{- end -}}
+    </div>
+    {{- range $i, $score := $scores -}}
+      {{- $abcId := printf "abcplayer-%s-%d" $uid $i -}}
+      {{- $abcTempo := int ($score.tempo | default $defTempo) -}}
+      <div class="abc-tab-panel{{ if eq $i 0 }} is-active{{ end }}" role="tabpanel"
+           id="abc-panel-{{ $uid }}-{{ $i }}" aria-labelledby="abc-tab-{{ $uid }}-{{ $i }}">
+        <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $score.notation | safeHTML }}</script>
+        <div class="abc-player" id="{{ $abcId }}" data-cursor="true">
+          {{- with $score.image -}}<figure class="abc-player-fallback"><img src="{{ . }}" alt="{{ $score.label | default $title }} notation"></figure>{{- end -}}
+          <div class="abc-player-score" id="score-{{ $abcId }}"></div>
+          <div class="abc-player-controls" id="controls-{{ $abcId }}"></div>
+        </div>
+        <script>
+        window.AbcPlayerCoordinator.registerPlayer({ id: '{{ $abcId }}', abcElementId: 'score-{{ $abcId }}', controlsElementId: 'controls-{{ $abcId }}', defaultTempo: {{ $abcTempo }} });
+        </script>
+      </div>
+    {{- end -}}
+  </div>
+
+  {{- else -}}
+  {{- /* B: single score, no braille — plain player, no tabs */ -}}
+  {{- $score := index $scores 0 -}}
+  {{- $abcId := printf "abcplayer-%s" $uid -}}
+  {{- $abcTempo := int ($score.tempo | default $defTempo) -}}
+  <script type="text/abc" id="abc-data-{{ $abcId }}">{{ $score.notation | safeHTML }}</script>
+  <div class="abc-player" id="{{ $abcId }}" data-cursor="true">
+    {{- with $score.image -}}<figure class="abc-player-fallback"><img src="{{ . }}" alt="{{ $title }} notation"></figure>{{- end -}}
+    <div class="abc-player-score" id="score-{{ $abcId }}"></div>
+    <div class="abc-player-controls" id="controls-{{ $abcId }}"></div>
+  </div>
+  <script>
+  window.AbcPlayerCoordinator.registerPlayer({ id: '{{ $abcId }}', abcElementId: 'score-{{ $abcId }}', controlsElementId: 'controls-{{ $abcId }}', defaultTempo: {{ $abcTempo }} });
+  </script>
+  {{- end -}}
+
+{{- else if $abc -}}
+  {{- /* C: braille only */ -}}
+  <div class="abc-tabs">
+    <div class="abc-tabs-label" aria-hidden="true">Music Braille</div>
+    <div class="abc-tabs-nav" role="tablist" aria-label="Braille notation format">
+      <button class="abc-tab-btn is-active" role="tab" aria-selected="true"
+              aria-controls="braille-ascii-{{ $uid }}" id="braille-tab-ascii-{{ $uid }}">Braille ASCII</button>
+      <button class="abc-tab-btn" role="tab" aria-selected="false"
+              aria-controls="braille-dots-{{ $uid }}" id="braille-tab-dots-{{ $uid }}">Braille dots</button>
+    </div>
+    <div class="abc-tab-panel is-active" role="tabpanel" id="braille-ascii-{{ $uid }}" aria-labelledby="braille-tab-ascii-{{ $uid }}">
+      <div class="braille-output"><pre class="ascii-out" aria-label="ASCII music braille" id="braille-ascii-pre-{{ $uid }}"></pre></div>
+    </div>
+    <div class="abc-tab-panel" role="tabpanel" id="braille-dots-{{ $uid }}" aria-labelledby="braille-tab-dots-{{ $uid }}">
+      <div class="braille-output"><pre class="dots-out" aria-label="Music Braille dot notation" id="braille-dots-pre-{{ $uid }}"></pre></div>
+    </div>
+  </div>
+  {{ partial "notation-braille-render.html" $uid }}
+{{- end -}}
