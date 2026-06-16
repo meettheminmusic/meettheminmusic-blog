@@ -53,6 +53,57 @@ panels:
           %%center .
           %%center © 2026 All Rights Reserved.
         tempo: 100
+  - heading: Listen to the Mustn't (with Body perc)
+    sanitized_abc: ''
+    scores:
+      - label: ''
+        notation: |-
+          %%textfont arial italic 11
+          X:1
+          T:Listen to the Mustn'ts
+          M:2/4
+          L:1/8
+          C:Shell Silverstein
+          A: arr. P. Eric Bottorff
+          Q:1/4
+          %%gchordfont Arial 12
+          %%vocalfont Arial 8
+          %%staffsep 50
+          %%stretchlast 1
+          %%barsperstaff 4
+          K:C cle clef=perc stafflines=1
+          V:1 name="1" snm="1"
+          V:2 clef=perc stafflines=1 name="B.P." snm="B.P"
+          V:1
+          AA AA| AA A2| AA AA | A2 z2||
+          w: List-en to the must-n'ts, child. List-en to the don'ts.
+          M: 2/4
+          AA AA | AA AA | AA AA | A2 z2||
+          w: Lis-ten to the should-n'ts the im-poss-I-ble the won'ts
+          M: 2/4
+          AA AA | AA AA | AA AA | A2 z2||
+          w: Lis-ten to the nev-er haves, then list-en close to me.
+          M: 2/4
+          AA AA | AA A2 | AA AA | A2 z2|]
+          w: a-ny-thing can hap-pen child. A-ny-thing can be.
+          %%textfont arial 9
+          %%center .
+          %%center © 2026 All Rights Reserved.
+          V:2
+          %%MIDI program 52
+          A2A2|zA AA|A2A2|zA AA||
+          w: You! Can! Just do it! You! Can! Just do it!
+          M: 2/4
+          A2A2|zA AA|A2A2|zA AA||
+          w: You! Can! Just do it! You! Can! Just do it!
+          M: 2/4
+          A2A2|zA AA|A2A2|zA AA||
+          w: You! Can! Just do it! You! Can! Just do it!
+          M: 2/4
+          A2A2|zA AA|A2A2|zA AA|]
+          w: You! Can! Just do it! You! Can! Just do it!
+        image: ''
+        tempo: null
   - heading: Peas and Honey
     sanitized_abc: ''
     scores:
@@ -120,4 +171,5 @@ panels:
         image: ''
         tempo: null
 abc_notation: ''
+sanitized_abc: ''
 ---
