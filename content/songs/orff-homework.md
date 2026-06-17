@@ -190,8 +190,8 @@ panels:
           %%barsperstaff 2
           K:C cle clef=perc stafflines=1
           V:1 name="" snm=""
-          V:2 clef=perc name="Stomp" snm="Stomp"
-          V:3 clef=perc name="Pat" snm="Pat"
+          V:2 clef=perc stafflines=1 name="Stomp" snm="Stomp"
+          V:3 clef=perc stafflines=1 name="Pat" snm="Pat"
           V:1
           AAA AAA | AAA AAA|| AAA AAA | A3 z2 A ||
           w: Chris-to-pher Ro-bin goes Hopp-it-y, hopp-it-y, Hopp-it-y, hopp-it-y, hop. When-
