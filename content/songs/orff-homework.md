@@ -145,7 +145,7 @@ panels:
           L:1/8
           C:Ogden Nash
           A: arr. P. Eric Bottorff
-          Q:1/4=100
+          Q:1/4
           %%gchordfont Arial 12
           %%vocalfont Arial 8
           %%staffsep 50
