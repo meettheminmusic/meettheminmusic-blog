@@ -24,7 +24,7 @@ abc_notation: |-
   T:Roller Coaster
   M:2/4
   L:1/8
-  C: Roller Coaster
+  C: 
   A: MeetThemInMusic.com
   Q:1/4
   %%gchordfont Arial 12
@@ -47,3 +47,7 @@ abc_scores: []
 ---
 
 This was a game created by myself and fellow participants  during my Orff Level 1 training
+
+**<u>Activity</u>**
+
+Form 2 circles - an inner circle and outer circle.  The inner circle will move while the outer stays stationary.
