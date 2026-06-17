@@ -182,7 +182,7 @@ panels:
           L:1/8
           C:words by A.A. Milne
           A: arr. P. Eric Bottorff
-          Q:1/4
+          Q:1/4=1
           %%gchordfont Arial 12
           %%vocalfont Arial 10
           %%staffsep 90
@@ -190,8 +190,8 @@ panels:
           %%barsperstaff 2
           K:C cle clef=perc stafflines=1
           V:1 name="" snm=""
-          V:2 clef=perc stafflines=1 name="Stomp" snm="Stomp"
-          V:3 clef=perc stafflines=1 name="Pat" snm="Pat"
+          V:2 clef=perc stafflines=1 name="Shaker" snm="Shaker"
+          V:3 clef=perc stafflines=1 name="Drum" snm="Drum"
           V:1
           AAA AAA | AAA AAA|| AAA AAA | A3 z2 A ||
           w: Chris-to-pher Ro-bin goes Hopp-it-y, hopp-it-y, Hopp-it-y, hopp-it-y, hop. When-
@@ -203,16 +203,17 @@ panels:
           A3 A3 | A2A A3 ||A3 A3 | A2A A3 ||
           w: Hop Hop Hop don't stop. Hop Hop Hop don't stop. Hop Hop Hop don't stop.
           A3 A3 | A2A A3 ||A3 A3 | A2A A3 |]
-          w:Hop Hop Hop don't stop. Hop Hop Hop don't stop.
+          w:Hop, Hop, Hop! Don't stop! Hop, Hop, Hop! Don't stop!
           V:3
           %%MIDI channel 10
           %%MIDI program 0
-          A2c A3 | A3 c A c|| A2c A3 | c A c A3  ||
+          A2A A3 | A3 AAA|| A2A A3 | AAA A3  ||
           w: Come a long. Hop Chris-to-pher. Come a long, Chris-to-pher Stop!
-          A2c A3 | A3 c A c|| A2c A3 | c A c A3  |]
+          A2c A3 | A3 AAA|| A2A A3 | AAA A3  |]
           w: Come a long. Hop Chris-to-pher. Come a long, Chris-to-pher Stop!
         image: ''
         tempo: null
 abc_notation: ''
 sanitized_abc: ''
+abc_tempo: null
 ---
