@@ -170,6 +170,49 @@ panels:
           w: It's so stick-y Don't make a mess. It's so stick-y Don't make a mess.
         image: ''
         tempo: null
+  - heading: Hoppity (3 part)
+    sanitized_abc: ''
+    scores:
+      - label: ''
+        notation: |-
+          %%textfont arial italic 11
+          X:1
+          T:Hoppity
+          M:6/8
+          L:1/8
+          C:words by A.A. Milne
+          A: arr. P. Eric Bottorff
+          Q:1/4
+          %%gchordfont Arial 12
+          %%vocalfont Arial 10
+          %%staffsep 90
+          %%stretchlast 1
+          %%barsperstaff 2
+          K:C cle clef=perc stafflines=1
+          V:1 name="" snm=""
+          V:2 clef=perc name="Stomp" snm="Stomp"
+          V:3 clef=perc name="Pat" snm="Pat"
+          V:1
+          AAA AAA | AAA AAA|| AAA AAA | A3 z2 A ||
+          w: Chris-to-pher Ro-bin goes Hopp-it-y, hopp-it-y, Hopp-it-y, hopp-it-y, hop. When-
+          AAA AAA | AAA AAA|| AAA AAA | A3 z3 |]
+          w: ev-er I tell him pol-ite-ly to stop it, he Says he can't poss-ib-ly stop.
+          V:2
+          %%MIDI channel 10
+          %%MIDI program 0
+          A3 A3 | A2A A3 ||A3 A3 | A2A A3 ||
+          w: Hop Hop Hop don't stop. Hop Hop Hop don't stop. Hop Hop Hop don't stop.
+          A3 A3 | A2A A3 ||A3 A3 | A2A A3 |]
+          w:Hop Hop Hop don't stop. Hop Hop Hop don't stop.
+          V:3
+          %%MIDI channel 10
+          %%MIDI program 0
+          A2c A3 | A3 c A c|| A2c A3 | c A c A3  ||
+          w: Come a long. Hop Chris-to-pher. Come a long, Chris-to-pher Stop!
+          A2c A3 | A3 c A c|| A2c A3 | c A c A3  |]
+          w: Come a long. Hop Chris-to-pher. Come a long, Chris-to-pher Stop!
+        image: ''
+        tempo: null
 abc_notation: ''
 sanitized_abc: ''
 ---
