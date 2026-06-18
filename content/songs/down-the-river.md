@@ -4,7 +4,7 @@ date: 2026-06-17T20:57:00-04:00
 draft: false
 unlisted: false
 featured: false
-card_image: ''
+card_image: /images/uploads/Down the river images slide.png
 tonal_concepts: []
 rhythmic_concepts: []
 activity_types:
