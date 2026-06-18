@@ -213,6 +213,45 @@ panels:
           w: Come a long. Hop Chris-to-pher. Come a long, Chris-to-pher Stop!
         image: ''
         tempo: null
+  - heading: Hoppity (tritonic)
+    sanitized_abc: ''
+    scores:
+      - label: ''
+        notation: |-
+          %%textfont arial italic 11
+          X:1
+          T:Hoppity
+          M:6/8
+          L:1/8
+          C:words by A.A. Milne
+          A: 2nd Grade
+          Q:1/4=100
+          %%gchordfont Arial 12
+          %%vocalfont Arial 10
+          %%staffsep 90
+          %%stretchlast 1
+          %%barsperstaff 2
+          K:C cle clef=treble stafflines=5
+          V:1 name="" snm=""
+          V:2 clef=perc stafflines=1 name="Shaker" snm="Shaker"
+          V:3 clef=perc stafflines=1 name="Drum" snm="Drum"
+          V:1
+          GGG AAA | GGG AAA|| GGG AAA | E3 z2 E ||
+          w: Chris-to-pher Ro-bin goes Hopp-it-y, hopp-it-y, Hopp-it-y, hopp-it-y, hop. When-
+          GGG AAA | GGG AAA|| GGG EEE | G3 z3 |]
+          w: ev-er I tell him pol-ite-ly to stop it, he Says he can't poss-ib-ly stop.
+          V:2
+          A3 A3 | A2A A3 ||A3 A3 | A2A A3 ||
+          w: Hop Hop Hop don't stop. Hop Hop Hop don't stop. Hop Hop Hop don't stop.
+          A3 A3 | A2A A3 ||A3 A3 | A2A A3 |]
+          w:Hop, Hop, Hop! Don't stop! Hop, Hop, Hop! Don't stop!
+          V:3
+          A2A A3 | A3 AAA|| A2A A3 | AAA A3  ||
+          w: Come a long. Hop Chris-to-pher. Come a long, Chris-to-pher Stop!
+          A2c A3 | A3 AAA|| A2A A3 | AAA A3  |]
+          w: Come a long. Hop Chris-to-pher. Come a long, Chris-to-pher Stop!
+        image: ''
+        tempo: null
 abc_notation: ''
 sanitized_abc: ''
 abc_tempo: null
