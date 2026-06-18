@@ -251,7 +251,7 @@ panels:
           A2A A3 | A3 AAA|| A2A A3 | AAA A3  |]
           w: Come a long. Hop Chris-to-pher. Come a long, Chris-to-pher Stop!
         image: ''
-        tempo: null
+        tempo: 120
 abc_notation: ''
 sanitized_abc: ''
 abc_tempo: null
