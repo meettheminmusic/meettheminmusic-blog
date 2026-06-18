@@ -5,16 +5,25 @@ draft: false
 unlisted: false
 featured: false
 card_image: ''
-tonal_concepts: []
-rhythmic_concepts: []
-activity_types: []
-social_concepts: []
-movement_concepts: []
-supports_adaptations: []
-language_origins: []
-keys: []
-modes:
+tonal_concepts:
+  - So-Mi
   - Tri-tonic
+rhythmic_concepts:
+  - Quarter-Eighth
+activity_types:
+  - Creative Movement
+social_concepts:
+  - Waiting
+  - Creativity
+movement_concepts:
+  - Creation
+supports_adaptations: []
+language_origins:
+  - English
+keys:
+  - C
+modes:
+  - Tritonic
   - Major
 meters:
   - 6/8
@@ -49,3 +58,13 @@ abc_image: ''
 abc_tempo: 120
 abc_scores: []
 ---
+
+<u>**Activity**</u>
+
+Have the students stand in a circle.  Teacher keeps a beat in some way while singing the song. The student simultaneously copy the teacher's movement.  On the 2nd repetition, the teacher changes their movements to keep a beat in another way.
+
+Take turns going around the circle with each student creating a new movement for the group to simultaneously copy.
+
+**<u>Adaptation</u>**
+
+Provide a "safety dance" that students can choose if they are unable or unsure of creating their own. This still allows assessment of beat keeping skill.
