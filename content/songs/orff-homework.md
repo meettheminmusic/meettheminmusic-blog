@@ -182,7 +182,7 @@ panels:
           L:1/8
           C:words by A.A. Milne
           A: arr. P. Eric Bottorff
-          Q:1/4=1
+          Q:3/8
           %%gchordfont Arial 12
           %%vocalfont Arial 10
           %%staffsep 90
@@ -225,7 +225,7 @@ panels:
           L:1/8
           C:words by A.A. Milne
           A: 2nd Grade
-          Q:1/4=100
+          Q:3/8
           %%gchordfont Arial 12
           %%vocalfont Arial 10
           %%staffsep 90
