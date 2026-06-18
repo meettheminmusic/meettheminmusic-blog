@@ -61,5 +61,34 @@ abc_notation: |-
 sanitized_abc: ''
 abc_image: ''
 abc_tempo: 100
-abc_scores: []
+abc_scores:
+  - label: 16ths Version
+    notation: |-
+      %%textfont arial italic 11
+      X:1
+      T:Blue Bird
+      M:4/4
+      L:1/16
+      C:arr. P. Eric Bottorff
+      A: .
+      Q:1/4
+      %%gchordfont Arial 12
+      %%vocalfont Arial 8
+      %%staffsep 50
+      %%stretchlast 1
+      %%barsperstaff 4
+      K:D
+      A2F2 A2F2| A2AB A2F2 | G2E2 G2E2 | G2GA G2E2 ||
+      w: Blue bird, Blue bird, thru my _ win-dow. Blue bird, blue bird, thru my _ win-dow.
+      M: 4/4
+      A2F2 A2F2| A2AB A2F2 | d4dAFE| D4 D2 z2||
+      w: Blue bird, Blue bird, thru my _ win-dow. Oh, John-y aren't you ti-red?
+      M:4/4
+      AAFF A2F2 | AAAB A2F2 | GGEE G2E2 | GGGA G2E2||
+      w: Find a lit-tle friend and tap them on the shoul-der. Find a lit-tle friend and tap them on the shoul-der.
+      M:4/4
+      AAFF A2F2 | AAAB A2F2 | d4 dAFE| D4 D2 z2|]
+      w: Find a lit-tle friend and tap them on the shoul-der. Oh, John-y aren't you ti-red?
+    image: ''
+    tempo: 100
 ---
