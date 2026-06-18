@@ -51,3 +51,7 @@ This was a game created by myself and fellow participants  during my Orff Level 
 **<u>Activity</u>**
 
 Form 2 circles - an inner circle and outer circle.  The inner circle will move while the outer stays stationary.
+
+During the first 4 measures, the inner circle travels.  On the words "Up the loop and down we go" the inner circle members trade places with a person in the outer circle.
+
+![](/images/uploads/Roller%20Coaster.gif)
