@@ -248,7 +248,7 @@ panels:
           V:3
           A2A A3 | A3 AAA|| A2A A3 | AAA A3  ||
           w: Come a long. Hop Chris-to-pher. Come a long, Chris-to-pher Stop!
-          A2c A3 | A3 AAA|| A2A A3 | AAA A3  |]
+          A2A A3 | A3 AAA|| A2A A3 | AAA A3  |]
           w: Come a long. Hop Chris-to-pher. Come a long, Chris-to-pher Stop!
         image: ''
         tempo: null
