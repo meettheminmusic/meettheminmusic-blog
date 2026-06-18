@@ -4,7 +4,7 @@ date: 2026-06-17T21:09:00-04:00
 draft: false
 unlisted: false
 featured: false
-card_image: ''
+card_image: /images/uploads/Screenshot 2026-06-17 at 9.28.30 PM.png
 tonal_concepts:
   - So-Mi
   - Tri-tonic
