@@ -82,7 +82,7 @@ abc_scores:
       c2G2 A/2A/2A/2A/2 G2 | E/2E/2E/2E/2 DE CE G2 ||
       w: Ding Dong Di-ggy di-ggy dong Di-ggy Di-ggy dong, the cat is gone!
       M:4/4
-      c2 G2 A/2A/2A/2A/2 G2| E/2E/2E/2E/2 DE CE C2|]
+      c2 G2 A/2A/2A/2A/2 G2| E/2E/2E/2E/2 DE C2 z2|]
       w: Ding Dong Di-ggy di-ggy dong. Digg-y digg-y ding, dang, dong.
       %%textfont arial 9
       %%center .
