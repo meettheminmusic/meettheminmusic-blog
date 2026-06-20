@@ -49,15 +49,15 @@ abc_scores:
       %%stretchlast 1
       %%barsperstaff 4
       K:C
-      c2G2 A/2A/2A/2A/2 G2 | E/2E/2E/2E/2 DE CE |G2 z2 ||
+      c2G2 A/2A/2A/2A/2 G2 | E/2E/2E/2E/2 DE CE G2 ||
       w: Ding Dong Di-ggy di-ggy dong Di-ggy Di-ggy dong, the cat is gone!
       M:4/4
-      c2 G2 A/2A/2A/2A/2 G2| E/2E/2E/2E/2 DE CE |C2 z2 |]
+      c2 G2 A/2A/2A/2A/2 G2| E/2E/2E/2E/2 DE C2 z2 |]
       w: Ding Dong Di-ggy di-ggy dong. Digg-y digg-y ding, dang, dong.
       %%textfont arial 9
       %%center .
       %%center © 2026 All Rights Reserved.
-    image: /images/uploads/amber-kipp-75715CVEJhI-unsplash.jpg
+    image: ''
     tempo: 112
   - label: Xylophones
     notation: |-
