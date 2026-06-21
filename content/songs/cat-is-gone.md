@@ -16,7 +16,7 @@ activity_types:
 social_concepts: []
 movement_concepts: []
 supports_adaptations:
-  - Visuals
+  - Visual Supports
   - Choice board
 language_origins:
   - English
