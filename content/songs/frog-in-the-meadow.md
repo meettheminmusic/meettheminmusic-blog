@@ -18,7 +18,7 @@ movement_concepts:
   - Weight
   - Freeze
 supports_adaptations:
-  - Visual Support
+  - Visual Supports
   - Movement Alterations
 language_origins:
   - English
