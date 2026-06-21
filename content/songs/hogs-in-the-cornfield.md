@@ -12,7 +12,7 @@ social_concepts:
 movement_concepts:
   - Steady Beat
 supports_adaptations:
-  - Visual Support
+  - Visual Supports
   - Movement Alteration
 language_origins:
   - English
