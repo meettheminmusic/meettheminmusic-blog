@@ -26,6 +26,7 @@ keys:
   - F
 modes:
   - Major
+  - Tri-tonic
 meters:
   - Duple
   - 2/4
