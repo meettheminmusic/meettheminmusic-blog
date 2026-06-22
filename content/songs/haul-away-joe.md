@@ -48,7 +48,7 @@ abc_scores:
       L:1/8
       C:arr. P. Eric Bottorff
       A: MeetThemInMusic.com 
-      Q: 3/8=140
+      Q: 3/8
       %%gchordfont Arial 12
       %%vocalfont Arial 12
       %%staffsep 50
@@ -70,7 +70,7 @@ abc_scores:
       %%center .
       %%center © 2026 All Rights Reserved.
     image: ''
-    tempo: 100
+    tempo: 120
   - label: Melody + Bass
     notation: |-
       %%textfont arial italic 11
