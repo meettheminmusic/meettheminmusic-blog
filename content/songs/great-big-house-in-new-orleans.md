@@ -66,7 +66,7 @@ abc_scores:
       M:2/4
       L:1/8
       C:arr. P. Eric Bottorff
-      A: 
+      A: MeetThemInMusic.com 
       Q:1/4=100
       %%printtempo 0
       %%gchordfont Arial 12
