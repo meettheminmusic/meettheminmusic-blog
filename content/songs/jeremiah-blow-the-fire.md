@@ -19,6 +19,7 @@ keys:
   - D
 modes:
   - Major
+  - Pentatonic
 meters:
   - Duple
   - 2/4
