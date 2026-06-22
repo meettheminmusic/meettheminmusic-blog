@@ -17,6 +17,7 @@ keys:
   - G
 modes:
   - Minor
+  - Pentatonic
 meters:
   - Triple
   - 6/8
