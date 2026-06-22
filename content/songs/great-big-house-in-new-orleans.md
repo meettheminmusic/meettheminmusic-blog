@@ -54,6 +54,51 @@ sanitized_abc: |-
   Ac cd Ac c2 | Ac cd c4 |
   Ac cd Ac c2 | Ac AG F4 |]
 abc_tempo: 116
+abc_scores:
+  - label: Orff Arrangement
+    notation: |-
+      X:1
+      T:Great Big House in New Orleans
+      M:2/4
+      L:1/8
+      C:arr. P. Eric Bottorff
+      A: 
+      Q:1/4=100
+      %%printtempo 0
+      %%gchordfont Arial 12
+      %%vocalfont Arial 8
+      %%staffsep 50
+      %%stretchlast 1
+      %%barsperstaff 4
+      K:F
+      V:1
+      Ac cd |Ac c2 | Ac cd| c2 z2 || 
+      w: Great big house in New Or-leans, for-ty stor-ies high. 
+      Ac cd |Ac c2 | Ac AG |F2 z2 |] 
+      w: Ev-ery room that I've been in, filled with (pump-kin) pie
+      V:2 clef=treble name="SG" snm="SG"
+      %%MIDI program 10
+      z4 | z4 |z4 | z2 c2|| 
+      z4 | z4 |z4 | z2 c2|] 
+      V:3 clef=perc stafflines=1 name="Pat" snm="Pat"
+      %%MIDI program 114
+      z2 A2 |z2 AA | z2 A2 |z2 AA || 
+      w: Big. It's so big. It's so
+      z2 A2 |z2 AA | z2 A2 |z2 AA |] 
+      w: Big. It's so big. It's so
+      V:4 clef=perc stafflines=1 name="Clap" snm="Clap"
+      %%MIDI program 116
+      AA2 A |A2 z2 | AA2 A |A2 z2 || 
+      w: I want some pie! I want some pie!
+      AA2 A |A2 z2 | AA2 A |A2 z2 |] 
+      w: I want some pie! I want some pie! 
+      V:5 clef=bass name="BX" snm="BX"
+      [F,,2C,]z2|[F,,2C,]z2| [F,,2C,][F,,2C,]|[F,,2C,]z2||
+      w: Pie, pie. I want pie.
+      [F,,2C,]z2|[F,,2C,]z2| [F,,2C,][F,,2C,]|[F,,2C,]z2|]
+      w: Pie, pie. I want pie.
+    image: ''
+    tempo: 100
 description: Great Big House in New Orleans is a pentatonic duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
 ---
 
