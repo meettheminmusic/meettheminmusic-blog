@@ -67,3 +67,7 @@ abc_scores:
     image: ''
     tempo: 136
 ---
+
+{{< callout title="Language Note" >}}
+My translation in the 2nd line is slightly off.  My translation says "my mom" and "my dad." This is implied in the original, but not explicit.
+{{< /callout >}}
