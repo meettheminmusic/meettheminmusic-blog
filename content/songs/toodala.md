@@ -26,6 +26,7 @@ keys:
   - F
 modes:
   - Major
+  - Pentatonic
 meters:
   - Duple
   - 2/4
