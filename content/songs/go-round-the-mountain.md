@@ -14,6 +14,8 @@ keys:
   - D
 modes:
   - Major
+  - Tetra-tonic
+  - Folkloric
 meters:
   - Duple
   - 2/4
