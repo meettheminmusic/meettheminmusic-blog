@@ -69,5 +69,5 @@ abc_scores:
 ---
 
 {{< callout title="Language Note" >}}
-My translation in the 2nd line is slightly off.  My translation says "my mom" and "my dad." This is implied in the original, but not explicit.
+My translation in the 2nd line is slightly off.  My translation says "my mom" and "my dad." This is implied in the original, but not explicit.  I did this to align the English words with the melodic rhythm without melisma.
 {{< /callout >}}
