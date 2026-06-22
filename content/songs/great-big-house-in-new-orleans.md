@@ -23,29 +23,7 @@ meters:
   - 4/4
 source: ''
 source_url: ''
-abc_notation: |-
-  X:1
-  T:Great Big House in New Orleans
-  M:4/4
-  L:1/8
-  C:arr. P. Eric Bottorff
-  A: MeetThemInMusic.com 
-  %%printtempo 0
-  %%vocalfont Arial 9
-  %%barsperstaff 4
-  %%stretchlast 1
-  K:D
-  V:1
-   Ac cd Ac c2 | Ac cd c4 | 
-  w: Great big house in New Or leans, for ty stor ies high. 
-  Ac cd Ac c2 | Ac AG F4 |] 
-  w: Ev ery room that I've been in, filled with (pump kin) pie
-  V:2 clef: bass
-  [F,,4C,][F,,4C,]| [F,,4C,][F,,4C,]|
-  [F,,4C,][F,,4C,]|[F,,4C,][F,,4C,]|]
-  %%textfont arial 9
-  %%center .
-  %%center © 2026 All Rights Reserved.
+abc_notation: ''
 sanitized_abc: |-
   K:D  M:2/4  L:1/8
   M:2/4
@@ -55,6 +33,32 @@ sanitized_abc: |-
   Ac cd Ac c2 | Ac AG F4 |]
 abc_tempo: 116
 abc_scores:
+  - label: Melody
+    notation: |-
+      X:1
+      T:Great Big House in New Orleans
+      M:4/4
+      L:1/8
+      C:arr. P. Eric Bottorff
+      A: MeetThemInMusic.com 
+      %%printtempo 0
+      %%vocalfont Arial 9
+      %%barsperstaff 4
+      %%stretchlast 1
+      K:D
+      V:1
+       Ac cd Ac c2 | Ac cd c4 | 
+      w: Great big house in New Or leans, for ty stor ies high. 
+      Ac cd Ac c2 | Ac AG F4 |] 
+      w: Ev ery room that I've been in, filled with (pump kin) pie
+      V:2 clef: bass
+      [F,,4C,][F,,4C,]| [F,,4C,][F,,4C,]|
+      [F,,4C,][F,,4C,]|[F,,4C,][F,,4C,]|]
+      %%textfont arial 9
+      %%center .
+      %%center © 2026 All Rights Reserved.
+    image: ''
+    tempo: 100
   - label: Orff Arrangement
     notation: |-
       X:1
