@@ -48,6 +48,7 @@ abc_scores:
       L:1/8
       C:arr. P. Eric Bottorff
       A: MeetThemInMusic.com 
+      Q: 3/8=140
       %%gchordfont Arial 12
       %%vocalfont Arial 12
       %%staffsep 50
