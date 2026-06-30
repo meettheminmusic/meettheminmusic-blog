@@ -59,19 +59,25 @@ body { background: var(--ob-bg); }
 .ob-inline-check input { cursor: pointer; accent-color: var(--ob-accent); }
 
 /* Layout */
+/* Play-controls row floats fixed at the viewport bottom so transport stays
+   reachable while scrolling through parts and the score preview. */
 .action-toolbar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 200;
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
-  padding: 16px 20px 4px;
-  max-width: 980px;
-  margin: 0 auto;
+  padding: 12px max(20px, calc((100% - 980px) / 2));
+  background: var(--ob-card);
+  border-top: 1px solid var(--ob-border);
+  box-shadow: 0 -4px 18px rgba(0,0,0,.18);
 }
 .main {
   max-width: 980px;
   margin: 0 auto;
-  padding: 16px 20px 60px;
+  padding: 16px 20px 96px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -307,32 +313,20 @@ body { background: var(--ob-bg); }
 .cell-lyric::placeholder { color: var(--ob-accent); opacity: 0.55; }
 .cell-lyric.spacer { visibility: hidden; }
 
-/* Notation preview — floats fixed at the viewport bottom so the score stays
-   visible next to the play controls at any scroll position. */
-.notation-wrap { min-height: 60px; overflow: auto; }
+/* Notation preview */
+.notation-wrap { min-height: 80px; overflow-x: auto; }
 .notation-empty {
   text-align: center;
-  padding: 24px 20px;
+  padding: 36px 20px;
   color: var(--ob-text-muted);
   font-size: 0.875rem;
   line-height: 1.6;
-}
-.notation-card {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 200;
-  border-radius: 0;
-  border-left: none; border-right: none; border-bottom: none;
-  border-top: 1px solid var(--ob-border);
-  box-shadow: 0 -4px 18px rgba(0,0,0,.18);
-  background: var(--ob-card);
-  overflow-y: auto;
 }
 
 /* Toast */
 .toast {
   position: fixed;
-  bottom: 20px;
+  bottom: 84px;
   left: 50%;
   transform: translateX(-50%) translateY(12px);
   background: #2c2c2c;
@@ -360,23 +354,8 @@ body { background: var(--ob-bg); }
 .help strong { color: var(--ob-accent-dark); }
 
 @media (max-width: 600px) {
-  .main { padding: 12px 12px 200px; gap: 12px; }
+  .main { padding: 12px 12px 150px; gap: 12px; }
   .grid-col { width: 44px; }
-  .notation-card {
-    border-radius: 12px 12px 0 0;
-    padding: 8px 12px 10px;
-    max-height: 190px;
-  }
-  .notation-card .card-label { display: none; }
-}
-
-@media (min-width: 601px) {
-  .main { padding-bottom: 320px; }
-  .notation-card {
-    padding: 10px max(20px, calc((100% - 980px) / 2)) 16px;
-    max-height: 300px;
-  }
-  .notation-card .card-label { margin-bottom: 6px; }
 }
 </style>
 {{ end }}
