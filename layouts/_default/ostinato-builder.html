@@ -1,0 +1,1453 @@
+{{ define "extra_head" }}
+<script src="https://cdn.jsdelivr.net/npm/abcjs@6.4.4/dist/abcjs-basic-min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ob-bg: #f7f6f3;
+  --ob-card: #ffffff;
+  --ob-border: #e2ddd5;
+  --ob-text: #1e2b24;
+  --ob-text-muted: #6b6b60;
+  --ob-accent: #3e7b56;
+  --ob-accent-dark: #2b5c3e;
+  --ob-accent-hover: #336648;
+  --ob-accent-light: #e6f0ea;
+  --ob-gold: #b8852b;
+  --ob-gold-light: #f6edda;
+  --ob-danger: #c0564b;
+  --ob-radius: 6px;
+  --ob-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+body { background: var(--ob-bg); }
+
+/* Buttons */
+.ob-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--ob-border);
+  border-radius: var(--ob-radius);
+  background: var(--ob-card);
+  color: var(--ob-text);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.ob-btn:hover { background: var(--ob-accent-light); border-color: var(--ob-accent); color: var(--ob-accent); }
+.ob-btn:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+.ob-btn-primary { background: var(--ob-accent); border-color: var(--ob-accent); color: #fff; }
+.ob-btn-primary:hover { background: var(--ob-accent-hover); border-color: var(--ob-accent-hover); color: #fff; }
+.ob-btn-danger { border-color: #e0b5b2; color: var(--ob-danger); }
+.ob-btn-danger:hover { background: #fdf0ef; border-color: var(--ob-danger); color: var(--ob-danger); }
+.ob-btn-sm { padding: 4px 9px; font-size: 0.72rem; }
+.ob-inline-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8125rem;
+  color: var(--ob-text-muted);
+  cursor: pointer;
+  padding: 0 4px;
+  user-select: none;
+}
+.ob-inline-check input { cursor: pointer; accent-color: var(--ob-accent); }
+
+/* Layout */
+.action-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 16px 20px 4px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Cards */
+.card {
+  background: var(--ob-card);
+  border: 1px solid var(--ob-border);
+  border-radius: var(--ob-radius);
+  padding: 16px 18px;
+  box-shadow: var(--ob-shadow);
+}
+.card-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ob-text-muted);
+  margin-bottom: 12px;
+}
+
+/* Settings */
+.settings-row {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.setting-group { display: flex; align-items: center; gap: 8px; }
+.setting-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ob-text-muted);
+  white-space: nowrap;
+}
+.main select, .main input[type="number"] {
+  border: 1px solid var(--ob-border);
+  border-radius: 4px;
+  padding: 5px 8px;
+  font-size: 0.875rem;
+  color: var(--ob-text);
+  background: var(--ob-bg);
+  font-family: inherit;
+  cursor: pointer;
+}
+.main select:focus { outline: 2px solid var(--ob-accent); outline-offset: 1px; border-color: var(--ob-accent); }
+.tempo-range { width: 110px; cursor: pointer; accent-color: var(--ob-accent); }
+.tempo-num { font-size: 0.875rem; font-weight: 700; color: var(--ob-accent); min-width: 32px; text-align: right; }
+.tempo-unit { font-size: 0.75rem; color: var(--ob-text-muted); }
+
+.opt-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ob-text-muted);
+  margin-right: 2px;
+}
+
+/* Visibility toggles */
+.vis-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--ob-border);
+  flex-wrap: wrap;
+}
+.vis-check {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: var(--ob-text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+.vis-check input[type="checkbox"] { accent-color: var(--ob-accent); cursor: pointer; width: 14px; height: 14px; }
+.lyric-style-field { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--ob-text-muted); }
+.lyric-style-field input[type="number"] { width: 56px; text-align: center; font-weight: 700; }
+.opt-btn {
+  padding: 4px 12px;
+  border: 1.5px solid var(--ob-border);
+  border-radius: 20px;
+  background: var(--ob-card);
+  color: var(--ob-text-muted);
+  font-size: 0.775rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+.opt-btn:hover { border-color: var(--ob-accent); color: var(--ob-accent); }
+.opt-btn.active { background: var(--ob-accent); border-color: var(--ob-accent); color: #fff; }
+
+/* Add-part buttons */
+.add-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.add-hint { font-size: 0.75rem; color: var(--ob-text-muted); }
+
+/* Part card */
+.part-card {
+  background: var(--ob-card);
+  border: 1px solid var(--ob-border);
+  border-left: 4px solid var(--ob-accent);
+  border-radius: var(--ob-radius);
+  padding: 12px 14px;
+  box-shadow: var(--ob-shadow);
+}
+.part-card.bordun { border-left-color: var(--ob-gold); }
+.part-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.part-kind-badge {
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: var(--ob-accent-light);
+  color: var(--ob-accent-dark);
+  white-space: nowrap;
+}
+.part-card.bordun .part-kind-badge { background: var(--ob-gold-light); color: var(--ob-gold); }
+.part-head .spacer { flex: 1; }
+.part-ctl { display: flex; align-items: center; gap: 5px; font-size: 0.76rem; color: var(--ob-text-muted); }
+.part-ctl select { padding: 4px 6px; font-size: 0.8rem; }
+.stepper { display: inline-flex; align-items: center; gap: 4px; }
+.stepper button {
+  width: 22px; height: 22px; border: 1px solid var(--ob-border); border-radius: 4px;
+  background: var(--ob-bg); cursor: pointer; font-weight: 700; color: var(--ob-text); line-height: 1;
+}
+.stepper button:hover { border-color: var(--ob-accent); color: var(--ob-accent); }
+.stepper .val { min-width: 16px; text-align: center; font-weight: 700; color: var(--ob-text); }
+.loop-badge {
+  font-size: 0.62rem; font-weight: 700; color: var(--ob-gold);
+  background: var(--ob-gold-light); border-radius: 4px; padding: 2px 6px;
+}
+.loop-badge.longest { color: var(--ob-accent-dark); background: var(--ob-accent-light); }
+
+/* Grid */
+.part-grid-wrap { overflow-x: auto; padding-bottom: 4px; }
+.part-grid { display: flex; align-items: stretch; gap: 0; min-width: min-content; }
+.grid-bar {
+  display: flex;
+  gap: 3px;
+  padding: 0 7px;
+  border-right: 2px solid var(--ob-border);
+}
+.grid-bar:first-child { padding-left: 0; }
+.grid-bar:last-child { border-right: none; }
+.grid-col { display: flex; flex-direction: column; align-items: stretch; gap: 3px; width: 50px; }
+.beat-num {
+  height: 14px;
+  font-size: 0.64rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--ob-accent-dark);
+  line-height: 14px;
+}
+.grid-col.beat-start { position: relative; }
+.grid-col.beat-start::before {
+  content: '';
+  position: absolute;
+  top: 16px; bottom: 0; left: -2px;
+  border-left: 2px solid #c9c1b2;
+}
+.grid-col:first-child.beat-start::before { display: none; }
+
+/* Percussion cell (cycle button) */
+.cell {
+  height: 38px;
+  border: 1.5px solid var(--ob-border);
+  border-radius: 5px;
+  background: #fcfbf9;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ob-text-muted);
+  transition: background 0.1s, border-color 0.1s, transform 0.06s;
+  padding: 0;
+  font-family: inherit;
+  width: 100%;
+}
+.cell:active { transform: scale(0.93); }
+.cell.note { background: var(--ob-accent); border-color: var(--ob-accent); color: #fff; }
+.part-card.bordun .cell.note { background: var(--ob-gold); border-color: var(--ob-gold); color: #fff; }
+.cell.rest { background: #ece8e1; border-color: #d9d3c8; color: #9a8e78; }
+.cell.tail { opacity: 0.45; }
+.cell:hover { border-color: var(--ob-accent); }
+
+/* Bordun pitch select inside a cell */
+.cell-select {
+  height: 38px;
+  width: 100%;
+  border: 1.5px solid var(--ob-border);
+  border-radius: 5px;
+  background: #fcfbf9;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--ob-text);
+  cursor: pointer;
+  padding: 0 1px;
+}
+.cell-select.filled { background: var(--ob-gold); border-color: var(--ob-gold); color: #fff; }
+.cell-select.is-rest { background: #ece8e1; border-color: #d9d3c8; color: #9a8e78; }
+
+/* Lyric input under a cell */
+.cell-lyric {
+  width: 100%;
+  border: 1px dashed var(--ob-accent);
+  border-radius: 3px;
+  background: var(--ob-accent-light);
+  font-size: 0.6rem;
+  font-family: inherit;
+  text-align: center;
+  padding: 2px 1px;
+  color: var(--ob-text);
+}
+.cell-lyric:not(:placeholder-shown) { border-style: solid; border-color: var(--ob-border); background: #fff; }
+.cell-lyric:focus { outline: none; border-style: solid; border-color: var(--ob-accent); background: #fff; box-shadow: 0 0 0 2px var(--ob-accent-light); }
+.cell-lyric::placeholder { color: var(--ob-accent); opacity: 0.55; }
+.cell-lyric.spacer { visibility: hidden; }
+
+/* Notation preview */
+.notation-wrap { min-height: 80px; overflow-x: auto; }
+.notation-empty {
+  text-align: center;
+  padding: 36px 20px;
+  color: var(--ob-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: #2c2c2c;
+  color: #fff;
+  padding: 9px 18px;
+  border-radius: 20px;
+  font-size: 0.8125rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 100;
+  white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.help {
+  font-size: 0.74rem;
+  line-height: 1.5;
+  color: var(--ob-text);
+  background: var(--ob-accent-light);
+  border: 1px solid #cfe2d6;
+  border-radius: var(--ob-radius);
+  padding: 10px 12px;
+}
+.help strong { color: var(--ob-accent-dark); }
+
+@media (max-width: 600px) {
+  .main { padding: 12px 12px 40px; gap: 12px; }
+  .grid-col { width: 44px; }
+}
+</style>
+{{ end }}
+
+{{ define "main" }}
+<div class="action-toolbar">
+  <button id="play-btn" class="ob-btn ob-btn-primary">&#9654; Play</button>
+  <button id="stop-btn" class="ob-btn" disabled>&#9632; Stop</button>
+  <label class="ob-inline-check"><input type="checkbox" id="loop-toggle" checked> Loop</label>
+  <label class="ob-inline-check"><input type="checkbox" id="count-off"> Count off</label>
+  <button id="export-score-btn" class="ob-btn">&#8595; Save score (PNG)</button>
+  <button id="export-score-svg-btn" class="ob-btn">&#8595; Save SVG</button>
+  <button id="copy-abc-btn" class="ob-btn">&#128203; Copy ABC</button>
+</div>
+
+<div class="main">
+
+  <!-- Settings -->
+  <div class="card">
+    <div class="settings-row">
+      <div class="setting-group">
+        <label for="key-sel">Key</label>
+        <select id="key-sel"></select>
+      </div>
+      <div class="setting-group">
+        <label for="meter-sel">Meter</label>
+        <select id="meter-sel">
+          <option value="4/4">4/4</option>
+          <option value="3/4">3/4</option>
+          <option value="2/4">2/4</option>
+          <option value="6/8">6/8</option>
+        </select>
+      </div>
+      <div class="setting-group">
+        <label for="subdiv-sel">Grid</label>
+        <select id="subdiv-sel">
+          <option value="1">Quarters</option>
+          <option value="2" selected>Eighths</option>
+          <option value="4">Sixteenths</option>
+        </select>
+      </div>
+      <div class="setting-group">
+        <label for="tempo-slider">Tempo</label>
+        <input type="range" id="tempo-slider" class="tempo-range" min="40" max="208" value="100" step="2">
+        <span class="tempo-num" id="tempo-display">100</span>
+        <span class="tempo-unit">BPM</span>
+      </div>
+    </div>
+    <div class="vis-row">
+      <span class="opt-label">Show</span>
+      <label class="vis-check"><input type="checkbox" id="vis-tempo">           Tempo</label>
+      <label class="vis-check"><input type="checkbox" id="vis-timesig" checked> Time Sig</label>
+      <label class="vis-check"><input type="checkbox" id="vis-clef"    checked> Clef</label>
+      <label class="vis-check"><input type="checkbox" id="vis-barlines"checked> Bar Lines</label>
+      <label class="vis-check"><input type="checkbox" id="vis-names"   checked> Part Names</label>
+      <label class="vis-check"><input type="checkbox" id="vis-lyrics"  checked> Lyrics</label>
+      <span class="lyric-style-field" style="margin-left:auto;">
+        Lyric size
+        <input type="number" id="lyric-size-input" min="8" max="48" step="1" value="14">px
+      </span>
+      <button type="button" id="lyric-bold-btn" class="opt-btn" title="Toggle bold lyrics"><strong>B</strong></button>
+    </div>
+  </div>
+
+  <!-- Parts -->
+  <div class="card">
+    <div class="card-label">Parts</div>
+    <div class="help" id="help-panel">
+      <strong>How it works:</strong> Add a <strong>Bordun</strong> (pitched drone on barred instruments) and one or more
+      <strong>Percussion</strong> ostinati. Click a percussion cell to cycle <em>empty → hit → rest</em>. For the bordun,
+      pick a pitch (or a do+so chord) from each cell, or drop in a preset. Each part can be a different number of bars —
+      shorter parts loop under the longest. Turn on <strong>Lyrics</strong> to type words under any part. Export the whole
+      score, or each part on its own for flashcards.
+    </div>
+    <div class="add-row" style="margin-top:12px;">
+      <button id="add-bordun-btn" class="ob-btn">&#43; Add bordun part</button>
+      <button id="add-perc-btn" class="ob-btn">&#43; Add percussion part</button>
+      <span class="spacer" style="flex:1;"></span>
+      <button id="clear-parts-btn" class="ob-btn ob-btn-danger ob-btn-sm">&#10005; Remove all</button>
+    </div>
+  </div>
+
+  <div id="parts-host" style="display:flex;flex-direction:column;gap:12px;"></div>
+
+  <!-- Notation preview -->
+  <div class="card notation-card">
+    <div class="card-label">Score preview</div>
+    <div class="notation-wrap">
+      <div id="score-render">
+        <div class="notation-empty">
+          Add a bordun and some percussion parts above.<br>
+          The full score will appear here automatically.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   Bordun & Ostinato Builder
+   Forked from Rhythm Builder. Reuses: lyric syllabifier,
+   abcjs render/synth, PNG/SVG export pipeline, visibility toggles.
+   New: multi-part grid model, multi-voice ABC, per-part export.
+   ============================================================ */
+
+// Duration values: beats = quarter-note units; abcMult appended to a note token (L:1/4 base).
+const DURATIONS = [
+  { beats: 4,    abcMult: '4'   },
+  { beats: 3,    abcMult: '3'   },
+  { beats: 2,    abcMult: '2'   },
+  { beats: 1.5,  abcMult: '3/2' },
+  { beats: 1,    abcMult: ''    },
+  { beats: 0.75, abcMult: '3/4' },
+  { beats: 0.5,  abcMult: '/2'  },
+  { beats: 0.25, abcMult: '/4'  },
+];
+
+// Pentatonic key tables. Tokens are ABC pitch tokens in a treble-staff register,
+// with explicit accidentals so the score needs no key signature (K:C everywhere).
+// do/so define the bordun (tonic + fifth); re/la give the "moving" bordun; soLow/doUp
+// give crossover. `palette` is the ordered low→high pitch menu for free editing.
+const KEYS = {
+  'C': { do:'C', re:'D', mi:'E', so:'G', la:'A', soLow:'G,', doUp:"c",
+         palette:[['G','so,'],['c','do'],['d','re'],['e','mi'],['g','so'],['a','la'],["c'","do'"]] },
+  'F': { do:'F', re:'G', mi:'A', so:"c", la:"d", soLow:'C', doUp:"f",
+         palette:[['c','so,'],['f','do'],['g','re'],['a','mi'],["c'","so"],["d'","la"],["f'","do'"]] },
+  'G': { do:'G', re:'A', mi:'B', so:"d'", la:"e'", soLow:'D', doUp:"g",
+         palette:[['d','so,'],['g','do'],['a','re'],['b','mi'],["d'","so"],["e'","la"],["g'","do'"]] },
+  'D': { do:'d', re:'e', mi:'^f', so:'a', la:'b', soLow:'A', doUp:"d'",
+         palette:[['A','so,'],['d','do'],['e','re'],['^f','mi'],['a','so'],['b','la'],["d'","do'"]] },
+  'A': { do:'a', re:'b', mi:"^c'", so:"e'", la:"^f'", soLow:'E', doUp:"a'",
+         palette:[['E','so,'],['a','do'],['b','re'],["^c'","mi"],["e'","so"],["^f'","la"],["a'","do'"]] },
+};
+const KEY_LABELS = { 'C':'C (do) / A (la)', 'F':'F (do) / D (la)', 'G':'G (do) / E (la)', 'D':'D (do) / B (la)', 'A':'A (do) / F#(la)' };
+
+// Bordun presets: each returns a one-bar pattern as a map of {beatIndex -> pitchTokens[]}.
+// beatIndex is in quarter beats from the bar start. Tiled across the part's bars.
+const BORDUN_PRESETS = {
+  simple:    'Simple / chord (held)',
+  level:     'Level (chord each beat)',
+  broken:    'Broken (do / so)',
+  moving:    'Moving (shifts up a step)',
+  crossover: 'Crossover (low so / high do)',
+};
+
+// Pitched barred instruments -> General MIDI program (0-127).
+const PITCHED_INSTRUMENTS = [
+  { id:'glockenspiel', label:'Glockenspiel', gm:9  },
+  { id:'xylophone',    label:'Xylophone',    gm:13 },
+  { id:'marimba',      label:'Marimba',      gm:12 },
+  { id:'metallophone', label:'Metallophone', gm:11 },
+  { id:'celesta',      label:'Celesta',      gm:8  },
+];
+// Unpitched percussion -> GM percussion note (played on channel 10 via program 128 + drummap).
+const PERC_SOUNDS = [
+  { id:'clap',      label:'Clap',        drum:39, head:'x' },
+  { id:'snap',      label:'Snap',        drum:37, head:'x' },
+  { id:'pat',       label:'Pat (lap)',   drum:45, head:'normal' },
+  { id:'stamp',     label:'Stamp',       drum:36, head:'normal' },
+  { id:'woodblock', label:'Wood Block',  drum:76, head:'normal' },
+  { id:'conga',     label:'Hand Drum',   drum:63, head:'normal' },
+  { id:'tambourine',label:'Tambourine',  drum:54, head:'normal' },
+  { id:'triangle',  label:'Triangle',    drum:81, head:'normal' },
+  { id:'claves',    label:'Claves',      drum:75, head:'normal' },
+  { id:'cowbell',   label:'Cowbell',     drum:56, head:'normal' },
+];
+const X_NOTEHEADS = true;   // emit !style=x! for clap/snap
+
+// ── State ──────────────────────────────────────────────────
+let project = { meter:'4/4', subdiv:2, tempo:100, key:'C', parts:[] };
+let partSeq = 0;
+
+let currentTune  = null;
+let synthControl = null;
+let audioCtx     = null;
+let isPlaying    = false;
+let renderTimer  = null;
+let toastTimer   = null;
+let loopTimer    = null;   // pending setTimeout for the next loop restart
+let loopAnchor   = 0;      // audioCtx time of the first pass's downbeat
+let loopPeriod   = 0;      // exact musical length of one pass, in seconds
+
+let lyricFontSize = 14;
+let lyricBold     = false;
+function lyricVocalFont() {
+  return { face: 'Helvetica, Arial, sans-serif', size: lyricFontSize, weight: lyricBold ? 'bold' : 'normal' };
+}
+function lyricFontDirective() {
+  return '%%vocalfont ' + (lyricBold ? 'Helvetica-Bold' : 'Helvetica') + ' ' + lyricFontSize + '\n';
+}
+
+// ── Helpers ────────────────────────────────────────────────
+function meterParts() { return project.meter.split('/').map(Number); }
+function beatsPerBar() { const [n,d] = meterParts(); return n * (4/d); }   // quarter units
+function cellsPerBar() { return Math.round(beatsPerBar() * project.subdiv); }
+function cellBeats()   { return 1 / project.subdiv; }                       // quarter units per column
+function abcLen()      { return '1/4'; }                                    // base note length
+function longestBars() { return project.parts.length ? Math.max.apply(null, project.parts.map(p=>p.bars)) : 0; }
+// Display order: percussion on top, bordun always at the bottom — regardless of add order.
+function orderedParts() {
+  return project.parts.filter(p=>p.kind!=='bordun').concat(project.parts.filter(p=>p.kind==='bordun'));
+}
+
+function near(a, b)   { return Math.abs(a - b) < 0.001; }
+function isBeamable(it){ return !it.isRest && it.beats < 1; }
+
+// Decompose a beat quantity into representable note values (largest first).
+function decomposeBeats(target) {
+  var pool = DURATIONS.slice().sort(function(a,b){ return b.beats - a.beats; });
+  var out = [], rem = target, guard = 0;
+  while (rem > 0.0001 && guard++ < 64) {
+    var picked = null;
+    for (var i=0;i<pool.length;i++){ if (pool[i].beats <= rem + 0.0001){ picked = pool[i]; break; } }
+    if (!picked) return null;
+    out.push(picked); rem -= picked.beats;
+  }
+  return out;
+}
+
+function instrumentFor(part) {
+  if (part.kind === 'bordun') return PITCHED_INSTRUMENTS.find(i=>i.id===part.instrumentId) || PITCHED_INSTRUMENTS[0];
+  return PERC_SOUNDS.find(i=>i.id===part.instrumentId) || PERC_SOUNDS[0];
+}
+function partName(part) { return instrumentFor(part).label; }
+function shortName(part){ var n = partName(part).split(' ')[0]; return n.length>6 ? n.slice(0,5)+'.' : n; }
+
+// ── Part lifecycle ─────────────────────────────────────────
+function makeCells(n) { return new Array(n).fill(null); }
+
+function addPart(kind) {
+  var bars = 1;
+  var part = {
+    id: 'p' + (++partSeq),
+    kind: kind,
+    instrumentId: kind === 'bordun' ? 'marimba' : 'clap',
+    bars: bars,
+    cells: makeCells(cellsPerBar() * bars),
+    lyricsOn: false,
+  };
+  project.parts.push(part);
+  if (kind === 'bordun') applyBordunPreset(part, 'simple');
+  renderApp();
+}
+
+function removePart(id) {
+  project.parts = project.parts.filter(p => p.id !== id);
+  renderApp();
+}
+
+function setPartBars(part, bars) {
+  bars = Math.max(1, Math.min(8, bars));
+  var per = cellsPerBar();
+  var next = makeCells(per * bars);
+  for (var i=0;i<next.length && i<part.cells.length;i++) next[i] = part.cells[i];
+  part.bars = bars;
+  part.cells = next;
+  renderApp();
+}
+
+// Resize every part's cells when meter/subdivision changes (content is reset).
+function resizeAllParts() {
+  var per = cellsPerBar();
+  project.parts.forEach(function(p){ p.cells = makeCells(per * p.bars); });
+}
+
+// ── Bordun presets ─────────────────────────────────────────
+// Place chords/notes on quarter-beats of one bar, then tile to the part's bar count.
+function applyBordunPreset(part, presetId) {
+  var K = KEYS[project.key];
+  var per = cellsPerBar();
+  var sub = project.subdiv;
+  var nBeats = meterParts()[0] * (4 / meterParts()[1]); // quarter beats per bar
+  var beatCols = [];
+  for (var b=0; b*1 < nBeats; b++) beatCols.push(Math.round(b * sub));  // cell index of each quarter beat
+
+  function blankBar(){ return makeCells(per); }
+  var bar = blankBar();
+  function put(col, pitches, kind){ bar[col] = { kind: kind||'note', pitches: pitches, lyric:'' }; }
+
+  if (presetId === 'simple') {
+    put(0, [K.do, K.so]);                                  // held chord, whole bar
+  } else if (presetId === 'level') {
+    beatCols.forEach(function(c){ put(c, [K.do, K.so]); }); // chord on every beat
+  } else if (presetId === 'broken') {
+    beatCols.forEach(function(c,i){ put(c, [ i%2 ? K.so : K.do ]); });
+  } else if (presetId === 'moving') {
+    var half = Math.floor(beatCols.length/2) || 1;
+    put(beatCols[0], [K.do, K.so]);
+    if (beatCols[half]) put(beatCols[half], [K.re, K.la]);
+  } else if (presetId === 'crossover') {
+    beatCols.forEach(function(c,i){ put(c, [ i%2 ? K.doUp : K.soLow ]); });
+  }
+
+  // Tile bar across part.bars
+  var cells = [];
+  for (var bb=0; bb<part.bars; bb++) for (var c=0;c<per;c++) cells.push(bar[c] ? Object.assign({}, bar[c], {pitches: bar[c].pitches.slice()}) : null);
+  part.cells = cells;
+}
+
+// ── Flatten a bar's cells into notated pieces ──────────────
+// Returns array of items: { isRest, beats, abcMult, tok, tieAfter, tiedFrom, lyric, newBeamGroup }
+function flattenBar(cells, part) {
+  var per  = cellsPerBar();
+  var cb   = cellBeats();
+  var inst = instrumentFor(part);
+
+  // 1) segment the bar into onsets (note/rest) spanning to the next onset / bar end
+  var segs = [], cur = null;
+  function close(end){ if (cur){ cur.len = end - cur.start; segs.push(cur); cur = null; } }
+  for (var i=0;i<per;i++) {
+    var c = cells[i];
+    if (c == null) { if (!cur) cur = { start:i, kind:'rest', data:null }; }
+    else { close(i); cur = { start:i, kind:c.kind, data:c }; }
+  }
+  close(per);
+
+  // 2) expand each segment into representable note values
+  var items = [];
+  var beatPos = 0;
+  segs.forEach(function(seg){
+    var spanBeats = seg.len * cb;
+    var pieces = decomposeBeats(spanBeats) || [{ beats: spanBeats, abcMult: '' }];
+    var isRest = (seg.kind === 'rest');
+    pieces.forEach(function(pc, pi){
+      var onBeat = near(beatPos % 1, 0);
+      var tok;
+      if (isRest) tok = 'z';
+      else if (part.kind === 'bordun') {
+        var ps = (seg.data.pitches && seg.data.pitches.length) ? seg.data.pitches : [KEYS[project.key].do];
+        tok = ps.length > 1 ? '[' + ps.join('') + ']' : ps[0];
+      } else {
+        tok = (X_NOTEHEADS && inst.head === 'x' ? '!style=x!' : '') + 'B';
+      }
+      items.push({
+        isRest: isRest,
+        beats: pc.beats,
+        abcMult: pc.abcMult,
+        tok: tok,
+        tieAfter: !isRest && pi < pieces.length - 1,
+        tiedFrom: !isRest && pi > 0,
+        lyric: (!isRest && pi === 0 && seg.data) ? (seg.data.lyric || '') : '',
+        newBeamGroup: isRest || pc.beats >= 1 || onBeat,
+      });
+      beatPos += pc.beats;
+    });
+  });
+  return items;
+}
+
+// Flatten an entire part (its own bars), tiled to `targetBars`.
+function flattenPart(part, targetBars) {
+  var per = cellsPerBar();
+  var items = [];
+  for (var b=0; b<targetBars; b++) {
+    var srcBar = b % part.bars;
+    var barCells = part.cells.slice(srcBar*per, srcBar*per + per);
+    items = items.concat(flattenBar(barCells, part));
+  }
+  return items;
+}
+
+// ── ABC voice body / lyrics (adapted from Rhythm Builder) ──
+function buildVoiceMusic(items, bpb) {
+  var body = '', barAcc = 0, afterBarline = true;
+  for (var i=0;i<items.length;i++) {
+    var item = items[i], prev = i>0 ? items[i-1] : null;
+    var canBeam = isBeamable(item) && !item.newBeamGroup && !afterBarline && prev && isBeamable(prev);
+    if (!afterBarline && !canBeam) body += ' ';
+    afterBarline = false;
+    body += item.tok + item.abcMult;
+    if (!item.isRest && item.tieAfter) body += '-';
+    barAcc += item.beats;
+    if (near(barAcc, bpb)) { body += ' |'; barAcc = 0; afterBarline = true; }
+  }
+  return body.endsWith('|') ? body + ']' : body + ' |]';
+}
+
+function buildVoiceLyrics(items, bpb) {
+  var sylMap = computeSyllableMap(items);
+  var line = '', barAcc = 0, first = true;
+  for (var i=0;i<items.length;i++) {
+    var item = items[i];
+    if (!item.isRest) {
+      var d = sylMap[i], tok;
+      if (d && d.tieCont) tok = '_';
+      else if (!d || !d.syllable) tok = '*';
+      else {
+        tok = d.syllable.replace(/\s+/g,'~');
+        if (d.overflow) tok += '~' + d.overflow.replace(/-/g,'~');
+        else if (d.hyphenAfter) tok += '-';
+      }
+      line += (first ? '' : ' ') + tok;
+      first = false;
+    }
+    barAcc += item.beats;
+    if (near(barAcc, bpb)) { line += ' |'; barAcc = 0; first = true; }
+  }
+  return line.trim();
+}
+
+// ── Lyric syllabifier (verbatim from Rhythm Builder) ───────
+function syllabifyWord(word) {
+  if (!word) return [];
+  if (word.indexOf('-') !== -1) return word.split('-').filter(Boolean);
+  var lower = word.toLowerCase();
+  if (lower.length <= 3) return [word];
+  var vowels = 'aeiouy';
+  var isV = function(c){ return vowels.indexOf(c) !== -1; };
+  var n = lower.length;
+  var silentE = (n > 3 && lower[n-1] === 'e' && !isV(lower[n-2]) && lower[n-2] !== 'l');
+  var leWord  = (/[^aeiouy]le$/.test(lower));
+  var work = silentE ? lower.slice(0, n-1) : lower;
+  var wn = work.length;
+  var groups = [], i = 0;
+  while (i < wn) {
+    if (isV(work[i])) { var s = i; while (i < wn && isV(work[i])) i++; groups.push([s, i-1]); }
+    else i++;
+  }
+  if (groups.length <= 1 && !leWord) return [word];
+  var keep = ['ch','sh','th','ph','wh','gh','ng','qu','bl','br','cl','cr','dr','fl','fr','gl','gr',
+              'pl','pr','sc','sk','sl','sm','sn','sp','st','sw','tr','tw','wr'];
+  var cuts = [];
+  for (var g=0; g<groups.length-1; g++) {
+    var vEnd = groups[g][1], vNext = groups[g+1][0], cc = vNext - vEnd - 1, cut;
+    if (cc <= 0) cut = vNext;
+    else if (cc === 1) cut = vEnd + 1;
+    else if (work[vEnd+1] + work[vEnd+2] === 'ck') cut = vEnd + 3;
+    else { var pair = work[vEnd+1] + work[vEnd+2]; cut = keep.indexOf(pair) !== -1 ? vEnd + 1 : vEnd + 2; }
+    cuts.push(cut);
+  }
+  if (leWord) {
+    var leCut = wn - 3;
+    cuts = cuts.filter(function(c){ return c <= leCut; });
+    if (cuts.indexOf(leCut) === -1 && leCut > 0) cuts.push(leCut);
+    cuts.sort(function(a,b){ return a-b; });
+  }
+  var parts = [], prev = 0;
+  for (var k=0;k<cuts.length;k++){ parts.push(work.slice(prev, cuts[k])); prev = cuts[k]; }
+  parts.push(work.slice(prev));
+  parts = parts.filter(function(p){ return p.length; });
+  if (silentE) parts[parts.length-1] += 'e';
+  var out = [], idx = 0;
+  for (var p=0;p<parts.length;p++){ out.push(word.substr(idx, parts[p].length)); idx += parts[p].length; }
+  return out.filter(function(x){ return x.length; });
+}
+function syllabify(field) {
+  if (!field) return [];
+  return field.trim().split(/\s+/).reduce(function(a,w){ return a.concat(syllabifyWord(w)); }, []);
+}
+function computeSyllableMap(seq) {
+  var noteIdx = [];
+  for (var i=0;i<seq.length;i++){ if (seq[i].isRest) continue; if (seq[i].tiedFrom) continue; noteIdx.push(i); }
+  var map = {};
+  for (var j=0;j<seq.length;j++){ if (seq[j].isRest) continue; map[j] = seq[j].tiedFrom ? { syllable:'', tieCont:true, borrowed:false, hyphenAfter:false } : null; }
+  for (var p=0;p<noteIdx.length;p++) {
+    var idx = noteIdx[p];
+    if (map[idx] !== null) continue;
+    var field = (seq[idx].lyric || '').trim();
+    if (!field) { map[idx] = { syllable:'', borrowed:false, hyphenAfter:false }; continue; }
+    var sylls = syllabify(field);
+    if (sylls.length <= 1) { map[idx] = { syllable: field.replace(/-/g,''), borrowed:false, hyphenAfter:false }; continue; }
+    var placed = 0, overflowText = '';
+    for (var s=0;s<sylls.length;s++) {
+      var targetPos = p + s;
+      if (targetPos < noteIdx.length) {
+        var tIdx = noteIdx[targetPos];
+        if (s > 0 && (seq[tIdx].lyric || '').trim()) { overflowText = sylls.slice(s).join('-'); break; }
+        map[tIdx] = { syllable: sylls[s], borrowed: s>0, hyphenAfter: s < sylls.length-1, hyphenBefore: s>0 };
+        placed++;
+      } else { overflowText = sylls.slice(s).join('-'); break; }
+    }
+    if (overflowText) {
+      var lastIdx = noteIdx[Math.min(p + placed - 1, noteIdx.length - 1)];
+      if (map[lastIdx]) { map[lastIdx].overflow = overflowText; map[lastIdx].hyphenAfter = false; }
+    }
+  }
+  return map;
+}
+
+// ── Multi-voice score ABC ──────────────────────────────────
+function partHasContent(part) { return part.cells.some(function(c){ return c != null; }); }
+function anyContent() { return project.parts.some(partHasContent); }
+
+function voiceHeader(part, vid, showName) {
+  var inst = instrumentFor(part);
+  var nm = (showName === false) ? '' : ' name="' + partName(part) + '" snm="' + shortName(part) + '"';
+  if (part.kind === 'bordun') {
+    var clef = (part.instrumentId === 'glockenspiel') ? 'treble+8' : 'treble';
+    return 'V:' + vid + ' clef=' + clef + nm;
+  }
+  return 'V:' + vid + ' clef=perc stafflines=1 stem=up' + nm;
+}
+// A perc-clef voice defaults to GM instrument 128 (the drum kit), where the *written pitch*
+// selects the drum sound. We always write 'B' (MIDI 71, on the staff line) and use the
+// MIDI-only `transpose` directive — which abcjs 6.4.4 honors, unlike `drummap`/`channel` —
+// to shift playback to the desired GM percussion note while the notation stays clean.
+function voiceMidi(part) {
+  if (part.kind === 'bordun') return '%%MIDI program ' + instrumentFor(part).gm + '\n';
+  return '%%MIDI transpose ' + (instrumentFor(part).drum - 71) + '\n';
+}
+
+function generateScoreABC() {
+  var parts = orderedParts().filter(partHasContent);
+  if (!parts.length) return null;
+
+  var bpb   = beatsPerBar();
+  var Lbars = longestBars();
+  var showLyricsGlobal = document.getElementById('vis-lyrics').checked;
+
+  var vids = parts.map(function(_,i){ return 'V' + (i+1); });
+  var hdr = 'X:1\nT:\nM:' + project.meter + '\nL:' + abcLen() + '\nQ:' + project.tempo + '\n';
+  hdr += '%%score [' + vids.join(' ') + ']\n';   // brackets = separate stacked staves
+
+  var anyLyrics = showLyricsGlobal && parts.some(function(p){
+    return p.lyricsOn && p.cells.some(function(c){ return c && c.lyric && c.lyric.trim(); });
+  });
+  if (anyLyrics) hdr += lyricFontDirective();
+
+  parts.forEach(function(p,i){ hdr += voiceHeader(p, vids[i]) + '\n'; });
+  hdr += 'K:C\n';
+
+  var body = '';
+  parts.forEach(function(p,i){
+    var items = flattenPart(p, Lbars);
+    body += 'V:' + vids[i] + '\n';
+    body += voiceMidi(p);
+    body += buildVoiceMusic(items, bpb) + '\n';
+    var showThis = showLyricsGlobal && p.lyricsOn && items.some(function(it){ return it.lyric && it.lyric.trim(); });
+    if (showThis) body += 'w: ' + buildVoiceLyrics(items, bpb) + '\n';
+  });
+
+  return hdr + body;
+}
+
+// Single-part ABC (its own length) for flashcard export.
+function generatePartABC(part) {
+  if (!partHasContent(part)) return null;
+  var bpb = beatsPerBar();
+  var items = flattenPart(part, part.bars);
+  var showLyrics = document.getElementById('vis-lyrics').checked && part.lyricsOn &&
+                   items.some(function(it){ return it.lyric && it.lyric.trim(); });
+  var hdr = 'X:1\nT:\nM:' + project.meter + '\nL:' + abcLen() + '\n';
+  if (showLyrics) hdr += lyricFontDirective();
+  hdr += voiceHeader(part, 'V1', false) + '\nK:C\n';
+  var body = 'V:V1\n' + voiceMidi(part) + buildVoiceMusic(items, bpb) + '\n';
+  if (showLyrics) body += 'w: ' + buildVoiceLyrics(items, bpb) + '\n';
+  return hdr + body;
+}
+
+// ── Visibility overrides ───────────────────────────────────
+var VIS_RULES = [
+  { id: 'vis-tempo',    cls: 'abcjs-tempo'          },
+  { id: 'vis-timesig',  cls: 'abcjs-time-signature' },
+  { id: 'vis-clef',     cls: 'abcjs-clef'           },
+  { id: 'vis-barlines', cls: 'abcjs-bar'            },
+  { id: 'vis-names',    cls: 'abcjs-staff-extra'    },
+];
+function applyVisibilityOverrides() {
+  var css = '';
+  VIS_RULES.forEach(function(rule){
+    if (!document.getElementById(rule.id).checked) css += '#score-render .' + rule.cls + ' { visibility: hidden; }\n';
+  });
+  var style = document.getElementById('vis-style');
+  if (!style) { style = document.createElement('style'); style.id = 'vis-style'; document.head.appendChild(style); }
+  style.textContent = css;
+}
+function applyVisibilityToSvg(svg) {
+  VIS_RULES.forEach(function(rule){
+    if (!document.getElementById(rule.id).checked) {
+      svg.querySelectorAll('.' + rule.cls).forEach(function(el){ el.style.setProperty('visibility','hidden','important'); });
+    }
+  });
+}
+
+// ── Score render ───────────────────────────────────────────
+function scheduleRender() { clearTimeout(renderTimer); renderTimer = setTimeout(renderScore, 130); }
+
+function renderScore() {
+  var wrap = document.getElementById('score-render');
+  var abc = generateScoreABC();
+  if (!abc) {
+    wrap.innerHTML = '<div class="notation-empty">Add a bordun and some percussion parts above.<br>The full score will appear here automatically.</div>';
+    currentTune = null;
+    return;
+  }
+  var pw = Math.min(900, (wrap.parentElement.clientWidth || window.innerWidth || 900) - 40);
+  try {
+    var result = ABCJS.renderAbc('score-render', abc, {
+      add_classes: true, responsive: 'resize', staffwidth: pw,
+      paddingleft: 16, paddingright: 16, paddingtop: 18, paddingbottom: 14,
+      scale: 1.3, format: { vocalfont: lyricVocalFont() },
+    });
+    currentTune = result && result[0] ? result[0] : null;
+    applyVisibilityOverrides();
+  } catch (e) { console.warn('ABCJS render error:', e); }
+}
+
+// ── Playback ───────────────────────────────────────────────
+function loopOn()     { return document.getElementById('loop-toggle').checked; }
+function countOffOn() { return document.getElementById('count-off').checked; }
+
+// Quarter-note units in one counted beat: dotted quarter for compound meters, else the meter unit.
+function beatUnit() {
+  var p = meterParts(), num = p[0], den = p[1];
+  if (num % 3 === 0 && num >= 6 && den === 8) return 1.5;
+  return 4 / den;
+}
+
+// One short percussion click via Web Audio (downbeat is higher and a touch louder).
+function scheduleClick(time, isDownbeat) {
+  var osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+  osc.connect(gain); gain.connect(audioCtx.destination);
+  osc.type = 'triangle';
+  osc.frequency.value = isDownbeat ? 880 : 660;
+  gain.gain.setValueAtTime(isDownbeat ? 0.5 : 0.4, time);
+  gain.gain.exponentialRampToValueAtTime(0.001, time + 0.08);
+  osc.start(time); osc.stop(time + 0.1);
+}
+
+// One bar of count-off clicks at the current tempo and meter; resolves when it finishes.
+function doCountIn() {
+  return new Promise(function(resolve) {
+    var beats    = Math.max(1, Math.round(beatsPerBar() / beatUnit()));
+    var interval = beatUnit() * (60 / project.tempo);   // seconds per counted beat
+    var start    = audioCtx.currentTime + 0.05;
+    for (var i = 0; i < beats; i++) scheduleClick(start + i * interval, i === 0);
+    setTimeout(resolve, (beats * interval + 0.1) * 1000);
+  });
+}
+
+function clearLoopTimer() { if (loopTimer) { clearTimeout(loopTimer); loopTimer = null; } }
+
+// Re-trigger the primed buffer exactly one musical pass after the downbeat, using the
+// audio clock (not onEnded) so repeats stay locked to the beat with no accumulating drift.
+function startLoopScheduler() {
+  clearLoopTimer();
+  var k = 1;
+  (function schedule() {
+    if (!isPlaying || !loopOn() || !synthControl) { clearLoopTimer(); return; }
+    // Skip any boundaries already in the past (e.g. loop toggled on mid-pass).
+    while (loopAnchor + k * loopPeriod <= audioCtx.currentTime + 0.005) k++;
+    var delayMs = Math.max(0, (loopAnchor + k * loopPeriod - audioCtx.currentTime) * 1000);
+    loopTimer = setTimeout(function() {
+      if (!isPlaying || !loopOn() || !synthControl) { clearLoopTimer(); return; }
+      try { synthControl.start(); } catch(e) { stopPlayback(); return; }
+      k++;
+      schedule();
+    }, delayMs);
+  })();
+}
+
+async function togglePlay() {
+  if (isPlaying) { stopPlayback(); return; }
+  if (!currentTune) { showToast('Add some parts first!'); return; }
+  var playBtn = document.getElementById('play-btn');
+  var stopBtn = document.getElementById('stop-btn');
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') await audioCtx.resume();
+    playBtn.textContent = '▶ Loading…'; playBtn.disabled = true;
+    var synth = new ABCJS.synth.CreateSynth();
+    await synth.init({ audioContext: audioCtx, visualObj: currentTune,
+      // ABCJS pads the rendered buffer with a short release tail, so waiting for
+      // onEnded to loop lands each repeat late. Looping is driven by the precise
+      // audio-clock scheduler instead; onEnded only stops a non-looping pass.
+      options: { onEnded: function(){
+        if (!isPlaying || loopOn()) return;
+        stopPlayback();
+      } } });
+    await synth.prime();
+
+    // Count-off plays one bar of clicks before the first pass only.
+    if (countOffOn()) {
+      synthControl = synth; isPlaying = true; stopBtn.disabled = false;
+      playBtn.textContent = '▶ Count off…';
+      await doCountIn();
+      if (!isPlaying) { try { synth.stop(); } catch(e){} return; }
+    }
+
+    synth.start();
+    synthControl = synth; isPlaying = true;
+    // Capture the exact downbeat and musical length so the loop restarts on the beat.
+    loopAnchor = audioCtx.currentTime;
+    loopPeriod = beatsPerBar() * longestBars() * (60 / project.tempo);
+    if (loopOn()) startLoopScheduler();
+    playBtn.textContent = loopOn() ? '▶ Looping…' : '▶ Playing…';
+    playBtn.disabled = true; stopBtn.disabled = false;
+  } catch (err) {
+    console.error('Playback error:', err);
+    showToast('Playback failed — check browser audio permissions');
+    playBtn.textContent = '▶ Play'; playBtn.disabled = false; isPlaying = false;
+  }
+}
+function stopPlayback() {
+  clearLoopTimer();
+  if (synthControl) { try { synthControl.stop(); } catch(e){} synthControl = null; }
+  isPlaying = false;
+  var playBtn = document.getElementById('play-btn'), stopBtn = document.getElementById('stop-btn');
+  playBtn.textContent = '▶ Play'; playBtn.disabled = false; stopBtn.disabled = true;
+}
+
+// ── Export (generalized to take an ABC string + filename) ──
+function exportPNG(abc, filename) {
+  if (!abc) { showToast('Nothing to export yet!'); return; }
+  var scratch = document.createElement('div');
+  scratch.style.cssText = 'position:absolute;left:-9999px;top:0;width:980px;background:white;padding:20px;';
+  document.body.appendChild(scratch);
+  ABCJS.renderAbc(scratch, abc, { staffwidth: 900, paddingtop: 24, paddingbottom: 24, scale: 2, add_classes: true, format: { vocalfont: lyricVocalFont() } });
+  var svg = scratch.querySelector('svg');
+  if (!svg) { document.body.removeChild(scratch); showToast('Export failed — try again after notation loads'); return; }
+  applyVisibilityToSvg(svg);
+  var SCALE = 3, vb = svg.viewBox.baseVal;
+  var W = (vb.width || parseFloat(svg.getAttribute('width')) || 900) * SCALE;
+  var H = (vb.height || parseFloat(svg.getAttribute('height')) || 200) * SCALE;
+  var canvas = document.createElement('canvas');
+  canvas.width = W; canvas.height = H;
+  var ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+  ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,W,H); ctx.scale(SCALE, SCALE);
+  var svgStr = new XMLSerializer().serializeToString(svg);
+  var url = URL.createObjectURL(new Blob([svgStr], { type:'image/svg+xml;charset=utf-8' }));
+  var img = new Image();
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0); URL.revokeObjectURL(url); document.body.removeChild(scratch);
+    canvas.toBlob(function(pngBlob){
+      var a = document.createElement('a'); a.href = URL.createObjectURL(pngBlob); a.download = filename + '.png'; a.click();
+      showToast('PNG saved!');
+    }, 'image/png');
+  };
+  img.onerror = function(){ document.body.removeChild(scratch); showToast('Export failed'); };
+  img.src = url;
+}
+function exportSVG(abc, filename) {
+  if (!abc) { showToast('Nothing to export yet!'); return; }
+  var scratch = document.createElement('div');
+  scratch.style.cssText = 'position:absolute;left:-9999px;top:0;width:980px;background:white;padding:20px;';
+  document.body.appendChild(scratch);
+  ABCJS.renderAbc(scratch, abc, { staffwidth: 900, paddingtop: 24, paddingbottom: 24, scale: 1.5, add_classes: true, format: { vocalfont: lyricVocalFont() } });
+  var svg = scratch.querySelector('svg');
+  if (!svg) { document.body.removeChild(scratch); showToast('Export failed — try again after notation loads'); return; }
+  applyVisibilityToSvg(svg);
+  svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  var svgStr = new XMLSerializer().serializeToString(svg);
+  document.body.removeChild(scratch);
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([svgStr], { type:'image/svg+xml;charset=utf-8' }));
+  a.download = filename + '.svg'; a.click();
+  showToast('SVG saved!');
+}
+function slugify(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+
+// ── UI: build the parts + grid ─────────────────────────────
+function renderApp() {
+  var host = document.getElementById('parts-host');
+  host.innerHTML = '';
+  var Lbars = longestBars();
+
+  orderedParts().forEach(function(part){
+    var card = document.createElement('div');
+    card.className = 'part-card' + (part.kind === 'bordun' ? ' bordun' : '');
+
+    // Header
+    var head = document.createElement('div');
+    head.className = 'part-head';
+
+    var badge = document.createElement('span');
+    badge.className = 'part-kind-badge';
+    badge.textContent = part.kind === 'bordun' ? 'Bordun' : 'Percussion';
+    head.appendChild(badge);
+
+    // Instrument select
+    var instWrap = document.createElement('span'); instWrap.className = 'part-ctl';
+    var instSel = document.createElement('select');
+    var list = part.kind === 'bordun' ? PITCHED_INSTRUMENTS : PERC_SOUNDS;
+    list.forEach(function(it){
+      var o = document.createElement('option'); o.value = it.id; o.textContent = it.label;
+      if (it.id === part.instrumentId) o.selected = true; instSel.appendChild(o);
+    });
+    instSel.addEventListener('change', function(){ part.instrumentId = this.value; renderApp(); });
+    instWrap.appendChild(instSel);
+    head.appendChild(instWrap);
+
+    // Bordun preset
+    if (part.kind === 'bordun') {
+      var presetWrap = document.createElement('span'); presetWrap.className = 'part-ctl';
+      var pLabel = document.createElement('span'); pLabel.textContent = 'Preset';
+      var presetSel = document.createElement('select');
+      var ph = document.createElement('option'); ph.value=''; ph.textContent='Choose…'; presetSel.appendChild(ph);
+      Object.keys(BORDUN_PRESETS).forEach(function(k){
+        var o = document.createElement('option'); o.value=k; o.textContent=BORDUN_PRESETS[k]; presetSel.appendChild(o);
+      });
+      presetSel.addEventListener('change', function(){ if (this.value){ applyBordunPreset(part, this.value); renderApp(); } });
+      presetWrap.appendChild(pLabel); presetWrap.appendChild(presetSel);
+      head.appendChild(presetWrap);
+    }
+
+    // Bars stepper
+    var barsWrap = document.createElement('span'); barsWrap.className = 'part-ctl';
+    var barsLabel = document.createElement('span'); barsLabel.textContent = 'Bars';
+    var stepper = document.createElement('span'); stepper.className = 'stepper';
+    var minus = document.createElement('button'); minus.textContent = '−';
+    minus.addEventListener('click', function(){ setPartBars(part, part.bars - 1); });
+    var val = document.createElement('span'); val.className='val'; val.textContent = part.bars;
+    var plus = document.createElement('button'); plus.textContent = '+';
+    plus.addEventListener('click', function(){ setPartBars(part, part.bars + 1); });
+    stepper.appendChild(minus); stepper.appendChild(val); stepper.appendChild(plus);
+    barsWrap.appendChild(barsLabel); barsWrap.appendChild(stepper);
+    head.appendChild(barsWrap);
+
+    // Loop badge
+    if (project.parts.length > 1) {
+      var lb = document.createElement('span');
+      if (part.bars === Lbars) { lb.className = 'loop-badge longest'; lb.textContent = 'loop length'; }
+      else { lb.className = 'loop-badge'; lb.textContent = 'loops ×' + (Lbars / part.bars % 1 === 0 ? Lbars/part.bars : (Lbars/part.bars).toFixed(1)); }
+      head.appendChild(lb);
+    }
+
+    // Lyrics toggle
+    var lyrLabel = document.createElement('label'); lyrLabel.className = 'vis-check';
+    var lyrCb = document.createElement('input'); lyrCb.type='checkbox'; lyrCb.checked = part.lyricsOn;
+    lyrCb.addEventListener('change', function(){ part.lyricsOn = this.checked; renderApp(); });
+    lyrLabel.appendChild(lyrCb); lyrLabel.appendChild(document.createTextNode(' Lyrics'));
+    head.appendChild(lyrLabel);
+
+    var spacer = document.createElement('span'); spacer.className='spacer'; head.appendChild(spacer);
+
+    // Export + remove
+    var expPng = document.createElement('button'); expPng.className='ob-btn ob-btn-sm'; expPng.innerHTML='&#8595; PNG';
+    expPng.title = 'Export this part as a PNG flashcard';
+    expPng.addEventListener('click', function(){ exportPNG(generatePartABC(part), 'bordun-' + slugify(partName(part))); });
+    var expSvg = document.createElement('button'); expSvg.className='ob-btn ob-btn-sm'; expSvg.innerHTML='&#8595; SVG';
+    expSvg.addEventListener('click', function(){ exportSVG(generatePartABC(part), 'bordun-' + slugify(partName(part))); });
+    var rm = document.createElement('button'); rm.className='ob-btn ob-btn-danger ob-btn-sm'; rm.innerHTML='&#10005;';
+    rm.title = 'Remove part';
+    rm.addEventListener('click', function(){ removePart(part.id); });
+    head.appendChild(expPng); head.appendChild(expSvg); head.appendChild(rm);
+
+    card.appendChild(head);
+
+    // Grid
+    card.appendChild(buildGrid(part));
+    document.getElementById('parts-host').appendChild(card);
+  });
+
+  scheduleRender();
+}
+
+function buildGrid(part) {
+  var per = cellsPerBar();
+  var sub = project.subdiv;
+  var wrap = document.createElement('div'); wrap.className = 'part-grid-wrap';
+  var grid = document.createElement('div'); grid.className = 'part-grid';
+
+  for (var b=0; b<part.bars; b++) {
+    var barDiv = document.createElement('div'); barDiv.className = 'grid-bar';
+    for (var i=0;i<per;i++) {
+      var idx = b*per + i;
+      var col = document.createElement('div'); col.className = 'grid-col';
+      if (i % sub === 0) col.classList.add('beat-start');
+      var bn = document.createElement('div'); bn.className = 'beat-num';
+      bn.textContent = (i % sub === 0) ? String(i / sub + 1) : '';
+      col.appendChild(bn);
+      col.appendChild(buildCell(part, idx));
+      if (part.lyricsOn) col.appendChild(buildLyricInput(part, idx));
+      barDiv.appendChild(col);
+    }
+    grid.appendChild(barDiv);
+  }
+  wrap.appendChild(grid);
+  return wrap;
+}
+
+// Determine whether a cell is the "tail" (sustain) of an earlier onset, for shading.
+function cellRole(part, idx) {
+  var per = cellsPerBar();
+  var barStart = Math.floor(idx / per) * per;
+  var c = part.cells[idx];
+  if (c != null) return c.kind;            // 'note' | 'rest'
+  // walk back within the bar to find controlling onset
+  for (var j=idx-1; j>=barStart; j--) {
+    if (part.cells[j] != null) return part.cells[j].kind === 'note' ? 'note-tail' : 'rest-tail';
+  }
+  return 'rest-tail';                       // leading gap = rest
+}
+
+function buildCell(part, idx) {
+  if (part.kind === 'bordun') return buildBordunCell(part, idx);
+  return buildPercCell(part, idx);
+}
+
+function buildPercCell(part, idx) {
+  var btn = document.createElement('button');
+  var c = part.cells[idx];
+  var role = cellRole(part, idx);
+  btn.className = 'cell';
+  if (c && c.kind === 'note') btn.classList.add('note');
+  else if (c && c.kind === 'rest') { btn.classList.add('rest'); }
+  else if (role === 'note-tail') btn.classList.add('note', 'tail');
+  else if (role === 'rest-tail') btn.classList.add('rest', 'tail');
+  btn.textContent = (c && c.kind === 'note') ? '●' : (c && c.kind === 'rest') ? '𝄽' : '';
+  btn.title = 'Click: empty → hit → rest';
+  btn.addEventListener('click', function(){
+    var cur = part.cells[idx];
+    if (cur == null) part.cells[idx] = { kind:'note', lyric:'' };
+    else if (cur.kind === 'note') part.cells[idx] = { kind:'rest' };
+    else part.cells[idx] = null;
+    renderApp();
+  });
+  return btn;
+}
+
+function buildBordunCell(part, idx) {
+  var sel = document.createElement('select');
+  sel.className = 'cell-select';
+  var c = part.cells[idx];
+  var K = KEYS[project.key];
+
+  function opt(val, label){ var o=document.createElement('option'); o.value=val; o.textContent=label; return o; }
+  sel.appendChild(opt('', '·'));
+  sel.appendChild(opt('rest', '𝄽'));
+  sel.appendChild(opt('chord', 'do+so'));
+  K.palette.forEach(function(p){ sel.appendChild(opt('p:' + p[0], p[1])); });
+
+  // current value
+  var curVal = '';
+  if (c && c.kind === 'rest') curVal = 'rest';
+  else if (c && c.kind === 'note') {
+    if (c.pitches.length > 1) curVal = 'chord';
+    else { curVal = 'p:' + c.pitches[0]; }
+  }
+  // ensure current single pitch exists as an option even if outside palette
+  if (curVal && curVal.startsWith('p:') && !Array.prototype.some.call(sel.options, function(o){ return o.value === curVal; })) {
+    sel.appendChild(opt(curVal, c.pitches[0]));
+  }
+  sel.value = curVal;
+
+  if (c && c.kind === 'note') sel.classList.add('filled');
+  else if (c && c.kind === 'rest') sel.classList.add('is-rest');
+
+  sel.addEventListener('change', function(){
+    var v = this.value;
+    if (v === '') part.cells[idx] = null;
+    else if (v === 'rest') part.cells[idx] = { kind:'rest' };
+    else if (v === 'chord') part.cells[idx] = { kind:'note', pitches:[K.do, K.so], lyric: (c&&c.lyric)||'' };
+    else if (v.startsWith('p:')) part.cells[idx] = { kind:'note', pitches:[v.slice(2)], lyric: (c&&c.lyric)||'' };
+    renderApp();
+  });
+  return sel;
+}
+
+function buildLyricInput(part, idx) {
+  var c = part.cells[idx];
+  var isOnset = c && c.kind === 'note';
+  var inp = document.createElement('input');
+  inp.type = 'text';
+  inp.className = 'cell-lyric' + (isOnset ? '' : ' spacer');
+  inp.placeholder = '♪';
+  if (!isOnset) { inp.disabled = true; return inp; }
+  inp.value = c.lyric || '';
+  inp.title = 'Type a word or syllable. Whole words auto-split across the next note cells.';
+  inp.addEventListener('input', function(){
+    c.lyric = this.value;
+    var caret = this.selectionStart;
+    scheduleRender();
+    // keep focus without a full re-render (cheap path)
+    this.dataset.keep = '1';
+  });
+  return inp;
+}
+
+// ── Toast ──────────────────────────────────────────────────
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 3000);
+}
+
+// ── Init / wiring ──────────────────────────────────────────
+function buildKeyOptions() {
+  var sel = document.getElementById('key-sel');
+  Object.keys(KEYS).forEach(function(k){
+    var o = document.createElement('option'); o.value=k; o.textContent=KEY_LABELS[k]||k;
+    if (k===project.key) o.selected = true; sel.appendChild(o);
+  });
+}
+
+document.getElementById('play-btn').addEventListener('click', togglePlay);
+document.getElementById('stop-btn').addEventListener('click', stopPlayback);
+// Toggling loop mid-playback: keep the scheduler running so onEnded never silently stops a loop.
+document.getElementById('loop-toggle').addEventListener('change', function(){
+  if (!isPlaying) return;
+  var playBtn = document.getElementById('play-btn');
+  if (this.checked) { startLoopScheduler(); playBtn.textContent = '▶ Looping…'; }
+  else { clearLoopTimer(); playBtn.textContent = '▶ Playing…'; }
+});
+document.getElementById('export-score-btn').addEventListener('click', function(){ exportPNG(generateScoreABC(), 'bordun-ostinato-score'); });
+document.getElementById('export-score-svg-btn').addEventListener('click', function(){ exportSVG(generateScoreABC(), 'bordun-ostinato-score'); });
+document.getElementById('copy-abc-btn').addEventListener('click', function(){
+  var abc = generateScoreABC();
+  if (!abc) { showToast('Nothing to copy yet.'); return; }
+  navigator.clipboard.writeText(abc).then(function(){ showToast('ABC notation copied!'); })
+    .catch(function(){ showToast('Failed to copy to clipboard.'); });
+});
+
+document.getElementById('add-bordun-btn').addEventListener('click', function(){
+  if (project.parts.some(p=>p.kind==='bordun')) { showToast('You already have a bordun part.'); }
+  addPart('bordun');
+});
+document.getElementById('add-perc-btn').addEventListener('click', function(){ addPart('perc'); });
+document.getElementById('clear-parts-btn').addEventListener('click', function(){
+  if (!project.parts.length) return;
+  if (!confirm('Remove all parts?')) return;
+  project.parts = []; stopPlayback(); renderApp();
+});
+
+document.getElementById('key-sel').addEventListener('change', function(){
+  project.key = this.value;
+  // re-apply the simple preset to any bordun so pitches match the new key
+  project.parts.forEach(function(p){ if (p.kind==='bordun' && partHasContent(p)) applyBordunPreset(p, 'simple'); });
+  renderApp();
+  showToast('Key set to ' + (KEY_LABELS[project.key]||project.key) + '. Bordun reset to match.');
+});
+document.getElementById('meter-sel').addEventListener('change', function(){
+  project.meter = this.value; resizeAllParts();
+  project.parts.forEach(function(p){ if (p.kind==='bordun') applyBordunPreset(p,'simple'); });
+  renderApp();
+  showToast('Meter changed — grids reset.');
+});
+document.getElementById('subdiv-sel').addEventListener('change', function(){
+  project.subdiv = parseInt(this.value,10); resizeAllParts();
+  project.parts.forEach(function(p){ if (p.kind==='bordun') applyBordunPreset(p,'simple'); });
+  renderApp();
+  showToast('Grid changed — patterns reset.');
+});
+document.getElementById('tempo-slider').addEventListener('input', function(){
+  project.tempo = parseInt(this.value,10);
+  document.getElementById('tempo-display').textContent = this.value;
+  scheduleRender();
+});
+
+VIS_RULES.forEach(function(rule){ document.getElementById(rule.id).addEventListener('change', applyVisibilityOverrides); });
+document.getElementById('vis-lyrics').addEventListener('change', renderApp);
+
+document.getElementById('lyric-size-input').addEventListener('input', function(){
+  var v = parseInt(this.value,10); if (isNaN(v)) return; v = Math.max(8, Math.min(48, v)); lyricFontSize = v; scheduleRender();
+});
+document.getElementById('lyric-bold-btn').addEventListener('click', function(){
+  lyricBold = !lyricBold; this.classList.toggle('active', lyricBold); scheduleRender();
+});
+
+// Seed a starter arrangement so the tool isn't empty.
+function seed() {
+  buildKeyOptions();
+
+  // Clap part (V1)
+  addPartSilent('perc', 'clap', 2, function(part) {
+    // !style=x!B z !style=x!B z | !style=x!B z !style=x!B z |]
+    part.cells[0] = { kind: 'note', lyric: '' };
+    part.cells[2] = { kind: 'rest' };
+    part.cells[4] = { kind: 'note', lyric: '' };
+    part.cells[6] = { kind: 'rest' };
+    part.cells[8] = { kind: 'note', lyric: '' };
+    part.cells[10] = { kind: 'rest' };
+    part.cells[12] = { kind: 'note', lyric: '' };
+    part.cells[14] = { kind: 'rest' };
+  });
+
+  // Pat (lap) part (V2)
+  addPartSilent('perc', 'pat', 2, function(part) {
+    // z B B/2B/2 B | z B B/2B/2 B |]
+    [2, 4, 5, 6, 10, 12, 13, 14].forEach(i => part.cells[i] = { kind: 'note', lyric: '' });
+    [0, 8].forEach(i => part.cells[i] = { kind: 'rest' });
+  });
+
+  // Marimba part (V3)
+  addPartSilent('bordun', 'marimba', 2, function(part) {
+    // [CG]2 [CG]2 | [CG] [CG] [CG]2 |]
+    var K = KEYS[project.key];
+    part.cells[0] = { kind: 'note', pitches: [K.do, K.so], lyric: '' };
+    part.cells[4] = { kind: 'note', pitches: [K.do, K.so], lyric: '' };
+    part.cells[8] = { kind: 'note', pitches: [K.do, K.so], lyric: '' };
+    part.cells[10] = { kind: 'note', pitches: [K.do, K.so], lyric: '' };
+    part.cells[12] = { kind: 'note', pitches: [K.do, K.so], lyric: '' };
+  });
+  renderApp();
+}
+function addPartSilent(kind, instId, bars, fill) {
+  var part = { id:'p'+(++partSeq), kind:kind, instrumentId:instId, bars:bars, cells:makeCells(cellsPerBar()*bars), lyricsOn:false };
+  if (fill) fill(part);
+  project.parts.push(part);
+}
+
+applyVisibilityOverrides();
+seed();
+</script>
+{{ end }}

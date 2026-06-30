@@ -25,7 +25,7 @@ Hugo static site with a fully custom theme (no external theme package). All temp
 - **Assets**: `assets/css/style.css` fingerprinted via Hugo pipes; brand SVG logos in `assets/`. Page-specific styles live in `static/css/` (abc-player.css, braille-panel.css, lyrics-panel.css) and are loaded conditionally on relevant pages.
 - **CMS**: Netlify CMS config at `static/admin/config.yml` — GitHub-backed headless editor for posts, songs, and books. Not required for local dev.
 - **Navigation**: driven by `data/navigation.yaml`; supports top-level links and dropdown groups (items with a `children` array); dropdown JS and CSS live in `baseof.html` and `style.css`
-- **Tool pages**: page-specific CSS/JS injected via the `{{ block "extra_head" . }}` hook in `baseof.html`. Current tools: `content/rhythm-builder.md` + `layouts/_default/rhythm-builder.html`; `content/chord-diagram-generator.md` + `layouts/_default/chord-diagram-generator.html`
+- **Tool pages**: page-specific CSS/JS injected via the `{{ block "extra_head" . }}` hook in `baseof.html`. Current tools: `content/rhythm-builder.md` + `layouts/_default/rhythm-builder.html`; `content/ostinato-builder.md` + `layouts/_default/ostinato-builder.html`; `content/chord-diagram-generator.md` + `layouts/_default/chord-diagram-generator.html`
 - **Archetypes**: `archetypes/songs.md` and `archetypes/books.md` define frontmatter templates for new content
 
 Site config, brand colors, taxonomy definitions, and related-content index weights are all in `hugo.toml`.
@@ -76,6 +76,10 @@ Songs are the most complex content type. Key frontmatter fields:
 ## Rhythm Builder
 
 `/rhythm-builder/` is a Hugo page (not a static file). Layout: `layouts/_default/rhythm-builder.html`, content stub: `content/rhythm-builder.md`. All tool CSS uses `--rb-` prefixed custom properties to avoid conflicts with global variables. The `extra_head` block injects the ABCJS CDN script and tool styles into `<head>`. Action buttons (Play/Stop/Save PNG/Save SVG/Copy ABC) live in `.action-toolbar` above the cards, not in a header.
+
+## Ostinato Builder
+
+`/ostinato-builder/` is a Hugo page. Layout: `layouts/_default/ostinato-builder.html`, content stub: `content/ostinato-builder.md`. Forked from Rhythm Builder (shares the lyric syllabifier, ABCJS render/synth, and PNG/SVG export pipeline) but extended to a multi-part grid: one pitched Orff bordun voice plus any number of unpitched percussion ostinato voices, rendered as a stacked multi-voice ABC score. Each part has its own bar count and loops under the longest. Percussion voices use a `clef=perc` staff and a `%%MIDI transpose` offset to map a single written note to a GM drum sound; the bordun uses pentatonic key tables (C/F/G/D/A) with explicit accidentals so the score needs no key signature (`K:C`). Per-part PNG/SVG export produces flashcards. Like Rhythm Builder, the `extra_head` block injects the ABCJS CDN script and tool styles, and action buttons live in `.action-toolbar` above the cards. Tool CSS uses `--ob-` prefixed custom properties; generic class names that would collide with global `style.css` (the `.btn` family) are prefixed `.ob-btn`, and bare `select`/`input` rules are scoped under `.main`.
 
 ## Chord Diagram Generator
 

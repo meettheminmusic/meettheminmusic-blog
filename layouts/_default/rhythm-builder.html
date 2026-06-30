@@ -20,7 +20,7 @@
 
 body { background: var(--rb-bg); }
 
-/* Buttons */
+ 
 .rb-btn {
   display: inline-flex;
   align-items: center;
@@ -46,7 +46,7 @@ body { background: var(--rb-bg); }
 .rb-inline-check { display: inline-flex; align-items: center; gap: 5px; font-size: 0.8125rem; color: var(--rb-text-muted); cursor: pointer; padding: 0 4px; }
 .rb-inline-check input { cursor: pointer; accent-color: var(--rb-accent); }
 
-/* Action toolbar */
+ 
 .action-toolbar {
   display: flex;
   align-items: center;
@@ -57,7 +57,7 @@ body { background: var(--rb-bg); }
   margin: 0 auto;
 }
 
-/* Layout */
+ 
 .rb-main {
   max-width: 860px;
   margin: 0 auto;
@@ -67,7 +67,7 @@ body { background: var(--rb-bg); }
   gap: 14px;
 }
 
-/* Cards */
+ 
 .rb-card {
   background: var(--rb-card);
   border: 1px solid var(--rb-border);
@@ -84,7 +84,7 @@ body { background: var(--rb-bg); }
   margin-bottom: 12px;
 }
 
-/* Settings */
+ 
 .settings-row {
   display: flex;
   gap: 24px;
@@ -130,7 +130,7 @@ body { background: var(--rb-bg); }
 .tempo-num { font-size: 0.875rem; font-weight: 700; color: var(--rb-accent); min-width: 32px; text-align: right; }
 .tempo-unit { font-size: 0.75rem; color: var(--rb-text-muted); }
 
-/* Duration palette */
+ 
 .palette-section { display: flex; flex-direction: column; gap: 10px; }
 .palette-row { display: flex; align-items: stretch; gap: 6px; flex-wrap: wrap; }
 .row-tag {
@@ -187,7 +187,7 @@ body { background: var(--rb-bg); }
 .dur-name { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--rb-text-muted); text-align: center; }
 .dur-beats { font-size: 0.6rem; color: #aaa; }
 
-/* Note options (stem + beam) */
+ 
 .options-row {
   display: flex;
   align-items: center;
@@ -223,7 +223,7 @@ body { background: var(--rb-bg); }
 .opt-btn.active { background: var(--rb-accent); border-color: var(--rb-accent); color: #fff; }
 .opt-hint { font-size: 0.67rem; color: var(--rb-text-muted); }
 
-/* Measure progress */
+ 
 .measure-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
 .measure-title { font-size: 0.8rem; color: var(--rb-text-muted); }
 .measure-count { font-size: 0.8rem; font-weight: 700; color: var(--rb-accent); }
@@ -231,21 +231,21 @@ body { background: var(--rb-bg); }
 .progress-fill { height: 100%; background: var(--rb-accent); border-radius: 4px; transition: width 0.15s ease; }
 .progress-fill.overflow { background: var(--rb-danger); }
 
-/* Beat tape */
+ 
 .beat-tape {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  min-height: 50px;
+  gap: 10px;
+  min-height: 66px;
   align-items: flex-end;
 }
 .tape-bar {
   display: flex;
   align-items: flex-end;
-  gap: 2px;
+  gap: 4px;
   border: 1px solid var(--rb-border);
-  border-radius: 5px;
-  padding: 18px 5px 4px;
+  border-radius: 6px;
+  padding: 22px 7px 6px;
   background: #fdfcfa;
 }
 .beam-grp {
@@ -257,54 +257,60 @@ body { background: var(--rb-bg); }
 .beam-grp::before {
   content: '';
   position: absolute;
-  top: -8px;
-  left: 2px;
-  right: 2px;
-  height: 5px;
+  top: -10px;
+  left: 3px;
+  right: 3px;
+  height: 6px;
   background: var(--rb-accent-dark);
   border-radius: 3px;
 }
 .beam-grp .tape-chip { border-radius: 0; }
-.beam-grp .tape-chip:first-child { border-radius: 3px 0 0 3px; }
-.beam-grp .tape-chip:last-child  { border-radius: 0 3px 3px 0; }
+.beam-grp .tape-chip:first-child { border-radius: 5px 0 0 5px; }
+.beam-grp .tape-chip:last-child  { border-radius: 0 5px 5px 0; }
 
 .tape-chip {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  border-radius: 3px;
-  font-size: 0.6rem;
+  border-radius: 5px;
+  font-size: 0.82rem;
   font-weight: 700;
-  height: 28px;
-  min-width: 18px;
+  height: 44px;
+  min-width: 32px;
 }
 .tape-chip.note { background: var(--rb-accent); color: #fff; }
 .tape-chip.rest { background: #cec9bd; color: #6b6560; }
 .tape-chip.clickable { cursor: pointer; }
-.tape-chip.clickable:hover { filter: brightness(1.18); }
+.tape-chip.clickable:hover { filter: brightness(1.18); transform: translateY(-1px); }
+.tape-chip.clickable:active { transform: translateY(0); }
 
 .chip-stem-ind {
   position: absolute;
-  bottom: 1px;
-  right: 2px;
-  font-size: 0.42rem;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 0.62rem;
   line-height: 1;
-  opacity: 0.65;
+  opacity: 0.75;
   cursor: pointer;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255,255,255,0.95);
   pointer-events: all;
 }
 .chip-stem-ind:hover { opacity: 1; }
 
 .tape-empty { color: var(--rb-text-muted); font-size: 0.8rem; padding: 10px 0; }
 
-/* Action row */
+ 
 .action-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
 .action-row .spacer { flex: 1; }
 .bar-tally { font-size: 0.78rem; color: var(--rb-text-muted); }
 
-/* Notation preview */
+ 
 .notation-wrap { min-height: 80px; overflow-x: auto; }
 .notation-empty {
   text-align: center;
@@ -314,7 +320,7 @@ body { background: var(--rb-bg); }
   line-height: 1.6;
 }
 
-/* Visibility toggles */
+ 
 .vis-row {
   display: flex;
   align-items: center;
@@ -340,7 +346,197 @@ body { background: var(--rb-bg); }
   height: 14px;
 }
 
-/* Toast */
+
+.lyric-style-row { transition: opacity 0.15s; }
+.lyric-style-row.disabled { opacity: 0.4; pointer-events: none; }
+.lyric-style-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--rb-text-muted);
+}
+.lyric-style-field input[type="number"] {
+  width: 56px;
+  padding: 5px 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--rb-text);
+  text-align: center;
+  border: 1px solid #c0d8d2;
+  border-radius: 6px;
+  background: #fff;
+  accent-color: var(--rb-accent);
+}
+.lyric-style-field input[type="number"]:focus {
+  outline: none;
+  border-color: var(--rb-accent);
+  box-shadow: 0 0 0 2px var(--rb-accent-light);
+}
+#lyric-bold-btn { font-weight: 600; }
+#lyric-bold-btn strong { font-weight: 800; }
+
+
+.beat-tape.lyrics-on .tape-bar { padding-bottom: 28px; }
+.chip-lyric {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% + 14px);
+  min-width: 36px;
+  border: 1px dashed var(--rb-accent);
+  border-radius: 3px;
+  background: var(--rb-accent-light);
+  font-size: 0.62rem;
+  font-family: inherit;
+  text-align: center;
+  padding: 2px 1px;
+  color: var(--rb-text);
+  transition: background 0.12s, border-color 0.12s;
+}
+.chip-lyric:hover { background: #fff; }
+.chip-lyric:not(:placeholder-shown) {
+  border-style: solid;
+  border-color: var(--rb-border);
+  background: #fff;
+}
+.chip-lyric:focus {
+  outline: none;
+  border-style: solid;
+  border-color: var(--rb-accent);
+  background: #fff;
+  box-shadow: 0 0 0 2px var(--rb-accent-light);
+}
+.chip-lyric::placeholder { color: var(--rb-accent); opacity: 0.7; }
+.chip-lyric.has-hyphen { border-right-color: var(--rb-accent-dark); }
+.chip-lyric.has-hyphen::after { content: '-'; }
+.chip-lyric-proj {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: dotted;
+  border-color: var(--rb-accent);
+  background: #f3efe7;
+  color: var(--rb-text-muted);
+  font-style: italic;
+  cursor: text;
+  min-height: 18px;
+}
+.chip-lyric-proj:hover { background: #fff; color: var(--rb-text); }
+
+
+.lyric-hint {
+  display: none;
+  align-items: flex-start;
+  gap: 8px;
+  background: var(--rb-accent-light);
+  border: 1px solid #cfe2d6;
+  border-radius: var(--rb-radius);
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--rb-text);
+}
+.lyric-hint.show { display: flex; }
+.lyric-hint-icon { color: var(--rb-accent-dark); font-size: 0.95rem; line-height: 1.2; }
+.lyric-hint-text strong { color: var(--rb-accent-dark); }
+.lyric-hint-text em { font-style: italic; color: var(--rb-text-muted); }
+.lh-syl {
+  display: inline-block;
+  border: 1px solid var(--rb-accent);
+  border-radius: 3px;
+  background: #fff;
+  padding: 0 4px;
+  margin: 0 1px;
+  font-size: 0.68rem;
+}
+.lh-syl:first-of-type { border-right-style: dashed; }
+.lyric-hint-close {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  color: var(--rb-text-muted);
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+}
+.lyric-hint-close:hover { color: var(--rb-text); }
+
+
+.abc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.abc-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.abc-status { font-size: 0.74rem; color: var(--rb-text-muted); }
+.abc-status.error { color: var(--rb-danger); }
+.abc-status.ok { color: var(--rb-accent); }
+.abc-help {
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--rb-text-muted);
+  margin-bottom: 10px;
+}
+.abc-help strong { color: var(--rb-accent-dark); }
+.abc-editor {
+  width: 100%;
+  min-height: 150px;
+  resize: vertical;
+  border: 1px solid var(--rb-border);
+  border-radius: var(--rb-radius);
+  background: var(--rb-bg);
+  color: var(--rb-text);
+  padding: 10px 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+  tab-size: 2;
+}
+.abc-editor:focus {
+  outline: 2px solid var(--rb-accent);
+  outline-offset: 1px;
+  border-color: var(--rb-accent);
+}
+.abc-editor.invalid { border-color: var(--rb-danger); background: #fdf6f5; }
+.rb-btn[hidden] { display: none; }
+
+.abc-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  padding: 2px 0;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--rb-text);
+  text-align: left;
+}
+.abc-caret { color: var(--rb-text-muted); transition: transform 0.18s ease; flex: none; }
+.abc-card:not(.abc-collapsed) .abc-caret { transform: rotate(180deg); }
+.abc-toggle-hint {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--rb-text-muted);
+  text-transform: none;
+  letter-spacing: 0;
+}
+@media (max-width: 600px) { .abc-toggle-hint { display: none; } }
+.abc-card.abc-collapsed .abc-header { margin-bottom: 0; }
+.abc-body { overflow: hidden; }
+.abc-card.abc-collapsed .abc-body { display: none; }
+
+
 .rb-toast {
   position: fixed;
   bottom: 20px;
@@ -410,7 +606,7 @@ body { background: var(--rb-bg); }
 
 <div class="rb-main">
 
-  <!-- Settings -->
+  
   <div class="rb-card">
     <div class="settings-row">
       <div class="setting-group">
@@ -425,22 +621,13 @@ body { background: var(--rb-bg); }
           <option value="3/8">3/8</option>
           <option value="5/8">5/8</option>
           <option value="6/8">6/8</option>
-          {{/*<option value="7/8">7/8</option> */}}
+          
           <option value="9/8">9/8</option>
-          {{/*<option value="11/8">11/8</option> */}}
+          
           <option value="12/8">12/8</option>
-          {{/* <option value="custom">Custom…</option> */}}
+          
         </select>
-        {{/* <span id="custom-timesig" class="custom-timesig" hidden>
-          <input id="custom-num" type="number" min="1" max="32" value="5" class="rb-input-num">
-          <span class="timesig-slash">/</span>
-          <select id="custom-den" class="rb-select">
-            <option value="2">2</option>
-            <option value="4">4</option>
-            <option value="8" selected>8</option>
-            <option value="16">16</option>
-          </select>
-        </span> */}}
+        
       </div>
       <div class="setting-group">
         <label for="tempo-slider">Tempo</label>
@@ -455,10 +642,19 @@ body { background: var(--rb-bg); }
       <label class="vis-check"><input type="checkbox" id="vis-timesig" checked> Time sig</label>
       <label class="vis-check"><input type="checkbox" id="vis-clef"    checked> Clef</label>
       <label class="vis-check"><input type="checkbox" id="vis-barlines"checked> Bar lines</label>
+      <label class="vis-check"><input type="checkbox" id="vis-lyrics" checked> Lyrics</label>
+    </div>
+    <div class="vis-row lyric-style-row" id="lyric-style-row">
+      <span class="opt-label">Lyric style</span>
+      <label class="lyric-style-field">
+        Size
+        <input type="number" id="lyric-size-input" min="8" max="48" step="1" value="14">px
+      </label>
+      <button type="button" id="lyric-bold-btn" class="opt-btn" title="Toggle bold lyrics"><strong>B</strong> Bold</button>
     </div>
   </div>
 
-  <!-- Duration palette + note options -->
+  
   <div class="rb-card">
     <div class="rb-card-label">Add notes &amp; rests</div>
     <div class="palette-section">
@@ -487,7 +683,7 @@ body { background: var(--rb-bg); }
     </div>
   </div>
 
-  <!-- Progress + tape + actions -->
+  
   <div class="rb-card">
     <div class="measure-header">
       <span class="measure-title">Current measure</span>
@@ -495,6 +691,16 @@ body { background: var(--rb-bg); }
     </div>
     <div class="progress-track">
       <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+    <div class="lyric-hint" id="lyric-hint">
+      <span class="lyric-hint-icon">&#9834;</span>
+      <span class="lyric-hint-text">
+        <strong>Lyrics:</strong> type under any note. Whole words split across notes automatically
+        (<em>twinkle</em> &rarr; <span class="lh-syl">twin</span><span class="lh-syl">kle</span>);
+        type your own hyphen (<em>twin-kle</em>) to control the split.
+        Toggle lyrics off with the <strong>Lyrics</strong> checkbox above.
+      </span>
+      <button type="button" class="lyric-hint-close" id="lyric-hint-close" title="Dismiss">&times;</button>
     </div>
     <div class="beat-tape" id="beat-tape">
       <span class="tape-empty">Your rhythm will appear here as you add notes.</span>
@@ -507,7 +713,7 @@ body { background: var(--rb-bg); }
     </div>
   </div>
 
-  <!-- Notation preview -->
+  
   <div class="rb-card notation-card">
     <div class="rb-card-label">Notation preview</div>
     <div class="notation-wrap">
@@ -520,12 +726,38 @@ body { background: var(--rb-bg); }
     </div>
   </div>
 
+
+  <div class="rb-card abc-card abc-collapsed" id="abc-card">
+    <div class="abc-header">
+      <button id="abc-toggle" class="abc-toggle" aria-expanded="false" aria-controls="abc-body">
+        <svg class="abc-caret" width="11" height="7" viewBox="0 0 11 7" aria-hidden="true" focusable="false">
+          <path d="M1 1l4.5 4.5L10 1" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="rb-card-label" style="margin-bottom:0">ABC source code</span>
+        <span class="abc-toggle-hint">Advanced &mdash; edit the raw notation</span>
+      </button>
+      <div class="abc-actions">
+        <span class="abc-status" id="abc-status"></span>
+        <button id="abc-reset-btn" class="rb-btn" title="Discard manual edits and go back to the chip-generated code" hidden>&#8634; Reset to chips</button>
+        <button id="abc-sync-btn" class="rb-btn" title="Rebuild the Current Measure chips from this code (best effort)" hidden>&#8645; Sync to chips</button>
+      </div>
+    </div>
+    <div class="abc-body" id="abc-body">
+      <p class="abc-help">
+        Edit the code to make tweaks the buttons don&rsquo;t cover (barline types, repeats, etc.).
+        Changes appear live in the preview, PNG, SVG, copy, and playback. Use
+        <strong>Sync to chips</strong> to pull edits back into the builder where possible.
+      </p>
+      <textarea id="abc-editor" class="abc-editor" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="Add notes above and the ABC code will appear here."></textarea>
+    </div>
+  </div>
+
 </div>
 
 <div class="rb-toast" id="toast"></div>
 
 <script>
-// Duration definitions: beats = quarter-note units; abcMult appended to note letter (L:1/4 base)
+
 const DURATIONS = [
   { id: 'whole',     label: 'Whole',     symbol: '○', beats: 4,    abcMult: '4',   short: 'W'   },
   { id: 'half',      label: 'Half',      symbol: '◑', beats: 2,    abcMult: '2',   short: 'H'   },
@@ -537,7 +769,7 @@ const DURATIONS = [
   { id: 'sixteenth', label: '16th',      symbol: '♫', beats: 0.25, abcMult: '/4',  short: '16' },
 ];
 
-// State — item shape: { id, label, symbol, beats, abcMult, short, isRest, stem, newBeamGroup }
+
 let sequence     = [];
 let barBeats     = 0;
 let currentTune  = null;
@@ -547,18 +779,40 @@ let isPlaying    = false;
 let renderTimer  = null;
 let toastTimer   = null;
 
-let lastStem = 'up';     // 'up' | 'down'
-let beamMode = 'auto';   // 'auto' | 'break'
+let lastStem = 'up';
+let beamMode = 'auto';
 
-// Helpers
+// ABC source-of-truth override. When non-null, this hand-edited string drives
+// the preview / exports / playback instead of the chip-generated ABC.
+let abcOverride    = null;
+let abcEditorTimer = null;
+let lastValidABC   = null;   // last ABC that rendered cleanly (for keep-last-good)
+
+// The ABC that should drive all OUTPUT (preview, PNG, SVG, copy, playback).
+function currentABC() {
+  return abcOverride != null ? abcOverride : generateABC();
+}
+function isOverriding() { return abcOverride != null; }
+
+let lyricFontSize = 14;
+let lyricBold     = false;
+function lyricVocalFont() {
+  return { face: 'Helvetica, Arial, sans-serif', size: lyricFontSize, weight: lyricBold ? 'bold' : 'normal' };
+}
+// ABC directive that reliably overrides the lyric (vocal) font in abcjs.
+function lyricFontDirective() {
+  return '%%vocalfont ' + (lyricBold ? 'Helvetica-Bold' : 'Helvetica') + ' ' + lyricFontSize + '\n';
+}
+
+
 function getTimeSig() {
   return document.getElementById('time-sig').value;
-  // custom time sig commented out:
-  // if (val !== 'custom') return val;
-  // var num = parseInt(document.getElementById('custom-num').value, 10);
-  // if (!num || num < 1 || num > 32) return '4/4';
-  // var den = parseInt(document.getElementById('custom-den').value, 10);
-  // return num + '/' + den;
+  
+  
+  
+  
+  
+  
 }
 function getTempo()   { return parseInt(document.getElementById('tempo-slider').value, 10); }
 
@@ -586,7 +840,7 @@ function beatUnit() {
   return 4 / den;
 }
 
-// Build palette
+
 function buildPalette() {
   const noteWrap = document.getElementById('note-btns');
   const restWrap = document.getElementById('rest-btns');
@@ -609,7 +863,7 @@ function makeBtn(dur, isRest, beatLabel) {
   return btn;
 }
 
-// Stem / Beam UI
+
 function setStem(dir) {
   lastStem = dir;
   document.getElementById('stem-up-btn').classList.toggle('active',   dir === 'up');
@@ -622,7 +876,7 @@ function setBeamMode(mode) {
   document.getElementById('beam-break-btn').classList.toggle('active', mode === 'break');
 }
 
-// Retroactive stem flip on a single chip
+
 function toggleStem(seqIdx) {
   var item = sequence[seqIdx];
   if (!item || item.isRest) return;
@@ -631,7 +885,7 @@ function toggleStem(seqIdx) {
   refresh();
 }
 
-// Add / Undo / Clear
+
 function addItem(dur, isRest, btn) {
   var bpb       = beatsPerBar();
   var remaining = bpb - barBeats;
@@ -666,7 +920,7 @@ function determineNewBeamGroup(dur, isRest) {
   return false;
 }
 
-// Toggle beam break before a specific chip
+
 function toggleBeam(seqIdx) {
   if (seqIdx === 0) return;
   var item = sequence[seqIdx];
@@ -710,7 +964,7 @@ function recalcBarBeats() {
   barBeats = acc;
 }
 
-// ABC generation
+
 function beatUnitABC() {
   var bu = beatUnit();
   if (near(bu, 0.5))  return '1/8';
@@ -730,12 +984,18 @@ function generateABC() {
 
   var hasDown = sequence.some(function(i) { return !i.isRest && i.stem === 'down'; });
 
+  var showLyrics = document.getElementById('vis-lyrics').checked &&
+                   sequence.some(function(i){ return !i.isRest && i.lyric && i.lyric.trim(); });
+
   if (!hasDown) {
-    var hdr = 'X:1\nT:\nM:' + timeSig + '\nL:1/4\n' + qField + '\nV:1 stem=up\n' + kField;
-    return hdr + buildVoiceBody(sequence, bpb);
+    var hdr = 'X:1\nT:\nM:' + timeSig + '\nL:1/4\n' + qField + '\n' +
+      (showLyrics ? lyricFontDirective() : '') + 'V:1 stem=up\n' + kField;
+    var out = hdr + buildVoiceBody(sequence, bpb);
+    if (showLyrics) out += '\nw: ' + buildLyricLine(sequence, bpb);
+    return out;
   }
 
-  // Mixed stems: two voices on one staff
+
   var v1Seq = sequence.map(function(i) {
     return (!i.isRest && i.stem === 'down') ? Object.assign({}, i, { _sp: true }) : i;
   });
@@ -743,12 +1003,156 @@ function generateABC() {
     return (!i.isRest && i.stem === 'down') ? i : Object.assign({}, i, { _sp: true });
   });
 
-  var hdr2 = 'X:1\nT:\nM:' + timeSig + '\nL:1/4\n' + qField +
-    '\n%%staves (1 2)\nV:1 stem=up\nV:2 stem=down\n' + kField;
+  var hdr2 = 'X:1\nT:\nM:' + timeSig + '\nL:1/4\n' + qField + '\n' +
+    (showLyrics ? lyricFontDirective() : '') +
+    '%%staves (1 2)\nV:1 stem=up\nV:2 stem=down\n' + kField;
 
-  return hdr2 +
-    '[V:1] ' + buildVoiceBody(v1Seq, bpb) + '\n' +
-    '[V:2] ' + buildVoiceBody(v2Seq, bpb);
+  var v1line = '[V:1] ' + buildVoiceBody(v1Seq, bpb);
+  var v2line = '[V:2] ' + buildVoiceBody(v2Seq, bpb);
+  if (showLyrics) {
+    v1line += '\nw: ' + buildLyricLine(v1Seq, bpb);
+    v2line += '\nw: ' + buildLyricLine(v2Seq, bpb);
+  }
+
+  return hdr2 + v1line + '\n' + v2line;
+}
+
+// ── Lyric syllabification ─────────────────────────────────────────────
+function syllabifyWord(word) {
+  if (!word) return [];
+  if (word.indexOf('-') !== -1) return word.split('-').filter(Boolean);
+  var lower = word.toLowerCase();
+  if (lower.length <= 3) return [word];
+
+  var vowels = 'aeiouy';
+  var isV = function(c) { return vowels.indexOf(c) !== -1; };
+  var n = lower.length;
+
+  var silentE = (n > 3 && lower[n-1] === 'e' && !isV(lower[n-2]) && lower[n-2] !== 'l');
+  var leWord  = (/[^aeiouy]le$/.test(lower));
+  var work    = silentE ? lower.slice(0, n-1) : lower;
+  var wn      = work.length;
+
+  var groups = [], i = 0;
+  while (i < wn) {
+    if (isV(work[i])) { var s = i; while (i < wn && isV(work[i])) i++; groups.push([s, i-1]); }
+    else i++;
+  }
+  if (groups.length <= 1 && !leWord) return [word];
+
+  var keep = ['ch','sh','th','ph','wh','gh','ng','qu',
+              'bl','br','cl','cr','dr','fl','fr','gl','gr',
+              'pl','pr','sc','sk','sl','sm','sn','sp','st','sw','tr','tw','wr'];
+  var cuts = [];
+  for (var g = 0; g < groups.length - 1; g++) {
+    var vEnd = groups[g][1], vNext = groups[g+1][0], cc = vNext - vEnd - 1, cut;
+    if (cc <= 0) cut = vNext;
+    else if (cc === 1) cut = vEnd + 1;
+    else if (work[vEnd+1] + work[vEnd+2] === 'ck') cut = vEnd + 3;
+    else {
+      var pair = work[vEnd+1] + work[vEnd+2];
+      cut = keep.indexOf(pair) !== -1 ? vEnd + 1 : vEnd + 2;
+    }
+    cuts.push(cut);
+  }
+  if (leWord) {
+    var leCut = wn - 3;
+    cuts = cuts.filter(function(c) { return c <= leCut; });
+    if (cuts.indexOf(leCut) === -1 && leCut > 0) cuts.push(leCut);
+    cuts.sort(function(a, b) { return a - b; });
+  }
+
+  var parts = [], prev = 0;
+  for (var k = 0; k < cuts.length; k++) { parts.push(work.slice(prev, cuts[k])); prev = cuts[k]; }
+  parts.push(work.slice(prev));
+  parts = parts.filter(function(p) { return p.length; });
+  if (silentE) parts[parts.length-1] += 'e';
+
+  var out = [], idx = 0;
+  for (var p = 0; p < parts.length; p++) { out.push(word.substr(idx, parts[p].length)); idx += parts[p].length; }
+  return out.filter(function(x) { return x.length; });
+}
+
+function syllabify(field) {
+  if (!field) return [];
+  return field.trim().split(/\s+/).reduce(function(a, w) { return a.concat(syllabifyWord(w)); }, []);
+}
+
+// Distribute each note's typed lyric across itself and the notes that follow.
+function computeSyllableMap(seq) {
+  var noteIdx = [];
+  for (var i = 0; i < seq.length; i++) {
+    if (seq[i].isRest) continue;
+    noteIdx.push(i);
+  }
+
+  var map = {};
+  for (var j = 0; j < seq.length; j++) {
+    if (seq[j].isRest) continue;
+    map[j] = null;
+  }
+
+  for (var p = 0; p < noteIdx.length; p++) {
+    var idx = noteIdx[p];
+    if (map[idx] !== null) continue;
+    var field = (seq[idx].lyric || '').trim();
+    if (!field) { map[idx] = { syllable: '', borrowed: false, hyphenAfter: false }; continue; }
+
+    var sylls = syllabify(field);
+    if (sylls.length <= 1) {
+      map[idx] = { syllable: field.replace(/-/g, ''), borrowed: false, hyphenAfter: false };
+      continue;
+    }
+    var placed = 0, overflowText = '';
+    for (var s = 0; s < sylls.length; s++) {
+      var targetPos = p + s;
+      if (targetPos < noteIdx.length) {
+        var tIdx = noteIdx[targetPos];
+        if (s > 0 && (seq[tIdx].lyric || '').trim()) { overflowText = sylls.slice(s).join('-'); break; }
+        map[tIdx] = {
+          syllable:    sylls[s],
+          borrowed:    s > 0,
+          hyphenAfter: s < sylls.length - 1,
+          hyphenBefore: s > 0
+        };
+        placed++;
+      } else {
+        overflowText = sylls.slice(s).join('-'); break;
+      }
+    }
+    if (overflowText) {
+      var lastIdx = noteIdx[Math.min(p + placed - 1, noteIdx.length - 1)];
+      if (map[lastIdx]) { map[lastIdx].overflow = overflowText; map[lastIdx].hyphenAfter = false; }
+    }
+  }
+  return map;
+}
+
+// Build an ABC w: lyric line aligned to a voice body, using the syllable map.
+function buildLyricLine(items, bpb) {
+  var sylMap = computeSyllableMap(sequence);
+  var line   = '';
+  var barAcc = 0;
+  var first  = true;
+  for (var i = 0; i < items.length; i++) {
+    var item   = items[i];
+    var spacer = !!item._sp;
+    if (!item.isRest && !spacer) {
+      var d   = sylMap[i];
+      var tok;
+      if (!d || !d.syllable) tok = '*';
+      else {
+        tok = d.syllable.replace(/\s+/g, '~');
+        if (d.overflow) tok += '~' + d.overflow.replace(/-/g, '~');
+        else if (d.hyphenAfter) tok += '-';
+      }
+      line += (first ? '' : ' ') + tok;
+      first = false;
+    }
+    barAcc += item.beats;
+    if (near(barAcc, bpb)) { line += ' |'; barAcc = 0; first = true; }
+  }
+  return line.trim();
 }
 
 function buildVoiceBody(items, bpb) {
@@ -779,7 +1183,7 @@ function buildVoiceBody(items, bpb) {
   return body.endsWith('|') ? body + ']' : body + ' |]';
 }
 
-// Visibility overrides
+
 var VIS_RULES = [
   { id: 'vis-tempo',    cls: 'abcjs-tempo'          },
   { id: 'vis-timesig',  cls: 'abcjs-time-signature' },
@@ -813,7 +1217,7 @@ function applyVisibilityToSvg(svg) {
   });
 }
 
-// Render notation
+
 function scheduleRender() {
   clearTimeout(renderTimer);
   renderTimer = setTimeout(renderNotation, 120);
@@ -821,15 +1225,22 @@ function scheduleRender() {
 
 function renderNotation() {
   var wrap = document.getElementById('notation-render');
-  var abc  = generateABC();
+  var abc  = currentABC();
+
+  // Mirror chip-generated ABC into the editor (only when not overriding, so we
+  // never clobber what the user is typing).
+  if (!isOverriding()) syncEditorFromChips(abc);
 
   if (!abc) {
     wrap.innerHTML = '<div class="notation-empty">Use the buttons above to build your rhythm.<br>The notation will appear here automatically.</div>';
     currentTune = null;
+    lastValidABC = null;
+    setAbcStatus('', '');
     return;
   }
 
   var pw = Math.min(780, (wrap.parentElement.clientWidth || window.innerWidth || 820) - 40);
+  var prevHTML = wrap.innerHTML;          // snapshot for keep-last-good
   try {
     var result = ABCJS.renderAbc('notation-render', abc, {
       add_classes:   true,
@@ -840,15 +1251,242 @@ function renderNotation() {
       paddingtop:    20,
       paddingbottom: 14,
       scale:         1.4,
+      format:        { vocalfont: lyricVocalFont() },
     });
-    currentTune = result && result[0] ? result[0] : null;
+    var tune = result && result[0] ? result[0] : null;
+
+    // Treat "produced no staff" as a failed render so we can keep the last good one.
+    if (!wrap.querySelector('svg')) throw new Error('No notation produced');
+
+    currentTune  = tune;
+    lastValidABC = abc;
     applyVisibilityOverrides();
+
+    // Surface abcjs warnings (e.g. malformed bits) without treating them as fatal.
+    var warns = tune && tune.warnings && tune.warnings.length ? tune.warnings.length : 0;
+    if (isOverriding()) {
+      setEditorInvalid(false);
+      setAbcStatus(warns ? '⚠ Rendered with ' + warns + ' warning' + (warns > 1 ? 's' : '') : 'Editing code — drives preview & exports', warns ? 'error' : 'ok');
+    } else {
+      setEditorInvalid(false);
+      // Leave any one-off confirmation (e.g. "Synced to chips ✓") in place;
+      // only clear stale "editing code" notices left over from override mode.
+      var sEl = document.getElementById('abc-status');
+      if (sEl && /Editing code|Rendered with|render this code/.test(sEl.textContent)) setAbcStatus('', '');
+    }
   } catch (e) {
     console.warn('ABCJS render error:', e);
+    wrap.innerHTML = prevHTML;            // restore last good preview
+    if (isOverriding()) {
+      setEditorInvalid(true);
+      setAbcStatus('⚠ Can’t render this code yet — check the syntax', 'error');
+    }
   }
 }
 
-// UI refresh
+// ── ABC editor panel helpers ──────────────────────────────────────────
+function setAbcStatus(msg, kind) {
+  var el = document.getElementById('abc-status');
+  if (!el) return;
+  el.textContent = msg || '';
+  el.className = 'abc-status' + (kind ? ' ' + kind : '');
+}
+function setEditorInvalid(on) {
+  var ed = document.getElementById('abc-editor');
+  if (ed) ed.classList.toggle('invalid', !!on);
+}
+function updateAbcButtons() {
+  var on = isOverriding();
+  var resetBtn = document.getElementById('abc-reset-btn');
+  var syncBtn  = document.getElementById('abc-sync-btn');
+  if (resetBtn) resetBtn.hidden = !on;
+  if (syncBtn)  syncBtn.hidden  = !on;
+}
+// Keep the textarea mirroring chip output (only while not overriding).
+function syncEditorFromChips(abc) {
+  var ed = document.getElementById('abc-editor');
+  if (!ed) return;
+  if (document.activeElement === ed) return;   // never yank text from under the cursor
+  ed.value = abc || '';
+  setEditorInvalid(false);
+}
+// User typed in the editor → that text becomes the source of truth.
+function handleEditorInput() {
+  var ed = document.getElementById('abc-editor');
+  var text = ed.value;
+  abcOverride = text.trim() ? text : null;
+  updateAbcButtons();
+  if (!isOverriding()) {                        // emptied the box → fall back to chips
+    refresh();
+    return;
+  }
+  clearTimeout(abcEditorTimer);
+  abcEditorTimer = setTimeout(renderNotation, 250);
+}
+// Leave override mode without parsing: regenerate code from the chips.
+function resetToChips() {
+  abcOverride = null;
+  updateAbcButtons();
+  setAbcStatus('Reset — code is generated from the chips again', 'ok');
+  refresh();
+}
+
+// ── ABC → chips parser (best effort) ──────────────────────────────────
+// Maps an L:1/4-relative multiplier string to quarter-note beats.
+function multToBeats(mult) {
+  if (!mult) return 1;
+  var m = mult.match(/^(\d*)(?:\/(\d+))?$/);
+  if (!m) return null;
+  var num = m[1] === '' ? 1 : parseInt(m[1], 10);
+  var den = m[2] ? parseInt(m[2], 10) : 1;
+  if (mult.charAt(0) === '/') { num = 1; den = parseInt(mult.slice(1), 10) || 2; }
+  if (!den) return null;
+  return num / den;
+}
+function durationForBeats(beats) {
+  for (var i = 0; i < DURATIONS.length; i++) {
+    if (near(DURATIONS[i].beats, beats)) return DURATIONS[i];
+  }
+  return null;
+}
+// Parse one voice body string into an array of {dur,isRest,spacer,newBeamGroup}.
+// Pushes human-readable messages into `issues` for anything it has to skip.
+function parseVoiceBody(body, issues) {
+  var out = [];
+  // Flag constructs the chip model can't hold.
+  if (/\|[:\]]|:\||::|\[1|\[2|\|\|/.test(body)) issues.push('special barlines/repeats');
+  if (/\(\d/.test(body))          issues.push('tuplets');
+  if (/\[[A-Ga-g]/.test(body))    issues.push('chords');
+  if (/!.*?!|\{[^}]*\}|[<>]/.test(body)) issues.push('decorations/grace/broken-rhythm');
+
+  // Tokenize note/rest/spacer atoms and the whitespace between them (for beaming).
+  var re = /([A-Ga-gxz])(\d*\/?\d*)|(\s+)|(\|\]?|\])/g;
+  var m, prevWasNote = false, hadSpaceSincePrev = true;
+  while ((m = re.exec(body)) !== null) {
+    if (m[3]) { hadSpaceSincePrev = true; continue; }   // whitespace
+    if (m[4]) { hadSpaceSincePrev = true; prevWasNote = false; continue; } // barline
+    var letter = m[1], mult = m[2];
+    var beats  = multToBeats(mult);
+    if (beats == null) { issues.push('unparsable duration "' + letter + mult + '"'); continue; }
+    var dur = durationForBeats(beats);
+    if (!dur) { issues.push('duration ' + formatNum(beats) + '♩ has no matching button'); continue; }
+
+    var isRest  = (letter === 'z' || letter === 'Z');
+    var spacer  = (letter === 'x' || letter === 'X');
+    // Beamed if a beamable note directly follows another with no space between.
+    var beamed  = prevWasNote && !hadSpaceSincePrev && dur.beats < 1;
+    out.push({ dur: dur, isRest: isRest, spacer: spacer, newBeamGroup: !beamed });
+    prevWasNote = !isRest && !spacer;
+    hadSpaceSincePrev = false;
+  }
+  return out;
+}
+// Rebuild the chip `sequence` from edited ABC. Returns a report object.
+function parseAbcToSequence(abc) {
+  var issues = [];
+  var lines  = abc.split('\n');
+  var mField = null, voices = {}, order = [], lyricLines = {};
+  var curVoice = '1';
+  var bodyByVoice = { '1': '' };
+
+  for (var i = 0; i < lines.length; i++) {
+    var ln = lines[i];
+    var t  = ln.trim();
+    if (/^M:/.test(t)) { mField = t.slice(2).trim(); continue; }
+    if (/^w:/i.test(t)) { (lyricLines[curVoice] = lyricLines[curVoice] || []).push(t.slice(2).trim()); continue; }
+    if (/^%%/.test(t) || /^[A-Za-z]:/.test(t)) {            // header / directive line
+      var vm = t.match(/^V:\s*(\S+)/);
+      if (vm) { curVoice = vm[1]; bodyByVoice[curVoice] = bodyByVoice[curVoice] || ''; }
+      continue;
+    }
+    // Music line. May be prefixed with [V:n].
+    var vinline = t.match(/^\[V:\s*([^\]]+)\]\s*(.*)$/);
+    if (vinline) { curVoice = vinline[1].trim(); t = vinline[2]; }
+    bodyByVoice[curVoice] = (bodyByVoice[curVoice] || '') + ' ' + t;
+  }
+
+  var vids = Object.keys(bodyByVoice);
+  var twoVoice = vids.length > 1;
+
+  var newSeq;
+  if (!twoVoice) {
+    var atoms = parseVoiceBody(bodyByVoice[vids[0]] || '', issues);
+    newSeq = atoms.filter(function(a){ return !a.spacer; }).map(function(a) {
+      return Object.assign({}, a.dur, { isRest: a.isRest, stem: a.isRest ? null : 'up', newBeamGroup: a.newBeamGroup });
+    });
+  } else {
+    // Lockstep merge of V:1 (stem up) and V:2 (stem down); spacers mark the
+    // other voice's slot. Take the real note from whichever voice has one.
+    var v1 = parseVoiceBody(bodyByVoice[vids[0]] || '', issues);
+    var v2 = parseVoiceBody(bodyByVoice[vids[1]] || '', issues);
+    newSeq = [];
+    var n = Math.max(v1.length, v2.length);
+    for (var k = 0; k < n; k++) {
+      var a = v1[k], b = v2[k];
+      var pick, stem;
+      if (a && !a.spacer)      { pick = a; stem = a.isRest ? null : 'up'; }
+      else if (b && !b.spacer) { pick = b; stem = b.isRest ? null : 'down'; }
+      else if (a)              { pick = a; stem = null; }
+      else                     { pick = b; stem = null; }
+      if (!pick) continue;
+      newSeq.push(Object.assign({}, pick.dur, { isRest: pick.isRest, stem: stem, newBeamGroup: pick.newBeamGroup }));
+    }
+  }
+
+  // Best-effort lyric reattachment: map w: tokens onto sounding notes in order.
+  var wl = lyricLines[vids[0]] || lyricLines['1'];
+  if (wl && wl.length) {
+    var toks = wl.join(' ').replace(/\|/g, ' ').split(/\s+/).filter(Boolean);
+    var ni = 0;
+    for (var s = 0; s < toks.length && ni < newSeq.length; s++) {
+      while (ni < newSeq.length && newSeq[ni].isRest) ni++;
+      if (ni >= newSeq.length) break;
+      var tok = toks[s];
+      if (tok !== '*' && tok !== '-' && tok !== '_') {
+        newSeq[ni].lyric = tok.replace(/-$/,'').replace(/~/g,' ');
+      }
+      ni++;
+    }
+    if (toks.length) issues.push('lyrics re-applied approximately');
+  }
+
+  return { seq: newSeq, issues: issues, mField: mField, twoVoice: twoVoice };
+}
+// "Sync to chips" handler.
+function syncToChips() {
+  var ed   = document.getElementById('abc-editor');
+  var abc  = ed.value;
+  if (!abc.trim()) { showToast('Nothing to sync.'); return; }
+
+  var rep;
+  try { rep = parseAbcToSequence(abc); }
+  catch (e) { console.warn('parse error', e); setAbcStatus('⚠ Could not parse this code into chips', 'error'); return; }
+
+  if (!rep.seq.length) { setAbcStatus('⚠ No notes or rests found to sync into chips', 'error'); return; }
+
+  // Adopt a recognized time signature if it differs and the selector offers it.
+  if (rep.mField) {
+    var sel = document.getElementById('time-sig');
+    var opt = Array.prototype.some.call(sel.options, function(o){ return o.value === rep.mField; });
+    if (opt && sel.value !== rep.mField) sel.value = rep.mField;
+    else if (!opt) rep.issues.push('time signature ' + rep.mField + ' (not in the menu)');
+  }
+
+  sequence = rep.seq;
+  abcOverride = null;                 // chips are the source of truth again
+  recalcBarBeats();
+  updateAbcButtons();
+
+  var uniq = rep.issues.filter(function(v, i, a){ return a.indexOf(v) === i; });
+  if (uniq.length) {
+    setAbcStatus('Synced to chips. Couldn’t represent: ' + uniq.join(', ') + '. Keep editing the code to retain those.', 'error');
+  } else {
+    setAbcStatus('Synced to chips ✓', 'ok');
+  }
+  refresh();
+}
+
+
 function refresh() {
   var bpb = beatsPerBar();
   var pct = Math.min(100, (barBeats / bpb) * 100);
@@ -878,10 +1516,14 @@ function refresh() {
   scheduleRender();
 }
 
-// Beat tape
+
+var _sylMapCache = {};
 function renderTape() {
   var tape = document.getElementById('beat-tape');
+  var lyricsOn = document.getElementById('vis-lyrics').checked;
+  tape.classList.toggle('lyrics-on', lyricsOn);
   tape.innerHTML = '';
+  _sylMapCache = lyricsOn ? computeSyllableMap(sequence) : {};
 
   if (!sequence.length) {
     tape.innerHTML = '<span class="tape-empty">Your rhythm will appear here as you add notes.</span>';
@@ -947,7 +1589,7 @@ function makeChip(item, seqIdx) {
   chip.className = 'tape-chip ' + (item.isRest ? 'rest' : 'note');
 
   var bpb = beatsPerBar();
-  var w   = Math.max(18, Math.min(120, Math.round((item.beats / bpb) * 140)));
+  var w   = Math.max(32, Math.min(150, Math.round((item.beats / bpb) * 170)));
   chip.style.width = w + 'px';
   chip.textContent = item.short;
 
@@ -974,13 +1616,53 @@ function makeChip(item, seqIdx) {
     }(seqIdx)));
   }
 
+  if (!item.isRest && document.getElementById('vis-lyrics').checked) {
+    var d = _sylMapCache[seqIdx];
+    if (d && d.borrowed) {
+      var proj = document.createElement('div');
+      proj.className = 'chip-lyric chip-lyric-proj';
+      proj.textContent = (d.hyphenBefore ? '‑' : '') + d.syllable;
+      proj.title = 'Part of a word typed on an earlier note. Edit it there, or type here to override.';
+      proj.addEventListener('click', (function(idx) {
+        return function(e) {
+          e.stopPropagation();
+          sequence[idx] = Object.assign({}, sequence[idx], { lyric: d.syllable });
+          refresh();
+          var inp = document.querySelector('.tape-chip [data-lyric-idx="' + idx + '"]');
+          if (inp) { inp.focus(); inp.select(); }
+        };
+      }(seqIdx)));
+      chip.appendChild(proj);
+    } else {
+      var lyr = document.createElement('input');
+      lyr.type = 'text';
+      lyr.className = 'chip-lyric';
+      lyr.value = item.lyric || '';
+      lyr.placeholder = '＋';
+      lyr.title = 'Type a word or syllable. Whole words auto-split across notes; type your own hyphens (twin-kle) to control the split.';
+      lyr.setAttribute('data-lyric-idx', seqIdx);
+      if (d && d.hyphenAfter) lyr.classList.add('has-hyphen');
+      lyr.addEventListener('click', function(e) { e.stopPropagation(); });
+      lyr.addEventListener('input', (function(idx) {
+        return function(e) {
+          sequence[idx] = Object.assign({}, sequence[idx], { lyric: e.target.value });
+          var caret = e.target.selectionStart;
+          refresh();
+          var again = document.querySelector('[data-lyric-idx="' + idx + '"]');
+          if (again) { again.focus(); try { again.setSelectionRange(caret, caret); } catch (_) {} }
+        };
+      }(seqIdx)));
+      chip.appendChild(lyr);
+    }
+  }
+
   chip.title = titleParts.join('\n');
   return chip;
 }
 
-// Playback
+
 function generatePlaybackABC() {
-  var abc = generateABC();
+  var abc = currentABC();
   if (!abc) return null;
   return abc
     .replace('K:C clef=perc stafflines=0', '%%MIDI program 0\nK:C')
@@ -1026,7 +1708,7 @@ async function togglePlay() {
     playBtn.textContent = '▶ Loading…';
     playBtn.disabled    = true;
 
-    // Build and prime synth BEFORE count-in so the soundfont is ready
+    
     var playAbc = generatePlaybackABC();
     if (!playAbc) { showToast('Add some notes first!'); return; }
 
@@ -1046,7 +1728,7 @@ async function togglePlay() {
     });
     await synth.prime();
 
-    // Count-in after synth is ready — music starts the moment count-in ends
+    
     if (document.getElementById('count-in').checked) {
       isPlaying           = true;
       stopBtn.disabled    = false;
@@ -1082,16 +1764,20 @@ function stopPlayback() {
   stopBtn.disabled    = true;
 }
 
-// Export PNG
+
 function exportPNG() {
-  var abc = generateABC();
+  var abc = currentABC();
   if (!abc) { showToast('Nothing to export yet!'); return; }
+  if (isOverriding() && document.getElementById('abc-editor').classList.contains('invalid')) {
+    showToast('Fix the ABC code before exporting.'); return;
+  }
 
   var scratch = document.createElement('div');
   scratch.style.cssText = 'position:absolute;left:-9999px;top:0;width:820px;background:white;padding:20px;';
   document.body.appendChild(scratch);
   ABCJS.renderAbc(scratch, abc, {
-    staffwidth: 780, paddingtop: 24, paddingbottom: 24, scale: 1.5, add_classes: true
+    staffwidth: 780, paddingtop: 24, paddingbottom: 24, scale: 2, add_classes: true,
+    format: { vocalfont: lyricVocalFont() }
   });
 
   var svg = scratch.querySelector('svg');
@@ -1102,7 +1788,7 @@ function exportPNG() {
   }
   applyVisibilityToSvg(svg);
 
-  var SCALE = 2;
+  var SCALE = 3;
   var vb    = svg.viewBox.baseVal;
   var W     = (vb.width  || parseFloat(svg.getAttribute('width'))  || 820) * SCALE;
   var H     = (vb.height || parseFloat(svg.getAttribute('height')) || 200) * SCALE;
@@ -1111,6 +1797,8 @@ function exportPNG() {
   canvas.width  = W;
   canvas.height = H;
   var ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, W, H);
   ctx.scale(SCALE, SCALE);
@@ -1139,16 +1827,20 @@ function exportPNG() {
   img.src = url;
 }
 
-// Export SVG
+
 function exportSVG() {
-  var abc = generateABC();
+  var abc = currentABC();
   if (!abc) { showToast('Nothing to export yet!'); return; }
+  if (isOverriding() && document.getElementById('abc-editor').classList.contains('invalid')) {
+    showToast('Fix the ABC code before exporting.'); return;
+  }
 
   var scratch = document.createElement('div');
   scratch.style.cssText = 'position:absolute;left:-9999px;top:0;width:820px;background:white;padding:20px;';
   document.body.appendChild(scratch);
   ABCJS.renderAbc(scratch, abc, {
-    staffwidth: 780, paddingtop: 24, paddingbottom: 24, scale: 1.5, add_classes: true
+    staffwidth: 780, paddingtop: 24, paddingbottom: 24, scale: 1.5, add_classes: true,
+    format: { vocalfont: lyricVocalFont() }
   });
 
   var svg = scratch.querySelector('svg');
@@ -1171,7 +1863,7 @@ function exportSVG() {
   showToast('SVG saved!');
 }
 
-// Toast
+
 function showToast(msg) {
   var t = document.getElementById('toast');
   t.textContent = msg;
@@ -1187,7 +1879,7 @@ function triggerClass(el, cls) {
   setTimeout(function() { el.classList.remove(cls); }, 500);
 }
 
-// Event wiring
+
 document.getElementById('play-btn').addEventListener('click', togglePlay);
 document.getElementById('stop-btn').addEventListener('click', stopPlayback);
 document.getElementById('export-btn').addEventListener('click', exportPNG);
@@ -1201,7 +1893,7 @@ document.getElementById('beam-auto-btn').addEventListener('click',  function() {
 document.getElementById('beam-break-btn').addEventListener('click', function() { setBeamMode('break'); });
 
 document.getElementById('copy-abc-btn').addEventListener('click', function() {
-  var abc = generateABC();
+  var abc = currentABC();
   if (!abc) { showToast('Nothing to copy yet.'); return; }
   navigator.clipboard.writeText(abc).then(function() {
     showToast('ABC notation copied to clipboard!');
@@ -1220,28 +1912,80 @@ VIS_RULES.forEach(function(rule) {
   document.getElementById(rule.id).addEventListener('change', applyVisibilityOverrides);
 });
 
+// Lyrics toggle rebuilds the tape (to show/hide inputs) and re-renders notation
+var lyricHintDismissed = false;
+function updateLyricHint() {
+  var on = document.getElementById('vis-lyrics').checked;
+  document.getElementById('lyric-hint').classList.toggle('show', on && !lyricHintDismissed);
+  document.getElementById('lyric-style-row').classList.toggle('disabled', !on);
+}
+document.getElementById('vis-lyrics').addEventListener('change', function() {
+  updateLyricHint();
+  refresh();
+});
+document.getElementById('lyric-hint-close').addEventListener('click', function() {
+  lyricHintDismissed = true;
+  updateLyricHint();
+});
+updateLyricHint();
+
+document.getElementById('lyric-size-input').addEventListener('input', function() {
+  var v = parseInt(this.value, 10);
+  if (isNaN(v)) return;                       // allow mid-typing empty/partial values
+  v = Math.max(8, Math.min(48, v));
+  lyricFontSize = v;
+  scheduleRender();
+});
+document.getElementById('lyric-size-input').addEventListener('change', function() {
+  var v = parseInt(this.value, 10);
+  if (isNaN(v)) v = lyricFontSize;
+  v = Math.max(8, Math.min(48, v));
+  lyricFontSize = v;
+  this.value = v;                             // snap displayed value back into range
+  scheduleRender();
+});
+document.getElementById('lyric-bold-btn').addEventListener('click', function() {
+  lyricBold = !lyricBold;
+  this.classList.toggle('active', lyricBold);
+  scheduleRender();
+});
+
 document.getElementById('time-sig').addEventListener('change', function() {
-  // var isCustom = this.value === 'custom';
-  // document.getElementById('custom-timesig').hidden = !isCustom;
+
+
   sequence = [];
   barBeats = 0;
+  abcOverride = null;            // chips reset, so drop any manual ABC override
+  updateAbcButtons();
   stopPlayback();
   refresh();
 });
 
-// function applyCustomTimeSig() {
-//   var num = parseInt(document.getElementById('custom-num').value, 10);
-//   if (num >= 1 && num <= 32) {
-//     sequence = [];
-//     barBeats = 0;
-//     stopPlayback();
-//     refresh();
-//   }
-// }
-// document.getElementById('custom-num').addEventListener('input', applyCustomTimeSig);
-// document.getElementById('custom-den').addEventListener('change', applyCustomTimeSig);
+// ── ABC editor panel wiring ──────────────────────────────────────────
+document.getElementById('abc-toggle').addEventListener('click', function() {
+  var card = document.getElementById('abc-card');
+  var open = card.classList.toggle('abc-collapsed') === false;
+  this.setAttribute('aria-expanded', String(open));
+  if (open) document.getElementById('abc-editor').focus();
+});
+document.getElementById('abc-editor').addEventListener('input', handleEditorInput);
+document.getElementById('abc-reset-btn').addEventListener('click', resetToChips);
+document.getElementById('abc-sync-btn').addEventListener('click', syncToChips);
+updateAbcButtons();
 
-// Init
+
+
+
+
+
+
+
+
+
+
+
+
+
 buildPalette();
 applyVisibilityOverrides();
 refresh();
