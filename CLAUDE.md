@@ -25,7 +25,7 @@ Hugo static site with a fully custom theme (no external theme package). All temp
 - **Assets**: `assets/css/style.css` fingerprinted via Hugo pipes; brand SVG logos in `assets/`. Page-specific styles live in `static/css/` (abc-player.css, braille-panel.css, lyrics-panel.css) and are loaded conditionally on relevant pages.
 - **CMS**: Netlify CMS config at `static/admin/config.yml` — GitHub-backed headless editor for posts, songs, and books. Not required for local dev.
 - **Navigation**: driven by `data/navigation.yaml`; supports top-level links and dropdown groups (items with a `children` array); dropdown JS and CSS live in `baseof.html` and `style.css`
-- **Tool pages**: page-specific CSS/JS injected via the `{{ block "extra_head" . }}` hook in `baseof.html`. Current tools: `content/rhythm-builder.md` + `layouts/_default/rhythm-builder.html`; `content/ostinato-builder.md` + `layouts/_default/ostinato-builder.html`; `content/chord-diagram-generator.md` + `layouts/_default/chord-diagram-generator.html`
+- **Tool pages**: page-specific CSS/JS injected via the `{{ block "extra_head" . }}` hook in `baseof.html`. Current tools: `content/rhythm-builder.md` + `layouts/_default/rhythm-builder.html`; `content/ostinato-builder.md` + `layouts/_default/ostinato-builder.html`; `content/chord-diagram-generator.md` + `layouts/_default/chord-diagram-generator.html`; `content/visual-schedule-builder.md` + `layouts/_default/visual-schedule-builder.html`
 - **Archetypes**: `archetypes/songs.md` and `archetypes/books.md` define frontmatter templates for new content
 
 Site config, brand colors, taxonomy definitions, and related-content index weights are all in `hugo.toml`.
@@ -90,6 +90,15 @@ JavaScript components (both in `static/js/`):
 - `chord-tool-component.js` — full interactive UI (`ChordTool`). Supports Guitar (6 strings) and Ukulele (4 strings); finger placement and barre modes; color/size/weight customization. Chord library persists to `localStorage` key `mtim_chord_library`.
 
 CSS uses `--mtim-*` prefixed custom properties (same namespace as global brand tokens, unlike Rhythm Builder's isolated `--rb-` prefix).
+
+## Visual Schedule Builder
+
+`/visual-schedule-builder/` is a Hugo page (currently `unlisted: true`, not in the Tools nav). Layout: `layouts/_default/visual-schedule-builder.html` (self-contained: CSS in `extra_head`, markup and ~2,300 lines of vanilla JS in `main`), content stub: `content/visual-schedule-builder.md`. Ported from the standalone Schedule Planner. Builds a single-lesson visual schedule: a two-panel editor (activity sequence left, live 16:9 preview right, drag-resizable via `#resizeHandle`) where each activity gets a picture, optional notes, and a click action (nothing, link with optional multi-link tabs, or a media popup with image/video, audio, and slideshow support). No external libraries.
+
+Key mechanics:
+- Media blobs persist in IndexedDB (`mtimVisualScheduleDB`); drafts autosave to `localStorage` key `mtim_visual_schedule_draft`
+- "Save schedule" exports a fully standalone HTML file with media inlined as data URLs; "Open saved" re-imports it by parsing the exported DOM. Title and subtitle join with `" · "` (importer falls back to the legacy `" — "` separator from pre-port exports)
+- All CSS is scoped under `.vsb-tool` with `--vsb-` prefixed tokens; buttons are `.vsb-btn` (JS-generated markup uses `vsb-btn small ghost`-style classes). A small alias block on `.vsb-tool` (`--text-secondary`, `--border-color`, `--space-4`, etc.) serves inline styles embedded in the JS template strings — keep it if renaming tokens
 
 ## Related content
 

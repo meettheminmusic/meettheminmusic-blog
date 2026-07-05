@@ -1,0 +1,3169 @@
+{{ define "extra_head" }}
+<style>
+/* Visual Schedule Builder — all rules scoped under .vsb-tool, tokens prefixed --vsb- */
+.vsb-tool {
+  --vsb-teal: #0F6E56;
+  --vsb-teal-dark: #085041;
+  --vsb-teal-hover: #0C5A46;
+  --vsb-tint: #E1F5EE;
+  --vsb-charcoal: #2C2C2A;
+  --vsb-gray: #5F5E5A;
+  --vsb-bg: #FAFAF8;
+  --vsb-card: #ffffff;
+  --vsb-border: #E3E1DC;
+  --vsb-danger: #B3382C;
+  --vsb-danger-tint: #FBEDEB;
+  --vsb-radius: 10px;
+  --vsb-radius-sm: 6px;
+  --vsb-shadow: 0 1px 3px rgba(44, 44, 42, 0.08);
+  /* aliases consumed by inline styles generated in the tool's JS */
+  --on-surface-variant: var(--vsb-gray);
+  --text-secondary: var(--vsb-gray);
+  --border-color: var(--vsb-border);
+  --error: var(--vsb-danger);
+  --space-4: 1.4rem;
+  --space-6: 2rem;
+
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 1.25rem 20px 60px;
+  color: var(--vsb-charcoal);
+}
+
+/* ===== Action toolbar ===== */
+.vsb-tool .action-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0 0 1rem;
+}
+
+/* ===== Buttons ===== */
+.vsb-tool .vsb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--vsb-teal);
+  border-radius: var(--vsb-radius-sm);
+  background: var(--vsb-teal);
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+.vsb-tool .vsb-btn:hover { background: var(--vsb-teal-hover); border-color: var(--vsb-teal-hover); color: #fff; }
+.vsb-tool .vsb-btn.ghost { background: var(--vsb-card); border-color: var(--vsb-border); color: var(--vsb-charcoal); }
+.vsb-tool .vsb-btn.ghost:hover { background: var(--vsb-tint); border-color: var(--vsb-teal); color: var(--vsb-teal); }
+.vsb-tool .vsb-btn.alt { background: var(--vsb-card); border-color: #E0B5B2; color: var(--vsb-danger); }
+.vsb-tool .vsb-btn.alt:hover { background: var(--vsb-danger-tint); border-color: var(--vsb-danger); color: var(--vsb-danger); }
+.vsb-tool .vsb-btn.small { font-size: 0.75rem; padding: 5px 10px; }
+.vsb-tool .vsb-btn:disabled { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+
+/* ===== Forms ===== */
+.vsb-tool label {
+  font-weight: 600;
+  color: var(--vsb-charcoal);
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.8rem;
+}
+.vsb-tool input[type="text"],
+.vsb-tool input[type="url"],
+.vsb-tool textarea,
+.vsb-tool select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--vsb-border);
+  border-radius: var(--vsb-radius-sm);
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: var(--vsb-card);
+  color: var(--vsb-charcoal);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-weight: 400;
+}
+.vsb-tool input:focus,
+.vsb-tool textarea:focus,
+.vsb-tool select:focus {
+  outline: none;
+  border-color: var(--vsb-teal);
+  box-shadow: 0 0 0 3px rgba(15, 110, 86, 0.12);
+}
+.vsb-tool input:hover,
+.vsb-tool textarea:hover,
+.vsb-tool select:hover { border-color: var(--vsb-gray); }
+.vsb-tool textarea { min-height: 66px; resize: vertical; }
+.vsb-tool input[type="checkbox"] { accent-color: var(--vsb-teal); }
+.vsb-tool input[type="color"] {
+  width: 34px;
+  height: 30px;
+  padding: 2px;
+  border: 1px solid var(--vsb-border);
+  border-radius: var(--vsb-radius-sm);
+  cursor: pointer;
+  background: var(--vsb-card);
+}
+
+/* ===== Content grid ===== */
+.vsb-tool .vsb-content-grid {
+  display: grid;
+  grid-template-columns: var(--col-left, 2fr) auto var(--col-right, 1fr);
+  height: calc(100vh - 250px);
+  min-height: 560px;
+}
+.vsb-tool .resize-handle {
+  width: 12px;
+  cursor: col-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.vsb-tool .resize-handle::after {
+  content: '';
+  width: 4px;
+  height: 40px;
+  border-radius: 2px;
+  background: var(--vsb-border);
+  transition: background 0.2s, height 0.2s;
+}
+.vsb-tool .resize-handle:hover::after,
+.vsb-tool .resize-handle.dragging::after { background: var(--vsb-teal); height: 60px; }
+
+/* ===== Panels ===== */
+.vsb-tool .sequence-panel,
+.vsb-tool .preview-panel {
+  background: var(--vsb-card);
+  border: 1px solid var(--vsb-border);
+  border-radius: var(--vsb-radius);
+  padding: 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  box-shadow: var(--vsb-shadow);
+}
+.vsb-tool .panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 0.8rem;
+  flex: 0 0 auto;
+}
+.vsb-tool .panel-header h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--vsb-charcoal);
+  margin: 0;
+  line-height: 1.3;
+}
+.vsb-tool .panel-header-tools { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.vsb-tool .activity-count {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--vsb-teal);
+  background: var(--vsb-tint);
+  padding: 4px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ===== Setup panel (collapsible) ===== */
+.vsb-tool .sequence-controls {
+  flex: 0 0 auto;
+  margin-bottom: 0.8rem;
+  background: var(--vsb-bg);
+  border: 1px solid var(--vsb-border);
+  border-radius: var(--vsb-radius-sm);
+  padding: 0.8rem 1rem;
+}
+.vsb-tool .sequence-controls summary {
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--vsb-gray);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vsb-tool .sequence-controls summary::-webkit-details-marker { display: none; }
+.vsb-tool .sequence-controls summary::before {
+  content: '\25B8';
+  font-size: 11px;
+  transition: transform 0.2s;
+}
+.vsb-tool .sequence-controls[open] summary::before { transform: rotate(90deg); }
+.vsb-tool .sequence-controls-inner { margin-top: 0.8rem; }
+.vsb-tool .control-row {
+  display: flex;
+  gap: 1rem;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 0.7rem;
+}
+.vsb-tool .control-row > div { flex: 1 1 180px; min-width: 140px; }
+.vsb-tool .control-inline { display: flex; align-items: center; gap: 8px; flex: 0 1 auto !important; min-width: 0 !important; }
+.vsb-tool .control-inline label { margin: 0; white-space: nowrap; }
+
+/* ===== Scroll areas ===== */
+.vsb-tool .sequence-scroll,
+.vsb-tool .preview-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  padding-right: 4px;
+}
+.vsb-tool .sequence-scroll::-webkit-scrollbar,
+.vsb-tool .preview-scroll::-webkit-scrollbar { width: 6px; }
+.vsb-tool .sequence-scroll::-webkit-scrollbar-thumb,
+.vsb-tool .preview-scroll::-webkit-scrollbar-thumb { background: var(--vsb-border); border-radius: 999px; }
+.vsb-tool .sequence-scroll::-webkit-scrollbar-thumb:hover,
+.vsb-tool .preview-scroll::-webkit-scrollbar-thumb:hover { background: var(--vsb-gray); }
+
+/* ===== Add activity card ===== */
+.vsb-tool .add-activity-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.6rem 1.4rem;
+  border: 2px dashed var(--vsb-border);
+  border-radius: var(--vsb-radius);
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 1rem;
+  background: transparent;
+}
+.vsb-tool .add-activity-card:hover { border-color: var(--vsb-teal); background: rgba(15, 110, 86, 0.03); }
+.vsb-tool .add-activity-card .add-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--vsb-bg);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  color: var(--vsb-gray);
+  margin-bottom: 8px;
+  transition: all 0.2s;
+}
+.vsb-tool .add-activity-card:hover .add-icon { background: var(--vsb-tint); color: var(--vsb-teal); }
+.vsb-tool .add-activity-card .add-label { font-weight: 600; font-size: 0.9rem; color: var(--vsb-charcoal); }
+.vsb-tool .add-activity-card .add-sublabel { font-size: 0.8rem; color: var(--vsb-gray); margin-top: 2px; }
+
+/* ===== Activity editor cards ===== */
+.vsb-tool .activity {
+  border: 1px solid var(--vsb-border);
+  border-radius: var(--vsb-radius);
+  background: var(--vsb-bg);
+  transition: box-shadow 0.2s;
+  overflow: hidden;
+}
+.vsb-tool .activity:hover { box-shadow: 0 4px 14px rgba(44, 44, 42, 0.07); }
+.vsb-tool .activity + .activity { margin-top: 0.9rem; }
+.vsb-tool .activity.dragging { opacity: 0.4; box-shadow: none; }
+.vsb-tool .activity-drop-indicator {
+  height: 3px;
+  background: var(--vsb-teal);
+  border-radius: 2px;
+  margin: -2px 0;
+}
+.vsb-tool .activity-drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  color: var(--vsb-gray);
+  opacity: 0.4;
+  transition: opacity 0.2s, color 0.2s;
+  padding: 2px;
+  flex-shrink: 0;
+}
+.vsb-tool .activity-drag-handle:hover { opacity: 0.8; color: var(--vsb-teal); }
+.vsb-tool .activity-drag-handle:active { cursor: grabbing; }
+.vsb-tool .activity-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+.vsb-tool .activity-header:hover { background: rgba(15, 110, 86, 0.04); }
+.vsb-tool .activity-collapse-icon {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  color: var(--vsb-gray);
+  transition: transform 0.2s;
+  flex: 0 0 20px;
+}
+.vsb-tool .activity.collapsed .activity-collapse-icon { transform: rotate(-90deg); }
+.vsb-tool .activity-header-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--vsb-charcoal);
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.vsb-tool .activity-header-title.empty { color: var(--vsb-gray); font-style: italic; font-weight: 400; }
+.vsb-tool .activity-header-meta {
+  font-size: 0.75rem;
+  color: var(--vsb-gray);
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vsb-tool .activity-header-thumb {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--vsb-radius-sm);
+  object-fit: cover;
+  flex: 0 0 36px;
+  background: var(--vsb-border);
+}
+.vsb-tool .activity-header-thumb-ph {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--vsb-radius-sm);
+  background: var(--vsb-tint);
+  display: grid;
+  place-items: center;
+  color: var(--vsb-teal);
+  flex: 0 0 36px;
+}
+.vsb-tool .activity-body {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: start;
+  padding: 0 1rem 1rem;
+}
+.vsb-tool .activity.collapsed .activity-body { display: none; }
+.vsb-tool .activity-body > div:first-child {
+  border-right: 1px solid var(--vsb-border);
+  padding-right: 1rem;
+}
+.vsb-tool .act-head { display: flex; gap: 8px; align-items: center; }
+.vsb-tool .icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  color: #fff;
+  background: var(--vsb-teal);
+  font-size: 0.8rem;
+  font-weight: 600;
+  flex: 0 0 auto;
+}
+.vsb-tool .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Activity more menu */
+.vsb-tool .activity-more-menu { position: relative; display: inline-flex; }
+.vsb-tool .activity-more-btn { padding: 5px 8px !important; }
+.vsb-tool .activity-dropdown {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 4px;
+  background: var(--vsb-card);
+  border: 1px solid var(--vsb-border);
+  border-radius: var(--vsb-radius-sm);
+  box-shadow: 0 8px 24px rgba(44, 44, 42, 0.12);
+  min-width: 160px;
+  z-index: 30;
+  padding: 4px;
+}
+.vsb-tool .activity-dropdown.show { display: flex; flex-direction: column; }
+.vsb-tool .activity-dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--vsb-charcoal);
+  cursor: pointer;
+  border-radius: var(--vsb-radius-sm);
+  text-align: left;
+  transition: background 0.15s;
+}
+.vsb-tool .activity-dropdown button:hover { background: var(--vsb-tint); }
+.vsb-tool .activity-dropdown button.danger { color: var(--vsb-danger); }
+.vsb-tool .activity-dropdown button.danger:hover { background: var(--vsb-danger-tint); }
+.vsb-tool .dropdown-divider { height: 1px; background: var(--vsb-border); margin: 4px 0; }
+
+/* ===== Media preview ===== */
+.vsb-tool .media-preview {
+  display: grid;
+  place-items: center;
+  background: var(--vsb-bg);
+  border: 1px solid var(--vsb-border);
+  border-radius: var(--vsb-radius-sm);
+  min-height: 140px;
+  overflow: hidden;
+  padding: 6px;
+}
+.vsb-tool .media-preview img { max-width: 100%; max-height: 240px; display: block; }
+.vsb-tool .media-preview audio,
+.vsb-tool .media-preview video { width: 100%; }
+
+/* ===== Pills ===== */
+.vsb-tool .pill {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  border: 1px solid var(--vsb-border);
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--vsb-card);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--vsb-charcoal);
+}
+.vsb-tool .pill select { width: auto; padding: 4px 8px; font-size: 0.8rem; }
+
+/* ===== Live preview (16:9 frame) ===== */
+.vsb-tool .visual-schedule { background: transparent; }
+.vsb-tool .preview-stage { display: grid; place-items: center; width: 100%; padding: 4px 2px; }
+.vsb-tool .preview-screen {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #ffffff;
+  border: 1px solid var(--vsb-border);
+  border-radius: var(--vsb-radius);
+  box-shadow: 0 8px 24px rgba(44, 44, 42, 0.08);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+}
+.vsb-tool .preview-header,
+.vsb-tool .schedule-header {
+  text-align: center;
+  padding: 8px 10px;
+  background: linear-gradient(135deg, var(--vsb-teal), var(--vsb-teal-dark));
+  color: #fff;
+  font-weight: 600;
+}
+.vsb-tool .preview-grid {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  background: #f7f7f5;
+  min-height: 0;
+}
+.vsb-tool .schedule-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: #ffffff;
+  border-radius: var(--vsb-radius);
+  border: 1px solid var(--vsb-border);
+  padding: 8px;
+  text-align: center;
+  transition: box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  cursor: default;
+  box-shadow: 0 1px 4px rgba(44, 44, 42, 0.05);
+  overflow: hidden;
+  min-height: 0;
+}
+.vsb-tool .schedule-item:hover { box-shadow: 0 6px 18px rgba(44, 44, 42, 0.1); }
+.vsb-tool .schedule-item.has-link { border-color: var(--vsb-teal); background: rgba(15, 110, 86, 0.03); cursor: pointer; }
+.vsb-tool .schedule-item.has-overlay { border-color: #D08770; background: rgba(208, 135, 112, 0.05); cursor: pointer; }
+.vsb-tool .schedule-image {
+  width: 92%;
+  flex: 1 1 0;
+  min-height: 0;
+  object-fit: contain;
+  border-radius: var(--vsb-radius-sm);
+  margin-bottom: 6px;
+  background: #f7f7f5;
+}
+.vsb-tool .ph {
+  width: 92%;
+  flex: 1 1 0;
+  min-height: 40px;
+  aspect-ratio: auto;
+  border-radius: var(--vsb-radius-sm);
+  background: linear-gradient(135deg, #EEEDEA, #E3E1DC);
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  color: var(--vsb-gray);
+}
+.vsb-tool .schedule-title {
+  font-weight: 600;
+  color: var(--vsb-charcoal);
+  font-size: 0.85rem;
+  line-height: 1.25;
+  max-width: 96%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.vsb-tool .schedule-notes {
+  font-size: 0.75rem;
+  color: var(--vsb-gray);
+  margin-top: 3px;
+  max-width: 96%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* ===== Link tabs ===== */
+.vsb-tool .link-tabs {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 0;
+  z-index: 10;
+  border-radius: 0 0 var(--vsb-radius) var(--vsb-radius);
+  overflow: hidden;
+}
+.vsb-tool .link-tab {
+  flex: 1;
+  background: var(--vsb-teal);
+  color: #fff;
+  padding: 6px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.vsb-tool .link-tab:hover { filter: brightness(1.12); }
+.vsb-tool .link-tab:not(:last-child) { border-right: 1px solid rgba(255, 255, 255, 0.25); }
+.vsb-tool .link-tab:nth-child(2) { background: var(--vsb-teal-dark); }
+.vsb-tool .link-tab:nth-child(3) { background: #B8852B; }
+.vsb-tool .link-tab:nth-child(4) { background: #C2185B; }
+.vsb-tool .link-tab:nth-child(5) { background: #6D3FC4; }
+
+/* ===== Fullscreen preview ===== */
+.vsb-tool .fullscreen-preview {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #1b1b1a;
+  display: none;
+  flex-direction: column;
+}
+.vsb-tool .fullscreen-preview.show { display: flex; }
+.vsb-tool .fullscreen-preview-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: rgba(27, 27, 26, 0.95);
+  flex: 0 0 auto;
+  z-index: 2;
+}
+.vsb-tool .fullscreen-preview-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+.vsb-tool .fullscreen-preview-toolbar .vsb-btn.ghost {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: transparent;
+  color: rgba(255, 255, 255, 0.92);
+}
+.vsb-tool .fullscreen-preview-toolbar .vsb-btn.ghost:hover { background: rgba(255, 255, 255, 0.22); color: #fff; }
+.vsb-tool .fullscreen-preview-stage {
+  flex: 1 1 auto;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  min-height: 0;
+}
+.vsb-tool .fullscreen-preview-screen {
+  --stone: #e5e7eb;
+  width: min(calc(100vw - 40px), calc((100vh - 80px) * (16 / 9)));
+  height: min(calc(100vh - 80px), calc((100vw - 40px) * (9 / 16)));
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.vsb-tool .fullscreen-preview-screen .fp-grid {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.vsb-tool .fullscreen-preview-screen .schedule-item { background: #f8faf9; border: 2px solid var(--stone); box-shadow: none; }
+.vsb-tool .fullscreen-preview-screen .schedule-item.has-link { border-color: var(--vsb-teal); }
+.vsb-tool .fullscreen-preview-screen .schedule-item.has-overlay { border-color: #D08770; }
+.vsb-tool .fullscreen-preview-screen .schedule-image { border: 2px solid var(--stone); background: #fff; }
+.vsb-tool .fullscreen-preview-screen .schedule-title { font-size: clamp(10px, 1.8vmin, 16px); line-height: 1.15; }
+.vsb-tool .fullscreen-preview-screen .schedule-notes { font-size: clamp(9px, 1.6vmin, 14px); margin-top: 2px; }
+
+/* ===== Media overlay ===== */
+.vsb-tool .overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1010;
+}
+.vsb-tool .overlay.show { display: flex; }
+.vsb-tool .overlay .backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 44, 42, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+.vsb-tool .overlay .panel {
+  position: relative;
+  background: var(--vsb-card);
+  border-radius: var(--vsb-radius);
+  max-width: 98vw;
+  max-height: 98vh;
+  width: min(720px, 96vw);
+  padding: 1.1rem;
+  box-shadow: 0 40px 70px rgba(44, 44, 42, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+.vsb-tool .overlay .close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: 1px solid var(--vsb-border);
+  background: var(--vsb-bg);
+  border-radius: var(--vsb-radius-sm);
+  padding: 5px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--vsb-charcoal);
+  font-weight: 600;
+  font-size: 0.8rem;
+  transition: all 0.15s;
+  z-index: 5;
+}
+.vsb-tool .overlay .close:hover { background: var(--vsb-tint); border-color: var(--vsb-teal); color: var(--vsb-teal); }
+.vsb-tool .overlay .panel h3 { margin: 0 0 10px; color: var(--vsb-charcoal); }
+.vsb-tool .overlay .panel .toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.vsb-tool .overlay .panel .toolbar .title { font-weight: 600; color: var(--vsb-charcoal); padding-right: 80px; }
+.vsb-tool .overlay .panel .content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.vsb-tool .overlay .panel img { width: 100%; height: auto; display: block; margin: 0 auto; }
+.vsb-tool .overlay .panel video { width: 100%; height: auto; }
+.vsb-tool .overlay .panel audio { width: 100%; }
+.vsb-tool .overlay .panel .resizer {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: rgba(44, 44, 42, 0.08);
+  cursor: se-resize;
+  display: grid;
+  place-items: center;
+  z-index: 999;
+}
+
+/* ===== Print ===== */
+@media print {
+  .site-header, .site-footer, .no-print,
+  .vsb-tool .action-toolbar,
+  .vsb-tool .sequence-panel,
+  .vsb-tool .resize-handle,
+  .vsb-tool .sequence-controls { display: none !important; }
+  .vsb-tool { padding: 0; }
+  .vsb-tool .vsb-content-grid { display: block; height: auto; }
+  .vsb-tool .preview-panel { border: none; box-shadow: none; padding: 0; overflow: visible; }
+  .vsb-tool .preview-scroll { overflow: visible; }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1100px) {
+  .vsb-tool .vsb-content-grid { display: block; height: auto; }
+  .vsb-tool .resize-handle { display: none; }
+  .vsb-tool .sequence-panel { overflow: visible; }
+  .vsb-tool .sequence-scroll { overflow: visible; padding-right: 0; }
+  .vsb-tool .preview-panel { margin-top: 16px; }
+  .vsb-tool .preview-scroll { max-height: 70vh; }
+}
+@media (max-width: 820px) {
+  .vsb-tool .activity-body { grid-template-columns: 1fr; }
+  .vsb-tool .activity-body > div:first-child {
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid var(--vsb-border);
+    padding-bottom: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .vsb-tool { padding: 0.75rem 12px 40px; }
+  .vsb-tool .control-row { flex-direction: column; align-items: stretch; }
+  .vsb-tool .control-row > div { min-width: 0; }
+}
+</style>
+{{ end }}
+
+{{ define "main" }}
+<div class="vsb-tool">
+
+  <div class="action-toolbar no-print">
+    <button class="vsb-btn" onclick="addActivity()">+ Add activity</button>
+    <button class="vsb-btn ghost" onclick="openFullscreenPreview()">Fullscreen preview</button>
+    <button class="vsb-btn ghost" onclick="exportStatic()">&#8595; Save schedule</button>
+    <button class="vsb-btn ghost" onclick="document.getElementById('importFile').click()">Open saved</button>
+    <span id="exportStatus" class="pill" style="display:none"></span>
+  </div>
+  <input id="importFile" type="file" accept=".html,text/html" style="display:none" onchange="handleImportFile(event)">
+
+  <div class="vsb-content-grid">
+
+    <section class="sequence-panel">
+      <div class="panel-header">
+        <h2>Lesson sequence</h2>
+        <div class="panel-header-tools">
+          <button class="vsb-btn ghost small" onclick="expandAllActivities()" title="Expand all">Expand all</button>
+          <button class="vsb-btn ghost small" onclick="collapseAllActivities()" title="Collapse all">Collapse all</button>
+          <span class="activity-count" id="activityCount">0 activities</span>
+        </div>
+      </div>
+      <div class="sequence-scroll">
+        <div id="editor"></div>
+        <div class="add-activity-card" onclick="addActivity()">
+          <div class="add-icon">+</div>
+          <div class="add-label">Add new activity</div>
+          <div class="add-sublabel">Build your lesson one activity at a time</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="resize-handle" id="resizeHandle" title="Drag to resize panels"></div>
+
+    <section class="preview-panel">
+      <div class="panel-header">
+        <h2>Live preview</h2>
+      </div>
+
+      <details class="sequence-controls" open>
+        <summary>Setup and export options</summary>
+        <div class="sequence-controls-inner">
+          <div class="control-row">
+            <div>
+              <label for="lessonTitle">Title</label>
+              <input id="lessonTitle" type="text" placeholder="e.g., Grade 3, week 4" oninput="queueRender()">
+            </div>
+            <div>
+              <label for="lessonSubtitle">Subtitle (optional)</label>
+              <input id="lessonSubtitle" type="text" placeholder="Date, class, or topic" oninput="queueRender()">
+            </div>
+            <label class="pill" style="gap:10px;cursor:pointer" title="Choose how many activities appear in each row">
+              Activities per row
+              <select id="forceCols" onchange="queueRender()" style="margin-left:6px">
+                <option value="auto" selected>Auto</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+              </select>
+            </label>
+          </div>
+          <div class="control-row">
+            <div class="control-inline">
+              <label for="headerColor">Header</label>
+              <input id="headerColor" type="color" value="#0F6E56" oninput="queueRender()">
+              <input id="headerColorEnd" type="color" value="#085041" oninput="queueRender()" title="Gradient end color">
+              <label style="font-size:12px;display:flex;align-items:center;gap:4px;cursor:pointer;margin:0" title="Make header transparent">
+                <input id="headerTransparent" type="checkbox" onchange="queueRender()"> None
+              </label>
+            </div>
+            <div class="control-inline">
+              <label for="headerTextColor">Text</label>
+              <input id="headerTextColor" type="color" value="#ffffff" oninput="queueRender()">
+            </div>
+            <div class="control-inline">
+              <label style="margin:0">Background</label>
+              <button class="vsb-btn ghost small" onclick="document.getElementById('bgImageInput').click()">Choose image</button>
+              <button class="vsb-btn ghost small" onclick="clearBgImage()" id="bgImageClear" style="display:none">Clear</button>
+              <input id="bgImageInput" type="file" accept="image/*" onchange="handleBgImage(event)" style="display:none">
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <div class="preview-scroll">
+        <div id="preview" class="visual-schedule"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Fullscreen preview overlay -->
+  <div id="fullscreenPreview" class="fullscreen-preview no-print" aria-hidden="true">
+    <div class="fullscreen-preview-toolbar">
+      <span class="fullscreen-preview-title" id="fpTitle">Preview</span>
+      <button class="vsb-btn ghost small" onclick="closeFullscreenPreview()">Close preview</button>
+    </div>
+    <div class="fullscreen-preview-stage">
+      <div class="fullscreen-preview-screen" id="fpScreen"></div>
+    </div>
+  </div>
+
+  <!-- Media popup overlay -->
+  <div id="builderOverlay" class="overlay no-print" aria-hidden="true">
+    <div class="backdrop" onclick="closeBuilderOverlay()"></div>
+    <div class="panel">
+      <button class="close" onclick="closeBuilderOverlay()">Close</button>
+    </div>
+  </div>
+
+</div><!-- /.vsb-tool -->
+
+<script>
+    // --- IndexedDB Wrapper for Media Storage ---
+    const db = (() => {
+      let dbInstance = null;
+      const DB_NAME = 'mtimVisualScheduleDB';
+      const STORE_NAME = 'mediaStore';
+
+      async function init() {
+        if (dbInstance) return dbInstance;
+        return new Promise((resolve, reject) => {
+          const request = indexedDB.open(DB_NAME, 1);
+          request.onerror = () => reject(
+            "Error: Could not open IndexedDB. Your browser might be in private/incognito mode, " +
+            "has disabled IndexedDB, or doesn't support it. Media storage will not work. " +
+            "Please use a regular browser window to use this application."
+          );
+          request.onsuccess = () => {
+            dbInstance = request.result;
+            resolve(dbInstance);
+          };
+          request.onupgradeneeded = event => {
+            const db = event.target.result;
+            db.createObjectStore(STORE_NAME, { autoIncrement: true });
+          };
+        });
+      }
+
+      async function add(blob) {
+        const db = await init();
+        return new Promise((resolve, reject) => {
+          const transaction = db.transaction(STORE_NAME, 'readwrite');
+          const store = transaction.objectStore(STORE_NAME);
+          const request = store.add(blob);
+          request.onerror = () => reject("Failed to add media to local DB.");
+          request.onsuccess = () => resolve(request.result); // Returns the new key
+        });
+      }
+
+      async function get(key) {
+        const db = await init();
+        return new Promise((resolve, reject) => {
+          const transaction = db.transaction(STORE_NAME, 'readonly');
+          const store = transaction.objectStore(STORE_NAME);
+          const request = store.get(key);
+          request.onerror = () => reject("Failed to get media from local DB.");
+          request.onsuccess = () => resolve(request.result || null);
+        });
+      }
+
+      async function remove(key) {
+        if (typeof key !== 'number') return;
+        const db = await init();
+        return new Promise((resolve, reject) => {
+          const transaction = db.transaction(STORE_NAME, 'readwrite');
+          const store = transaction.objectStore(STORE_NAME);
+          const request = store.delete(key);
+          request.onerror = () => reject("Failed to delete media from local DB.");
+          request.onsuccess = () => resolve();
+        });
+      }
+
+      async function getAllKeys() {
+        const db = await init();
+        return new Promise((resolve, reject) => {
+          const transaction = db.transaction(STORE_NAME, 'readonly');
+          const store = transaction.objectStore(STORE_NAME);
+          const request = store.getAllKeys();
+          request.onerror = () => reject("Failed to get keys from database");
+          request.onsuccess = () => resolve(request.result || []);
+        });
+      }
+
+      init().catch(err => { console.error(err); alert(err); });
+      return { add, get, remove, getAllKeys };
+    })();
+
+    async function cleanupOrphanedMedia() {
+      try {
+        const usedKeys = new Set();
+        activities.forEach(a => {
+          if (a.media?.dbKey) usedKeys.add(a.media.dbKey);
+          if (a.overlay?.image?.dbKey) usedKeys.add(a.overlay.image.dbKey);
+          if (a.overlay?.audio?.dbKey) usedKeys.add(a.overlay.audio.dbKey);
+          if (Array.isArray(a.overlay?.images)) {
+            a.overlay.images.forEach(img => { if (img?.dbKey) usedKeys.add(img.dbKey); });
+          }
+          // Legacy support for old overlay format
+          if (a.overlay?.dbKey) usedKeys.add(a.overlay.dbKey);
+        });
+
+        const allKeys = await db.getAllKeys();
+        for (const key of allKeys) {
+          if (!usedKeys.has(key)) {
+            await db.remove(key);
+            console.log(`Cleaned up orphaned media with key: ${key}`);
+          }
+        }
+      } catch (e) {
+        console.error('Failed to cleanup orphaned media:', e);
+      }
+    }
+    window.addEventListener('load', () => {
+      setTimeout(cleanupOrphanedMedia, 2000); // Run after 2 seconds
+    });
+
+    // --- Core Application State & Logic ---
+    // Activity model: { id, title, notes, media, action, link, links, overlay }
+    // media: { kind, dbKey, name }
+    // links: [{label: string, url: string}] - for multiple link tabs
+    // overlay: { image: {kind, dbKey, name} | null, images: [{kind, dbKey, name}], audio: {dbKey, name} | null }
+    const activities = [];
+    const collapsedActivities = new Set();
+    let uid = 0;
+    const DRAFT_KEY = 'mtim_visual_schedule_draft';
+    let draftSaveTimeout = null;
+
+    // Theming state
+    let bgImageDataUrl = null;
+
+    function getTheme() {
+      const transparent = document.getElementById('headerTransparent').checked;
+      return {
+        headerColor: document.getElementById('headerColor').value,
+        headerColorEnd: document.getElementById('headerColorEnd').value,
+        headerTransparent: transparent,
+        headerTextColor: document.getElementById('headerTextColor').value,
+        bgImage: bgImageDataUrl
+      };
+    }
+
+    function handleBgImage(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(ev) {
+        bgImageDataUrl = ev.target.result;
+        document.getElementById('bgImageClear').style.display = '';
+        queueRender();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearBgImage() {
+      bgImageDataUrl = null;
+      document.getElementById('bgImageInput').value = '';
+      document.getElementById('bgImageClear').style.display = 'none';
+      queueRender();
+    }
+
+    function applyThemeToHeader(el, theme) {
+      if (theme.headerTransparent) {
+        el.style.background = 'transparent';
+        el.style.color = theme.headerTextColor;
+      } else {
+        el.style.background = 'linear-gradient(135deg, ' + theme.headerColor + ', ' + theme.headerColorEnd + ')';
+        el.style.color = theme.headerTextColor;
+      }
+    }
+
+    function applyThemeToScreen(el, theme) {
+      if (theme.bgImage) {
+        el.style.backgroundImage = 'url(' + theme.bgImage + ')';
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center';
+      } else {
+        el.style.backgroundImage = '';
+        el.style.backgroundSize = '';
+        el.style.backgroundPosition = '';
+      }
+    }
+
+    function getDraftPayload() {
+      return {
+        lessonTitle: (document.getElementById('lessonTitle')?.value || ''),
+        lessonSubtitle: (document.getElementById('lessonSubtitle')?.value || ''),
+        forceCols: (document.getElementById('forceCols')?.value || 'auto'),
+        activities,
+        theme: {
+          headerColor: document.getElementById('headerColor')?.value || '#0F6E56',
+          headerColorEnd: document.getElementById('headerColorEnd')?.value || '#085041',
+          headerTransparent: document.getElementById('headerTransparent')?.checked || false,
+          headerTextColor: document.getElementById('headerTextColor')?.value || '#ffffff',
+          bgImage: bgImageDataUrl
+        }
+      };
+    }
+
+    function saveDraftNow() {
+      try {
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(getDraftPayload()));
+      } catch (e) {
+        console.warn('Failed to save draft:', e);
+      }
+    }
+
+    function queueDraftSave() {
+      if (draftSaveTimeout) clearTimeout(draftSaveTimeout);
+      draftSaveTimeout = setTimeout(saveDraftNow, 250);
+    }
+    window.addEventListener('beforeunload', saveDraftNow);
+
+    async function restoreDraftIfAvailable() {
+      let payload = null;
+      try {
+        const raw = localStorage.getItem(DRAFT_KEY);
+        if (!raw) return;
+        payload = JSON.parse(raw);
+      } catch (e) {
+        console.warn('Failed to parse draft:', e);
+        return;
+      }
+      if (!payload || !Array.isArray(payload.activities) || !payload.activities.length) return;
+      if (!confirm('Restore your last unsaved schedule draft?')) return;
+
+      const lessonTitle = document.getElementById('lessonTitle');
+      const lessonSubtitle = document.getElementById('lessonSubtitle');
+      const forceCols = document.getElementById('forceCols');
+
+      if (lessonTitle) lessonTitle.value = payload.lessonTitle || '';
+      if (lessonSubtitle) lessonSubtitle.value = payload.lessonSubtitle || '';
+      if (forceCols && payload.forceCols) forceCols.value = payload.forceCols;
+
+      // Restore theme
+      if (payload.theme) {
+        const t = payload.theme;
+        if (t.headerColor) document.getElementById('headerColor').value = t.headerColor;
+        if (t.headerColorEnd) document.getElementById('headerColorEnd').value = t.headerColorEnd;
+        if (t.headerTextColor) document.getElementById('headerTextColor').value = t.headerTextColor;
+        document.getElementById('headerTransparent').checked = !!t.headerTransparent;
+        if (t.bgImage) {
+          bgImageDataUrl = t.bgImage;
+          document.getElementById('bgImageClear').style.display = '';
+        }
+      }
+
+      activities.length = 0;
+      payload.activities.forEach(a => {
+        const normalized = Object.assign({
+          id: ++uid,
+          title: '',
+          notes: '',
+          link: '',
+          links: [],
+          media: null,
+          action: 'none',
+          overlay: { image: null, images: [], audio: null }
+        }, a || {});
+        if (!Array.isArray(normalized.links)) normalized.links = [];
+        normalized.overlay = Object.assign({ image: null, images: [], audio: null }, normalized.overlay || {});
+        if (!Array.isArray(normalized.overlay.images)) normalized.overlay.images = [];
+        activities.push(normalized);
+      });
+      uid = activities.reduce((m, a) => Math.max(m, Number(a.id) || 0), 0);
+      await renderEditor();
+      await renderPreview();
+    }
+
+    async function addActivity(data) {
+      const a = Object.assign({
+        id: ++uid,
+        title: '',
+        notes: '',
+        link: '',
+        links: [], // Array of {label, url} for multi-link tabs
+        media: null,
+        action: 'none',
+        overlay: { image: null, images: [], audio: null }
+      }, data || {});
+      // Collapse all others, expand the new one (accordion)
+      activities.forEach(act => collapsedActivities.add(act.id));
+      activities.push(a);
+      // New activity is not in collapsedActivities, so it will be expanded
+      await renderEditor();
+      await renderPreview();
+      queueDraftSave();
+    }
+
+    async function removeActivity(id) {
+      const i = activities.findIndex(x => x.id === id);
+      if (i > -1) {
+        const activity = activities[i];
+        try {
+          if (activity.media?.dbKey) await db.remove(activity.media.dbKey);
+          if (activity.overlay?.image?.dbKey) await db.remove(activity.overlay.image.dbKey);
+          if (activity.overlay?.audio?.dbKey) await db.remove(activity.overlay.audio.dbKey);
+          if (Array.isArray(activity.overlay?.images)) {
+            await Promise.all(activity.overlay.images.map(img => img?.dbKey ? db.remove(img.dbKey).catch(() => { }) : Promise.resolve()));
+          }
+          // Legacy support
+          if (activity.overlay?.dbKey) await db.remove(activity.overlay.dbKey);
+        } catch (e) {
+          console.error('Failed to remove media from database:', e);
+          // Continue with removal anyway - don't block UI
+        }
+        activities.splice(i, 1);
+        await renderEditor().catch(console.error);
+        await renderPreview().catch(console.error);
+        queueDraftSave();
+      }
+    }
+
+    /* Drag-and-drop reordering for activity cards */
+    let dragActivityId = null;
+    let dragActivityEl = null;
+    let dragIndicator = null;
+    let dragTargetId = null;
+    let dragInsertBefore = false;
+
+    function startActivityDrag(evt, id) {
+      evt.stopPropagation(); // prevent header click (collapse toggle)
+      evt.preventDefault();
+
+      const activityEl = evt.target.closest('.activity');
+      if (!activityEl) return;
+
+      dragActivityId = id;
+      dragActivityEl = activityEl;
+      activityEl.classList.add('dragging');
+
+      const isTouch = evt.type === 'touchstart';
+      const startY = isTouch ? evt.touches[0].clientY : evt.clientY;
+
+      function onMove(e) {
+        const y = e.touches ? e.touches[0].clientY : e.clientY;
+        // Find which activity card we're over
+        const editor = document.getElementById('editor');
+        const cards = Array.from(editor.querySelectorAll('.activity:not(.dragging)'));
+
+        // Remove old indicator
+        if (dragIndicator && dragIndicator.parentNode) {
+          dragIndicator.parentNode.removeChild(dragIndicator);
+          dragIndicator = null;
+        }
+        dragTargetId = null;
+
+        for (const card of cards) {
+          const rect = card.getBoundingClientRect();
+          const midY = rect.top + rect.height / 2;
+          if (y >= rect.top && y <= rect.bottom) {
+            dragTargetId = parseInt(card.getAttribute('data-id'));
+            dragInsertBefore = y < midY;
+
+            // Create drop indicator
+            dragIndicator = document.createElement('div');
+            dragIndicator.className = 'activity-drop-indicator';
+            if (dragInsertBefore) {
+              card.parentNode.insertBefore(dragIndicator, card);
+            } else {
+              card.parentNode.insertBefore(dragIndicator, card.nextSibling);
+            }
+            break;
+          }
+        }
+      }
+
+      async function onEnd(e) {
+        if (isTouch) {
+          document.removeEventListener('touchmove', onMove);
+          document.removeEventListener('touchend', onEnd);
+          document.removeEventListener('touchcancel', onEnd);
+        } else {
+          document.removeEventListener('mousemove', onMove);
+          document.removeEventListener('mouseup', onEnd);
+        }
+
+        if (dragIndicator && dragIndicator.parentNode) {
+          dragIndicator.parentNode.removeChild(dragIndicator);
+          dragIndicator = null;
+        }
+
+        if (dragActivityEl) {
+          dragActivityEl.classList.remove('dragging');
+        }
+
+        if (dragTargetId !== null && dragTargetId !== dragActivityId) {
+          const fromIdx = activities.findIndex(x => x.id === dragActivityId);
+          const toIdx = activities.findIndex(x => x.id === dragTargetId);
+          if (fromIdx >= 0 && toIdx >= 0) {
+            const [moved] = activities.splice(fromIdx, 1);
+            let insertIdx = activities.findIndex(x => x.id === dragTargetId);
+            if (!dragInsertBefore) insertIdx++;
+            activities.splice(insertIdx, 0, moved);
+            await renderEditor().catch(console.error);
+            await renderPreview().catch(console.error);
+            queueDraftSave();
+          }
+        }
+
+        dragActivityId = null;
+        dragActivityEl = null;
+        dragTargetId = null;
+      }
+
+      if (isTouch) {
+        document.addEventListener('touchmove', onMove, { passive: false });
+        document.addEventListener('touchend', onEnd);
+        document.addEventListener('touchcancel', onEnd);
+      } else {
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onEnd);
+      }
+    }
+    window.startActivityDrag = startActivityDrag;
+
+    async function moveActivity(id, dir) {
+      const i = activities.findIndex(x => x.id === id);
+      if (i < 0) return;
+      const j = i + (dir === 'up' ? -1 : 1);
+      if (j < 0 || j >= activities.length) return;
+      const tmp = activities[i]; activities[i] = activities[j]; activities[j] = tmp;
+      await renderEditor().catch(console.error);
+      await renderPreview().catch(console.error);
+      queueDraftSave();
+    }
+
+    async function cloneMediaRef(mediaRef, fallbackKind) {
+      if (!mediaRef?.dbKey) return null;
+      const blob = await db.get(mediaRef.dbKey);
+      if (!blob) return null;
+      const dbKey = await db.add(blob);
+      return {
+        kind: mediaRef.kind || fallbackKind || 'image',
+        dbKey,
+        name: mediaRef.name || ''
+      };
+    }
+
+    async function duplicateActivity(id) {
+      const item = activities.find(x => x.id === id);
+      if (!item) return;
+      const copy = {
+        title: item.title ? (item.title + ' (Copy)') : '',
+        notes: item.notes || '',
+        link: item.link || '',
+        links: Array.isArray(item.links) ? item.links.map(l => ({ label: l.label || '', url: l.url || '' })) : [],
+        media: await cloneMediaRef(item.media, 'image'),
+        action: item.action || 'none',
+        overlay: {
+          image: await cloneMediaRef(item.overlay?.image, 'image'),
+          images: [],
+          audio: await cloneMediaRef(item.overlay?.audio, 'audio')
+        }
+      };
+      if (Array.isArray(item.overlay?.images)) {
+        copy.overlay.images = (await Promise.all(item.overlay.images.map(img => cloneMediaRef(img, 'image')))).filter(Boolean);
+      }
+      await addActivity(copy);
+    }
+
+    async function handleMediaInput(id, file, kindKey) {
+      if (!file) return;
+      try {
+        const item = activities.find(x => x.id === id);
+        if (!item) return;
+
+        const type = file.type;
+        let kind = 'image';
+        if (type.startsWith('audio/')) kind = 'audio';
+        else if (type.startsWith('video/')) kind = 'video';
+        else if (!type.startsWith('image/')) { alert('Unsupported file type. Use image, audio, or video.'); return; }
+
+        const dbKey = await db.add(file);
+        const blobRef = { kind, dbKey, name: file.name };
+
+        if (kindKey === 'overlay-image') {
+          // Overlay image/video
+          if (!item.overlay) item.overlay = { image: null, images: [], audio: null };
+          if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
+          if (item.overlay.image?.dbKey) await db.remove(item.overlay.image.dbKey);
+          item.overlay.image = { kind, dbKey, name: file.name };
+          if (item.action !== 'overlay') item.action = 'overlay';
+        } else if (kindKey === 'overlay-audio') {
+          // Overlay audio
+          if (!item.overlay) item.overlay = { image: null, images: [], audio: null };
+          if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
+          if (item.overlay.audio?.dbKey) await db.remove(item.overlay.audio.dbKey);
+          item.overlay.audio = { dbKey, name: file.name };
+          if (item.action !== 'overlay') item.action = 'overlay';
+        } else {
+          // Primary media for tile
+          if (item.media?.dbKey) await db.remove(item.media.dbKey);
+          item.media = blobRef;
+        }
+
+        await renderEditor();
+        await renderPreview();
+        queueDraftSave();
+      } catch (e) {
+        alert('Error saving media: ' + e.message);
+        console.error(e);
+      }
+    }
+
+    async function handleOverlaySlidesInput(id, fileList) {
+      const files = Array.from(fileList || []);
+      if (!files.length) return;
+      const item = activities.find(x => x.id === id);
+      if (!item) return;
+      if (!item.overlay) item.overlay = { image: null, images: [], audio: null };
+      if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
+
+      try {
+        for (const file of files) {
+          if (!file?.type?.startsWith('image/')) continue;
+          const dbKey = await db.add(file);
+          item.overlay.images.push({ kind: 'image', dbKey, name: file.name || '' });
+        }
+        if (item.overlay.images.length && item.action !== 'overlay') item.action = 'overlay';
+        await renderEditor().catch(console.error);
+        await renderPreview().catch(console.error);
+        queueDraftSave();
+      } catch (e) {
+        alert('Error saving slideshow images: ' + e.message);
+        console.error(e);
+      }
+    }
+
+    async function removeOverlaySlide(id, idx) {
+      const item = activities.find(x => x.id === id);
+      if (!item || !Array.isArray(item.overlay?.images) || idx < 0 || idx >= item.overlay.images.length) return;
+      const slide = item.overlay.images[idx];
+      try {
+        if (slide?.dbKey) await db.remove(slide.dbKey);
+      } catch (e) {
+        console.error('Failed to remove slideshow image:', e);
+      }
+      item.overlay.images.splice(idx, 1);
+      if (item.action === 'overlay' && !item.overlay.image && !item.overlay.audio && !item.overlay.images.length) {
+        item.action = 'none';
+      }
+      await renderEditor().catch(console.error);
+      await renderPreview().catch(console.error);
+      queueDraftSave();
+    }
+
+    async function clearOverlaySlides(id) {
+      const item = activities.find(x => x.id === id);
+      if (!item || !Array.isArray(item.overlay?.images) || !item.overlay.images.length) return;
+      try {
+        await Promise.all(item.overlay.images.map(s => s?.dbKey ? db.remove(s.dbKey).catch(() => { }) : Promise.resolve()));
+      } catch (e) {
+        console.error('Failed to clear slideshow images:', e);
+      }
+      item.overlay.images = [];
+      if (item.action === 'overlay' && !item.overlay.image && !item.overlay.audio) item.action = 'none';
+      await renderEditor().catch(console.error);
+      await renderPreview().catch(console.error);
+      queueDraftSave();
+    }
+
+    async function clearMedia(id, kindKey) {
+      const item = activities.find(x => x.id === id);
+      if (!item) return;
+
+      try {
+        if (kindKey === 'overlay-image') {
+          if (!item.overlay) item.overlay = { image: null, images: [], audio: null };
+          if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
+          if (item.overlay?.image?.dbKey) await db.remove(item.overlay.image.dbKey);
+          if (item.overlay) item.overlay.image = null;
+          // If both overlay parts are empty, reset action
+          if (item.overlay && !item.overlay.image && !item.overlay.audio && !item.overlay.images.length && item.action === 'overlay') {
+            item.action = 'none';
+          }
+        } else if (kindKey === 'overlay-audio') {
+          if (!item.overlay) item.overlay = { image: null, images: [], audio: null };
+          if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
+          if (item.overlay?.audio?.dbKey) await db.remove(item.overlay.audio.dbKey);
+          if (item.overlay) item.overlay.audio = null;
+          // If both overlay parts are empty, reset action
+          if (item.overlay && !item.overlay.image && !item.overlay.audio && !item.overlay.images.length && item.action === 'overlay') {
+            item.action = 'none';
+          }
+        } else {
+          // Primary media
+          if (item.media?.dbKey) await db.remove(item.media.dbKey);
+          item.media = null;
+        }
+      } catch (e) {
+        console.error('Failed to remove media from database:', e);
+      }
+
+      await renderEditor().catch(console.error);
+      await renderPreview().catch(console.error);
+      queueDraftSave();
+    }
+
+    function toggleActivityCollapse(id) {
+      const wasCollapsed = collapsedActivities.has(id);
+      // Collapse all activities first
+      activities.forEach(a => collapsedActivities.add(a.id));
+      document.querySelectorAll('.activity').forEach(el => el.classList.add('collapsed'));
+      // If it was collapsed, expand just this one (accordion behavior)
+      if (wasCollapsed) {
+        collapsedActivities.delete(id);
+        const actEl = document.querySelector('.activity[data-id="' + id + '"]');
+        if (actEl) actEl.classList.remove('collapsed');
+      }
+    }
+
+    function collapseAllActivities() {
+      activities.forEach(a => collapsedActivities.add(a.id));
+      renderEditor().catch(console.error);
+    }
+
+    function expandAllActivities() {
+      collapsedActivities.clear();
+      renderEditor().catch(console.error);
+    }
+
+    async function updateField(id, key, val) {
+      const item = activities.find(x => x.id === id);
+      if (!item) return;
+      item[key] = val;
+      // Update the header title in real-time without full re-render
+      const actEl = document.querySelector('.activity[data-id="' + id + '"]');
+      if (actEl && key === 'title') {
+        const headerTitle = actEl.querySelector('.activity-header-title');
+        if (headerTitle) {
+          headerTitle.textContent = val || 'Untitled activity';
+          headerTitle.classList.toggle('empty', !val);
+        }
+      }
+      await renderPreview().catch(console.error);
+      queueDraftSave();
+    }
+
+    async function setAction(id, val) {
+      const item = activities.find(x => x.id === id);
+      if (!item) return;
+      item.action = val;
+      await renderEditor().catch(console.error);
+      await renderPreview().catch(console.error);
+      queueDraftSave();
+    }
+
+    function addLinkTab(id) {
+      const item = activities.find(x => x.id === id);
+      if (!item) return;
+      if (!item.links) item.links = [];
+      item.links.push({ label: '', url: '' });
+      renderEditor().catch(console.error);
+      queueDraftSave();
+    }
+
+    function removeLinkTab(id, idx) {
+      const item = activities.find(x => x.id === id);
+      if (!item || !item.links) return;
+      item.links.splice(idx, 1);
+      renderEditor().catch(console.error);
+      renderPreview().catch(console.error);
+      queueDraftSave();
+    }
+
+    function updateLinkTab(id, idx, field, value) {
+      const item = activities.find(x => x.id === id);
+      if (!item || !item.links || !item.links[idx]) return;
+      item.links[idx][field] = value;
+      queueRender();
+      queueDraftSave();
+    }
+
+    // --- Rendering & UI Updates ---
+    const editorUrls = [];
+    const previewUrls = [];
+    let renderTimeout;
+
+    function queueRender() {
+      if (renderTimeout) clearTimeout(renderTimeout);
+      renderTimeout = setTimeout(() => {
+        renderPreview().catch(console.error);
+      }, 100);
+      queueDraftSave();
+    }
+
+    async function populateMediaSrc(container, urlList) {
+      const mediaElements = container.querySelectorAll('[data-db-key]');
+      const promises = Array.from(mediaElements).map(async el => {
+        const key = parseInt(el.dataset.dbKey, 10);
+        if (isNaN(key)) return;
+        try {
+          const blob = await db.get(key);
+          if (blob) {
+            const url = URL.createObjectURL(blob);
+            urlList.push(url);
+
+            // Wait for image to load before resolving
+            if (el.tagName === 'IMG') {
+              await new Promise((resolve) => {
+                el.onload = resolve;
+                el.onerror = () => {
+                  console.warn(`Failed to load image from blob key ${key}`);
+                  resolve(); // Don't fail the whole operation
+                };
+                el.src = url;
+              });
+            } else {
+              el.src = url;
+              if (el.tagName === 'AUDIO' || el.tagName === 'VIDEO') el.load();
+            }
+          } else {
+            console.warn(`Media blob not found in DB for key: ${key}`);
+          }
+        } catch (e) {
+          console.error(`Failed to load media for key ${key}:`, e);
+        }
+      });
+      await Promise.all(promises);
+    }
+
+    function updateStats() {
+      const countEl = document.getElementById('activityCount');
+      if (countEl) countEl.textContent = activities.length + ' activit' + (activities.length === 1 ? 'y' : 'ies');
+    }
+
+    async function renderEditor() {
+      updateStats();
+      editorUrls.forEach(URL.revokeObjectURL);
+      editorUrls.length = 0;
+
+      const el = document.getElementById('editor');
+      if (!activities.length) {
+        el.innerHTML = '<p style="color:var(--on-surface-variant);font-size:14px;text-align:center;padding:var(--space-6) var(--space-4)">No activities yet. Click <strong>+ Add activity</strong> to get started.</p>';
+        return;
+      }
+      el.innerHTML = activities.map((a, idx) => {
+        const isCollapsed = collapsedActivities.has(a.id);
+        const headerTitle = a.title || 'Untitled activity';
+        const actionLabel = a.action === 'link' ? 'Link' : a.action === 'overlay' ? 'Overlay' : '';
+        const thumbHtml = a.media?.dbKey
+          ? '<img class="activity-header-thumb" data-db-key="' + a.media.dbKey + '" src="" alt="">'
+          : '<div class="activity-header-thumb-ph"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>';
+        return [
+          '<div class="activity' + (isCollapsed ? ' collapsed' : '') + '" data-id="' + a.id + '">',
+          '<div class="activity-header" onclick="toggleActivityCollapse(' + a.id + ')">',
+          '<div class="activity-drag-handle" onmousedown="startActivityDrag(event, ' + a.id + ')" ontouchstart="startActivityDrag(event, ' + a.id + ')" onclick="event.stopPropagation()" title="Drag to reorder"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="9" cy="5" r="2"/><circle cx="15" cy="5" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="9" cy="19" r="2"/><circle cx="15" cy="19" r="2"/></svg></div>',
+          '<div class="activity-collapse-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div>',
+          '<div class="icon">' + (idx + 1) + '</div>',
+          '<div class="activity-header-title' + (a.title ? '' : ' empty') + '">' + escapeHtml(headerTitle) + '</div>',
+          (actionLabel ? '<span class="activity-header-meta">' + actionLabel + '</span>' : ''),
+          thumbHtml,
+          '</div>',
+          '<div class="activity-body">',
+          '<div>',
+          '<div class="act-head">',
+          '<div class="icon">' + (idx + 1) + '</div>',
+          '<input type="text" placeholder="Activity name (e.g., Warm-up song)" value="' + escapeHtml(a.title) + '" oninput="updateField(' + a.id + ', \'title\', this.value)">',
+          '</div>',
+          '<div style="margin-top:8px">',
+          '<label>Notes (optional)</label>',
+          '<textarea placeholder="Add any notes, instructions, or materials needed…" oninput="updateField(' + a.id + ', \'notes\', this.value)">' + escapeHtml(a.notes) + '</textarea>',
+          '</div>',
+          '<div>',
+          '<label>What happens when you click this activity?</label>',
+          '<select onchange="setAction(' + a.id + ', this.value)">',
+          '<option value="none"' + (a.action === 'none' ? ' selected' : '') + '>Nothing (just a picture)</option>',
+          '<option value="link"' + (a.action === 'link' ? ' selected' : '') + '>Open a website or file</option>',
+          '<option value="overlay"' + (a.action === 'overlay' ? ' selected' : '') + '>Show a popup with media</option>',
+          '</select>',
+          '</div>',
+          (a.action === 'link'
+            ? '<div><label>Website address or file location</label><p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">Media files (images, videos, audio) will open in a popup. Other links open in a new tab.</p><input type="url" placeholder="https://example.com or C:\\Music\\Song.mp3" value="' + escapeHtml(a.link) + '" oninput="updateField(' + a.id + ', \'link\', this.value)"></div>'
+            : ''
+          ),
+          (a.action === 'link'
+            ? [
+              '<div style="margin-top:12px">',
+              '<label>Add multiple resources (optional)</label>',
+              '<p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">Create tabs with different links - great for song videos, sheet music, or related resources</p>',
+              '<div id="links-' + a.id + '" style="display:flex;flex-direction:column;gap:8px;margin-top:8px">',
+              (a.links || []).map((lnk, idx) => {
+                return [
+                  '<div style="display:grid;grid-template-columns:120px 1fr auto;gap:8px;align-items:center">',
+                  '<input type="text" placeholder="Tab name" value="' + escapeHtml(lnk.label || '') + '" ',
+                  'oninput="updateLinkTab(' + a.id + ',' + idx + ',\'label\',this.value)" style="font-size:13px;padding:6px 8px">',
+                  '<input type="url" placeholder="Website or file path" value="' + escapeHtml(lnk.url || '') + '" ',
+                  'oninput="updateLinkTab(' + a.id + ',' + idx + ',\'url\',this.value)" style="font-size:13px;padding:6px 8px">',
+                  '<button class="vsb-btn small alt" onclick="removeLinkTab(' + a.id + ',' + idx + ')" style="padding:6px 10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>',
+                  '</div>'
+                ].join('');
+              }).join(''),
+              '</div>',
+              '<button class="vsb-btn small" onclick="addLinkTab(' + a.id + ')" style="margin-top:8px">+ Add another resource</button>',
+              '<p style="font-size:12px;color:#6b7280;margin-top:6px">Colored tabs will appear at the bottom of this activity for quick access to each resource</p>',
+              '</div>'
+            ].join('')
+            : ''
+          ),
+          (a.action === 'overlay'
+            ? [
+              '<div>',
+              '<label>Full-size image or video (optional)</label>',
+              '<p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">This will appear in a popup when you click the activity</p>',
+              '<div class="media-preview">', renderMediaPreview(a.overlay?.image, 'image'), '</div>',
+              '<div class="actions" style="margin-top:8px">',
+              '<input id="overlay-image-' + a.id + '" type="file" accept="image/*,video/*" style="display:none" onchange="handleMediaInput(' + a.id + ', this.files[0], \'overlay-image\')">',
+              '<button class="vsb-btn small" onclick="document.getElementById(\'overlay-image-' + a.id + '\').click()">Choose image or video</button>',
+              (a.overlay?.image ? '<button class="vsb-btn small ghost" onclick="clearMedia(' + a.id + ', \'overlay-image\')">Remove</button>' : ''),
+              '</div>',
+              '</div>',
+              '<div>',
+              '<label>Audio file (optional)</label>',
+              '<p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">This audio will appear in the popup</p>',
+              '<div class="media-preview">', renderMediaPreview(a.overlay?.audio, 'audio'), '</div>',
+              '<div class="actions" style="margin-top:8px">',
+              '<input id="overlay-audio-' + a.id + '" type="file" accept="audio/*" style="display:none" onchange="handleMediaInput(' + a.id + ', this.files[0], \'overlay-audio\')">',
+              '<button class="vsb-btn small" onclick="document.getElementById(\'overlay-audio-' + a.id + '\').click()">Choose audio file</button>',
+              (a.overlay?.audio ? '<button class="vsb-btn small ghost" onclick="clearMedia(' + a.id + ', \'overlay-audio\')">Remove</button>' : ''),
+              '</div>',
+              '</div>',
+              '<div>',
+              '<label>Slideshow images (optional)</label>',
+              '<p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">Add multiple images and step through them in the popup</p>',
+              '<div class="media-preview">', renderOverlaySlidesPreview(a), '</div>',
+              '<div class="actions" style="margin-top:8px">',
+              '<input id="overlay-slides-' + a.id + '" type="file" multiple accept="image/*" style="display:none" onchange="handleOverlaySlidesInput(' + a.id + ', this.files); this.value=\'\'">',
+              '<button class="vsb-btn small" onclick="document.getElementById(\'overlay-slides-' + a.id + '\').click()">Add slide images</button>',
+              ((a.overlay?.images && a.overlay.images.length) ? '<button class="vsb-btn small ghost" onclick="clearOverlaySlides(' + a.id + ')">Clear slides</button>' : ''),
+              '</div>',
+              '</div>'
+            ].join('')
+            : ''
+          ),
+          '<div class="actions" style="margin-top:8px;position:relative">',
+          '<div class="activity-more-menu">',
+          '<button class="vsb-btn small ghost activity-more-btn" onclick="toggleActivityMenu(event, ' + a.id + ')" title="More actions">',
+          '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>',
+          '</button>',
+          '<div class="activity-dropdown" id="menu-' + a.id + '">',
+          '<button onclick="moveActivity(' + a.id + ', \'up\'); closeAllMenus()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg> Move up</button>',
+          '<button onclick="moveActivity(' + a.id + ', \'down\'); closeAllMenus()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg> Move down</button>',
+          '<button onclick="duplicateActivity(' + a.id + '); closeAllMenus()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Duplicate</button>',
+          '<div class="dropdown-divider"></div>',
+          '<button class="danger" onclick="removeActivity(' + a.id + '); closeAllMenus()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg> Delete</button>',
+          '</div>',
+          '</div>',
+          '</div>',
+          '</div>',
+          '<div>',
+          '<label>Activity picture or icon</label>',
+          '<p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">This image helps students recognize the activity at a glance</p>',
+          '<div class="media-preview">' + renderMediaPreview(a.media) + '</div>',
+          '<div class="actions" style="margin-top:8px">',
+          '<input id="file-' + a.id + '" type="file" accept="image/*,audio/*,video/*" style="display:none" onchange="handleMediaInput(' + a.id + ', this.files[0], \'media\')">',
+          '<button class="vsb-btn small" onclick="document.getElementById(\'file-' + a.id + '\').click()">Choose picture</button>',
+          (a.media ? '<button class="vsb-btn small ghost" onclick="clearMedia(' + a.id + ', \'media\')">Remove picture</button>' : ''),
+          '</div>',
+          '</div>',
+          '</div>',
+          '</div>'
+        ].join('');
+      }).join('');
+
+      await populateMediaSrc(el, editorUrls);
+    }
+
+    function renderMediaPreview(media, expectedKind) {
+      if (!media || typeof media.dbKey === 'undefined') return '<div style="color:#667">No media selected</div>';
+      const keyAttr = `data-db-key="${media.dbKey}"`;
+      const kind = media.kind || expectedKind || 'image';
+      if (kind === 'image') return `<img alt="${escapeHtml(media.name || '')}" ${keyAttr} src="">`;
+      if (kind === 'audio') return `<audio controls ${keyAttr} src=""></audio>`;
+      return `<video controls ${keyAttr} src=""></video>`;
+    }
+
+    function renderOverlaySlidesPreview(activity) {
+      const slides = Array.isArray(activity?.overlay?.images) ? activity.overlay.images : [];
+      if (!slides.length) return '<div style="color:#667">No slideshow images selected</div>';
+      const thumbs = slides.map((slide, idx) => {
+        const key = typeof slide?.dbKey !== 'undefined' ? `data-db-key="${slide.dbKey}"` : '';
+        return `<div style="position:relative"><img ${key} src="" alt="Slide ${idx + 1}" style="width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;border:2px solid var(--border-color)"><button class="vsb-btn small alt" onclick="removeOverlaySlide(${activity.id}, ${idx})" style="position:absolute;top:4px;right:4px;padding:2px 6px;line-height:1"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div style="font-size:11px;color:var(--text-secondary);margin-top:4px;text-align:center">Slide ${idx + 1}</div></div>`;
+      }).join('');
+      return `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px">${thumbs}</div>`;
+    }
+
+    function chooseTileVisualForMedia(media) {
+      if (media && media.kind === 'image' && typeof media.dbKey !== 'undefined') {
+        var img = document.createElement('img');
+        img.className = 'schedule-image';
+        img.src = ''; // populated async
+        img.alt = '';
+        img.dataset.dbKey = media.dbKey;
+        return img;
+      }
+      var ph = document.createElement('div');
+      ph.className = 'ph';
+      ph.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>';
+      return ph;
+    }
+
+    function getOverlayContent(a) {
+      // Returns the overlay object if it has any content, otherwise null
+      if (!a.overlay) return null;
+      if (!Array.isArray(a.overlay.images)) a.overlay.images = [];
+      if (a.overlay.image || a.overlay.audio || a.overlay.images.length) return a.overlay;
+      // Legacy support: old format had overlay as a single blob
+      if (a.overlay.dbKey) return a.overlay;
+      return null;
+    }
+
+    function bestGrid(n, forcedCols) {
+      if (forcedCols && Number.isInteger(forcedCols) && forcedCols > 0) {
+        const cols = Math.max(1, Math.min(n, forcedCols));
+        const rows = Math.ceil(n / cols);
+        return { cols: cols, rows: rows, score: 0, area: cols * rows };
+      }
+      if (n <= 5) { return { cols: n, rows: 1, score: 0, area: n }; }
+      var target = 16 / 9;
+      var best = { cols: 1, rows: Math.max(1, n), score: 1e9, area: 1e9 };
+      for (var cols = 1; cols <= n; cols++) {
+        var rows = Math.ceil(n / cols);
+        var ratio = cols / rows;
+        var score = Math.abs(ratio - target);
+        var area = cols * rows;
+        if (score < best.score || (score === best.score && area < best.area)) {
+          best = { cols: cols, rows: rows, score: score, area: area };
+        }
+      }
+      return best;
+    }
+
+    async function renderPreview() {
+      previewUrls.forEach(URL.revokeObjectURL);
+      previewUrls.length = 0;
+
+      const title = (document.getElementById('lessonTitle').value || 'Lesson').trim();
+      const sub = document.getElementById('lessonSubtitle').value.trim();
+      const preview = document.getElementById('preview');
+
+      {
+        const n = activities.length;
+        const forceVal = document.getElementById('forceCols').value;
+        const forced = (forceVal === 'auto') ? null : parseInt(forceVal, 10);
+        const grid = bestGrid(Math.max(1, n), forced);
+        const stage = document.createElement('div');
+        stage.className = 'preview-stage';
+        const screen = document.createElement('div');
+        screen.className = 'preview-screen';
+        const theme = getTheme();
+        const header = document.createElement('div'); header.className = 'preview-header';
+        header.textContent = sub ? (title + ' · ' + sub) : title;
+        applyThemeToHeader(header, theme);
+        applyThemeToScreen(screen, theme);
+        screen.appendChild(header);
+        const gridEl = document.createElement('div'); gridEl.className = 'preview-grid';
+        gridEl.style.gridTemplateColumns = 'repeat(' + grid.cols + ', 1fr)';
+        gridEl.style.gridTemplateRows = 'repeat(' + grid.rows + ', 1fr)';
+
+        activities.forEach((a, i) => {
+          const hasMultiLinks = a.action === 'link' && a.links && a.links.length > 0 && a.links.some(l => l.url && l.url.trim());
+          const isLink = a.action === 'link' && !!(a.link && a.link.trim()) && !hasMultiLinks;
+          const isOverlay = a.action === 'overlay' && !!getOverlayContent(a);
+
+          // Use div for multi-link items, otherwise use 'a' tag for single link
+          const tag = isLink ? 'a' : 'div';
+          const item = document.createElement(tag);
+          item.className = 'schedule-item' + (isLink ? ' has-link' : isOverlay ? ' has-overlay' : hasMultiLinks ? ' has-link' : '');
+          item.style.position = 'relative'; // For absolute positioning of tabs
+
+          // Add bottom padding if tabs will be present
+          if (hasMultiLinks) {
+            item.style.paddingBottom = '30px';
+          }
+
+          if (isLink) {
+            item.href = normalizeLink(a.link);
+            item.target = "_blank";
+            item.rel = "noopener noreferrer";
+          }
+          if (isOverlay) {
+            item.addEventListener('click', () => openBuilderOverlay(a));
+          }
+
+          // Add link tabs if multiple links exist
+          if (hasMultiLinks) {
+            const tabsContainer = document.createElement('div');
+            tabsContainer.className = 'link-tabs';
+            a.links.filter(l => l.url && l.url.trim()).forEach((lnk, idx) => {
+              const tab = document.createElement('a');
+              tab.className = 'link-tab';
+              tab.href = normalizeLink(lnk.url);
+              tab.target = '_blank';
+              tab.rel = 'noopener noreferrer';
+              tab.textContent = lnk.label || ('Link ' + (idx + 1));
+              tab.onclick = (e) => e.stopPropagation(); // Prevent tile click if there's one
+              tabsContainer.appendChild(tab);
+            });
+            item.appendChild(tabsContainer);
+          }
+
+          item.appendChild(chooseTileVisualForMedia(a.media));
+          const t = document.createElement('div'); t.className = 'schedule-title';
+          t.textContent = a.title || ('Activity ' + (i + 1));
+          item.appendChild(t);
+          if (a.notes) {
+            const n = document.createElement('div'); n.className = 'schedule-notes'; n.textContent = a.notes;
+            item.appendChild(n);
+          }
+          gridEl.appendChild(item);
+        });
+        screen.appendChild(gridEl);
+        stage.appendChild(screen);
+        preview.innerHTML = '';
+        preview.appendChild(stage);
+      }
+
+      await populateMediaSrc(preview, previewUrls);
+      // Height capping logic (no change needed here)    requestAnimationFrame(() => {
+      try {
+        const g = preview.querySelector('.preview-grid, .schedule-grid');
+        if (!g) return;
+        const items = Array.from(g.querySelectorAll('.schedule-item'));
+        const gridStyles = getComputedStyle(g);
+        // A more robust way to check for a single row layout
+        const isSingleRow = (gridStyles.gridTemplateRows === '1fr' || !gridStyles.gridTemplateRows.includes(' '));
+
+        if (isSingleRow && items.length > 0) {
+          // For single rows, center content vertically for better visibility.
+          items.forEach(it => {
+            it.style.justifyContent = 'center';
+            it.style.maxHeight = ''; // Remove any restrictive height caps
+            it.style.overflow = '';  // And overflow settings
+          });
+        } else {
+          // Reset to the default for multi-row layouts.
+          items.forEach(it => {
+            it.style.justifyContent = 'flex-start';
+            it.style.maxHeight = '';
+            it.style.overflow = '';
+          });
+        }
+      } catch (e) {
+        console.warn('Error applying layout logic:', e);
+      }
+    };
+
+    // Preview overlay helpers
+    function appendImageSlideshow(container, urls, baseTitle) {
+      const sources = Array.isArray(urls) ? urls.filter(Boolean) : [];
+      if (!sources.length) return;
+
+      const shell = document.createElement('div');
+      shell.style.width = '100%';
+      shell.style.maxWidth = '100%';
+      shell.style.marginTop = '10px';
+
+      const frame = document.createElement('img');
+      frame.alt = baseTitle || 'Slide';
+      frame.style.width = '100%';
+      frame.style.maxWidth = 'none';
+      frame.style.maxHeight = 'none';
+      frame.style.display = 'block';
+      frame.style.margin = '0 auto';
+      frame.style.borderRadius = '10px';
+
+      const controls = document.createElement('div');
+      controls.style.display = 'flex';
+      controls.style.gap = '8px';
+      controls.style.alignItems = 'center';
+      controls.style.justifyContent = 'center';
+      controls.style.marginTop = '10px';
+
+      const prev = document.createElement('button');
+      prev.className = "vsb-btn small ghost";
+      prev.type = 'button';
+      prev.textContent = '◀ Previous';
+
+      const next = document.createElement('button');
+      next.className = "vsb-btn small ghost";
+      next.type = 'button';
+      next.textContent = 'Next ▶';
+
+      const counter = document.createElement('div');
+      counter.style.fontSize = '12px';
+      counter.style.color = 'var(--text-secondary)';
+
+      let idx = 0;
+      function renderSlide() {
+        frame.src = sources[idx];
+        frame.alt = `${baseTitle || 'Slide'} ${idx + 1}`;
+        counter.textContent = `Slide ${idx + 1} of ${sources.length}`;
+        prev.disabled = sources.length < 2;
+        next.disabled = sources.length < 2;
+      }
+
+      prev.addEventListener('click', () => {
+        idx = (idx - 1 + sources.length) % sources.length;
+        renderSlide();
+      });
+      next.addEventListener('click', () => {
+        idx = (idx + 1) % sources.length;
+        renderSlide();
+      });
+
+      controls.appendChild(prev);
+      controls.appendChild(counter);
+      controls.appendChild(next);
+      shell.appendChild(frame);
+      shell.appendChild(controls);
+      container.appendChild(shell);
+      renderSlide();
+    }
+
+    async function openBuilderOverlay(a) {
+      const root = document.getElementById('builderOverlay');
+      const panel = root.querySelector('.panel');
+      panel.innerHTML = '<button class="close" onclick="closeBuilderOverlay()">Close</button>' +
+        '<div class="toolbar"><div class="title" id="boTitleInner">' + escapeHtml(a.title || 'Activity') + '</div></div>' +
+        '<div class="content" id="boContent"></div>' +
+        '<div class="resizer" title="Drag to resize"></div>' +
+        '<div id="boNotes" style="margin-top:8px;color:#6b7280">' + escapeHtml(a.notes || '') + '</div>';
+
+      const content = panel.querySelector('#boContent');
+      const overlayData = getOverlayContent(a);
+
+      if (overlayData) {
+        const objectUrls = [];
+        try {
+          // Handle new format with separate image/video and audio
+          if (overlayData.image?.dbKey) {
+            const mediaBlob = await db.get(overlayData.image.dbKey);
+            if (mediaBlob) {
+              const url = URL.createObjectURL(mediaBlob);
+              objectUrls.push(url);
+
+              // Check if it's a video or image based on the kind property
+              if (overlayData.image.kind === 'video') {
+                const video = document.createElement('video');
+                video.controls = true;
+                video.src = url;
+                video.style.width = '100%';
+                video.style.maxWidth = 'none';
+                video.style.maxHeight = 'none';
+                video.style.display = 'block';
+                video.style.margin = '0 auto';
+                content.appendChild(video);
+              } else {
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = escapeHtml(a.title || '');
+                img.style.width = '100%';
+                img.style.maxWidth = 'none';
+                img.style.maxHeight = 'none';
+                img.style.display = 'block';
+                img.style.margin = '0 auto';
+                content.appendChild(img);
+              }
+            }
+          }
+
+          if (overlayData.audio?.dbKey) {
+            const audioBlob = await db.get(overlayData.audio.dbKey);
+            if (audioBlob) {
+              const url = URL.createObjectURL(audioBlob);
+              objectUrls.push(url);
+              const audio = document.createElement('audio');
+              audio.controls = true;
+              audio.src = url;
+              audio.style.width = '100%';
+              audio.style.marginTop = '12px';
+              content.appendChild(audio);
+            }
+          }
+
+          if (Array.isArray(overlayData.images) && overlayData.images.length) {
+            const slideUrls = [];
+            for (const slide of overlayData.images) {
+              if (!slide?.dbKey) continue;
+              const slideBlob = await db.get(slide.dbKey);
+              if (!slideBlob) continue;
+              const slideUrl = URL.createObjectURL(slideBlob);
+              objectUrls.push(slideUrl);
+              slideUrls.push(slideUrl);
+            }
+            if (slideUrls.length) appendImageSlideshow(content, slideUrls, a.title || 'Slide');
+          }
+
+          // Legacy support: old format had overlay as single media
+          if (overlayData.dbKey && !overlayData.image && !overlayData.audio && !(overlayData.images && overlayData.images.length)) {
+            const mediaBlob = await db.get(overlayData.dbKey);
+            if (mediaBlob) {
+              const url = URL.createObjectURL(mediaBlob);
+              objectUrls.push(url);
+              if (overlayData.kind === 'image') {
+                content.innerHTML = `<img src="${url}" alt="${escapeHtml(a.title || '')}">`;
+              } else if (overlayData.kind === 'audio') {
+                content.innerHTML = `<audio controls src="${url}"></audio>`;
+              } else {
+                content.innerHTML = `<video controls src="${url}"></video>`;
+              }
+            }
+          }
+
+          // Store URLs for cleanup
+          panel.dataset.objectUrls = JSON.stringify(objectUrls);
+        } catch (e) {
+          console.error('Failed to load overlay media', e);
+        }
+      }
+
+      const resizer = panel.querySelector(".resizer");
+      let dragging = false, startX = 0, startY = 0, startW = 0, startH = 0;
+      resizer.addEventListener("mousedown", e => {
+        e.preventDefault(); dragging = true; startX = e.clientX; startY = e.clientY;
+        const rect = panel.getBoundingClientRect(); startW = rect.width; startH = rect.height;
+        panel.style.maxWidth = 'none';
+        panel.style.maxHeight = 'none';
+        panel.style.width = rect.width + 'px'; panel.style.height = rect.height + 'px';
+        document.body.style.cursor = 'se-resize';
+      });
+      const onMouseMove = e => {
+        if (!dragging) return;
+        const dx = e.clientX - startX; const dy = e.clientY - startY;
+        const maxW = Math.max(320, window.innerWidth - 16);
+        const maxH = Math.max(180, window.innerHeight - 16);
+        panel.style.width = Math.min(maxW, Math.max(320, startW + dx)) + 'px';
+        panel.style.height = Math.min(maxH, Math.max(180, startH + dy)) + 'px';
+      };
+      const onMouseUp = () => {
+        if (dragging) {
+          dragging = false; document.body.style.cursor = "";
+          window.removeEventListener("mousemove", onMouseMove);
+          window.removeEventListener("mouseup", onMouseUp);
+        }
+      };
+      window.addEventListener("mousemove", onMouseMove);
+      window.addEventListener("mouseup", onMouseUp);
+
+      root.classList.add('show');
+      root.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeBuilderOverlay() {
+      const root = document.getElementById('builderOverlay');
+      const panel = root.querySelector('.panel');
+
+      // Clean up object URLs
+      if (panel.dataset.objectUrls) {
+        try {
+          const urls = JSON.parse(panel.dataset.objectUrls);
+          urls.forEach(url => URL.revokeObjectURL(url));
+        } catch (e) { console.error('Failed to cleanup URLs', e); }
+        delete panel.dataset.objectUrls;
+      }
+      // Legacy cleanup
+      if (panel.dataset.objectUrl) {
+        URL.revokeObjectURL(panel.dataset.objectUrl);
+        delete panel.dataset.objectUrl;
+      }
+
+      root.classList.remove('show');
+      root.setAttribute('aria-hidden', 'true');
+      panel.style.width = ''; panel.style.height = ''; panel.style.maxWidth = ''; panel.style.maxHeight = ''; panel.classList.remove('fullscreen');
+      panel.innerHTML = '<button class="close" onclick="closeBuilderOverlay()">Close</button><h3 id="boTitle"></h3><div id="boMedia"></div><div id="boNotes" style="margin-top:8px;color:#6b7280"></div>';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBuilderOverlay(); });
+
+    // --- Utilities ---
+    function clampInt(val, lo, hi, fallback) { const n = parseInt(val, 10); return isNaN(n) ? fallback : Math.max(lo, Math.min(hi, n)); }
+    function normalizeLink(url) {
+      url = (url || '').trim();
+      if (!url) return '';
+      // Check if URL already has a protocol (http://, https://, file://)
+      if (/^[a-z][a-z0-9+.-]*:\/\//i.test(url)) return url;
+      // Check if it looks like a local file path (starts with ./ or ../ or / or a drive letter)
+      if (/^(\.\.?\/|\/|[a-zA-Z]:\\)/i.test(url)) return url;
+      // Otherwise, add https://
+      return 'https://' + url;
+    }
+    function escapeHtml(s) { return (s || '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]); }
+
+    function rgbToHex(rgb) {
+      if (rgb.startsWith('#')) return rgb;
+      const m = rgb.match(/(\d+)/g);
+      if (!m || m.length < 3) return '#ffffff';
+      return '#' + m.slice(0, 3).map(n => parseInt(n).toString(16).padStart(2, '0')).join('');
+    }
+    function blobToDataURL(blob) { return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(blob); }); }
+    async function dataURLToBlob(dataURL) { const res = await fetch(dataURL); return res.blob(); }
+    function formatBytes(bytes) {
+      if (!Number.isFinite(bytes) || bytes <= 0) return '0 B';
+      const units = ['B', 'KB', 'MB', 'GB'];
+      let i = 0;
+      let n = bytes;
+      while (n >= 1024 && i < units.length - 1) { n /= 1024; i++; }
+      return `${n.toFixed(n >= 100 || i === 0 ? 0 : 1)} ${units[i]}`;
+    }
+    function setExportStatus(message, isError) {
+      const el = document.getElementById('exportStatus');
+      if (!el) return;
+      if (!message) {
+        el.style.display = 'none';
+        el.textContent = '';
+        el.style.color = '';
+        return;
+      }
+      el.style.display = 'inline-flex';
+      el.textContent = message;
+      el.style.color = isError ? 'var(--error)' : '';
+    }
+    function serializeForScript(value) {
+      return JSON.stringify(value || null).replace(/<\/script>/gi, '<\\/script>');
+    }
+    function parseExportVar(scriptText, varName, shape) {
+      const payload = shape === 'object' ? '\\{[\\s\\S]*?\\}' : '\\[[\\s\\S]*?\\]';
+      const re = new RegExp('var\\s+' + varName + '\\s*=\\s*(' + payload + ')\\s*;', 'm');
+      const m = scriptText.match(re);
+      if (!m || !m[1]) return null;
+      try { return JSON.parse(m[1]); } catch (e) { return null; }
+    }
+
+    // --- Import / Export ---
+    function handleImportFile(e) {
+      const f = e?.target?.files?.[0];
+      if (!f) return;
+      const reader = new FileReader();
+      reader.onload = async ev => {
+        try {
+          e.target.disabled = true;
+          await importFromHtml(ev.target.result);
+        }
+        catch (err) { alert('Failed to import file: ' + err.message); console.error(err); }
+        finally { e.target.disabled = false; e.target.value = ''; }
+      };
+      reader.readAsText(f);
+    }
+
+    async function importFromHtml(text) {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(text, 'text/html');
+      const headerEl = doc.querySelector('.schedule-header');
+      if (headerEl) {
+        const headerText = headerEl.textContent.trim();
+        const sep = headerText.includes(' · ') ? ' · ' : ' — ';
+        const parts = headerText.split(sep);
+        document.getElementById('lessonTitle').value = parts.shift() || '';
+        document.getElementById('lessonSubtitle').value = parts.join(sep) || '';
+
+        // Import theme from header styles
+        const hStyle = headerEl.getAttribute('style') || '';
+        const computedBg = headerEl.style.background || '';
+        if (computedBg === 'transparent') {
+          document.getElementById('headerTransparent').checked = true;
+        } else {
+          document.getElementById('headerTransparent').checked = false;
+        }
+        if (headerEl.style.color) {
+          document.getElementById('headerTextColor').value = rgbToHex(headerEl.style.color);
+        }
+      }
+
+      // Import theme from CSS variables
+      const styleEl = doc.querySelector('style');
+      if (styleEl) {
+        const css = styleEl.textContent;
+        const indigoMatch = css.match(/--indigo:\s*(#[0-9a-fA-F]{6})/);
+        const violetMatch = css.match(/--violet:\s*(#[0-9a-fA-F]{6})/);
+        if (indigoMatch) document.getElementById('headerColor').value = indigoMatch[1];
+        if (violetMatch) document.getElementById('headerColorEnd').value = violetMatch[1];
+      }
+
+      // Import background image from .screen element
+      const screenEl = doc.querySelector('.screen');
+      if (screenEl) {
+        const screenBg = screenEl.style.background || '';
+        const bgUrlMatch = screenBg.match(/url\(([^)]+)\)/);
+        if (bgUrlMatch) {
+          bgImageDataUrl = bgUrlMatch[1].replace(/['"]/g, '');
+          document.getElementById('bgImageClear').style.display = '';
+        } else {
+          bgImageDataUrl = null;
+          document.getElementById('bgImageClear').style.display = 'none';
+        }
+      }
+
+      const scriptText = Array.from(doc.querySelectorAll('script')).map(s => s.textContent).join('\n');
+      let overlays = parseExportVar(scriptText, 'OVERLAYS', 'array') || [];
+      // Recovery path for exported files that used `var e = [...]` without `OVERLAYS`.
+      if (!overlays.length) overlays = parseExportVar(scriptText, 'e', 'array') || [];
+      const mediaManifest = parseExportVar(scriptText, 'MEDIA_MANIFEST', 'object') || {};
+
+      const tileEls = Array.from(doc.querySelectorAll('.grid .schedule-item'));
+      const importedActivities = await Promise.all(tileEls.map(async (el, i) => {
+        const a = { title: '', notes: '', link: '', links: [], media: null, action: 'none', overlay: { image: null, images: [], audio: null } };
+        const t = el.querySelector('.schedule-title'); if (t) a.title = t.textContent.trim();
+        const n = el.querySelector('.schedule-notes'); if (n) a.notes = n.textContent.trim();
+
+        // Check for link tabs
+        const tabsContainer = el.querySelector('.link-tabs');
+        if (tabsContainer) {
+          a.action = 'link';
+          const tabs = Array.from(tabsContainer.querySelectorAll('.link-tab'));
+          a.links = tabs.map(tab => ({
+            label: tab.textContent.trim(),
+            url: tab.getAttribute('href') || ''
+          }));
+        } else if (el.tagName.toLowerCase() === 'a') {
+          a.action = 'link';
+          a.link = el.getAttribute('href') || '';
+        }
+
+        const img = el.querySelector('img.schedule-image');
+        if (img && img.src.startsWith('data:')) {
+          const blob = await dataURLToBlob(img.src);
+          const dbKey = await db.add(blob);
+          a.media = { kind: 'image', dbKey, name: img.getAttribute('alt') || '' };
+        }
+
+        if (el.hasAttribute('data-overlay-index')) {
+          const idx = parseInt(el.getAttribute('data-overlay-index'), 10);
+          const o = overlays[idx];
+          if (o) {
+            a.action = 'overlay';
+
+            // New format: separate image/video and audio + optimized refs
+            const imageDataURL = o.imageDataURL || (o.imageRef ? mediaManifest[o.imageRef] : null);
+            const videoDataURL = o.videoDataURL || (o.videoRef ? mediaManifest[o.videoRef] : null);
+            const audioDataURL = o.audioDataURL || (o.audioRef ? mediaManifest[o.audioRef] : null);
+            const inlineSlides = Array.isArray(o.slidesDataURLs) ? o.slidesDataURLs.filter(Boolean) : [];
+            const refSlides = Array.isArray(o.slideRefs) ? o.slideRefs.map(ref => mediaManifest[ref]).filter(Boolean) : [];
+            const slidesDataURLs = inlineSlides.length ? inlineSlides : refSlides;
+
+            if (imageDataURL) {
+              const blob = await dataURLToBlob(imageDataURL);
+              const dbKey = await db.add(blob);
+              a.overlay.image = { kind: 'image', dbKey, name: o.title || '' };
+            }
+            if (videoDataURL) {
+              const blob = await dataURLToBlob(videoDataURL);
+              const dbKey = await db.add(blob);
+              a.overlay.image = { kind: 'video', dbKey, name: o.title || '' };
+            }
+            if (audioDataURL) {
+              const blob = await dataURLToBlob(audioDataURL);
+              const dbKey = await db.add(blob);
+              a.overlay.audio = { dbKey, name: o.title || '' };
+            }
+            if (slidesDataURLs.length) {
+              for (const dataURL of slidesDataURLs) {
+                const blob = await dataURLToBlob(dataURL);
+                const dbKey = await db.add(blob);
+                a.overlay.images.push({ kind: 'image', dbKey, name: o.title || '' });
+              }
+            }
+
+            // Legacy format: single media with kind
+            const legacyDataURL = o.dataURL || (o.dataRef ? mediaManifest[o.dataRef] : null);
+            if (legacyDataURL && o.kind && !imageDataURL && !audioDataURL && !videoDataURL) {
+              const blob = await dataURLToBlob(legacyDataURL);
+              const dbKey = await db.add(blob);
+              if (o.kind === 'image') {
+                a.overlay.image = { kind: 'image', dbKey, name: o.title || '' };
+              } else if (o.kind === 'video') {
+                a.overlay.image = { kind: 'video', dbKey, name: o.title || '' };
+              } else if (o.kind === 'audio') {
+                a.overlay.audio = { dbKey, name: o.title || '' };
+              }
+            }
+          }
+        }
+        return a;
+      }));
+
+      activities.length = 0; uid = 0;
+      importedActivities.forEach(a => { a.id = ++uid; activities.push(a); });
+      await renderEditor();
+      await renderPreview();
+      queueDraftSave();
+    }
+
+    async function exportStatic(modeOverride) {
+      if (!activities.length) { alert('Add at least one activity before exporting.'); return; }
+      const mode = 'optimized'; // Always use optimized media handling
+      const title = (document.getElementById('lessonTitle').value || 'Lesson').trim();
+      const sub = document.getElementById('lessonSubtitle').value.trim();
+      const headerText = sub ? (title + ' · ' + sub) : title;
+      const theme = getTheme();
+
+      setExportStatus('Preparing export...');
+      try {
+        const mediaToConvert = new Map();
+        activities.forEach(a => {
+          if (a.media?.dbKey) mediaToConvert.set(a.media.dbKey, null);
+          if (a.overlay?.image?.dbKey) mediaToConvert.set(a.overlay.image.dbKey, null);
+          if (a.overlay?.audio?.dbKey) mediaToConvert.set(a.overlay.audio.dbKey, null);
+          if (Array.isArray(a.overlay?.images)) {
+            a.overlay.images.forEach(img => { if (img?.dbKey) mediaToConvert.set(img.dbKey, null); });
+          }
+          // Legacy support
+          if (a.overlay?.dbKey) mediaToConvert.set(a.overlay.dbKey, null);
+        });
+
+        const keys = Array.from(mediaToConvert.keys());
+        let totalBlobBytes = 0;
+        for (let i = 0; i < keys.length; i++) {
+          const key = keys[i];
+          setExportStatus(`Encoding media ${i + 1}/${keys.length}...`);
+          const blob = await db.get(key);
+          if (!blob) continue;
+          totalBlobBytes += blob.size || 0;
+          mediaToConvert.set(key, await blobToDataURL(blob));
+        }
+
+        const estimatedExportBytes = Math.round(totalBlobBytes * 1.37);
+        if (estimatedExportBytes > 40 * 1024 * 1024) {
+          setExportStatus(`Large export expected (~${formatBytes(estimatedExportBytes)}). Continuing...`);
+        }
+
+        const mediaManifest = {};
+        const mediaRefs = new Map();
+        let mediaSeq = 0;
+        function toMediaRef(dataURL) {
+          if (!dataURL) return null;
+          if (mediaRefs.has(dataURL)) return mediaRefs.get(dataURL);
+          const ref = `m${++mediaSeq}`;
+          mediaRefs.set(dataURL, ref);
+          mediaManifest[ref] = dataURL;
+          return ref;
+        }
+
+        var overlays = [];
+        function pushOverlayFrom(overlayData, tileTitle, notes) {
+          if (!overlayData) return -1;
+          const overlay = {
+            title: tileTitle || 'Activity',
+            notes: notes || '',
+            imageDataURL: null,
+            audioDataURL: null,
+            videoDataURL: null,
+            slidesDataURLs: []
+          };
+
+          if (overlayData.image?.dbKey) {
+            const dataURL = mediaToConvert.get(overlayData.image.dbKey);
+            if (overlayData.image.kind === 'video') overlay.videoDataURL = dataURL;
+            else overlay.imageDataURL = dataURL;
+          }
+          if (overlayData.audio?.dbKey) overlay.audioDataURL = mediaToConvert.get(overlayData.audio.dbKey);
+          if (Array.isArray(overlayData.images) && overlayData.images.length) {
+            overlay.slidesDataURLs = overlayData.images
+              .map(img => img?.dbKey ? mediaToConvert.get(img.dbKey) : null)
+              .filter(Boolean);
+          }
+
+          // Legacy support: old format had a single media payload
+          if (overlayData.dbKey && !overlayData.image && !overlayData.audio) {
+            const dataURL = mediaToConvert.get(overlayData.dbKey);
+            overlay.dataURL = dataURL || null;
+            overlay.kind = overlayData.kind || null;
+          }
+
+          if (mode === 'optimized') {
+            if (overlay.imageDataURL) { overlay.imageRef = toMediaRef(overlay.imageDataURL); overlay.imageDataURL = null; }
+            if (overlay.audioDataURL) { overlay.audioRef = toMediaRef(overlay.audioDataURL); overlay.audioDataURL = null; }
+            if (overlay.videoDataURL) { overlay.videoRef = toMediaRef(overlay.videoDataURL); overlay.videoDataURL = null; }
+            if (overlay.slidesDataURLs?.length) {
+              overlay.slideRefs = overlay.slidesDataURLs.map(toMediaRef).filter(Boolean);
+              overlay.slidesDataURLs = [];
+            }
+            if (overlay.dataURL) { overlay.dataRef = toMediaRef(overlay.dataURL); overlay.dataURL = null; }
+          }
+
+          const hasContent = !!(overlay.imageDataURL || overlay.audioDataURL || overlay.videoDataURL || (overlay.slidesDataURLs && overlay.slidesDataURLs.length) || overlay.imageRef || overlay.audioRef || overlay.videoRef || (overlay.slideRefs && overlay.slideRefs.length) || overlay.dataURL || overlay.dataRef);
+          if (!hasContent) return -1;
+
+          var idx = overlays.length;
+          overlays.push(overlay);
+          return idx;
+        }
+
+        var tiles = activities.map((a, i) => {
+          var hasMultiLinks = (a.action === 'link' && a.links && a.links.length > 0 && a.links.some(l => l.url && l.url.trim()));
+          var isLink = (a.action === 'link' && a.link && a.link.trim() && !hasMultiLinks);
+          var overlayData = (a.action === 'overlay') ? getOverlayContent(a) : null;
+          var isOverlay = !!overlayData;
+          var open, close;
+          var extraStyle = hasMultiLinks ? 'padding-bottom:30px;' : '';
+
+          if (hasMultiLinks) {
+            open = '<div class="schedule-item has-link" style="position:relative;' + extraStyle + '">';
+            close = '</div>';
+          }
+          else if (isLink) {
+            open = '<a class="schedule-item has-link" style="position:relative;' + extraStyle + '" target="_blank" rel="noopener noreferrer" href="' + escapeHtml(normalizeLink(a.link)) + '">';
+            close = '</a>';
+          }
+          else if (isOverlay) {
+            var oidx = pushOverlayFrom(overlayData, a.title || ('Activity ' + (i + 1)), a.notes || '');
+            open = '<div class="schedule-item has-overlay" style="position:relative;' + extraStyle + '" data-overlay-index="' + oidx + '">';
+            close = '</div>';
+          }
+          else {
+            open = '<div class="schedule-item" style="position:relative;' + extraStyle + '">';
+            close = '</div>';
+          }
+
+          var tabsHtml = '';
+          if (hasMultiLinks) {
+            var validLinks = a.links.filter(l => l.url && l.url.trim());
+            tabsHtml = '<div class="link-tabs">';
+            validLinks.forEach((lnk, idx) => {
+              tabsHtml += '<a class="link-tab" href="' + escapeHtml(normalizeLink(lnk.url)) + '" target="_blank" rel="noopener noreferrer">';
+              tabsHtml += escapeHtml(lnk.label || ('Link ' + (idx + 1)));
+              tabsHtml += '</a>';
+            });
+            tabsHtml += '</div>';
+          }
+
+          var mediaDataURL = a.media ? mediaToConvert.get(a.media.dbKey) : null;
+          var mediaHtml = (a.media?.kind === 'image' && mediaDataURL) ? `<img class="schedule-image" src="${mediaDataURL}" alt="${escapeHtml(a.title || '')}" loading="lazy" decoding="async">` : '<div class="ph">♪</div>';
+          var titleHtml = '<div class="schedule-title">' + escapeHtml(a.title || ('Activity ' + (i + 1))) + '</div>';
+          var notesHtml = a.notes ? '<div class="schedule-notes">' + escapeHtml(a.notes) + '</div>' : '';
+          return open + tabsHtml + mediaHtml + titleHtml + notesHtml + close;
+        });
+
+        var n = Math.max(1, tiles.length);
+        var forceEl = document.getElementById('forceCols');
+        var forced = forceEl?.value !== 'auto' ? parseInt(forceEl.value, 10) : null;
+        var grid = bestGrid(n, forced);
+
+        const overlaysJSON = serializeForScript(overlays);
+        const manifestJSON = serializeForScript(mode === 'optimized' ? mediaManifest : {});
+        const metaJSON = serializeForScript({ version: 2, mode: mode });
+        const script = `
+(function () {
+  var OVERLAYS = ${overlaysJSON};
+  var MEDIA_MANIFEST = ${manifestJSON};
+  var EXPORT_META = ${metaJSON};
+  var e = OVERLAYS;
+  var t = document.getElementById("ov");
+  var n = t.querySelector(".panel");
+  var o = document.getElementById("ovTitle");
+  var l = document.getElementById("ovMedia");
+  var i = document.getElementById("ovNotes");
+
+  function getRefSrc(overlay, dataKey, refKey) {
+    if (overlay && overlay[dataKey]) return overlay[dataKey];
+    if (overlay && overlay[refKey] && MEDIA_MANIFEST[overlay[refKey]]) return MEDIA_MANIFEST[overlay[refKey]];
+    return "";
+  }
+
+  function getRefList(overlay, dataKey, refKey) {
+    if (overlay && Array.isArray(overlay[dataKey])) {
+      var inlineList = overlay[dataKey].filter(Boolean);
+      if (inlineList.length) return inlineList;
+    }
+    if (overlay && Array.isArray(overlay[refKey])) {
+      return overlay[refKey].map(function (ref) { return MEDIA_MANIFEST[ref] || ""; }).filter(Boolean);
+    }
+    return [];
+  }
+
+  function appendSlideshow(target, sources, titleBase) {
+    if (!sources || !sources.length) return;
+    var wrapper = document.createElement("div");
+    wrapper.style.width = "100%";
+    wrapper.style.maxWidth = "100%";
+    wrapper.style.marginTop = "10px";
+
+    var frame = document.createElement("img");
+    frame.style.width = "100%";
+    frame.style.maxWidth = "none";
+    frame.style.maxHeight = "none";
+    frame.style.display = "block";
+    frame.style.margin = "0 auto";
+    frame.style.borderRadius = "10px";
+
+    var controls = document.createElement("div");
+    controls.style.display = "flex";
+    controls.style.gap = "8px";
+    controls.style.alignItems = "center";
+    controls.style.justifyContent = "center";
+    controls.style.marginTop = "10px";
+
+    var prev = document.createElement("button");
+    prev.type = "button";
+    prev.className = "link-tab";
+    prev.style.flex = "0 0 auto";
+    prev.textContent = "◀ Previous";
+
+    var next = document.createElement("button");
+    next.type = "button";
+    next.className = "link-tab";
+    next.style.flex = "0 0 auto";
+    next.textContent = "Next ▶";
+
+    var counter = document.createElement("div");
+    counter.style.fontSize = "12px";
+    counter.style.color = "#6b7280";
+
+    var idx = 0;
+    function renderSlide() {
+      frame.src = sources[idx];
+      frame.alt = (titleBase || "Slide") + " " + (idx + 1);
+      counter.textContent = "Slide " + (idx + 1) + " of " + sources.length;
+      prev.disabled = sources.length < 2;
+      next.disabled = sources.length < 2;
+    }
+
+    prev.addEventListener("click", function () {
+      idx = (idx - 1 + sources.length) % sources.length;
+      renderSlide();
+    });
+    next.addEventListener("click", function () {
+      idx = (idx + 1) % sources.length;
+      renderSlide();
+    });
+
+    controls.appendChild(prev);
+    controls.appendChild(counter);
+    controls.appendChild(next);
+    wrapper.appendChild(frame);
+    wrapper.appendChild(controls);
+    target.appendChild(wrapper);
+    renderSlide();
+  }
+
+  function cleanContent() {
+    l.querySelectorAll("audio,video").forEach(function (m) {
+      try { m.pause(); } catch (e) {}
+      try { m.removeAttribute("src"); if (m.load) m.load(); } catch (e) {}
+    });
+    l.innerHTML = "";
+  }
+
+  function closeOverlay() {
+    cleanContent();
+    t.classList.remove("show");
+    t.setAttribute("aria-hidden", "true");
+    n.style.width = "";
+    n.style.height = "";
+    n.style.maxWidth = "";
+    n.style.maxHeight = "";
+  }
+
+  function ext(url) {
+    try {
+      var u = new URL(url, window.location.href);
+      var path = u.pathname || "";
+      var bits = path.split(".");
+      return (bits.length > 1 ? bits.pop() : "").toLowerCase();
+    } catch (e) {
+      var cleaned = (url || "").split("?")[0].split("#")[0];
+      if (!cleaned.includes(".")) return "";
+      return cleaned.split(".").pop().toLowerCase();
+    }
+  }
+
+  function mediaType(url) {
+    var x = ext(url);
+    if (["jpg", "jpeg", "png", "gif", "bmp", "webp", "svg"].includes(x)) return "image";
+    if (["mp4", "webm", "mov", "m4v", "ogv"].includes(x)) return "video";
+    if (["mp3", "wav", "ogg", "oga", "m4a", "aac", "flac"].includes(x)) return "audio";
+    return "";
+  }
+
+  function openMediaOverlay(url, title, notes) {
+    o.textContent = title || "Media";
+    cleanContent();
+    i.textContent = notes || "";
+    var type = mediaType(url);
+    if (type === "image") {
+      var img = document.createElement("img");
+      img.src = url;
+      img.alt = title || "";
+      l.appendChild(img);
+    } else if (type === "video") {
+      var video = document.createElement("video");
+      video.controls = true;
+      video.preload = "metadata";
+      video.src = url;
+      l.appendChild(video);
+    } else if (type === "audio") {
+      var audio = document.createElement("audio");
+      audio.controls = true;
+      audio.preload = "none";
+      audio.src = url;
+      l.appendChild(audio);
+    } else {
+      l.innerHTML = '<p style="color:#666">Cannot preview this file type in overlay</p>';
+    }
+    n.style.width = "";
+    n.style.height = "";
+    t.classList.add("show");
+    t.setAttribute("aria-hidden", "false");
+  }
+
+  document.querySelectorAll("a.schedule-item.has-link,a.link-tab").forEach(function (link) {
+    link.addEventListener("click", function (evt) {
+      var url = link.getAttribute("href");
+      if (!url || !mediaType(url)) return;
+      evt.preventDefault();
+      var scheduleItem = link.closest(".schedule-item");
+      var titleEl = scheduleItem ? scheduleItem.querySelector(".schedule-title") : null;
+      var notesEl = scheduleItem ? scheduleItem.querySelector(".schedule-notes") : null;
+      openMediaOverlay(url, titleEl ? titleEl.textContent : "Media", notesEl ? notesEl.textContent : "");
+    });
+  });
+
+  document.querySelectorAll(".schedule-item").forEach(function (item) {
+    item.addEventListener("contextmenu", function (evt) {
+      evt.preventDefault();
+      item.classList.toggle("blurred");
+    });
+  });
+
+  document.querySelectorAll("[data-overlay-index]").forEach(function (elem) {
+    elem.addEventListener("click", function () {
+      var idx = parseInt(elem.getAttribute("data-overlay-index"), 10);
+      if (isNaN(idx)) return;
+      var overlayData = e[idx];
+      if (!overlayData) return;
+
+      o.textContent = overlayData.title || "Activity";
+      cleanContent();
+      i.textContent = overlayData.notes || "";
+
+      var imageSrc = getRefSrc(overlayData, "imageDataURL", "imageRef");
+      var audioSrc = getRefSrc(overlayData, "audioDataURL", "audioRef");
+      var videoSrc = getRefSrc(overlayData, "videoDataURL", "videoRef");
+      var slideSources = getRefList(overlayData, "slidesDataURLs", "slideRefs");
+      var legacySrc = getRefSrc(overlayData, "dataURL", "dataRef");
+
+      if (imageSrc) {
+        var img = document.createElement("img");
+        img.src = imageSrc;
+        img.alt = overlayData.title || "";
+        l.appendChild(img);
+      }
+      if (audioSrc) {
+        var audio = document.createElement("audio");
+        audio.controls = true;
+        audio.preload = "none";
+        audio.src = audioSrc;
+        l.appendChild(audio);
+      }
+      if (videoSrc) {
+        var video = document.createElement("video");
+        video.controls = true;
+        video.preload = "metadata";
+        video.src = videoSrc;
+        l.appendChild(video);
+      }
+      if (slideSources.length) {
+        appendSlideshow(l, slideSources, overlayData.title || "Slide");
+      }
+
+      if (legacySrc && overlayData.kind && !imageSrc && !audioSrc && !videoSrc && !slideSources.length) {
+        if (overlayData.kind === "image") {
+          l.innerHTML = '<img src="' + legacySrc + '" alt="' + (overlayData.title || "") + '">';
+        } else if (overlayData.kind === "audio") {
+          l.innerHTML = '<audio controls preload="none" src="' + legacySrc + '"></audio>';
+        } else {
+          l.innerHTML = '<video controls preload="metadata" src="' + legacySrc + '"></video>';
+        }
+      }
+
+      n.style.width = "";
+      n.style.height = "";
+      t.classList.add("show");
+      t.setAttribute("aria-hidden", "false");
+    });
+  });
+
+  t.addEventListener("click", function (evt) {
+    if (evt.target.classList.contains("backdrop")) closeOverlay();
+  });
+  t.querySelector(".close").addEventListener("click", closeOverlay);
+  document.addEventListener("keydown", function (evt) {
+    if (evt.key === "Escape") closeOverlay();
+  });
+
+  var r = n.querySelector(".resizer");
+  var dragging = false, startX = 0, startY = 0, startW = 0, startH = 0;
+  r.addEventListener("mousedown", function (evt) {
+    evt.preventDefault();
+    dragging = true;
+    startX = evt.clientX;
+    startY = evt.clientY;
+    var rect = n.getBoundingClientRect();
+    startW = rect.width;
+    startH = rect.height;
+    n.style.maxWidth = "none";
+    n.style.maxHeight = "none";
+    n.style.width = rect.width + "px";
+    n.style.height = rect.height + "px";
+    document.body.style.cursor = "se-resize";
+  });
+  window.addEventListener("mousemove", function (evt) {
+    if (!dragging) return;
+    var maxW = Math.max(320, window.innerWidth - 16);
+    var maxH = Math.max(180, window.innerHeight - 16);
+    n.style.width = Math.min(maxW, Math.max(320, startW + (evt.clientX - startX))) + "px";
+    n.style.height = Math.min(maxH, Math.max(180, startH + (evt.clientY - startY))) + "px";
+  });
+  window.addEventListener("mouseup", function () {
+    if (!dragging) return;
+    dragging = false;
+    document.body.style.cursor = "";
+  });
+
+  (function () {
+    try {
+      var grid = document.querySelector(".grid");
+      if (!grid) return;
+      var rows = parseInt(grid.getAttribute("data-rows"), 10) || 0;
+      var items = Array.from(grid.querySelectorAll(".schedule-item"));
+      if (rows === 1 && items.length <= 5) {
+        var gap = parseFloat(getComputedStyle(grid).gap) || 10;
+        var cap = Math.max(80, Math.floor((grid.clientHeight - gap) / 2));
+        items.forEach(function (item) {
+          item.style.maxHeight = cap + "px";
+          item.style.overflow = "hidden";
+        });
+      }
+    } catch (e) {}
+  })();
+
+  /* Drag-and-drop reordering with toggle button */
+  (function () {
+    var grid = document.querySelector(".grid");
+    if (!grid) return;
+    var reorderMode = false;
+    var dragEl = null;
+    var dragGhost = null;
+    var placeholder = null;
+
+    /* Toggle button */
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/><circle cx="6" cy="6" r="1.5" fill="currentColor"/><circle cx="6" cy="12" r="1.5" fill="currentColor"/><circle cx="6" cy="18" r="1.5" fill="currentColor"/></svg>';
+    var bs = btn.style;
+    bs.position = "fixed"; bs.bottom = "20px"; bs.right = "20px"; bs.zIndex = "100";
+    bs.width = "44px"; bs.height = "44px"; bs.borderRadius = "50%";
+    bs.border = "none"; bs.cursor = "pointer";
+    bs.display = "flex"; bs.alignItems = "center"; bs.justifyContent = "center";
+    bs.background = "rgba(15,110,86,0.15)"; bs.color = "#0F6E56";
+    bs.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+    bs.transition = "all 0.2s ease";
+    btn.title = "Toggle reorder mode";
+    var stageEl = document.querySelector(".stage") || document.body;
+    stageEl.appendChild(btn);
+
+    function setMode(on) {
+      reorderMode = on;
+      if (on) {
+        bs.background = "#0F6E56"; bs.color = "#fff";
+        grid.style.cursor = "grab";
+      } else {
+        bs.background = "rgba(15,110,86,0.15)"; bs.color = "#0F6E56";
+        grid.style.cursor = "";
+      }
+    }
+    btn.addEventListener("click", function () { setMode(!reorderMode); });
+
+    function getItems() { return Array.from(grid.querySelectorAll(".schedule-item")); }
+
+    function getDropTarget(x, y) {
+      var items = getItems();
+      for (var i = 0; i < items.length; i++) {
+        if (items[i] === placeholder) continue;
+        var r = items[i].getBoundingClientRect();
+        if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return items[i];
+      }
+      return null;
+    }
+
+    function createGhost(el) {
+      var ghost = el.cloneNode(true);
+      var rect = el.getBoundingClientRect();
+      ghost.style.position = "fixed";
+      ghost.style.width = rect.width + "px";
+      ghost.style.height = rect.height + "px";
+      ghost.style.zIndex = "9999";
+      ghost.style.pointerEvents = "none";
+      ghost.style.opacity = "0.85";
+      ghost.style.transform = "scale(1.04) rotate(1deg)";
+      ghost.style.boxShadow = "0 12px 36px rgba(0,0,0,0.25)";
+      ghost.style.transition = "transform 0.15s ease, box-shadow 0.15s ease";
+      /* Append inside .stage so it renders above the fixed-position stage */
+      var stage = document.querySelector(".stage") || document.body;
+      stage.appendChild(ghost);
+      return ghost;
+    }
+
+    function positionGhost(ghost, x, y) {
+      var w = parseFloat(ghost.style.width);
+      var h = parseFloat(ghost.style.height);
+      ghost.style.left = (x - w / 2) + "px";
+      ghost.style.top = (y - h / 2) + "px";
+    }
+
+    function startDrag(el, x, y) {
+      dragEl = el;
+      placeholder = document.createElement("div");
+      placeholder.className = "schedule-item";
+      placeholder.style.border = "2px dashed #0F6E56";
+      placeholder.style.background = "rgba(15,110,86,0.06)";
+      placeholder.style.borderRadius = "12px";
+      placeholder.style.minHeight = "0";
+      el.parentNode.insertBefore(placeholder, el);
+      el.style.display = "none";
+      dragGhost = createGhost(el);
+      positionGhost(dragGhost, x, y);
+    }
+
+    function moveDrag(x, y) {
+      if (!dragEl || !dragGhost) return;
+      positionGhost(dragGhost, x, y);
+      var target = getDropTarget(x, y);
+      if (target && target !== placeholder && target !== dragEl) {
+        var items = getItems();
+        var pIdx = items.indexOf(placeholder);
+        var tIdx = items.indexOf(target);
+        if (pIdx < tIdx) {
+          target.parentNode.insertBefore(placeholder, target.nextSibling);
+        } else {
+          target.parentNode.insertBefore(placeholder, target);
+        }
+      }
+    }
+
+    function endDrag() {
+      if (!dragEl) return;
+      if (placeholder && placeholder.parentNode) {
+        placeholder.parentNode.insertBefore(dragEl, placeholder);
+        placeholder.parentNode.removeChild(placeholder);
+      }
+      dragEl.style.display = "";
+      if (dragGhost && dragGhost.parentNode) dragGhost.parentNode.removeChild(dragGhost);
+      dragEl = null;
+      dragGhost = null;
+      placeholder = null;
+    }
+
+    /* Mouse events — only active in reorder mode */
+    grid.addEventListener("mousedown", function (evt) {
+      if (!reorderMode) return;
+      var item = evt.target.closest(".schedule-item");
+      if (!item) return;
+      if (evt.button !== 0) return;
+      evt.preventDefault();
+      startDrag(item, evt.clientX, evt.clientY);
+    });
+    window.addEventListener("mousemove", function (evt) {
+      if (!dragEl) return;
+      evt.preventDefault();
+      moveDrag(evt.clientX, evt.clientY);
+    });
+    window.addEventListener("mouseup", function () { endDrag(); });
+
+    /* Touch events — only active in reorder mode */
+    grid.addEventListener("touchstart", function (evt) {
+      if (!reorderMode) return;
+      var item = evt.target.closest(".schedule-item");
+      if (!item) return;
+      evt.preventDefault();
+      var touch = evt.touches[0];
+      startDrag(item, touch.clientX, touch.clientY);
+    }, { passive: false });
+    grid.addEventListener("touchmove", function (evt) {
+      if (!dragEl) return;
+      evt.preventDefault();
+      var touch = evt.touches[0];
+      moveDrag(touch.clientX, touch.clientY);
+    }, { passive: false });
+    grid.addEventListener("touchend", function () { endDrag(); });
+    grid.addEventListener("touchcancel", function () { endDrag(); });
+  })();
+})();
+`;
+
+        const exportHeaderBg = theme.headerTransparent ? 'transparent' : ('linear-gradient(135deg,' + theme.headerColor + ',' + theme.headerColorEnd + ')');
+        const exportScreenInlineStyle = theme.bgImage ? ' style="background:#fff url(' + theme.bgImage.replace(/"/g, '&quot;') + ') center/cover no-repeat"' : '';
+        let exported = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${escapeHtml(title)}</title><style>:root{--indigo:${theme.headerColor};--violet:${theme.headerColorEnd};--stone:#e5e7eb;--teal:${theme.headerColorEnd};--rose:#d94452}*{box-sizing:border-box}body{margin:0;height:100vh;background:#0b1020;color:#111;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}.stage{position:fixed;inset:0;display:grid;place-items:center}.screen{width:min(100vw,calc(100vh * (16/9)));height:min(100vh,calc(100vw * (9/16)));background:#fff;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.35);overflow:hidden;display:grid;grid-template-rows:auto 1fr}.schedule-header{text-align:center;padding:10px 14px;background:${exportHeaderBg};color:${theme.headerTextColor};font-weight:700}.grid{display:grid;gap:10px;padding:10px;height:100%;width:100%;grid-template-columns:repeat(${grid.cols},1fr);grid-template-rows:repeat(${grid.rows},1fr)}.schedule-item{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;background:#f8fafc;border-radius:12px;border:2px solid var(--stone);padding:6px;text-align:center;text-decoration:none;color:inherit;overflow:hidden;position:relative;min-height:0}.schedule-item.has-link{border-color:var(--teal);cursor:pointer}.schedule-item.has-overlay{border-color:var(--rose);cursor:pointer}.schedule-item.blurred{filter:blur(4px) grayscale(0.8) opacity(0.7);transition:filter 0.3s ease}.schedule-image{width:92%;flex:1 1 0;min-height:0;object-fit:contain;border-radius:10px;margin-bottom:4px;border:3px solid var(--stone);background:#fff}.ph{width:92%;flex:1 1 0;min-height:0;border-radius:10px;border:3px solid var(--stone);background:linear-gradient(135deg,#e5e7eb,#cbd5e1);display:grid;place-items:center;font-size:24px;color:#556}.schedule-title{font-weight:700;color:#374151;font-size:clamp(10px,1.8vmin,16px);line-height:1.15;max-width:96%;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.schedule-notes{font-size:clamp(9px,1.6vmin,14px);color:#6b7280;margin-top:2px;max-width:96%;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}.link-tabs{position:absolute;bottom:0;left:0;right:0;display:flex;gap:0;z-index:10;border-radius:0 0 10px 10px;overflow:hidden}.link-tab{flex:1;background:#0F6E56;color:#fff;padding:6px 8px;font-size:11px;font-weight:600;text-align:center;text-decoration:none;border:none;border-top:2px solid #e5e7eb;cursor:pointer;transition:background .2s ease;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.link-tab:hover{background:#085041}.link-tab:not(:last-child){border-right:1px solid rgba(255,255,255,.3)}.link-tab:nth-child(2){background:#085041}.link-tab:nth-child(2):hover{background:#06382d}.link-tab:nth-child(3){background:#f59e0b}.link-tab:nth-child(3):hover{background:#d97706}.link-tab:nth-child(4){background:#ec4899}.link-tab:nth-child(4):hover{background:#db2777}.link-tab:nth-child(5){background:#8b5cf6}.link-tab:nth-child(5):hover{background:#7c3aed}.overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:50}.overlay.show{display:flex}.overlay .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6)}.overlay .panel{position:relative;background:#fff;border-radius:14px;max-width:95vw;width:min(800px,92vw);max-height:90vh;padding:16px;box-shadow:0 40px 70px rgba(0,0,0,.35);display:flex;flex-direction:column}.overlay .close{position:absolute;top:8px;right:10px;border:0;background:#efefef;border-radius:8px;padding:6px 10px;cursor:pointer}.overlay .panel h3{margin:0 0 10px 0}.overlay .panel img,.overlay .panel video,.overlay .panel audio{max-width:100%;max-height:70vh;display:block;margin:0 auto}.overlay .panel audio{width:100%;margin-top:12px}.overlay .panel .content{flex:1 1 auto;min-height:0;overflow:auto;display:flex;flex-direction:column;align-items:center;justify-content:center}.overlay .panel .resizer{position:absolute;right:8px;bottom:8px;width:18px;height:18px;border-radius:4px;background:rgba(0,0,0,.08);cursor:se-resize;display:grid;place-items:center;z-index:999}</style></head><body><div class="stage"><div class="screen"${exportScreenInlineStyle}><div class="schedule-header" style="background:${exportHeaderBg};color:${theme.headerTextColor}">${escapeHtml(headerText)}</div><div class="grid" data-rows="${grid.rows}">${tiles.join('')}</div></div></div><div id="ov" class="overlay" aria-hidden="true"><div class="backdrop"></div><div class="panel"><button class="close" aria-label="Close overlay">Close</button><div class="toolbar"><div class="title" id="ovTitle"></div></div><div class="content" id="ovMedia"></div><div id="ovNotes" style="margin-top:8px;color:#6b7280"></div><div class="resizer" title="Drag to resize">◢</div></div></div><script>${script.replace(/<\/script>/gi, '<\\/script>')}<\/script></body></html>`;
+        exported = exported
+          .replace('.overlay .panel{position:relative;background:#fff;border-radius:14px;max-width:95vw;width:min(800px,92vw);max-height:90vh;padding:16px;box-shadow:0 40px 70px rgba(0,0,0,.35);display:flex;flex-direction:column}', '.overlay .panel{position:relative;background:#fff;border-radius:14px;max-width:98vw;width:min(900px,96vw);max-height:98vh;padding:16px;box-shadow:0 40px 70px rgba(0,0,0,.35);display:flex;flex-direction:column}')
+          .replace('.overlay .panel img,.overlay .panel video,.overlay .panel audio{max-width:100%;max-height:70vh;display:block;margin:0 auto}.overlay .panel audio{width:100%;margin-top:12px}', '.overlay .panel img,.overlay .panel video,.overlay .panel audio{width:100%;max-width:none;max-height:none;display:block;margin:0 auto}.overlay .panel audio{margin-top:12px}');
+
+        const blob = new Blob([exported], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = (title.replace(/[^a-z0-9\-]+/gi, '-') || 'lesson') + '.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        setExportStatus(`Saved ${a.download} (${formatBytes(blob.size)})`);
+        setTimeout(() => setExportStatus(''), 5000);
+      } catch (e) {
+        console.error('Export failed:', e);
+        setExportStatus('Export failed', true);
+        alert('Failed to export schedule: ' + e.message);
+      }
+    }
+
+    // --- Activity More Menu ---
+    function toggleActivityMenu(event, id) {
+      event.stopPropagation();
+      const menu = document.getElementById('menu-' + id);
+      const wasOpen = menu.classList.contains('show');
+      closeAllMenus();
+      if (!wasOpen) menu.classList.add('show');
+    }
+
+    function closeAllMenus() {
+      document.querySelectorAll('.activity-dropdown.show').forEach(m => m.classList.remove('show'));
+    }
+
+    // Close menus when clicking outside
+    document.addEventListener('click', closeAllMenus);
+
+    // --- Fullscreen Preview ---
+    const fpUrls = [];
+
+    async function openFullscreenPreview() {
+      const root = document.getElementById('fullscreenPreview');
+      const screen = document.getElementById('fpScreen');
+      const titleEl = document.getElementById('fpTitle');
+
+      const title = (document.getElementById('lessonTitle').value || 'Lesson').trim();
+      const sub = document.getElementById('lessonSubtitle').value.trim();
+      const headerText = sub ? (title + ' \u00b7 ' + sub) : title;
+
+      titleEl.textContent = headerText;
+
+      // Build the preview using the same logic as renderPreview / export
+      const n = activities.length;
+      const forceVal = document.getElementById('forceCols').value;
+      const forced = (forceVal === 'auto') ? null : parseInt(forceVal, 10);
+      const grid = bestGrid(Math.max(1, n), forced);
+
+      // Build header
+      const theme = getTheme();
+      const header = document.createElement('div');
+      header.className = 'schedule-header';
+      header.textContent = headerText;
+      applyThemeToHeader(header, theme);
+
+      // Build grid
+      const gridEl = document.createElement('div');
+      gridEl.className = 'fp-grid';
+      gridEl.style.gridTemplateColumns = 'repeat(' + grid.cols + ', 1fr)';
+      gridEl.style.gridTemplateRows = 'repeat(' + grid.rows + ', 1fr)';
+
+      activities.forEach((a, i) => {
+        const hasMultiLinks = a.action === 'link' && a.links && a.links.length > 0 && a.links.some(l => l.url && l.url.trim());
+        const isLink = a.action === 'link' && !!(a.link && a.link.trim()) && !hasMultiLinks;
+        const isOverlay = a.action === 'overlay' && !!getOverlayContent(a);
+
+        const tag = isLink ? 'a' : 'div';
+        const item = document.createElement(tag);
+        item.className = 'schedule-item' + (isLink ? ' has-link' : isOverlay ? ' has-overlay' : hasMultiLinks ? ' has-link' : '');
+        item.style.position = 'relative';
+
+        if (hasMultiLinks) item.style.paddingBottom = '30px';
+
+        if (isLink) {
+          item.href = normalizeLink(a.link);
+          item.target = '_blank';
+          item.rel = 'noopener noreferrer';
+        }
+        if (isOverlay) {
+          item.addEventListener('click', () => { closeFullscreenPreview(); setTimeout(() => openBuilderOverlay(a), 100); });
+        }
+
+        // Link tabs
+        if (hasMultiLinks) {
+          const tabsContainer = document.createElement('div');
+          tabsContainer.className = 'link-tabs';
+          a.links.filter(l => l.url && l.url.trim()).forEach((lnk, idx) => {
+            const tab = document.createElement('a');
+            tab.className = 'link-tab';
+            tab.href = normalizeLink(lnk.url);
+            tab.target = '_blank';
+            tab.rel = 'noopener noreferrer';
+            tab.textContent = lnk.label || ('Link ' + (idx + 1));
+            tab.onclick = (e) => e.stopPropagation();
+            tabsContainer.appendChild(tab);
+          });
+          item.appendChild(tabsContainer);
+        }
+
+        item.appendChild(chooseTileVisualForMedia(a.media));
+        const t = document.createElement('div');
+        t.className = 'schedule-title';
+        t.textContent = a.title || ('Activity ' + (i + 1));
+        item.appendChild(t);
+        if (a.notes) {
+          const n = document.createElement('div');
+          n.className = 'schedule-notes';
+          n.textContent = a.notes;
+          item.appendChild(n);
+        }
+        gridEl.appendChild(item);
+      });
+
+      // Cleanup previous
+      fpUrls.forEach(URL.revokeObjectURL);
+      fpUrls.length = 0;
+
+      screen.innerHTML = '';
+      applyThemeToScreen(screen, theme);
+      screen.appendChild(header);
+      screen.appendChild(gridEl);
+
+      await populateMediaSrc(screen, fpUrls);
+
+      root.classList.add('show');
+      root.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeFullscreenPreview() {
+      const root = document.getElementById('fullscreenPreview');
+      fpUrls.forEach(URL.revokeObjectURL);
+      fpUrls.length = 0;
+      root.classList.remove('show');
+      root.setAttribute('aria-hidden', 'true');
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && document.getElementById('fullscreenPreview').classList.contains('show')) {
+        closeFullscreenPreview();
+      }
+    });
+
+    // --- Resizable Columns ---
+    (() => {
+      const handle = document.getElementById('resizeHandle');
+      const grid = handle?.parentElement;
+      if (!handle || !grid) return;
+
+      let dragging = false;
+      let startX, startLeftW, startRightW;
+
+      handle.addEventListener('mousedown', e => {
+        e.preventDefault();
+        dragging = true;
+        handle.classList.add('dragging');
+        const cols = grid.children;
+        const leftPanel = cols[0];
+        const rightPanel = cols[2];
+        startX = e.clientX;
+        startLeftW = leftPanel.getBoundingClientRect().width;
+        startRightW = rightPanel.getBoundingClientRect().width;
+        document.body.style.cursor = 'col-resize';
+        document.body.style.userSelect = 'none';
+      });
+
+      document.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        const dx = e.clientX - startX;
+        const totalW = startLeftW + startRightW;
+        const minW = 280;
+        let newLeft = Math.max(minW, Math.min(totalW - minW, startLeftW + dx));
+        let newRight = totalW - newLeft;
+        grid.style.setProperty('--col-left', newLeft + 'px');
+        grid.style.setProperty('--col-right', newRight + 'px');
+      });
+
+      document.addEventListener('mouseup', () => {
+        if (!dragging) return;
+        dragging = false;
+        handle.classList.remove('dragging');
+        document.body.style.cursor = '';
+        document.body.style.userSelect = '';
+      });
+
+      // Double-click to reset to 50/50
+      handle.addEventListener('dblclick', () => {
+        grid.style.removeProperty('--col-left');
+        grid.style.removeProperty('--col-right');
+      });
+    })();
+
+    async function initApp() {
+      await restoreDraftIfAvailable();
+      if (!activities.length) await addActivity();
+      // Accordion: collapse all but the first activity on load
+      if (activities.length > 1) {
+        activities.forEach((a, i) => { if (i > 0) collapsedActivities.add(a.id); });
+        await renderEditor();
+      }
+    }
+
+    initApp().catch(err => {
+      console.error('Failed to initialize app:', err);
+      if (!activities.length) addActivity().catch(console.error);
+    });
+</script>
+{{ end }}
