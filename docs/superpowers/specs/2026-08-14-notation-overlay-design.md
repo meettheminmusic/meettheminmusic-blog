@@ -36,9 +36,10 @@ tile image.
 
 ### 2. Editor (in the activity card)
 
-- **Pick from library** — searchable dropdown populated from `/songs/list.json` fetched
-  once at tool load. Selecting a song fills the ABC field. If the song has multiple
-  scores, a second small selector lists the score labels.
+- **Pick from library** — dropdown populated from `window.SONG_INDEX`, embedded in the
+  tool page at build time (see §6). Multi-score songs (`abc_scores`) appear as one flat
+  entry each, labelled "Title · Score" — no second selector. Selecting fills the ABC
+  field and tempo.
 - **ABC source** — editable `<textarea>`, the source of truth. Supports pick-then-tweak,
   paste, or hand-authored ABC for songs not in the library.
 - **Tempo** — number field, pre-filled from the song's `abc_tempo` on pick (default 120).
@@ -46,35 +47,43 @@ tile image.
 
 ### 3. Storage
 
-Notation is plain text, so it serializes as fields on the activity
-(`abc`, `tempo`, optional `transpose` default) — no IndexedDB blob, no data-URL bloat.
-Rides along in draft autosave and export like the existing title/notes fields.
+Notation is plain text, so it serializes as `activity.notation = { abc, tempo, transpose }`
+— no IndexedDB blob, no data-URL bloat. Rides along in draft autosave and export like the
+existing title/notes fields.
 
-### 4. Overlay (identical in-tool and in exported file)
+### 4. Player — `vsbRenderNotation(root, notation, ABCJS, soundFontUrl)`
 
-Open popup → `ABCJS.renderAbc()` renders the score → `ABCJS.synth.SynthController`
-widget (play/stop, progress, tempo warp, cursor) → two transpose buttons (♭ / ♯) that
-re-render at a new `visualTranspose` and reload audio.
+One self-contained function (params only, no closure) used identically in-tool and in the
+export — the export gets its source via `.toString()`. Renders the score with
+`ABCJS.renderAbc(..., {visualTranspose})`, builds an `ABCJS.synth.SynthController` widget
+(play/stop, progress, tempo warp, note cursor), and two transpose buttons (♭ Down / ♯ Up)
+that re-render and reload audio. Needs `abcjs-audio.css` (added at `static/css/`) for the
+control widget.
 
-### 5. Export bundling
+### 5. Export bundling (chosen: full offline audio)
 
-Inline `abcjs-6.4.4-min.js` (~230KB) into the standalone file **only when at least one
-activity uses a notation action**, so image-only schedules stay lean. The overlay-render
-helper is included on the same condition.
+When any activity uses notation, the export inlines: `abcjs-6.4.4-min.js` (~230KB), the
+`abcjs-audio.css`, `vsbRenderNotation`'s source, and **all 88 piano soundfont notes as
+base64 data URLs** (`var SF`). A tiny `XMLHttpRequest.prototype.open` patch rewrites any
+`…/<note>.mp3` request to the bundled data URL, so ABCJS plays with zero network. Cost:
+~9 MB per notation export. Image-only schedules bundle none of this and stay ~20KB.
 
-### 6. Upstream edit (only change outside the tool file)
+### 6. Song index — embedded at build time (no list.json change)
 
-Extend `layouts/songs/list.json` to also emit `abc` (from `abc_notation`), `abc_scores`,
-and `abc_tempo`. Additive — the existing Fuse.js song-library search ignores unknown
-fields.
+The tool page emits `window.SONG_INDEX` via Hugo at build (`.Site.RegularPages` "songs",
+non-unlisted), one entry per `abc_notation` plus one per `abc_scores` entry (score field
+key is `notation`, not `abc`). Kept out of the shared `list.json` so the song-library
+search payload isn't bloated with ABC. `window.SF_NOTE_FILES` (from `os.ReadDir` of the
+soundfont dir) is emitted the same way for the export bundler.
 
 ## Accepted trade-offs
 
-- **Offline picker does not populate.** The picker fetches `/songs/list.json` at runtime,
-  so inside an exported file opened offline the *picker* is empty. Any notation already
-  attached still plays fully — the ABC text is what's saved, the picker is only an
-  authoring convenience. Acceptable: the sole user needing offline authoring has local
-  song-library access anyway.
+- **Offline picker does not populate.** `SONG_INDEX` lives in the tool page, not in
+  exports, so an exported file opened offline has no picker — but attached notation plays
+  fully. The picker is an authoring convenience; the ABC text is what's saved.
+- **~9 MB per notation export.** The deliberate cost of true-offline audio; accepted.
+- **Piano only.** The bundle covers acoustic grand piano; percussion-clef scores render
+  but play back on piano.
 
 ## Out of scope (YAGNI)
 

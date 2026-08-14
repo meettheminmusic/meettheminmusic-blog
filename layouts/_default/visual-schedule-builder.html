@@ -755,6 +755,14 @@
   .vsb-tool .control-row { flex-direction: column; align-items: stretch; }
   .vsb-tool .control-row > div { min-width: 0; }
 }
+
+/* Notation editor mini-preview + playback cursor */
+.vsb-tool .abc-mini { background: #fff; border-radius: 8px; padding: 8px; overflow-x: auto; }
+.vsb-tool .abc-mini svg { max-width: 100%; }
+.abcjs-highlight { fill: #0F6E56; }
+.vsb-notation-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+.vsb-notation-score { background: #fff; border-radius: 10px; padding: 10px; overflow-x: auto; width: 100%; }
+.vsb-notation-key { font-size: 13px; color: #5F5E5A; min-width: 92px; }
 </style>
 {{ end }}
 
@@ -874,6 +882,24 @@
 
 </div><!-- /.vsb-tool -->
 
+<script src="/js/abcjs-6.4.4-min.js"></script>
+<script>
+{{/* Song notation library, embedded at build time. Flat list: songs with a single
+     abc_notation give one entry; multi-score songs (abc_scores) give one entry per
+     score, labelled "Title / Score". Consumed by the notation picker only. */}}
+{{ $index := slice }}
+{{ range (where (where .Site.RegularPages "Section" "songs") "Params.unlisted" "ne" true) }}{{ $song := . }}{{ $tempo := .Params.abc_tempo | default 120 }}{{ with .Params.abc_notation }}{{ $index = $index | append (dict "label" $song.Title "abc" . "tempo" $tempo) }}{{ end }}{{ range .Params.abc_scores }}{{ $abc := .notation | default .abc }}{{ if $abc }}{{ $index = $index | append (dict "label" (printf "%s · %s" $song.Title (.label | default "Score")) "abc" $abc "tempo" $tempo) }}{{ end }}{{ end }}{{ end }}
+window.SONG_INDEX = {{ $index | jsonify | safeJS }};
+{{/* Piano soundfont note filenames, read at build time. Used only when exporting a
+     schedule with notation, to bundle audio for fully offline playback. */}}
+{{ $sf := slice }}{{ range (os.ReadDir "static/soundfonts/acoustic_grand_piano-mp3") }}{{ if strings.HasSuffix .Name ".mp3" }}{{ $sf = $sf | append .Name }}{{ end }}{{ end }}
+window.SF_NOTE_FILES = {{ $sf | jsonify | safeJS }};
+window.SF_INSTRUMENT_DIR = 'acoustic_grand_piano-mp3';
+window.SF_SITE_URL = '/soundfonts/';
+{{/* ABCJS audio-control stylesheet, embedded so the player is styled on this page and can be inlined into exports. */}}
+window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | safeJS }};
+(function () { var s = document.createElement('style'); s.textContent = window.ABCJS_AUDIO_CSS; document.head.appendChild(s); })();
+</script>
 <script>
     // --- IndexedDB Wrapper for Media Storage ---
     const db = (() => {
@@ -1119,6 +1145,7 @@
           links: [],
           media: null,
           action: 'none',
+          notation: null,
           overlay: { image: null, images: [], audio: null }
         }, a || {});
         if (!Array.isArray(normalized.links)) normalized.links = [];
@@ -1140,6 +1167,7 @@
         links: [], // Array of {label, url} for multi-link tabs
         media: null,
         action: 'none',
+        notation: null, // { abc, tempo, transpose } when action === 'notation'
         overlay: { image: null, images: [], audio: null }
       }, data || {});
       // Collapse all others, expand the new one (accordion)
@@ -1311,6 +1339,7 @@
         links: Array.isArray(item.links) ? item.links.map(l => ({ label: l.label || '', url: l.url || '' })) : [],
         media: await cloneMediaRef(item.media, 'image'),
         action: item.action || 'none',
+        notation: item.notation ? { abc: item.notation.abc || '', tempo: item.notation.tempo || null, transpose: item.notation.transpose || 0 } : null,
         overlay: {
           image: await cloneMediaRef(item.overlay?.image, 'image'),
           images: [],
@@ -1505,9 +1534,44 @@
       const item = activities.find(x => x.id === id);
       if (!item) return;
       item.action = val;
+      if (val === 'notation' && !item.notation) item.notation = { abc: '', tempo: null, transpose: 0 };
       await renderEditor().catch(console.error);
       await renderPreview().catch(console.error);
       queueDraftSave();
+    }
+
+    function updateNotation(id, key, val) {
+      const item = activities.find(x => x.id === id);
+      if (!item) return;
+      if (!item.notation) item.notation = { abc: '', tempo: null, transpose: 0 };
+      item.notation[key] = val;
+      if (key === 'abc') renderNotationMini(id);
+      queueRender();
+      queueDraftSave();
+    }
+
+    // Fill the ABC field (and tempo) from a picked library song, then re-render the card.
+    function pickSong(id, idx) {
+      const item = activities.find(x => x.id === id);
+      const song = (window.SONG_INDEX || [])[idx];
+      if (!item || !song) return;
+      if (!item.notation) item.notation = { abc: '', tempo: null, transpose: 0 };
+      item.notation.abc = song.abc || '';
+      item.notation.tempo = song.tempo || null;
+      renderEditor().catch(console.error);
+      renderPreview().catch(console.error);
+      queueDraftSave();
+    }
+
+    // Render the small live score under the ABC field (live tool only; ABCJS is loaded here).
+    function renderNotationMini(id) {
+      const el = document.getElementById('abc-mini-' + id);
+      if (!el || !window.ABCJS) return;
+      const item = activities.find(x => x.id === id);
+      const abc = item?.notation?.abc?.trim();
+      if (!abc) { el.innerHTML = '<div style="color:var(--text-secondary);font-size:13px">Nothing to preview yet.</div>'; return; }
+      try { window.ABCJS.renderAbc(el, abc, { responsive: 'resize', staffwidth: 320 }); }
+      catch (e) { el.innerHTML = '<div style="color:#b00">Could not render this ABC.</div>'; }
     }
 
     function addLinkTab(id) {
@@ -1599,10 +1663,11 @@
         el.innerHTML = '<p style="color:var(--on-surface-variant);font-size:14px;text-align:center;padding:var(--space-6) var(--space-4)">No activities yet. Click <strong>+ Add activity</strong> to get started.</p>';
         return;
       }
+      const songOptionsHtml = (window.SONG_INDEX || []).map((s, i) => '<option value="' + i + '">' + escapeHtml(s.label) + '</option>').join('');
       el.innerHTML = activities.map((a, idx) => {
         const isCollapsed = collapsedActivities.has(a.id);
         const headerTitle = a.title || 'Untitled activity';
-        const actionLabel = a.action === 'link' ? 'Link' : a.action === 'overlay' ? 'Overlay' : '';
+        const actionLabel = a.action === 'link' ? 'Link' : a.action === 'overlay' ? 'Overlay' : a.action === 'notation' ? 'Notation' : '';
         const thumbHtml = a.media?.dbKey
           ? '<img class="activity-header-thumb" data-db-key="' + a.media.dbKey + '" src="" alt="">'
           : '<div class="activity-header-thumb-ph"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>';
@@ -1632,6 +1697,7 @@
           '<option value="none"' + (a.action === 'none' ? ' selected' : '') + '>Nothing (just a picture)</option>',
           '<option value="link"' + (a.action === 'link' ? ' selected' : '') + '>Open a website or file</option>',
           '<option value="overlay"' + (a.action === 'overlay' ? ' selected' : '') + '>Show a popup with media</option>',
+          '<option value="notation"' + (a.action === 'notation' ? ' selected' : '') + '>Show interactive song notation</option>',
           '</select>',
           '</div>',
           (a.action === 'link'
@@ -1697,6 +1763,26 @@
             ].join('')
             : ''
           ),
+          (a.action === 'notation'
+            ? [
+              '<div>',
+              '<label>Song notation</label>',
+              '<p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">Pick a song from the library to fill in the notation, or paste and edit your own ABC. It opens as an interactive, playable score in a popup.</p>',
+              '<select onchange="if(this.value!==\'\')pickSong(' + a.id + ', +this.value)" style="margin-bottom:8px">',
+              '<option value="">Pick a song from the library…</option>',
+              songOptionsHtml,
+              '</select>',
+              '<label>ABC notation</label>',
+              '<textarea spellcheck="false" style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;min-height:120px" placeholder="X:1&#10;T:Tune&#10;M:4/4&#10;L:1/4&#10;K:C&#10;CDEF|GABc|" oninput="updateNotation(' + a.id + ', \'abc\', this.value)">' + escapeHtml(a.notation && a.notation.abc || '') + '</textarea>',
+              '<div style="display:flex;align-items:center;gap:8px;margin-top:8px">',
+              '<label style="margin:0">Tempo (BPM)</label>',
+              '<input type="number" min="20" max="300" value="' + (a.notation && a.notation.tempo || '') + '" placeholder="120" oninput="updateNotation(' + a.id + ', \'tempo\', this.value ? +this.value : null)" style="width:90px">',
+              '</div>',
+              '<div style="margin-top:10px"><label>Preview</label><div id="abc-mini-' + a.id + '" class="abc-mini"></div></div>',
+              '</div>'
+            ].join('')
+            : ''
+          ),
           '<div class="actions" style="margin-top:8px;position:relative">',
           '<div class="activity-more-menu">',
           '<button class="vsb-btn small ghost activity-more-btn" onclick="toggleActivityMenu(event, ' + a.id + ')" title="More actions">',
@@ -1728,6 +1814,7 @@
       }).join('');
 
       await populateMediaSrc(el, editorUrls);
+      activities.forEach(a => { if (a.action === 'notation') renderNotationMini(a.id); });
     }
 
     function renderMediaPreview(media, expectedKind) {
@@ -1826,11 +1913,12 @@
           const hasMultiLinks = a.action === 'link' && a.links && a.links.length > 0 && a.links.some(l => l.url && l.url.trim());
           const isLink = a.action === 'link' && !!(a.link && a.link.trim()) && !hasMultiLinks;
           const isOverlay = a.action === 'overlay' && !!getOverlayContent(a);
+        const isNotation = a.action === 'notation' && !!(a.notation && a.notation.abc && a.notation.abc.trim());
 
           // Use div for multi-link items, otherwise use 'a' tag for single link
           const tag = isLink ? 'a' : 'div';
           const item = document.createElement(tag);
-          item.className = 'schedule-item' + (isLink ? ' has-link' : isOverlay ? ' has-overlay' : hasMultiLinks ? ' has-link' : '');
+          item.className = 'schedule-item' + (isLink ? ' has-link' : (isOverlay || isNotation) ? ' has-overlay' : hasMultiLinks ? ' has-link' : '');
           item.style.position = 'relative'; // For absolute positioning of tabs
 
           // Add bottom padding if tabs will be present
@@ -1843,7 +1931,7 @@
             item.target = "_blank";
             item.rel = "noopener noreferrer";
           }
-          if (isOverlay) {
+          if (isOverlay || isNotation) {
             item.addEventListener('click', () => openBuilderOverlay(a));
           }
 
@@ -1977,6 +2065,82 @@
       renderSlide();
     }
 
+    // Self-contained interactive notation player. Kept dependency-free (params only) so
+    // its source can be serialized with .toString() into the exported standalone file.
+    // Returns the ABCJS SynthController (or null) so callers can stop audio on close.
+    function vsbRenderNotation(root, notation, ABCJS, soundFontUrl) {
+      root.innerHTML = '';
+      var abc = notation && notation.abc ? notation.abc : '';
+      if (!abc.trim() || !ABCJS) { root.textContent = 'No notation to show.'; return null; }
+      var tempo = notation.tempo || null;
+      function withTempo(src) {
+        if (!tempo) return src;
+        var lines = src.split(/\r?\n/).filter(function (l) { return !/^Q:/.test(l.trim()); });
+        var out = [], ins = false;
+        for (var i = 0; i < lines.length; i++) {
+          out.push(lines[i]);
+          if (!ins && /^X:/.test(lines[i].trim())) { out.push('Q:1/4=' + tempo); ins = true; }
+        }
+        if (!ins) out.unshift('Q:1/4=' + tempo);
+        return out.join('\n');
+      }
+      var effAbc = withTempo(abc);
+      var transpose = (notation.transpose | 0) || 0;
+
+      var controls = document.createElement('div'); controls.className = 'vsb-notation-controls';
+      var down = document.createElement('button'); down.type = 'button'; down.className = 'vsb-btn small ghost'; down.textContent = '\u266d Down';
+      var up = document.createElement('button'); up.type = 'button'; up.className = 'vsb-btn small ghost'; up.textContent = '\u266f Up';
+      var keyLabel = document.createElement('span'); keyLabel.className = 'vsb-notation-key';
+      controls.appendChild(down); controls.appendChild(keyLabel); controls.appendChild(up);
+
+      var scoreEl = document.createElement('div'); scoreEl.className = 'vsb-notation-score';
+      var audioEl = document.createElement('div'); audioEl.style.marginTop = '10px';
+      root.appendChild(controls); root.appendChild(scoreEl); root.appendChild(audioEl);
+
+      var hasAudio = ABCJS.synth && ABCJS.synth.supportsAudio && ABCJS.synth.supportsAudio();
+      var cursor = {
+        beatSubdivisions: 2,
+        onEvent: function (ev) {
+          if (!ev) return;
+          if (ev.measureStart && ev.left === null) return;
+          var hl = scoreEl.querySelectorAll('.abcjs-highlight');
+          for (var k = 0; k < hl.length; k++) hl[k].classList.remove('abcjs-highlight');
+          if (ev.elements) {
+            for (var i = 0; i < ev.elements.length; i++) {
+              var g = ev.elements[i]; if (!g) continue;
+              for (var j = 0; j < g.length; j++) { if (g[j] && g[j].classList) g[j].classList.add('abcjs-highlight'); }
+            }
+          }
+        },
+        onFinished: function () {
+          var hl = scoreEl.querySelectorAll('.abcjs-highlight');
+          for (var k = 0; k < hl.length; k++) hl[k].classList.remove('abcjs-highlight');
+        }
+      };
+      var synthControl = null;
+      if (hasAudio) {
+        synthControl = new ABCJS.synth.SynthController();
+        synthControl.load(audioEl, cursor, { displayPlay: true, displayProgress: true, displayWarp: true, displayRestart: true });
+      } else {
+        audioEl.innerHTML = '<div style="color:#5F5E5A;font-size:13px">Audio playback is not supported in this browser.</div>';
+      }
+      var audioParams = { soundFontUrl: soundFontUrl, chordsOff: false };
+
+      function draw() {
+        var visualObj = ABCJS.renderAbc(scoreEl, effAbc, { responsive: 'resize', add_classes: true, visualTranspose: transpose })[0];
+        keyLabel.textContent = transpose === 0 ? 'Concert pitch' : ('Transpose ' + (transpose > 0 ? '+' : '') + transpose);
+        if (synthControl && visualObj) {
+          synthControl.setTune(visualObj, false, audioParams).catch(function (e) { console.warn('notation synth', e); });
+        }
+      }
+      down.addEventListener('click', function () { transpose--; draw(); });
+      up.addEventListener('click', function () { transpose++; draw(); });
+      draw();
+      return synthControl;
+    }
+
+    let currentNotationSynth = null;
+
     async function openBuilderOverlay(a) {
       const root = document.getElementById('builderOverlay');
       const panel = root.querySelector('.panel');
@@ -1987,6 +2151,20 @@
         '<div id="boNotes" style="margin-top:8px;color:#6b7280">' + escapeHtml(a.notes || '') + '</div>';
 
       const content = panel.querySelector('#boContent');
+
+      // Interactive notation takes over the whole popup body.
+      if (a.action === 'notation' && a.notation && (a.notation.abc || '').trim()) {
+        try {
+          currentNotationSynth = vsbRenderNotation(content, a.notation, window.ABCJS, (window.SF_SITE_URL || '/soundfonts/'));
+        } catch (e) {
+          content.innerHTML = '<div style="color:#b00">Could not render this notation.</div>';
+          console.error(e);
+        }
+        root.classList.add('show');
+        root.setAttribute('aria-hidden', 'false');
+        return;
+      }
+
       const overlayData = getOverlayContent(a);
 
       if (overlayData) {
@@ -2109,6 +2287,11 @@
     function closeBuilderOverlay() {
       const root = document.getElementById('builderOverlay');
       const panel = root.querySelector('.panel');
+
+      if (currentNotationSynth) {
+        try { currentNotationSynth.destroy(); } catch (e) { /* ignore */ }
+        currentNotationSynth = null;
+      }
 
       // Clean up object URLs
       if (panel.dataset.objectUrls) {
@@ -2257,7 +2440,7 @@
 
       const tileEls = Array.from(doc.querySelectorAll('.grid .schedule-item'));
       const importedActivities = await Promise.all(tileEls.map(async (el, i) => {
-        const a = { title: '', notes: '', link: '', links: [], media: null, action: 'none', overlay: { image: null, images: [], audio: null } };
+        const a = { title: '', notes: '', link: '', links: [], media: null, action: 'none', notation: null, overlay: { image: null, images: [], audio: null } };
         const t = el.querySelector('.schedule-title'); if (t) a.title = t.textContent.trim();
         const n = el.querySelector('.schedule-notes'); if (n) a.notes = n.textContent.trim();
 
@@ -2285,7 +2468,10 @@
         if (el.hasAttribute('data-overlay-index')) {
           const idx = parseInt(el.getAttribute('data-overlay-index'), 10);
           const o = overlays[idx];
-          if (o) {
+          if (o && o.notation) {
+            a.action = 'notation';
+            a.notation = { abc: o.notation.abc || '', tempo: o.notation.tempo || null, transpose: o.notation.transpose || 0 };
+          } else if (o) {
             a.action = 'overlay';
 
             // New format: separate image/video and audio + optimized refs
@@ -2449,6 +2635,7 @@
           var isLink = (a.action === 'link' && a.link && a.link.trim() && !hasMultiLinks);
           var overlayData = (a.action === 'overlay') ? getOverlayContent(a) : null;
           var isOverlay = !!overlayData;
+          var isNotation = (a.action === 'notation' && a.notation && a.notation.abc && a.notation.abc.trim());
           var open, close;
           var extraStyle = hasMultiLinks ? 'padding-bottom:30px;' : '';
 
@@ -2463,6 +2650,16 @@
           else if (isOverlay) {
             var oidx = pushOverlayFrom(overlayData, a.title || ('Activity ' + (i + 1)), a.notes || '');
             open = '<div class="schedule-item has-overlay" style="position:relative;' + extraStyle + '" data-overlay-index="' + oidx + '">';
+            close = '</div>';
+          }
+          else if (isNotation) {
+            var nidx = overlays.length;
+            overlays.push({
+              title: a.title || ('Activity ' + (i + 1)),
+              notes: a.notes || '',
+              notation: { abc: a.notation.abc, tempo: a.notation.tempo || null, transpose: a.notation.transpose || 0 }
+            });
+            open = '<div class="schedule-item has-overlay" style="position:relative;' + extraStyle + '" data-overlay-index="' + nidx + '">';
             close = '</div>';
           }
           else {
@@ -2494,11 +2691,47 @@
         var forced = forceEl?.value !== 'auto' ? parseInt(forceEl.value, 10) : null;
         var grid = bestGrid(n, forced);
 
+        // Notation bundling: when any activity uses notation, inline ABCJS and the piano
+        // soundfont so the exported file renders, transposes, and plays fully offline.
+        const usesNotation = activities.some(a => a.action === 'notation' && a.notation && (a.notation.abc || '').trim());
+        let abcjsLib = '';
+        let sfMapJSON = '{}';
+        if (usesNotation) {
+          setExportStatus('Loading notation engine...');
+          try {
+            abcjsLib = await fetch('/js/abcjs-6.4.4-min.js').then(r => r.text());
+          } catch (e) {
+            console.error('Failed to load ABCJS for export', e);
+            alert('Could not load the notation engine for export. Are you online? Export aborted.');
+            setExportStatus('Export failed', true);
+            return;
+          }
+          const sfFiles = window.SF_NOTE_FILES || [];
+          const sfMap = {};
+          for (let i = 0; i < sfFiles.length; i++) {
+            const f = sfFiles[i];
+            if (i % 12 === 0) setExportStatus(`Bundling notation audio ${i + 1}/${sfFiles.length}...`);
+            try {
+              const blob = await fetch(window.SF_SITE_URL + window.SF_INSTRUMENT_DIR + '/' + f).then(r => r.blob());
+              sfMap[f.replace(/\.mp3$/i, '')] = await blobToDataURL(blob);
+            } catch (e) {
+              console.warn('Soundfont note failed to bundle:', f, e);
+            }
+          }
+          sfMapJSON = JSON.stringify(sfMap);
+        }
+
         const overlaysJSON = serializeForScript(overlays);
         const manifestJSON = serializeForScript(mode === 'optimized' ? mediaManifest : {});
         const metaJSON = serializeForScript({ version: 2, mode: mode });
+        const notationRuntime = usesNotation ? (
+          'var SF = ' + sfMapJSON + ';\n' +
+          'var vsbRenderNotation = ' + vsbRenderNotation.toString() + ';\n' +
+          '(function(){var _open=XMLHttpRequest.prototype.open;XMLHttpRequest.prototype.open=function(method,url){try{if(typeof url==="string"){var m=url.match(/([A-G][b#]?[0-9])\\.mp3(?:[?#].*)?$/);if(m&&SF[m[1]]){arguments[1]=SF[m[1]];return _open.apply(this,arguments);}}}catch(e){}return _open.apply(this,arguments);};})();\n'
+        ) : '';
         const script = `
 (function () {
+${notationRuntime}  var currentNotation = null;
   var OVERLAYS = ${overlaysJSON};
   var MEDIA_MANIFEST = ${manifestJSON};
   var EXPORT_META = ${metaJSON};
@@ -2600,6 +2833,7 @@
   }
 
   function closeOverlay() {
+    if (currentNotation) { try { currentNotation.destroy(); } catch (e) {} currentNotation = null; }
     cleanContent();
     t.classList.remove("show");
     t.setAttribute("aria-hidden", "true");
@@ -2690,6 +2924,16 @@
       o.textContent = overlayData.title || "Activity";
       cleanContent();
       i.textContent = overlayData.notes || "";
+
+      if (overlayData.notation && typeof vsbRenderNotation === "function") {
+        try { currentNotation = vsbRenderNotation(l, overlayData.notation, window.ABCJS, "sf/"); }
+        catch (err) { l.innerHTML = '<p style="color:#b00">Could not render notation.</p>'; }
+        n.style.width = "";
+        n.style.height = "";
+        t.classList.add("show");
+        t.setAttribute("aria-hidden", "false");
+        return;
+      }
 
       var imageSrc = getRefSrc(overlayData, "imageDataURL", "imageRef");
       var audioSrc = getRefSrc(overlayData, "audioDataURL", "audioRef");
@@ -2946,9 +3190,11 @@
 })();
 `;
 
+        const abcjsScriptTag = usesNotation ? ('<scr' + 'ipt>' + abcjsLib.replace(/<\/script>/gi, '<\\/script>') + '</scr' + 'ipt>') : '';
+        const notationExportCss = usesNotation ? ((window.ABCJS_AUDIO_CSS || '') + '.abcjs-highlight{fill:#0F6E56}.vsb-notation-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}.vsb-notation-score{background:#fff;border-radius:10px;padding:10px;overflow-x:auto;width:100%}.vsb-notation-score svg{max-width:100%}.vsb-notation-key{font-size:13px;color:#5F5E5A;min-width:92px}') : '';
         const exportHeaderBg = theme.headerTransparent ? 'transparent' : ('linear-gradient(135deg,' + theme.headerColor + ',' + theme.headerColorEnd + ')');
         const exportScreenInlineStyle = theme.bgImage ? ' style="background:#fff url(' + theme.bgImage.replace(/"/g, '&quot;') + ') center/cover no-repeat"' : '';
-        let exported = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${escapeHtml(title)}</title><style>:root{--indigo:${theme.headerColor};--violet:${theme.headerColorEnd};--stone:#e5e7eb;--teal:${theme.headerColorEnd};--rose:#d94452}*{box-sizing:border-box}body{margin:0;height:100vh;background:#0b1020;color:#111;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}.stage{position:fixed;inset:0;display:grid;place-items:center}.screen{width:min(100vw,calc(100vh * (16/9)));height:min(100vh,calc(100vw * (9/16)));background:#fff;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.35);overflow:hidden;display:grid;grid-template-rows:auto 1fr}.schedule-header{text-align:center;padding:10px 14px;background:${exportHeaderBg};color:${theme.headerTextColor};font-weight:700}.grid{display:grid;gap:10px;padding:10px;height:100%;width:100%;grid-template-columns:repeat(${grid.cols},1fr);grid-template-rows:repeat(${grid.rows},1fr)}.schedule-item{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;background:#f8fafc;border-radius:12px;border:2px solid var(--stone);padding:6px;text-align:center;text-decoration:none;color:inherit;overflow:hidden;position:relative;min-height:0}.schedule-item.has-link{border-color:var(--teal);cursor:pointer}.schedule-item.has-overlay{border-color:var(--rose);cursor:pointer}.schedule-item.blurred{filter:blur(4px) grayscale(0.8) opacity(0.7);transition:filter 0.3s ease}.schedule-image{width:92%;flex:1 1 0;min-height:0;object-fit:contain;border-radius:10px;margin-bottom:4px;border:3px solid var(--stone);background:#fff}.ph{width:92%;flex:1 1 0;min-height:0;border-radius:10px;border:3px solid var(--stone);background:linear-gradient(135deg,#e5e7eb,#cbd5e1);display:grid;place-items:center;font-size:24px;color:#556}.schedule-title{font-weight:700;color:#374151;font-size:clamp(10px,1.8vmin,16px);line-height:1.15;max-width:96%;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.schedule-notes{font-size:clamp(9px,1.6vmin,14px);color:#6b7280;margin-top:2px;max-width:96%;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}.link-tabs{position:absolute;bottom:0;left:0;right:0;display:flex;gap:0;z-index:10;border-radius:0 0 10px 10px;overflow:hidden}.link-tab{flex:1;background:#0F6E56;color:#fff;padding:6px 8px;font-size:11px;font-weight:600;text-align:center;text-decoration:none;border:none;border-top:2px solid #e5e7eb;cursor:pointer;transition:background .2s ease;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.link-tab:hover{background:#085041}.link-tab:not(:last-child){border-right:1px solid rgba(255,255,255,.3)}.link-tab:nth-child(2){background:#085041}.link-tab:nth-child(2):hover{background:#06382d}.link-tab:nth-child(3){background:#f59e0b}.link-tab:nth-child(3):hover{background:#d97706}.link-tab:nth-child(4){background:#ec4899}.link-tab:nth-child(4):hover{background:#db2777}.link-tab:nth-child(5){background:#8b5cf6}.link-tab:nth-child(5):hover{background:#7c3aed}.overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:50}.overlay.show{display:flex}.overlay .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6)}.overlay .panel{position:relative;background:#fff;border-radius:14px;max-width:95vw;width:min(800px,92vw);max-height:90vh;padding:16px;box-shadow:0 40px 70px rgba(0,0,0,.35);display:flex;flex-direction:column}.overlay .close{position:absolute;top:8px;right:10px;border:0;background:#efefef;border-radius:8px;padding:6px 10px;cursor:pointer}.overlay .panel h3{margin:0 0 10px 0}.overlay .panel img,.overlay .panel video,.overlay .panel audio{max-width:100%;max-height:70vh;display:block;margin:0 auto}.overlay .panel audio{width:100%;margin-top:12px}.overlay .panel .content{flex:1 1 auto;min-height:0;overflow:auto;display:flex;flex-direction:column;align-items:center;justify-content:center}.overlay .panel .resizer{position:absolute;right:8px;bottom:8px;width:18px;height:18px;border-radius:4px;background:rgba(0,0,0,.08);cursor:se-resize;display:grid;place-items:center;z-index:999}</style></head><body><div class="stage"><div class="screen"${exportScreenInlineStyle}><div class="schedule-header" style="background:${exportHeaderBg};color:${theme.headerTextColor}">${escapeHtml(headerText)}</div><div class="grid" data-rows="${grid.rows}">${tiles.join('')}</div></div></div><div id="ov" class="overlay" aria-hidden="true"><div class="backdrop"></div><div class="panel"><button class="close" aria-label="Close overlay">Close</button><div class="toolbar"><div class="title" id="ovTitle"></div></div><div class="content" id="ovMedia"></div><div id="ovNotes" style="margin-top:8px;color:#6b7280"></div><div class="resizer" title="Drag to resize">◢</div></div></div><script>${script.replace(/<\/script>/gi, '<\\/script>')}<\/script></body></html>`;
+        let exported = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${escapeHtml(title)}</title><style>:root{--indigo:${theme.headerColor};--violet:${theme.headerColorEnd};--stone:#e5e7eb;--teal:${theme.headerColorEnd};--rose:#d94452}*{box-sizing:border-box}body{margin:0;height:100vh;background:#0b1020;color:#111;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}.stage{position:fixed;inset:0;display:grid;place-items:center}.screen{width:min(100vw,calc(100vh * (16/9)));height:min(100vh,calc(100vw * (9/16)));background:#fff;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.35);overflow:hidden;display:grid;grid-template-rows:auto 1fr}.schedule-header{text-align:center;padding:10px 14px;background:${exportHeaderBg};color:${theme.headerTextColor};font-weight:700}.grid{display:grid;gap:10px;padding:10px;height:100%;width:100%;grid-template-columns:repeat(${grid.cols},1fr);grid-template-rows:repeat(${grid.rows},1fr)}.schedule-item{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;background:#f8fafc;border-radius:12px;border:2px solid var(--stone);padding:6px;text-align:center;text-decoration:none;color:inherit;overflow:hidden;position:relative;min-height:0}.schedule-item.has-link{border-color:var(--teal);cursor:pointer}.schedule-item.has-overlay{border-color:var(--rose);cursor:pointer}.schedule-item.blurred{filter:blur(4px) grayscale(0.8) opacity(0.7);transition:filter 0.3s ease}.schedule-image{width:92%;flex:1 1 0;min-height:0;object-fit:contain;border-radius:10px;margin-bottom:4px;border:3px solid var(--stone);background:#fff}.ph{width:92%;flex:1 1 0;min-height:0;border-radius:10px;border:3px solid var(--stone);background:linear-gradient(135deg,#e5e7eb,#cbd5e1);display:grid;place-items:center;font-size:24px;color:#556}.schedule-title{font-weight:700;color:#374151;font-size:clamp(10px,1.8vmin,16px);line-height:1.15;max-width:96%;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.schedule-notes{font-size:clamp(9px,1.6vmin,14px);color:#6b7280;margin-top:2px;max-width:96%;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}.link-tabs{position:absolute;bottom:0;left:0;right:0;display:flex;gap:0;z-index:10;border-radius:0 0 10px 10px;overflow:hidden}.link-tab{flex:1;background:#0F6E56;color:#fff;padding:6px 8px;font-size:11px;font-weight:600;text-align:center;text-decoration:none;border:none;border-top:2px solid #e5e7eb;cursor:pointer;transition:background .2s ease;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.link-tab:hover{background:#085041}.link-tab:not(:last-child){border-right:1px solid rgba(255,255,255,.3)}.link-tab:nth-child(2){background:#085041}.link-tab:nth-child(2):hover{background:#06382d}.link-tab:nth-child(3){background:#f59e0b}.link-tab:nth-child(3):hover{background:#d97706}.link-tab:nth-child(4){background:#ec4899}.link-tab:nth-child(4):hover{background:#db2777}.link-tab:nth-child(5){background:#8b5cf6}.link-tab:nth-child(5):hover{background:#7c3aed}.overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:50}.overlay.show{display:flex}.overlay .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6)}.overlay .panel{position:relative;background:#fff;border-radius:14px;max-width:95vw;width:min(800px,92vw);max-height:90vh;padding:16px;box-shadow:0 40px 70px rgba(0,0,0,.35);display:flex;flex-direction:column}.overlay .close{position:absolute;top:8px;right:10px;border:0;background:#efefef;border-radius:8px;padding:6px 10px;cursor:pointer}.overlay .panel h3{margin:0 0 10px 0}.overlay .panel img,.overlay .panel video,.overlay .panel audio{max-width:100%;max-height:70vh;display:block;margin:0 auto}.overlay .panel audio{width:100%;margin-top:12px}.overlay .panel .content{flex:1 1 auto;min-height:0;overflow:auto;display:flex;flex-direction:column;align-items:center;justify-content:center}.overlay .panel .resizer{position:absolute;right:8px;bottom:8px;width:18px;height:18px;border-radius:4px;background:rgba(0,0,0,.08);cursor:se-resize;display:grid;place-items:center;z-index:999}${notationExportCss}</style>${abcjsScriptTag}</head><body><div class="stage"><div class="screen"${exportScreenInlineStyle}><div class="schedule-header" style="background:${exportHeaderBg};color:${theme.headerTextColor}">${escapeHtml(headerText)}</div><div class="grid" data-rows="${grid.rows}">${tiles.join('')}</div></div></div><div id="ov" class="overlay" aria-hidden="true"><div class="backdrop"></div><div class="panel"><button class="close" aria-label="Close overlay">Close</button><div class="toolbar"><div class="title" id="ovTitle"></div></div><div class="content" id="ovMedia"></div><div id="ovNotes" style="margin-top:8px;color:#6b7280"></div><div class="resizer" title="Drag to resize">◢</div></div></div><script>${script.replace(/<\/script>/gi, '<\\/script>')}<\/script></body></html>`;
         exported = exported
           .replace('.overlay .panel{position:relative;background:#fff;border-radius:14px;max-width:95vw;width:min(800px,92vw);max-height:90vh;padding:16px;box-shadow:0 40px 70px rgba(0,0,0,.35);display:flex;flex-direction:column}', '.overlay .panel{position:relative;background:#fff;border-radius:14px;max-width:98vw;width:min(900px,96vw);max-height:98vh;padding:16px;box-shadow:0 40px 70px rgba(0,0,0,.35);display:flex;flex-direction:column}')
           .replace('.overlay .panel img,.overlay .panel video,.overlay .panel audio{max-width:100%;max-height:70vh;display:block;margin:0 auto}.overlay .panel audio{width:100%;margin-top:12px}', '.overlay .panel img,.overlay .panel video,.overlay .panel audio{width:100%;max-width:none;max-height:none;display:block;margin:0 auto}.overlay .panel audio{margin-top:12px}');
@@ -3025,10 +3271,11 @@
         const hasMultiLinks = a.action === 'link' && a.links && a.links.length > 0 && a.links.some(l => l.url && l.url.trim());
         const isLink = a.action === 'link' && !!(a.link && a.link.trim()) && !hasMultiLinks;
         const isOverlay = a.action === 'overlay' && !!getOverlayContent(a);
+        const isNotation = a.action === 'notation' && !!(a.notation && a.notation.abc && a.notation.abc.trim());
 
         const tag = isLink ? 'a' : 'div';
         const item = document.createElement(tag);
-        item.className = 'schedule-item' + (isLink ? ' has-link' : isOverlay ? ' has-overlay' : hasMultiLinks ? ' has-link' : '');
+        item.className = 'schedule-item' + (isLink ? ' has-link' : (isOverlay || isNotation) ? ' has-overlay' : hasMultiLinks ? ' has-link' : '');
         item.style.position = 'relative';
 
         if (hasMultiLinks) item.style.paddingBottom = '30px';
@@ -3038,7 +3285,7 @@
           item.target = '_blank';
           item.rel = 'noopener noreferrer';
         }
-        if (isOverlay) {
+        if (isOverlay || isNotation) {
           item.addEventListener('click', () => { closeFullscreenPreview(); setTimeout(() => openBuilderOverlay(a), 100); });
         }
 
