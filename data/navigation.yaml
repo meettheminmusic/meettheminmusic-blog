@@ -20,6 +20,10 @@ items:
         url: /ostinato-builder/
       - name: Chord diagram generator
         url: /chord-diagram-generator/
+      - name: Visual Schedule Builder
+        url: /visual-schedule-builder/
+      - name: Music Book Slideshow Builder
+        url: /music-book-slideshow-builder/
   - name: Resources
     url: https://www.teacherspayteachers.com/store/meet-them-in-music
     weight: 6

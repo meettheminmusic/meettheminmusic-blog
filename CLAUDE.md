@@ -93,7 +93,7 @@ CSS uses `--mtim-*` prefixed custom properties (same namespace as global brand t
 
 ## Visual Schedule Builder
 
-`/visual-schedule-builder/` is a Hugo page (currently `unlisted: true`, not in the Tools nav). Layout: `layouts/_default/visual-schedule-builder.html` (self-contained: CSS in `extra_head`, markup and ~2,300 lines of vanilla JS in `main`), content stub: `content/visual-schedule-builder.md`. Ported from the standalone Schedule Planner. Builds a single-lesson visual schedule: a two-panel editor (activity sequence left, live 16:9 preview right, drag-resizable via `#resizeHandle`) where each activity gets a picture, optional notes, and a click action (nothing, link with optional multi-link tabs, or a media popup with image/video, audio, and slideshow support). No external libraries.
+`/visual-schedule-builder/` is a Hugo page (public, in the Tools nav dropdown). Layout: `layouts/_default/visual-schedule-builder.html` (self-contained: CSS in `extra_head`, markup and ~2,300 lines of vanilla JS in `main`), content stub: `content/visual-schedule-builder.md`. Ported from the standalone Schedule Planner. Builds a single-lesson visual schedule: a two-panel editor (activity sequence left, live 16:9 preview right, drag-resizable via `#resizeHandle`) where each activity gets a picture, optional notes, and a click action (nothing, link with optional multi-link tabs, or a media popup with image/video, audio, and slideshow support). No external libraries.
 
 Key mechanics:
 - Media blobs persist in IndexedDB (`mtimVisualScheduleDB`); drafts autosave to `localStorage` key `mtim_visual_schedule_draft`

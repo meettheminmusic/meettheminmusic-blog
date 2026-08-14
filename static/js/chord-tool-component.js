@@ -21,8 +21,8 @@ function emptyShape(instKey) {
 }
 
 function ChordTool() {
-  const [instKey,      setInstKey]      = useState('guitar');
-  const [shape,        setShape]        = useState(() => ({ ...emptyShape('guitar'), name: 'G' }));
+  const [instKey,      setInstKey]      = useState('ukulele');
+  const [shape,        setShape]        = useState(() => ({ ...emptyShape('ukulele'), name: 'G' }));
   const [mode,         setMode]         = useState('finger');
   const [activeFinger, setActiveFinger] = useState('');
   const [activeColor,  setActiveColor]  = useState('charcoal');
