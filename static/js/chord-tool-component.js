@@ -17,7 +17,7 @@ const COLOR_OPTS = [
 
 function emptyShape(instKey) {
   const s = INSTRUMENTS[instKey].strings;
-  return { strings: s, frets: 5, baseFret: 1, fingers: [], barres: [], nut: Array(s).fill(''), name: '', labelPos: 'top', dotSize: 'md', dotColor: 'charcoal' };
+  return { strings: s, frets: 5, baseFret: 1, fingers: [], barres: [], nut: Array(s).fill(''), name: '', labelPos: 'top', dotSize: 'lg', dotColor: 'charcoal' };
 }
 
 function ChordTool() {
