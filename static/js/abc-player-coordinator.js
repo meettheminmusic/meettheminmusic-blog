@@ -643,16 +643,24 @@
   function _startTimingCallbacks(player, container) {
     if (!ABCJS.TimingCallbacks) { return; }
 
+    _clearCursor(player);
+    // Standalone TimingCallbacks uses eventCallback — NOT the cursorControl
+    // onEvent/onStart/onFinished names, which only apply when a SynthController
+    // drives the callbacks. Passing the wrong keys silently disables highlighting.
     var callbacks = new ABCJS.TimingCallbacks(player.visualObj, {
       qpm:              player.currentBpm,
       beatSubdivisions: 2,
-      onStart: function () {
-        if (player.cursorEnabled) { _clearCursor(player); }
-      },
-      onEvent: function (ev) {
+      eventCallback: function (ev) {
+        if (ev === null) {
+          // Null event signals the tune finished playing.
+          _clearCursor(player);
+          _stopPlayback(player);
+          _setState(player, container, 'READY');
+          return;
+        }
         if (!player.cursorEnabled) { return; }
         _clearCursor(player);
-        if (ev && ev.elements) {
+        if (ev.elements) {
           // ev.elements is an array of arrays (one per staff/voice)
           for (var i = 0; i < ev.elements.length; i++) {
             var elems = ev.elements[i];
@@ -665,11 +673,6 @@
             }
           }
         }
-      },
-      onFinished: function () {
-        _clearCursor(player);
-        _stopPlayback(player);
-        _setState(player, container, 'READY');
       }
     });
 
