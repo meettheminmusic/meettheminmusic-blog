@@ -8,8 +8,11 @@ card_image: ''
 tonal_concepts:
   - So-Do
   - Bordun
+  - V-I
+  - Tonic-Dominant
 rhythmic_concepts:
   - 1/8 Notes
+  - Dotted 1/4
 activity_types:
   - Xylophone
   - Movement
