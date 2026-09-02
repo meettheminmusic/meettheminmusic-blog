@@ -40,27 +40,22 @@ abc_scores:
     notation: |-
       %%textfont arial italic 11
       X:1
-      T:High Bird
-      M:2/4
+      T:Alley Alley Oh
+      M:4/4
       L:1/8
       C:arr. P. Eric Bottorff
       A: MeetThemInMusic.com
       Q:1/4
       %%gchordfont Arial 12
-      %%vocalfont Arial 10
+      %%vocalfont Arial 8
       %%staffsep 50
-      %%barsperstaff 4
       %%stretchlast 1
-      K:C
-      C2 C2 | D2 DD| E2 E2 | F2 FF ||
-      w: Just how high could a high bird fly if a
-      G2 F2 | E2 D2 | (3D2C2E2 | D4 ||
-      w: high bird could fly high in the sky?
-      C2 C2 | D2 DD| E2 E2 | F2 FF ||
-      w: Just how high could a high bird fly if a
-      G2 F2 | E2 B,2 | C4 |]
-      w: high bird could fly high.
-      %%textfont arial 9
+      %%barsperstaff 5
+      K:G
+      DD | G2 G2 BB BB| dd dd A3 A|BB BB G3 G| AA AA D2 DD ||
+      w: Oh the big ship's sail-ing on the all-ey all-ey oh, the all-ey all-ey oh, the all-ey all-ey on. Oh the
+      G2 G2 BB BB| dd dd A2 AA|B2 B2 c2 A2| G4 G4|]
+      w: big ship's sail-ing on the all-ey all-ey oh, on the nine-teenth of Sep-tem-ber.
       %%center .
       %%center © 2026 All Rights Reserved.
     image: ''
