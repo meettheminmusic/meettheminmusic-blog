@@ -4,7 +4,7 @@ date: 2026-09-10T10:05:00-04:00
 draft: true
 unlisted: false
 featured: false
-card_image: ''
+card_image: /images/uploads/who can sail.jpg
 tonal_concepts:
   - V-i
   - Resting tone
