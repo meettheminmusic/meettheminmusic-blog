@@ -73,6 +73,10 @@ This is a nice song about how we can need, how other people can help up make it 
 <table><thead><tr><th> </th><th>Swedish</th><th>English</th></tr></thead><tbody><tr><td>Verse 1</td><td>Vem kan segla förutan vind, vem kan ro utan åror, vem kan skiljas från vännen sin utan att fälla tårar?</td><td>Who can sail without the wind, who can row without oars, who can leave a parting friend without shedding tears?</td></tr><tr><td>Verse 2</td><td>Jag kan segla förutan vind, jag kan ro utan åror, men ej skiljas från vännen min utan att fälla tårar.</td><td>I can sail without the wind, I can row without oars, but I can't leave a parting friend without shedding tears.</td></tr></tbody></table>
 <br>
 
-<u>**Activity: 1**</u>
+<u>**Activity 1**</u>: Good for classes that need to stay seated
 
 Pass around beanbags or beat buddies to each student. Sing the song while rocking the bean bag.  For other turns, let students come up with different places to put the beanbag while they flow.
+
+<u>**Activity 2**</u>
+
+Work with students to create a movements for each line of the song. How can you show sailing, rowing, leaving, and crying?  How do you would your movements change for the second verse?
