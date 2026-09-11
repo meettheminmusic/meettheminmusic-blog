@@ -95,6 +95,34 @@ abc_scores:
       %%center © 2026 All Rights Reserved.
     image: ''
     tempo: 50
+  - label: Orff arrangement
+    notation: |-
+      X:1
+      T:Obwisana
+      M:4/4
+      L:1/8
+      Q:100
+      C:arr. P. Eric Bottorff
+      A: MeetThemInMusic.com
+      %%vocalfont Arial 10
+      %%staffsep 40
+      %%score [V1 V2 V3]
+      V:V1 clef=perc stafflines=1 stem=up name="Hand Drum" snm="HD"
+      V:V2 clef=treble name="Voice" snm="V"
+      V:V3 clef=treble name="Marimba" snm="Mba"
+      K:C
+      V:V1
+      %%MIDI transpose -8
+      B2 B2 B2 B2| B2 B2 B2 B2| B2 B2 B2 B2| B2 B2 B2 B2|]
+      V:V2
+      %%MIDI program 0
+      EG GE A2 GF| EG DC E2 z2| EG GE A2 GF| EG DC C2 z2|]
+      w: Ob-wi-sa-na-sa, na na. Ob-wi-sa-na sa. Ob-wi-sa-na-sa, na na. Ob-wi-sa-na sa.
+      V:V3
+      %%MIDI program 12
+      [C,G,]4 [C,G,]4| [C,G,]4 [C,G,]4| [C,G,]4 [C,G,]4| [C,G,]4 [C,G,]4|]
+    image: ''
+    tempo: 100
 ---
 
 This is a fun passing game but can be challenging because it requires all students to pass accurately.  If students do not pass correctly, there will be  a pile-up of rocks/beanbags.

@@ -983,6 +983,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
           if (a.media?.dbKey) usedKeys.add(a.media.dbKey);
           if (a.overlay?.image?.dbKey) usedKeys.add(a.overlay.image.dbKey);
           if (a.overlay?.audio?.dbKey) usedKeys.add(a.overlay.audio.dbKey);
+          if (a.overlay?.audio2?.dbKey) usedKeys.add(a.overlay.audio2.dbKey);
           if (Array.isArray(a.overlay?.images)) {
             a.overlay.images.forEach(img => { if (img?.dbKey) usedKeys.add(img.dbKey); });
           }
@@ -1009,7 +1010,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
     // Activity model: { id, title, notes, media, action, link, links, overlay }
     // media: { kind, dbKey, name }
     // links: [{label: string, url: string}] - for multiple link tabs
-    // overlay: { image: {kind, dbKey, name} | null, images: [{kind, dbKey, name}], audio: {dbKey, name} | null }
+    // overlay: { image: {kind, dbKey, name} | null, images: [{kind, dbKey, name}], audio: {dbKey, name} | null, audio2: {dbKey, name} | null }
     const activities = [];
     const collapsedActivities = new Set();
     let uid = 0;
@@ -1146,10 +1147,10 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
           media: null,
           action: 'none',
           notation: null,
-          overlay: { image: null, images: [], audio: null }
+          overlay: { image: null, images: [], audio: null, audio2: null }
         }, a || {});
         if (!Array.isArray(normalized.links)) normalized.links = [];
-        normalized.overlay = Object.assign({ image: null, images: [], audio: null }, normalized.overlay || {});
+        normalized.overlay = Object.assign({ image: null, images: [], audio: null, audio2: null }, normalized.overlay || {});
         if (!Array.isArray(normalized.overlay.images)) normalized.overlay.images = [];
         activities.push(normalized);
       });
@@ -1168,7 +1169,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
         media: null,
         action: 'none',
         notation: null, // { abc, tempo, transpose } when action === 'notation'
-        overlay: { image: null, images: [], audio: null }
+        overlay: { image: null, images: [], audio: null, audio2: null }
       }, data || {});
       // Collapse all others, expand the new one (accordion)
       activities.forEach(act => collapsedActivities.add(act.id));
@@ -1187,6 +1188,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
           if (activity.media?.dbKey) await db.remove(activity.media.dbKey);
           if (activity.overlay?.image?.dbKey) await db.remove(activity.overlay.image.dbKey);
           if (activity.overlay?.audio?.dbKey) await db.remove(activity.overlay.audio.dbKey);
+          if (activity.overlay?.audio2?.dbKey) await db.remove(activity.overlay.audio2.dbKey);
           if (Array.isArray(activity.overlay?.images)) {
             await Promise.all(activity.overlay.images.map(img => img?.dbKey ? db.remove(img.dbKey).catch(() => { }) : Promise.resolve()));
           }
@@ -1343,7 +1345,8 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
         overlay: {
           image: await cloneMediaRef(item.overlay?.image, 'image'),
           images: [],
-          audio: await cloneMediaRef(item.overlay?.audio, 'audio')
+          audio: await cloneMediaRef(item.overlay?.audio, 'audio'),
+          audio2: await cloneMediaRef(item.overlay?.audio2, 'audio')
         }
       };
       if (Array.isArray(item.overlay?.images)) {
@@ -1369,17 +1372,24 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
 
         if (kindKey === 'overlay-image') {
           // Overlay image/video
-          if (!item.overlay) item.overlay = { image: null, images: [], audio: null };
+          if (!item.overlay) item.overlay = { image: null, images: [], audio: null, audio2: null };
           if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
           if (item.overlay.image?.dbKey) await db.remove(item.overlay.image.dbKey);
           item.overlay.image = { kind, dbKey, name: file.name };
           if (item.action !== 'overlay') item.action = 'overlay';
         } else if (kindKey === 'overlay-audio') {
           // Overlay audio
-          if (!item.overlay) item.overlay = { image: null, images: [], audio: null };
+          if (!item.overlay) item.overlay = { image: null, images: [], audio: null, audio2: null };
           if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
           if (item.overlay.audio?.dbKey) await db.remove(item.overlay.audio.dbKey);
           item.overlay.audio = { dbKey, name: file.name };
+          if (item.action !== 'overlay') item.action = 'overlay';
+        } else if (kindKey === 'overlay-audio2') {
+          // Second overlay audio
+          if (!item.overlay) item.overlay = { image: null, images: [], audio: null, audio2: null };
+          if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
+          if (item.overlay.audio2?.dbKey) await db.remove(item.overlay.audio2.dbKey);
+          item.overlay.audio2 = { dbKey, name: file.name };
           if (item.action !== 'overlay') item.action = 'overlay';
         } else {
           // Primary media for tile
@@ -1401,7 +1411,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
       if (!files.length) return;
       const item = activities.find(x => x.id === id);
       if (!item) return;
-      if (!item.overlay) item.overlay = { image: null, images: [], audio: null };
+      if (!item.overlay) item.overlay = { image: null, images: [], audio: null, audio2: null };
       if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
 
       try {
@@ -1430,7 +1440,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
         console.error('Failed to remove slideshow image:', e);
       }
       item.overlay.images.splice(idx, 1);
-      if (item.action === 'overlay' && !item.overlay.image && !item.overlay.audio && !item.overlay.images.length) {
+      if (item.action === 'overlay' && !item.overlay.image && !item.overlay.audio && !item.overlay.audio2 && !item.overlay.images.length) {
         item.action = 'none';
       }
       await renderEditor().catch(console.error);
@@ -1447,7 +1457,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
         console.error('Failed to clear slideshow images:', e);
       }
       item.overlay.images = [];
-      if (item.action === 'overlay' && !item.overlay.image && !item.overlay.audio) item.action = 'none';
+      if (item.action === 'overlay' && !item.overlay.image && !item.overlay.audio && !item.overlay.audio2) item.action = 'none';
       await renderEditor().catch(console.error);
       await renderPreview().catch(console.error);
       queueDraftSave();
@@ -1459,21 +1469,30 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
 
       try {
         if (kindKey === 'overlay-image') {
-          if (!item.overlay) item.overlay = { image: null, images: [], audio: null };
+          if (!item.overlay) item.overlay = { image: null, images: [], audio: null, audio2: null };
           if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
           if (item.overlay?.image?.dbKey) await db.remove(item.overlay.image.dbKey);
           if (item.overlay) item.overlay.image = null;
           // If both overlay parts are empty, reset action
-          if (item.overlay && !item.overlay.image && !item.overlay.audio && !item.overlay.images.length && item.action === 'overlay') {
+          if (item.overlay && !item.overlay.image && !item.overlay.audio && !item.overlay.audio2 && !item.overlay.images.length && item.action === 'overlay') {
             item.action = 'none';
           }
         } else if (kindKey === 'overlay-audio') {
-          if (!item.overlay) item.overlay = { image: null, images: [], audio: null };
+          if (!item.overlay) item.overlay = { image: null, images: [], audio: null, audio2: null };
           if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
           if (item.overlay?.audio?.dbKey) await db.remove(item.overlay.audio.dbKey);
           if (item.overlay) item.overlay.audio = null;
           // If both overlay parts are empty, reset action
-          if (item.overlay && !item.overlay.image && !item.overlay.audio && !item.overlay.images.length && item.action === 'overlay') {
+          if (item.overlay && !item.overlay.image && !item.overlay.audio && !item.overlay.audio2 && !item.overlay.images.length && item.action === 'overlay') {
+            item.action = 'none';
+          }
+        } else if (kindKey === 'overlay-audio2') {
+          if (!item.overlay) item.overlay = { image: null, images: [], audio: null, audio2: null };
+          if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
+          if (item.overlay?.audio2?.dbKey) await db.remove(item.overlay.audio2.dbKey);
+          if (item.overlay) item.overlay.audio2 = null;
+          // If both overlay parts are empty, reset action
+          if (item.overlay && !item.overlay.image && !item.overlay.audio && !item.overlay.audio2 && !item.overlay.images.length && item.action === 'overlay') {
             item.action = 'none';
           }
         } else {
@@ -1751,6 +1770,16 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
               '</div>',
               '</div>',
               '<div>',
+              '<label>Second audio file (optional)</label>',
+              '<p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">Add a second song or sound, both will appear in the popup</p>',
+              '<div class="media-preview">', renderMediaPreview(a.overlay?.audio2, 'audio'), '</div>',
+              '<div class="actions" style="margin-top:8px">',
+              '<input id="overlay-audio2-' + a.id + '" type="file" accept="audio/*" style="display:none" onchange="handleMediaInput(' + a.id + ', this.files[0], \'overlay-audio2\')">',
+              '<button class="vsb-btn small" onclick="document.getElementById(\'overlay-audio2-' + a.id + '\').click()">Choose audio file</button>',
+              (a.overlay?.audio2 ? '<button class="vsb-btn small ghost" onclick="clearMedia(' + a.id + ', \'overlay-audio2\')">Remove</button>' : ''),
+              '</div>',
+              '</div>',
+              '<div>',
               '<label>Slideshow images (optional)</label>',
               '<p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">Add multiple images and step through them in the popup</p>',
               '<div class="media-preview">', renderOverlaySlidesPreview(a), '</div>',
@@ -1855,7 +1884,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
       // Returns the overlay object if it has any content, otherwise null
       if (!a.overlay) return null;
       if (!Array.isArray(a.overlay.images)) a.overlay.images = [];
-      if (a.overlay.image || a.overlay.audio || a.overlay.images.length) return a.overlay;
+      if (a.overlay.image || a.overlay.audio || a.overlay.audio2 || a.overlay.images.length) return a.overlay;
       // Legacy support: old format had overlay as a single blob
       if (a.overlay.dbKey) return a.overlay;
       return null;
@@ -2216,6 +2245,20 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
             }
           }
 
+          if (overlayData.audio2?.dbKey) {
+            const audio2Blob = await db.get(overlayData.audio2.dbKey);
+            if (audio2Blob) {
+              const url = URL.createObjectURL(audio2Blob);
+              objectUrls.push(url);
+              const audio2 = document.createElement('audio');
+              audio2.controls = true;
+              audio2.src = url;
+              audio2.style.width = '100%';
+              audio2.style.marginTop = '12px';
+              content.appendChild(audio2);
+            }
+          }
+
           if (Array.isArray(overlayData.images) && overlayData.images.length) {
             const slideUrls = [];
             for (const slide of overlayData.images) {
@@ -2230,7 +2273,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
           }
 
           // Legacy support: old format had overlay as single media
-          if (overlayData.dbKey && !overlayData.image && !overlayData.audio && !(overlayData.images && overlayData.images.length)) {
+          if (overlayData.dbKey && !overlayData.image && !overlayData.audio && !overlayData.audio2 && !(overlayData.images && overlayData.images.length)) {
             const mediaBlob = await db.get(overlayData.dbKey);
             if (mediaBlob) {
               const url = URL.createObjectURL(mediaBlob);
@@ -2440,7 +2483,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
 
       const tileEls = Array.from(doc.querySelectorAll('.grid .schedule-item'));
       const importedActivities = await Promise.all(tileEls.map(async (el, i) => {
-        const a = { title: '', notes: '', link: '', links: [], media: null, action: 'none', notation: null, overlay: { image: null, images: [], audio: null } };
+        const a = { title: '', notes: '', link: '', links: [], media: null, action: 'none', notation: null, overlay: { image: null, images: [], audio: null, audio2: null } };
         const t = el.querySelector('.schedule-title'); if (t) a.title = t.textContent.trim();
         const n = el.querySelector('.schedule-notes'); if (n) a.notes = n.textContent.trim();
 
@@ -2478,6 +2521,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
             const imageDataURL = o.imageDataURL || (o.imageRef ? mediaManifest[o.imageRef] : null);
             const videoDataURL = o.videoDataURL || (o.videoRef ? mediaManifest[o.videoRef] : null);
             const audioDataURL = o.audioDataURL || (o.audioRef ? mediaManifest[o.audioRef] : null);
+            const audio2DataURL = o.audio2DataURL || (o.audio2Ref ? mediaManifest[o.audio2Ref] : null);
             const inlineSlides = Array.isArray(o.slidesDataURLs) ? o.slidesDataURLs.filter(Boolean) : [];
             const refSlides = Array.isArray(o.slideRefs) ? o.slideRefs.map(ref => mediaManifest[ref]).filter(Boolean) : [];
             const slidesDataURLs = inlineSlides.length ? inlineSlides : refSlides;
@@ -2496,6 +2540,11 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
               const blob = await dataURLToBlob(audioDataURL);
               const dbKey = await db.add(blob);
               a.overlay.audio = { dbKey, name: o.title || '' };
+            }
+            if (audio2DataURL) {
+              const blob = await dataURLToBlob(audio2DataURL);
+              const dbKey = await db.add(blob);
+              a.overlay.audio2 = { dbKey, name: o.title || '' };
             }
             if (slidesDataURLs.length) {
               for (const dataURL of slidesDataURLs) {
@@ -2545,6 +2594,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
           if (a.media?.dbKey) mediaToConvert.set(a.media.dbKey, null);
           if (a.overlay?.image?.dbKey) mediaToConvert.set(a.overlay.image.dbKey, null);
           if (a.overlay?.audio?.dbKey) mediaToConvert.set(a.overlay.audio.dbKey, null);
+          if (a.overlay?.audio2?.dbKey) mediaToConvert.set(a.overlay.audio2.dbKey, null);
           if (Array.isArray(a.overlay?.images)) {
             a.overlay.images.forEach(img => { if (img?.dbKey) mediaToConvert.set(img.dbKey, null); });
           }
@@ -2588,6 +2638,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
             notes: notes || '',
             imageDataURL: null,
             audioDataURL: null,
+            audio2DataURL: null,
             videoDataURL: null,
             slidesDataURLs: []
           };
@@ -2598,6 +2649,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
             else overlay.imageDataURL = dataURL;
           }
           if (overlayData.audio?.dbKey) overlay.audioDataURL = mediaToConvert.get(overlayData.audio.dbKey);
+          if (overlayData.audio2?.dbKey) overlay.audio2DataURL = mediaToConvert.get(overlayData.audio2.dbKey);
           if (Array.isArray(overlayData.images) && overlayData.images.length) {
             overlay.slidesDataURLs = overlayData.images
               .map(img => img?.dbKey ? mediaToConvert.get(img.dbKey) : null)
@@ -2605,7 +2657,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
           }
 
           // Legacy support: old format had a single media payload
-          if (overlayData.dbKey && !overlayData.image && !overlayData.audio) {
+          if (overlayData.dbKey && !overlayData.image && !overlayData.audio && !overlayData.audio2) {
             const dataURL = mediaToConvert.get(overlayData.dbKey);
             overlay.dataURL = dataURL || null;
             overlay.kind = overlayData.kind || null;
@@ -2614,6 +2666,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
           if (mode === 'optimized') {
             if (overlay.imageDataURL) { overlay.imageRef = toMediaRef(overlay.imageDataURL); overlay.imageDataURL = null; }
             if (overlay.audioDataURL) { overlay.audioRef = toMediaRef(overlay.audioDataURL); overlay.audioDataURL = null; }
+            if (overlay.audio2DataURL) { overlay.audio2Ref = toMediaRef(overlay.audio2DataURL); overlay.audio2DataURL = null; }
             if (overlay.videoDataURL) { overlay.videoRef = toMediaRef(overlay.videoDataURL); overlay.videoDataURL = null; }
             if (overlay.slidesDataURLs?.length) {
               overlay.slideRefs = overlay.slidesDataURLs.map(toMediaRef).filter(Boolean);
@@ -2622,7 +2675,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
             if (overlay.dataURL) { overlay.dataRef = toMediaRef(overlay.dataURL); overlay.dataURL = null; }
           }
 
-          const hasContent = !!(overlay.imageDataURL || overlay.audioDataURL || overlay.videoDataURL || (overlay.slidesDataURLs && overlay.slidesDataURLs.length) || overlay.imageRef || overlay.audioRef || overlay.videoRef || (overlay.slideRefs && overlay.slideRefs.length) || overlay.dataURL || overlay.dataRef);
+          const hasContent = !!(overlay.imageDataURL || overlay.audioDataURL || overlay.audio2DataURL || overlay.videoDataURL || (overlay.slidesDataURLs && overlay.slidesDataURLs.length) || overlay.imageRef || overlay.audioRef || overlay.audio2Ref || overlay.videoRef || (overlay.slideRefs && overlay.slideRefs.length) || overlay.dataURL || overlay.dataRef);
           if (!hasContent) return -1;
 
           var idx = overlays.length;
@@ -2937,6 +2990,7 @@ ${notationRuntime}  var currentNotation = null;
 
       var imageSrc = getRefSrc(overlayData, "imageDataURL", "imageRef");
       var audioSrc = getRefSrc(overlayData, "audioDataURL", "audioRef");
+      var audio2Src = getRefSrc(overlayData, "audio2DataURL", "audio2Ref");
       var videoSrc = getRefSrc(overlayData, "videoDataURL", "videoRef");
       var slideSources = getRefList(overlayData, "slidesDataURLs", "slideRefs");
       var legacySrc = getRefSrc(overlayData, "dataURL", "dataRef");
@@ -2954,6 +3008,13 @@ ${notationRuntime}  var currentNotation = null;
         audio.src = audioSrc;
         l.appendChild(audio);
       }
+      if (audio2Src) {
+        var audio2 = document.createElement("audio");
+        audio2.controls = true;
+        audio2.preload = "none";
+        audio2.src = audio2Src;
+        l.appendChild(audio2);
+      }
       if (videoSrc) {
         var video = document.createElement("video");
         video.controls = true;
@@ -2965,7 +3026,7 @@ ${notationRuntime}  var currentNotation = null;
         appendSlideshow(l, slideSources, overlayData.title || "Slide");
       }
 
-      if (legacySrc && overlayData.kind && !imageSrc && !audioSrc && !videoSrc && !slideSources.length) {
+      if (legacySrc && overlayData.kind && !imageSrc && !audioSrc && !audio2Src && !videoSrc && !slideSources.length) {
         if (overlayData.kind === "image") {
           l.innerHTML = '<img src="' + legacySrc + '" alt="' + (overlayData.title || "") + '">';
         } else if (overlayData.kind === "audio") {

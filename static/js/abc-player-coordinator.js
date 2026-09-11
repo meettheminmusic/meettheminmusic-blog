@@ -146,6 +146,13 @@
     }
     player.abcText = _decodeEntities(abcDataEl.textContent);
 
+    // Multi-voice Orff scores route each percussion voice through its own
+    // %%MIDI transpose (used as a drum selector). A global key/octave transpose
+    // would corrupt those voices, and transposing a fixed pentatonic Orff
+    // arrangement is not meaningful — so hide the transposition controls when a
+    // perc-clef voice is present. Detected once here from the raw ABC.
+    player.transposable = !/clef\s*=\s*perc/i.test(player.abcText);
+
     // If this is a percussion staff (K:perc), inject drummap directives
     // that route every note letter to MIDI 38 (acoustic snare).
     // %%MIDI directives are audio-only — they have no effect on the
@@ -449,8 +456,13 @@
     controlsEl.appendChild(btn);
     controlsEl.appendChild(audioHint);
     controlsEl.appendChild(tempoWrap);
-    controlsEl.appendChild(keyWrap);
-    controlsEl.appendChild(octaveWrap);
+    // Key/octave transposition is unsafe for multi-voice percussion scores
+    // (see player.transposable). Omit both controls when it's off; their
+    // elements and handlers still exist but stay out of the DOM.
+    if (player.transposable) {
+      controlsEl.appendChild(keyWrap);
+      controlsEl.appendChild(octaveWrap);
+    }
 
     // Save score lives outside controls so CSS can place it below the score
     dlBtn.className = 'abc-player-btn abc-player-btn--ghost abc-player-btn--save';

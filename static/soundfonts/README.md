@@ -19,7 +19,16 @@ from the GitHub UI.
 | Folder name                   | GM number | Used for                        |
 |-------------------------------|-----------|----------------------------------|
 | `acoustic_grand_piano-mp3`    | 0         | default pitched playback        |
-| `percussion-mp3`              | —         | `K:perc` rhythmic notation      |
+| `percussion-mp3`              | —         | percussion (`K:perc` + Orff `clef=perc` voices) |
+| `celesta-mp3`                 | 8         | Orff bordun: Celesta            |
+| `glockenspiel-mp3`            | 9         | Orff bordun: Glockenspiel       |
+| `vibraphone-mp3`              | 11        | Orff bordun: Metallophone       |
+| `marimba-mp3`                 | 12        | Orff bordun: Marimba            |
+| `xylophone-mp3`               | 13        | Orff bordun: Xylophone          |
+
+The Orff instruments back the bordun voice in combined arrangements (see the Ostinato Builder's
+instrument list). Their GM program numbers must match the `%%MIDI program N` written into a song's
+`abc_notation`; the folder name must match the GM instrument name abcjs requests for that program.
 
 abcjs constructs soundfont URLs as `soundFontUrl + instrumentName + '-mp3/' + note + '.mp3'`,
 so the folder name must include the `-mp3` suffix.
@@ -34,6 +43,50 @@ visual score.
 
 Additional pitched instruments are only needed if your ABC tunes specify
 `%%MIDI program N` with a non-zero program number.
+
+## Authoring a combined Orff arrangement
+
+A song can play melody + Orff accompaniment from a single `abc_notation` (or one `abc_scores`
+entry) as a multi-voice score. The song library player detects the `clef=perc` voice and **hides its
+key/octave controls** (transposing would corrupt the drum voices, whose `%%MIDI transpose` is a drum
+selector).
+
+> **Voice order matters.** abcjs 6.4.4 only routes a `clef=perc` voice to the drum kit (MIDI channel
+> 10) when **no pitched voice is defined before it**. So every percussion voice must come first in
+> `%%score` and in the voice body, with the pitched voices (melody, bordun) after. This is why the
+> percussion staff sits on top. Put a pitched voice first and the drums silently play as piano.
+
+Fastest path: build the bordun + percussion in the **Ostinato Builder**, click **Copy ABC** (it
+already emits percussion-first), then append the song's melody as a pitched voice after them. Keep
+the frontmatter `sanitized_abc` field as the melody line only, so the Braille panel stays clean.
+
+Template (see `content/songs/obwisana.md` for a live example):
+
+```
+X:1
+T:Song title
+M:4/4
+L:1/8
+Q:100
+%%score [V1 V2 V3]
+V:V1 clef=perc stafflines=1 stem=up name="Hand Drum" %% percussion FIRST (routes to drum kit)
+V:V2 clef=treble name="Voice"                        %% melody
+V:V3 clef=treble name="Marimba"                      %% pitched bordun
+K:C
+V:V1
+%%MIDI transpose -8                                  %% (GM drum note − 71); e.g. hand drum 63 → -8
+B2 B2 B2 B2|]                                         %% always write 'B'; transpose picks the sound
+V:V2
+%%MIDI program 0                                     %% melody on piano
+<melody notes>|]
+w: song-ly-rics here
+V:V3
+%%MIDI program 12                                    %% GM program from the table above
+[C,G,]4 [C,G,]4|]                                    %% pentatonic bordun
+```
+
+Every voice must total the same number of beats per bar. GM drum notes for the percussion voices
+are listed in the Ostinato Builder source (`PERC_SOUNDS`).
 
 ## How to place them
 
