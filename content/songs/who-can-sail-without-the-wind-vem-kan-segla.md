@@ -70,8 +70,6 @@ abc_scores: []
 
 This is a nice song about how we can need, how other people can help up make it through hard times, and how it can be hard when people go away from our lives. I like how the second verse talks about how we can do things on our own but it is still difficult when people leave us.
 
-<br>
-
 <table><thead><tr><th> </th><th>Swedish</th><th>English</th></tr></thead><tbody><tr><td>Verse 1</td><td>Vem kan segla förutan vind, vem kan ro utan åror, vem kan skiljas från vännen sin utan att fälla tårar?</td><td>Who can sail without the wind, who can row without oars, who can leave a parting friend without shedding tears?</td></tr><tr><td>Verse 2</td><td>Jag kan segla förutan vind, jag kan ro utan åror, men ej skiljas från vännen min utan att fälla tårar.</td><td>I can sail without the wind, I can row without oars, but I can't leave a parting friend without shedding tears.</td></tr></tbody></table>
 <br>
 
