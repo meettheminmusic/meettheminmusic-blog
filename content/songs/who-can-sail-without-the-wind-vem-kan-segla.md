@@ -64,7 +64,7 @@ abc_notation: |-
   %%center © 2026 All Rights Reserved.
 sanitized_abc: ''
 abc_image: ''
-abc_tempo: 100
+abc_tempo: 70
 abc_scores: []
 ---
 
