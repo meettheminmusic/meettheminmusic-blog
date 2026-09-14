@@ -181,11 +181,14 @@
     // 2. Extract metadata
     // ----------------------------------------------------------------
     if (player.visualObj) {
-      // Tempo — only trust getBpm() when the notation contains an explicit
-      // Q: field. Without one, ABCJS returns 180 as a hardcoded default
-      // which would override the per-score tempo set in frontmatter.
-      var hasQField   = /^Q\s*:/im.test(player.abcText);
-      var detectedBpm = (hasQField && player.visualObj.getBpm) ? player.visualObj.getBpm() : null;
+      // Tempo — only trust getBpm() when ABCJS actually parsed a bpm value
+      // from the Q: field. A regex test for "Q:" text isn't enough: a
+      // malformed field like "Q:1/4" (a note length with no "=bpm") makes
+      // ABCJS's parser fail silently, leaving metaText.tempo unset — and
+      // getBpm() then returns its own hardcoded default (180, or 120 for
+      // compound meters), overriding the per-score tempo set in frontmatter.
+      var hasParsedTempo = !!(player.visualObj.metaText && player.visualObj.metaText.tempo);
+      var detectedBpm = (hasParsedTempo && player.visualObj.getBpm) ? player.visualObj.getBpm() : null;
       player.currentBpm = (detectedBpm && detectedBpm > 0)
         ? Math.round(detectedBpm)
         : player.defaultTempo;
@@ -703,19 +706,19 @@
 
   /* ------------------------------------------------------------------
      Tempo → milliseconds per measure
+     Delegates to ABCJS's own visualObj.millisecondsPerMeasure(), the same
+     method TimingCallbacks uses internally via setTiming(qpm). Reimplementing
+     this math (as a prior version did) assumed beat = quarter note, which is
+     wrong for compound meters (6/8, 9/8, 12/8, 3/8) where ABCJS treats the
+     beat as a dotted quarter — that mismatch made the audio synth run at a
+     different tempo than the visual cursor for every 6/8 song on the site.
      ------------------------------------------------------------------ */
   function _calcMsPerMeasure(visualObj, bpm) {
-    // Q:1/4=bpm means quarter note = bpm beats per minute.
-    // Duration of a whole note = 4 * (60000 / bpm) ms.
-    // A measure of M:num/den lasts (num/den) whole notes.
-    // So: msPerMeasure = 4 * (60000/bpm) * (num/den)
-    var num = 4, den = 4;
     try {
-      var meter = visualObj.getMeterFraction();
-      if (meter && meter.num) { num = meter.num; }
-      if (meter && meter.den) { den = meter.den; }
-    } catch (e) { /* use 4/4 default */ }
-    return 4 * (60000 / bpm) * (num / den);
+      return visualObj.millisecondsPerMeasure(bpm);
+    } catch (e) {
+      return 4 * (60000 / bpm); // 4/4 fallback
+    }
   }
 
 }());

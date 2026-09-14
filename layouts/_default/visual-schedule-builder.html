@@ -1327,7 +1327,8 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
       return {
         kind: mediaRef.kind || fallbackKind || 'image',
         dbKey,
-        name: mediaRef.name || ''
+        name: mediaRef.name || '',
+        label: mediaRef.label || ''
       };
     }
 
@@ -1382,14 +1383,14 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
           if (!item.overlay) item.overlay = { image: null, images: [], audio: null, audio2: null };
           if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
           if (item.overlay.audio?.dbKey) await db.remove(item.overlay.audio.dbKey);
-          item.overlay.audio = { dbKey, name: file.name };
+          item.overlay.audio = { dbKey, name: file.name, label: item.overlay.audio?.label || '' };
           if (item.action !== 'overlay') item.action = 'overlay';
         } else if (kindKey === 'overlay-audio2') {
           // Second overlay audio
           if (!item.overlay) item.overlay = { image: null, images: [], audio: null, audio2: null };
           if (!Array.isArray(item.overlay.images)) item.overlay.images = [];
           if (item.overlay.audio2?.dbKey) await db.remove(item.overlay.audio2.dbKey);
-          item.overlay.audio2 = { dbKey, name: file.name };
+          item.overlay.audio2 = { dbKey, name: file.name, label: item.overlay.audio2?.label || '' };
           if (item.action !== 'overlay') item.action = 'overlay';
         } else {
           // Primary media for tile
@@ -1546,6 +1547,13 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
         }
       }
       await renderPreview().catch(console.error);
+      queueDraftSave();
+    }
+
+    function updateOverlayAudioLabel(id, which, val) {
+      const item = activities.find(x => x.id === id);
+      if (!item?.overlay?.[which]) return;
+      item.overlay[which].label = val;
       queueDraftSave();
     }
 
@@ -1768,6 +1776,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
               '<button class="vsb-btn small" onclick="document.getElementById(\'overlay-audio-' + a.id + '\').click()">Choose audio file</button>',
               (a.overlay?.audio ? '<button class="vsb-btn small ghost" onclick="clearMedia(' + a.id + ', \'overlay-audio\')">Remove</button>' : ''),
               '</div>',
+              (a.overlay?.audio ? '<input type="text" placeholder="Label (e.g. English version)" value="' + escapeHtml(a.overlay.audio.label || '') + '" oninput="updateOverlayAudioLabel(' + a.id + ', \'audio\', this.value)" style="margin-top:8px;font-size:13px;padding:6px 8px;width:100%">' : ''),
               '</div>',
               '<div>',
               '<label>Second audio file (optional)</label>',
@@ -1778,6 +1787,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
               '<button class="vsb-btn small" onclick="document.getElementById(\'overlay-audio2-' + a.id + '\').click()">Choose audio file</button>',
               (a.overlay?.audio2 ? '<button class="vsb-btn small ghost" onclick="clearMedia(' + a.id + ', \'overlay-audio2\')">Remove</button>' : ''),
               '</div>',
+              (a.overlay?.audio2 ? '<input type="text" placeholder="Label (e.g. Spanish version)" value="' + escapeHtml(a.overlay.audio2.label || '') + '" oninput="updateOverlayAudioLabel(' + a.id + ', \'audio2\', this.value)" style="margin-top:8px;font-size:13px;padding:6px 8px;width:100%">' : ''),
               '</div>',
               '<div>',
               '<label>Slideshow images (optional)</label>',
@@ -2236,11 +2246,18 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
             if (audioBlob) {
               const url = URL.createObjectURL(audioBlob);
               objectUrls.push(url);
+              if (overlayData.audio.label) {
+                const caption = document.createElement('div');
+                caption.textContent = overlayData.audio.label;
+                caption.style.marginTop = '12px';
+                caption.style.fontWeight = '600';
+                content.appendChild(caption);
+              }
               const audio = document.createElement('audio');
               audio.controls = true;
               audio.src = url;
               audio.style.width = '100%';
-              audio.style.marginTop = '12px';
+              audio.style.marginTop = overlayData.audio.label ? '4px' : '12px';
               content.appendChild(audio);
             }
           }
@@ -2250,11 +2267,18 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
             if (audio2Blob) {
               const url = URL.createObjectURL(audio2Blob);
               objectUrls.push(url);
+              if (overlayData.audio2.label) {
+                const caption2 = document.createElement('div');
+                caption2.textContent = overlayData.audio2.label;
+                caption2.style.marginTop = '12px';
+                caption2.style.fontWeight = '600';
+                content.appendChild(caption2);
+              }
               const audio2 = document.createElement('audio');
               audio2.controls = true;
               audio2.src = url;
               audio2.style.width = '100%';
-              audio2.style.marginTop = '12px';
+              audio2.style.marginTop = overlayData.audio2.label ? '4px' : '12px';
               content.appendChild(audio2);
             }
           }
@@ -2539,12 +2563,12 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
             if (audioDataURL) {
               const blob = await dataURLToBlob(audioDataURL);
               const dbKey = await db.add(blob);
-              a.overlay.audio = { dbKey, name: o.title || '' };
+              a.overlay.audio = { dbKey, name: o.title || '', label: o.audioLabel || '' };
             }
             if (audio2DataURL) {
               const blob = await dataURLToBlob(audio2DataURL);
               const dbKey = await db.add(blob);
-              a.overlay.audio2 = { dbKey, name: o.title || '' };
+              a.overlay.audio2 = { dbKey, name: o.title || '', label: o.audio2Label || '' };
             }
             if (slidesDataURLs.length) {
               for (const dataURL of slidesDataURLs) {
@@ -2648,8 +2672,14 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
             if (overlayData.image.kind === 'video') overlay.videoDataURL = dataURL;
             else overlay.imageDataURL = dataURL;
           }
-          if (overlayData.audio?.dbKey) overlay.audioDataURL = mediaToConvert.get(overlayData.audio.dbKey);
-          if (overlayData.audio2?.dbKey) overlay.audio2DataURL = mediaToConvert.get(overlayData.audio2.dbKey);
+          if (overlayData.audio?.dbKey) {
+            overlay.audioDataURL = mediaToConvert.get(overlayData.audio.dbKey);
+            if (overlayData.audio.label) overlay.audioLabel = overlayData.audio.label;
+          }
+          if (overlayData.audio2?.dbKey) {
+            overlay.audio2DataURL = mediaToConvert.get(overlayData.audio2.dbKey);
+            if (overlayData.audio2.label) overlay.audio2Label = overlayData.audio2.label;
+          }
           if (Array.isArray(overlayData.images) && overlayData.images.length) {
             overlay.slidesDataURLs = overlayData.images
               .map(img => img?.dbKey ? mediaToConvert.get(img.dbKey) : null)
@@ -3002,17 +3032,33 @@ ${notationRuntime}  var currentNotation = null;
         l.appendChild(img);
       }
       if (audioSrc) {
+        if (overlayData.audioLabel) {
+          var audioCaption = document.createElement("div");
+          audioCaption.textContent = overlayData.audioLabel;
+          audioCaption.style.marginTop = "12px";
+          audioCaption.style.fontWeight = "600";
+          l.appendChild(audioCaption);
+        }
         var audio = document.createElement("audio");
         audio.controls = true;
         audio.preload = "none";
         audio.src = audioSrc;
+        audio.style.marginTop = overlayData.audioLabel ? "4px" : "";
         l.appendChild(audio);
       }
       if (audio2Src) {
+        if (overlayData.audio2Label) {
+          var audio2Caption = document.createElement("div");
+          audio2Caption.textContent = overlayData.audio2Label;
+          audio2Caption.style.marginTop = "12px";
+          audio2Caption.style.fontWeight = "600";
+          l.appendChild(audio2Caption);
+        }
         var audio2 = document.createElement("audio");
         audio2.controls = true;
         audio2.preload = "none";
         audio2.src = audio2Src;
+        audio2.style.marginTop = overlayData.audio2Label ? "4px" : "";
         l.appendChild(audio2);
       }
       if (videoSrc) {
