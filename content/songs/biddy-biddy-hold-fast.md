@@ -30,6 +30,7 @@ meters:
   - Duple
 source: ''
 source_url: ''
+panels: []
 abc_notation: |-
   %%textfont arial italic 11
   X:1 
@@ -54,7 +55,31 @@ abc_notation: |-
 sanitized_abc: ''
 abc_image: ''
 abc_tempo: 105
-abc_scores: []
+abc_scores:
+  - label: Simpler Rhythm
+    notation: |-
+      %%textfont arial italic 11
+      X:1 
+      T:Biddy Biddy Hold Fast
+      M:4/4
+      L:1/16
+      C:arr. P. Eric Bottorff
+      A: MeetThemInMusic.com 
+      %%vocalfont Arial 9
+      %%staffsep 50
+      %%stretchlast 1
+      %%barsperstaff 5
+      K:F
+      cccc A2c2 F2A2 A2A2 | G2AB A2G2 AA2AA4||
+      w: Bid-dy bid-dy hold fast. Lost my gold ring, one went to kings-ton. Come back a-gain.
+      M: 4/4
+      cccc A2c2 F2A2 A2A2 | G2AB A2G2 FF2FF4:|]
+      w: Bid-dy bid-dy hold fast. Lost my gold ring, one went to kings-ton. Come back a-gain.
+      %%textfont arial 9
+      %%center .
+      %%center © 2026 All Rights Reserved.
+    image: ''
+    tempo: null
 ---
 
 <u>**Activity**</u>
