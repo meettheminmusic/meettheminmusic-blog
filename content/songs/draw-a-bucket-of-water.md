@@ -42,6 +42,31 @@ abc_notation: |-
   %%center © 2026 All Rights Reserved.
 sanitized_abc: ''
 abc_image: ''
-abc_tempo: 120
-abc_scores: []
+abc_tempo: 100
+abc_scores:
+  - label: Altered Ending Phrase
+    notation: |-
+      %%textfont arial italic 11
+      X:1
+      T:Draw a Bucket of Water
+      M:2/4
+      L:1/8
+      C:arr. P. Eric Bottorff
+      A: MeetThemInMusic.com
+      Q:1/4=100
+      %%gchordfont Arial 12
+      %%vocalfont Arial 10
+      %%staffsep 50
+      %%stretchlast 1
+      %%barsperstaff 4
+      K:G
+      GG A/2A/2B | G2D2 | GG AB | G2D2 ||
+      w: Draw a buck-et of wat-er. For my el-dest daugh-ter
+      BB/2B/2 B2 | BB/2B/2 BB/2A/2 | GG A/2A/2B | G2G2|]
+      w: One in the bunch. Two in the bunch, and the  first old lad-y pops un-der.
+      %%textfont arial 9
+      %%center .
+      %%center © 2026 All Rights Reserved.
+    image: ''
+    tempo: null
 ---
