@@ -399,6 +399,9 @@ body { background: var(--ob-bg); }
   <button id="save-ostinato-btn" class="ob-btn">&#128190; Save ostinato</button>
   <select id="load-ostinato-sel"><option value="">Load ostinato…</option></select>
   <button id="delete-ostinato-btn" class="ob-btn ob-btn-danger ob-btn-sm" title="Delete the selected saved ostinato" disabled>&#128465;</button>
+  <button id="export-file-btn" class="ob-btn">&#8595; Export file</button>
+  <button id="import-file-btn" class="ob-btn">&#8593; Import file</button>
+  <input type="file" id="import-file-input" accept=".json" style="display:none;">
 </div>
 
 <div class="main">
@@ -1273,6 +1276,35 @@ function deleteFromLibrary(id) {
   populateLibrarySelect();
   showToast('Deleted "' + item.name + '".');
 }
+function exportProjectFile() {
+  if (!anyContent()) { showToast('Nothing to export yet!'); return; }
+  var data = { name: 'ostinato', savedAt: new Date().toISOString(), project: serializeProject() };
+  var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'ostinato.json'; a.click();
+  showToast('Ostinato file saved!');
+}
+function importProjectFile(file) {
+  var reader = new FileReader();
+  reader.onload = function(){
+    var data;
+    try { data = JSON.parse(reader.result); } catch (e) { showToast('That file is not a valid ostinato file.'); return; }
+    if (!data || !data.project || !Array.isArray(data.project.parts)) { showToast('That file is not a valid ostinato file.'); return; }
+    if (!KEYS[data.project.key]) data.project.key = 'C';   // guard against a file from an incompatible/future schema
+    try {
+      loadProjectData(data.project);
+    } catch (e) {
+      console.warn('Could not load that ostinato file:', e);
+      project = { meter:'4/4', subdiv:2, tempo:100, key:'C', parts:[] };   // undo any partial state loadProjectData left behind
+      renderApp();
+      showToast('That file is not a valid ostinato file.');
+      return;
+    }
+    showToast('Loaded "' + (data.name || 'ostinato') + '" from file.');
+  };
+  reader.onerror = function(){ showToast('Could not read that file.'); };
+  reader.readAsText(file);
+}
 
 // ── UI: build the parts + grid ─────────────────────────────
 function renderApp() {
@@ -1669,6 +1701,12 @@ document.getElementById('load-ostinato-sel').addEventListener('change', function
 document.getElementById('delete-ostinato-btn').addEventListener('click', function(){
   var sel = document.getElementById('load-ostinato-sel');
   if (sel.value) deleteFromLibrary(sel.value);
+});
+document.getElementById('export-file-btn').addEventListener('click', exportProjectFile);
+document.getElementById('import-file-btn').addEventListener('click', function(){ document.getElementById('import-file-input').click(); });
+document.getElementById('import-file-input').addEventListener('change', function(){
+  if (this.files && this.files[0]) importProjectFile(this.files[0]);
+  this.value = '';
 });
 
 buildKeyOptions();
