@@ -1264,7 +1264,16 @@ function saveToLibrary() {
 function loadFromLibrary(id) {
   var item = loadLibrary().find(function(i){ return i.id === id; });
   if (!item) return;
-  loadProjectData(item.project);
+  if (!KEYS[item.project.key]) item.project.key = 'C';   // guard against a saved entry from an incompatible/future schema
+  try {
+    loadProjectData(item.project);
+  } catch (e) {
+    console.warn('Could not load that saved ostinato:', e);
+    project = { meter:'4/4', subdiv:2, tempo:100, key:'C', parts:[] };   // undo any partial state loadProjectData left behind
+    renderApp();
+    showToast('That saved ostinato could not be loaded.');
+    return;
+  }
   showToast('Loaded "' + item.name + '".');
 }
 function deleteFromLibrary(id) {
