@@ -1,11 +1,7 @@
 {{/* Reusable onward-path footer for tool pages: 3 related song links + compact subscribe form.
-     Rendered here for the Hugo site; scripts/build-tool-footer.sh extracts the rendered
-     <section class="tool-footer">...</section> from the built page and inlines it into the
-     standalone tool copies, so the two can't drift apart (Go's html/template strips literal
-     HTML comments, so the section tag itself is the extraction boundary, not a comment marker).
-     Keep this partial fully self-contained (own <style>, no dependency on global CSS classes or
-     --rb-/--ob-/--mtim-/--vsb- tool variables) since the extracted fragment has to work when
-     spliced into an offline single-file HTML tool. */}}
+     Song links per tool live in data/tool_footer.yaml. Self-contained (own <style>, no
+     dependency on global CSS classes or --rb-/--ob-/--mtim-/--vsb- tool variables) so it can't
+     collide with any tool's own styling. */}}
 {{ $key := .File.BaseFileName }}
 {{ $songs := index site.Data.tool_footer $key }}
 {{ with $songs }}
