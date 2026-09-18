@@ -28,6 +28,16 @@
   {{ end }}
   <title>{{ $pageTitle }}</title>
   <meta name="description" content="{{ $metaDescription }}">
+  {{/* Pagination isn't used anywhere on this site (confirmed: no template calls .Paginator,
+       no /page/N/ output exists). Deliberately NOT checking .Paginator here -- merely
+       referencing it on a section/home page is enough to make Hugo generate a full
+       /page/N/ tree as a side effect, which would create the exact duplicate-URL problem
+       this block exists to prevent. Revisit only if real pagination is added later. */}}
+  {{ $noindex := false }}
+  {{ if eq .Kind "term" }}{{ if lt (len .Pages) 3 }}{{ $noindex = true }}{{ end }}{{ end }}
+  {{ if and (in (slice "taxonomy" "term" "section") .Kind) (eq (len .Pages) 0) }}{{ $noindex = true }}{{ end }}
+  {{ if .Params.noindex }}{{ $noindex = true }}{{ end }}
+  {{ if $noindex }}<meta name="robots" content="noindex,follow">{{ end }}
   <link rel="canonical" href="{{ .Permalink }}">
 
   <!-- Open Graph -->
