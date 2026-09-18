@@ -1,5 +1,7 @@
 ---
 title: Ally Bally
+seo_title: "Ally Bally: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for teaching Do-Mi-So on xylophones with the choice song 'Ally Bally,' for general music classrooms."
 date: 2026-04-12T22:15:00
 draft: false
 unlisted: false

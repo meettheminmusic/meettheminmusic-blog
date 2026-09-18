@@ -1,5 +1,7 @@
 ---
 title: Radna and Petko
+seo_title: "Radna and Petko: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the beanbag-balancing song 'Radna and Petko,' teaching flow and weight, in F Harmonic Minor."
 date: 2026-04-11T11:52:00
 draft: false
 unlisted: false

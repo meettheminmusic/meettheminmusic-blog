@@ -84,7 +84,8 @@ abc_scores:
       %%center © 2026 All Rights Reserved.
     image: ''
     tempo: 116
-description: Go 'Round the Mountain is a major duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
+seo_title: "Go 'Round the Mountain: Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for teaching Mi-Re-Do and steady beat with the circle game 'Go 'Round the Mountain,' in C Major."
 ---
 
 {{< callout title="" >}}

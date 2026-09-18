@@ -1,5 +1,7 @@
 ---
 title: A Qua Qua De La Omar
+seo_title: "A Qua Qua De La Omar: Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for teaching steady beat and turn-taking with the passing game 'A Qua Qua De La Omar,' in G Major."
 date: 2026-04-05T17:14:00
 draft: false
 unlisted: false

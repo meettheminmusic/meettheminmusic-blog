@@ -1,5 +1,7 @@
 ---
 title: Old Raggy
+seo_title: "Old Raggy: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the longways-set drumming game 'Old Raggy,' teaching macrobeat and microbeat, in F Major."
 date: 2026-04-07T22:40:00
 draft: false
 unlisted: false

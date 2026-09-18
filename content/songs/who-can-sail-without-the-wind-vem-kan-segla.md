@@ -1,5 +1,7 @@
 ---
 title: Who Can Sail Without The Wind? (Vem Kan Segla?)
+seo_title: "Who Can Sail Without the Wind? | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the Swedish lullaby 'Vem Kan Segla,' teaching flowing, rocking movement, in D Melodic Minor."
 date: 2026-09-10T10:05:00-04:00
 draft: false
 unlisted: false

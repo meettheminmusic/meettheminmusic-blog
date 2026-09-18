@@ -1,5 +1,7 @@
 ---
 title: Blue Bird
+seo_title: "Blue Bird: Lyrics and Sheet Music | Elementary Music"
+description: "Free sheet music and lyrics for 'Blue Bird,' a So-Mi and So-La circle-tag game tune for general music classrooms, in G Major, 4/4 meter throughout."
 date: 2026-06-17T20:27:00-04:00
 draft: false
 unlisted: false

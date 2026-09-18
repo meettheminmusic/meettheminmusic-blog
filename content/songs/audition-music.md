@@ -1,5 +1,7 @@
 ---
 title: Audition Music
+seo_title: "Audition Music: Baritone and Trumpet | Elementary Music"
+description: "Notated baritone and trumpet audition excerpts for instrument transposition practice, an internal teaching resource for general music programs."
 date: 2026-04-19T16:05:00
 draft: false
 unlisted: true

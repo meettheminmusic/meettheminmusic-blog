@@ -1,5 +1,7 @@
 ---
 title: Alley Alley Oh
+seo_title: "Alley Alley Oh: Lyrics and Sheet Music | Elementary Music"
+description: "Free sheet music and lyrics for 'Alley Alley Oh,' a So-Do bordun sea-shanty for elementary xylophone accompaniment practice, in G Major, 4/4 meter."
 date: 2026-09-01T22:47:00-04:00
 draft: false
 unlisted: false

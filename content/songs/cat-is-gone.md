@@ -1,5 +1,7 @@
 ---
 title: Cat is Gone
+seo_title: "Cat is Gone: Lyrics and Sheet Music | Elementary Music"
+description: "Free sheet music and lyrics for 'Cat is Gone,' a pentatonic Do-Mi-So echo tune for elementary xylophone improvisation practice, in Pentatonic, 4/4 meter."
 date: 2026-06-19T08:08:00-04:00
 draft: false
 unlisted: false

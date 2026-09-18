@@ -1,5 +1,7 @@
 ---
 title: Obwisana
+seo_title: "Obwisana: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the Ghanaian passing game 'Obwisana,' teaching steady beat and teamwork, in C Major, 2/4 meter."
 date: 2026-04-20T08:15:00
 draft: false
 unlisted: false

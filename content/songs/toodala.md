@@ -1,5 +1,7 @@
 ---
 title: Toodala
+seo_title: "Toodala: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the freeze-dance song 'Toodala,' teaching pentatonic So-Do and Mi-Do patterns, in F Major."
 date: 2026-04-14T08:02:00
 draft: false
 unlisted: false

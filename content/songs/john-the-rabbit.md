@@ -1,5 +1,7 @@
 ---
 title: John the Rabbit
+seo_title: "John the Rabbit: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the traditional echo song 'John the Rabbit,' teaching call-and-response, in E Major, 2/4 meter."
 date: 2026-04-07T17:18:00
 draft: false
 unlisted: false

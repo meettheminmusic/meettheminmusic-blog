@@ -1,5 +1,7 @@
 ---
 title: Did You Feed my Cow
+seo_title: "Did You Feed my Cow: Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for teaching call-and-response and syncopation with 'Did You Feed my Cow,' for general music classes."
 date: 2026-04-04T12:47:00
 draft: false
 unlisted: false

@@ -1,5 +1,7 @@
 ---
 title: Biddy Biddy Hold Fast
+seo_title: "Biddy Biddy Hold Fast: Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the hidden-object circle game 'Biddy Biddy Hold Fast,' teaching So-Mi, in F Major, 4/4 meter."
 date: 2026-05-06T09:46:00
 draft: false
 unlisted: false

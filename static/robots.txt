@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+# The song filter/tag links on every song page (/songs/?tonal_concepts=...,
+# /songs/?activity_types=..., etc.) are client-side JS filters of the same
+# /songs/ page, not distinct content -- 171+ such query-string URLs are
+# crawlable via real <a href> tags site-wide, all canonicalizing back to
+# plain /songs/. Blocking the query string here stops that crawl-budget
+# waste without touching /songs/ itself or any individual song page.
+Disallow: /songs/?
 
 Sitemap: https://meettheminmusic.com/sitemap.xml

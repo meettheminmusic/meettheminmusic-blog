@@ -1,6 +1,7 @@
 baseURL = "https://meettheminmusic.com/"
 languageCode = "en-us"
 title = "Meet Them in Music"
+enableGitInfo = true
 
 
 [params]

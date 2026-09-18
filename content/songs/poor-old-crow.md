@@ -1,5 +1,7 @@
 ---
 title: Poor Old Crow
+seo_title: "Poor Old Crow: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the Mixolydian bordun song 'Poor Old Crow,' for xylophone accompaniment, in D Mixolydian."
 date: 2026-04-05T18:47:00
 draft: false
 unlisted: false

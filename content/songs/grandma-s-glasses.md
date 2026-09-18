@@ -61,7 +61,8 @@ sanitized_abc: |-
   M:6/8
   AAA A2A | A2A A3 | uA3uA3 |uA3 z3|]
 abc_tempo: 116
-description: Grandma's Glasses is a mixed meter chant. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
+seo_title: "Grandma's Glasses: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for teaching duple vs. triple meter with the fingerplay 'Grandma's Glasses,' in Chant, mixed meter."
 ---
 
 {{< callout title="" >}}

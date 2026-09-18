@@ -78,7 +78,8 @@ abc_scores:
       %%center © 2026 All Rights Reserved.
     image: ''
     tempo: 116
-description: Akka Bakka Soda Cracker is a duple meter chant. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
+seo_title: "Akka Bakka Soda Cracker: Lesson Plan | Elementary Music"
+description: "Free lyrics and an elementary lesson plan for the marching, turn-taking chant 'Akka Bakka Soda Cracker,' teaching steady beat, in chant meter."
 ---
 
 **<u>Activity:</u>**

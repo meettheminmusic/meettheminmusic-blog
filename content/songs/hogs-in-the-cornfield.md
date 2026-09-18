@@ -53,7 +53,8 @@ sanitized_abc: |-
   D2DD F2A2 | B2BB A2A2 | d2B2 AAG2| F2EE D2D2 ||
   D2DD F2A2 | B2BB A4 | d2B2 AAGG| F2EE D4 |]
 abc_tempo: null
-description: Hogs in the Cornfield is a major duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
+seo_title: "Hogs in the Cornfield: Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the rock-paper-scissors partner game 'Hogs in the Cornfield,' for general music classrooms."
 ---
 
 **Activity:**

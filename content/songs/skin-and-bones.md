@@ -1,5 +1,7 @@
 ---
 title: Skin and Bones
+seo_title: "Skin and Bones: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the call-and-response ghost story 'Skin and Bones,' teaching responsibility, in G Minor."
 date: 2026-04-04T22:32:00
 draft: false
 unlisted: false

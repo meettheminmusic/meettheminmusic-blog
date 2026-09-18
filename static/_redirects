@@ -1,0 +1,17 @@
+# Canonicalize bare (non-trailing-slash) paths to their trailing-slash form.
+# Hugo always publishes directory-style URLs (uglyURLs = false), so the bare
+# form never has real content behind it -- but a stale index entry, an old
+# inbound link, or a typo'd href can still surface it and split ranking
+# signals from the real page. /rhythm-builder was confirmed split this way
+# (indexed separately from /rhythm-builder/ with an undeclared canonical).
+/rhythm-builder                 /rhythm-builder/                 301
+/ostinato-builder                /ostinato-builder/                301
+/chord-diagram-generator         /chord-diagram-generator/         301
+/visual-schedule-builder         /visual-schedule-builder/         301
+/music-book-slideshow-builder     /music-book-slideshow-builder/     301
+/about                           /about/                           301
+/contact                         /contact/                         301
+/license                         /license/                         301
+/songs                           /songs/                           301
+/books                           /books/                           301
+/posts                           /posts/                           301

@@ -1,5 +1,7 @@
 ---
 title: Frog in the Meadow
+seo_title: "Frog in the Meadow: Lesson Plan | Elementary Music"
+description: "Free notation and an elementary lesson plan for the turn-taking, freeze-and-stomp singing game 'Frog in the Meadow,' for general music classrooms."
 date: 2026-04-07T21:19:00
 draft: false
 unlisted: false
