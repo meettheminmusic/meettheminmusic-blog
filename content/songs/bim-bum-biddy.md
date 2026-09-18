@@ -1,5 +1,7 @@
 ---
 title: Bim Bum Biddy
+seo_title: "Bim Bum Biddy: Lyrics and Lesson Plan | K-2 Music"
+description: "Free notation, lyrics, and a K-2 lesson plan for the challenging hand-clapping game 'Bim Bum Biddy,' built to teach grit, in D Major, 2/4 meter."
 date: 2026-04-19T21:23:00
 draft: false
 unlisted: false

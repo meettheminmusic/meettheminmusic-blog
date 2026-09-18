@@ -1,5 +1,7 @@
 ---
 title: Clapping Land
+seo_title: "Clapping Land: Lyrics and Sheet Music | K-2 Music"
+description: "Free sheet music and lyrics for 'Clapping Land,' a welcoming I-IV-V partner-clapping song for K-2 general music, for K-2 general music classrooms."
 date: 2026-04-06T09:02:00
 draft: false
 unlisted: false

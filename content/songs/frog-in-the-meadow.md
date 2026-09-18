@@ -1,5 +1,7 @@
 ---
 title: Frog in the Meadow
+seo_title: "Frog in the Meadow: Sheet Music and Lesson Plan | K-2 Music"
+description: "Free notation and a K-2 lesson plan for the turn-taking, freeze-and-stomp singing game 'Frog in the Meadow,' for K-2 general music classrooms."
 date: 2026-04-07T21:19:00
 draft: false
 unlisted: false

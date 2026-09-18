@@ -1,5 +1,7 @@
 ---
 title: Ally Bally
+seo_title: "Ally Bally: Lyrics, Sheet Music, and Lesson Plan | K-2 Music"
+description: "Free notation, lyrics, and a K-2 lesson plan for teaching Do-Mi-So on xylophones with the choice song 'Ally Bally,' for K-2 general music classrooms."
 date: 2026-04-12T22:15:00
 draft: false
 unlisted: false

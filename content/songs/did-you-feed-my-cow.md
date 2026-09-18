@@ -1,5 +1,7 @@
 ---
 title: Did You Feed my Cow
+seo_title: "Did You Feed my Cow: Lyrics and Lesson Plan | K-2 Music"
+description: "Free notation, lyrics, and a K-2 lesson plan for teaching call-and-response and syncopation with 'Did You Feed my Cow,' for K-2 general music classrooms."
 date: 2026-04-04T12:47:00
 draft: false
 unlisted: false

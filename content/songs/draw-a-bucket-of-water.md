@@ -1,5 +1,7 @@
 ---
 title: Draw a Bucket of Water
+seo_title: "Draw a Bucket of Water: Lyrics and Sheet Music | K-2 Music"
+description: "Free sheet music and lyrics for the partner circle game 'Draw a Bucket of Water,' for K-2 general music classrooms, arranged in G major, 2/4 meter."
 date: 2026-09-16T09:01:00-04:00
 draft: false
 unlisted: false

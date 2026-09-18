@@ -1,5 +1,7 @@
 ---
 title: Peas and Honey
+seo_title: "Peas and Honey: Lyrics and Sheet Music | K-2 Music"
+description: "Free sheet music and lyrics for 'Peas and Honey,' a triple-meter K-2 song for constrained-movement practice, for K-2 general music classrooms."
 date: 2026-04-04T22:05:00
 draft: false
 unlisted: false

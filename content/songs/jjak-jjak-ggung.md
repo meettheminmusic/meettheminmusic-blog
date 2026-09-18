@@ -1,5 +1,7 @@
 ---
 title: Jjak Jjak Ggung
+seo_title: "Jjak Jjak Ggung: Lyrics and Lesson Plan | K-2 Music"
+description: "Free notation, lyrics, and a K-2 lesson plan for the Korean clapping song 'Jjak Jjak Ggung,' teaching So-Mi and beat keeping, in C Major, 4/4 meter."
 date: 2026-06-21T21:45:00-04:00
 draft: false
 unlisted: false

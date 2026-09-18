@@ -59,7 +59,8 @@ sanitized_abc: |-
   dA BA | dA BA | F2 E2 | D2 z2 |
   dA BA | dA BA | F2 z2| E2 z2| | D2  z2 |]
 abc_tempo: 116
-description: Jeremiah Blow the Fire is a major duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
+seo_title: "Jeremiah Blow the Fire: Lyrics and Lesson Plan | K-2 Music"
+description: "Free notation, lyrics, and a K-2 lesson plan for a scarf-movement song, 'Jeremiah Blow the Fire,' teaching Mi-Re-Do, for K-2 general music classrooms."
 ---
 
 **<u>Activity:</u>**

@@ -1,5 +1,7 @@
 ---
 title: Skin and Bones
+seo_title: "Skin and Bones: Lyrics and Lesson Plan | K-2 Music"
+description: "Free notation, lyrics, and a K-2 lesson plan for the call-and-response ghost story 'Skin and Bones,' teaching responsibility, in G Minor, 6/8 meter."
 date: 2026-04-04T22:32:00
 draft: false
 unlisted: false

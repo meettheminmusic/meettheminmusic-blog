@@ -1,5 +1,7 @@
 ---
 title: High Bird
+seo_title: "High Bird: Lyrics, Sheet Music, and Lesson Plan | K-2 Music"
+description: "Free notation, lyrics, and a K-2 lesson plan for a scarf-flow song, 'High Bird,' teaching leading tone and La-Ti-Do, for K-2 general music classrooms."
 date: 2026-04-12T20:21:00
 draft: false
 unlisted: false

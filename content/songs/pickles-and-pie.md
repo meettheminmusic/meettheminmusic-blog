@@ -52,7 +52,8 @@ sanitized_abc: |-
   D2 A2 A4 |BA G2 A4 | G2 FE FE D2 | E2 =C2 D4 ||
 abc_image: ''
 abc_tempo: 116
-description: Pickles and Pie is a mixolydian duple meter song. Includes pedagogical analysis, classroom activity ideas, and UDL adaptations for elementary music teachers.
+seo_title: "Pickles and Pie: Lyrics and Lesson Plan | K-2 Music"
+description: "Free notation, lyrics, and a K-2 lesson plan for the Mixolydian choice song 'Pickles and Pie,' teaching leading tone, in D Mixolydian, 4/4 meter."
 ---
 
 > I learned this song aurally from a friend.  Originally, my friend used a Lydian version of the tune.  I chose to re-arrange the song in Mixolydian to match my ears' preference.

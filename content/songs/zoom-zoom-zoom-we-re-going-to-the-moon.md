@@ -1,5 +1,7 @@
 ---
 title: Zoom Zoom Zoom We're Going to the Moon
+seo_title: "Zoom Zoom Zoom We're Going to the Moon: Lyrics | K-2 Music"
+description: "Free lyrics for 'Zoom Zoom Zoom We're Going to the Moon,' a Do-Mi-So space-travel song for K-2 general music, for K-2 general music classrooms."
 date: 2026-04-04T15:27:00
 draft: false
 unlisted: false

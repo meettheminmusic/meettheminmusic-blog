@@ -1,5 +1,7 @@
 ---
 title: Old King Glory
+seo_title: "Old King Glory: Lyrics and Lesson Plan | K-2 Music"
+description: "Free notation, lyrics, and a K-2 lesson plan for the circle turn-taking game 'Old King Glory,' teaching Mi-Re-Do and So-Do, in G Major, 4/4 meter."
 date: 2026-06-17T19:46:00-04:00
 draft: false
 unlisted: false

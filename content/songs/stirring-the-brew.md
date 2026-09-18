@@ -1,5 +1,7 @@
 ---
 title: Stirring the Brew
+seo_title: "Stirring the Brew: Lyrics and Lesson Plan | K-2 Music"
+description: "Free notation, lyrics, and a K-2 lesson plan for the turn-taking song 'Stirring the Brew,' teaching Tonic-Dominant in minor, in E Minor, 6/8 meter."
 date: 2026-04-02T22:24:00
 draft: false
 unlisted: false

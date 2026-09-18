@@ -1,5 +1,7 @@
 ---
 title: A Qua Qua De La Omar
+seo_title: "A Qua Qua De La Omar: Lyrics and Lesson Plan | K-2 Music"
+description: "Free notation, lyrics, and a K-2 lesson plan for teaching steady beat and turn-taking with the passing game 'A Qua Qua De La Omar,' in G Major, 4/4 meter."
 date: 2026-04-05T17:14:00
 draft: false
 unlisted: false

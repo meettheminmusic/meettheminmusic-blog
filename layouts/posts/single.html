@@ -1,3 +1,12 @@
+{{ define "extra_head" }}
+{{ $breadcrumb := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" (slice
+  (dict "@type" "ListItem" "position" 1 "name" "Home" "item" (absURL "/"))
+  (dict "@type" "ListItem" "position" 2 "name" "Blog" "item" (absURL "/posts/"))
+  (dict "@type" "ListItem" "position" 3 "name" .Title "item" .Permalink)
+) }}
+<script type="application/ld+json">{{ $breadcrumb | jsonify | safeJS }}</script>
+{{ end }}
+
 {{ define "main" }}
 <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
 <article>

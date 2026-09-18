@@ -1,5 +1,7 @@
 ---
 title: Pole Pole
+seo_title: "Pole Pole: Lyrics, Sheet Music, and Lesson Plan | K-2 Music"
+description: "Free notation, lyrics, and a K-2 lesson plan for the Swahili echo song 'Pole Pole,' teaching rhythmic elongation to K-2 classes, in F Harmonic Minor."
 date: 2026-04-11T10:21:00
 draft: false
 unlisted: false

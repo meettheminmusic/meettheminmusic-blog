@@ -1,5 +1,7 @@
 ---
 title: Purple Light
+seo_title: "Purple Light: Lyrics and Lesson Plan | K-2 Music"
+description: "Free notation, lyrics, and a K-2 lesson plan for the echo song 'Purple Light,' teaching So-Mi-Do and dotted rhythms, for K-2 general music classrooms."
 date: 2026-04-11T13:55:00
 draft: false
 unlisted: false
