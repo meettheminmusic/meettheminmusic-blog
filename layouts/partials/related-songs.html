@@ -1,0 +1,46 @@
+{{/* Up to 4 songs sharing an activity_types term with the current page, falling back to
+     the general weighted .Related when the taxonomy match yields fewer than 4. Distinct from
+     related-content.html (which mixes songs+posts by every taxonomy) because this exists
+     specifically to route tool/song traffic deeper into the song library by shared activity. */}}
+{{ $page := . }}
+{{ $pool := where site.RegularPages "Section" "songs" }}
+{{ $pool = where $pool "Permalink" "!=" $page.Permalink }}
+{{ $pool = where $pool "Params.unlisted" "ne" true }}
+{{ $pool = where $pool "Draft" "ne" true }}
+
+{{ $matches := slice }}
+{{ with $page.Params.activity_types }}
+  {{ $wanted := . }}
+  {{ range $pool }}
+    {{ if gt (len (intersect $wanted (.Params.activity_types | default slice))) 0 }}
+      {{ $matches = $matches | append . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $related := $matches | first 4 }}
+
+{{ if lt (len $related) 4 }}
+  {{ $need := sub 4 (len $related) }}
+  {{ $usedPermalinks := slice }}
+  {{ range $related }}{{ $usedPermalinks = $usedPermalinks | append .Permalink }}{{ end }}
+  {{ $fallbackPool := where $pool "Permalink" "not in" $usedPermalinks }}
+  {{ $related = $related | append ($fallbackPool.Related $page | first $need) }}
+{{ end }}
+
+{{ with $related }}
+<aside class="related-songs" aria-labelledby="related-songs-heading">
+  <h2 id="related-songs-heading" class="related-heading">Related songs</h2>
+  <ul class="related-list" role="list">
+    {{ range . }}
+      <li class="related-item">
+        <h3 class="related-item__title"><a href="{{ .Permalink }}"><em>{{ .Title }}</em></a></h3>
+        {{ with .Params.activity_types }}
+        <ul class="related-item__tags" role="list" aria-label="Activity types">
+          {{ range . }}<li class="tag">{{ . }}</li>{{ end }}
+        </ul>
+        {{ end }}
+      </li>
+    {{ end }}
+  </ul>
+</aside>
+{{ end }}

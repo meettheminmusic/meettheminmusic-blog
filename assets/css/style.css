@@ -2202,7 +2202,8 @@ details.filter-group > summary:focus-visible {
 
 /* --- Related content aside --- */
 
-.related-content {
+.related-content,
+.related-songs {
   margin-top: 3rem;
   padding: 1.75rem 1.75rem 2rem;
   background: var(--neutral-50);
