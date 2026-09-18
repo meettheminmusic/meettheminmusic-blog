@@ -483,15 +483,15 @@ const DURATIONS = [
 // give crossover. `palette` is the ordered low→high pitch menu for free editing.
 const KEYS = {
   'C': { do:'C', re:'D', mi:'E', so:'G', la:'A', soLow:'G,', doUp:"c",
-         palette:[['G','so,'],['c','do'],['d','re'],['e','mi'],['g','so'],['a','la'],["c'","do'"]] },
+         palette:[['D','re,'],['E','mi,'],['G','so,'],['A','la,'],['c','do'],['d','re'],['e','mi'],['g','so'],['a','la'],["c'","do'"]] },
   'F': { do:'F', re:'G', mi:'A', so:"c", la:"d", soLow:'C', doUp:"f",
-         palette:[['c','so,'],['f','do'],['g','re'],['a','mi'],["c'","so"],["d'","la"],["f'","do'"]] },
+         palette:[['G','re,'],['A','mi,'],['c','so,'],['d','la,'],['f','do'],['g','re'],['a','mi'],["c'","so"],["d'","la"],["f'","do'"]] },
   'G': { do:'G', re:'A', mi:'B', so:"d'", la:"e'", soLow:'D', doUp:"g",
-         palette:[['d','so,'],['g','do'],['a','re'],['b','mi'],["d'","so"],["e'","la"],["g'","do'"]] },
+         palette:[['A','re,'],['B','mi,'],['d','so,'],['e','la,'],['g','do'],['a','re'],['b','mi'],["d'","so"],["e'","la"],["g'","do'"]] },
   'D': { do:'d', re:'e', mi:'^f', so:'a', la:'b', soLow:'A', doUp:"d'",
-         palette:[['A','so,'],['d','do'],['e','re'],['^f','mi'],['a','so'],['b','la'],["d'","do'"]] },
+         palette:[['E','re,'],['^F','mi,'],['A','so,'],['B','la,'],['d','do'],['e','re'],['^f','mi'],['a','so'],['b','la'],["d'","do'"]] },
   'A': { do:'a', re:'b', mi:"^c'", so:"e'", la:"^f'", soLow:'E', doUp:"a'",
-         palette:[['E','so,'],['a','do'],['b','re'],["^c'","mi"],["e'","so"],["^f'","la"],["a'","do'"]] },
+         palette:[['E','so,'],['B','re,'],['^c','mi,'],['^f','la,'],['a','do'],['b','re'],["^c'","mi"],["e'","so"],["^f'","la"],["a'","do'"]] },
 };
 const KEY_LABELS = { 'C':'C (do) / A (la)', 'F':'F (do) / D (la)', 'G':'G (do) / E (la)', 'D':'D (do) / B (la)', 'A':'A (do) / F#(la)' };
 
