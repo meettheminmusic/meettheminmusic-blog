@@ -354,6 +354,16 @@ body { background: var(--ob-bg); }
 .help strong { color: var(--ob-accent-dark); }
 
 .ob-btn.is-active { background: var(--ob-accent); border-color: var(--ob-accent); color: #fff; }
+.action-toolbar select {
+  border: 1px solid var(--ob-border);
+  border-radius: var(--ob-radius);
+  padding: 6px 10px;
+  font-size: 0.8125rem;
+  font-family: inherit;
+  color: var(--ob-text);
+  background: var(--ob-card);
+  cursor: pointer;
+}
 .raw-abc-editor { margin-top: 8px; }
 .raw-abc-textarea {
   width: 100%;
@@ -386,6 +396,9 @@ body { background: var(--ob-bg); }
   <button id="export-score-btn" class="ob-btn">&#8595; Save score (PNG)</button>
   <button id="export-score-svg-btn" class="ob-btn">&#8595; Save SVG</button>
   <button id="copy-abc-btn" class="ob-btn">&#128203; Copy ABC</button>
+  <button id="save-ostinato-btn" class="ob-btn">&#128190; Save ostinato</button>
+  <select id="load-ostinato-sel"><option value="">Load ostinato…</option></select>
+  <button id="delete-ostinato-btn" class="ob-btn ob-btn-danger ob-btn-sm" title="Delete the selected saved ostinato" disabled>&#128465;</button>
 </div>
 
 <div class="main">
@@ -1208,6 +1221,59 @@ function restoreDraftIfAvailable() {
   return true;
 }
 
+var LIBRARY_KEY = 'mtim_ostinato_library';
+
+function loadLibrary() {
+  try { return JSON.parse(localStorage.getItem(LIBRARY_KEY) || '[]'); } catch (e) { return []; }
+}
+function saveLibrary(list) {
+  try { localStorage.setItem(LIBRARY_KEY, JSON.stringify(list)); } catch (e) {}
+}
+function populateLibrarySelect() {
+  var sel = document.getElementById('load-ostinato-sel');
+  var current = sel.value;
+  sel.innerHTML = '';
+  sel.appendChild(new Option('Load ostinato…', ''));
+  loadLibrary().forEach(function(item){ sel.appendChild(new Option(item.name, item.id)); });
+  sel.value = current;
+  document.getElementById('delete-ostinato-btn').disabled = !sel.value;
+}
+function saveToLibrary() {
+  if (!anyContent()) { showToast('Nothing to save yet!'); return; }
+  var name = prompt('Name this ostinato:');
+  if (!name) return;
+  var list = loadLibrary();
+  var existing = list.find(function(item){ return item.name === name; });
+  if (existing) {
+    if (!confirm('"' + name + '" already exists. Overwrite it?')) return;
+    existing.project = serializeProject();
+    existing.savedAt = new Date().toISOString();
+  } else {
+    existing = { id: 'o' + Date.now(), name: name, savedAt: new Date().toISOString(), project: serializeProject() };
+    list.push(existing);
+  }
+  saveLibrary(list);
+  populateLibrarySelect();
+  document.getElementById('load-ostinato-sel').value = existing.id;
+  document.getElementById('delete-ostinato-btn').disabled = false;
+  showToast('Saved "' + name + '".');
+}
+function loadFromLibrary(id) {
+  var item = loadLibrary().find(function(i){ return i.id === id; });
+  if (!item) return;
+  loadProjectData(item.project);
+  showToast('Loaded "' + item.name + '".');
+}
+function deleteFromLibrary(id) {
+  var list = loadLibrary();
+  var item = list.find(function(i){ return i.id === id; });
+  if (!item) return;
+  if (!confirm('Delete "' + item.name + '"? This can\'t be undone.')) return;
+  saveLibrary(list.filter(function(i){ return i.id !== id; }));
+  populateLibrarySelect();
+  showToast('Deleted "' + item.name + '".');
+}
+
 // ── UI: build the parts + grid ─────────────────────────────
 function renderApp() {
   var host = document.getElementById('parts-host');
@@ -1595,8 +1661,19 @@ function addPartSilent(kind, instId, bars, fill) {
 
 window.addEventListener('beforeunload', saveDraft);
 
+document.getElementById('save-ostinato-btn').addEventListener('click', saveToLibrary);
+document.getElementById('load-ostinato-sel').addEventListener('change', function(){
+  document.getElementById('delete-ostinato-btn').disabled = !this.value;
+  if (this.value) loadFromLibrary(this.value);
+});
+document.getElementById('delete-ostinato-btn').addEventListener('click', function(){
+  var sel = document.getElementById('load-ostinato-sel');
+  if (sel.value) deleteFromLibrary(sel.value);
+});
+
 buildKeyOptions();
 applyVisibilityOverrides();
+populateLibrarySelect();
 if (!restoreDraftIfAvailable()) seed();
 </script>
 {{ partial "tool-footer.html" . }}
