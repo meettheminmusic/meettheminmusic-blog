@@ -566,6 +566,29 @@ function orderedParts() {
 function near(a, b)   { return Math.abs(a - b) < 0.001; }
 function isBeamable(it){ return !it.isRest && it.beats < 1; }
 
+// Split raw ABC text into bar-strings on literal '|' boundaries. Drops empty
+// chunks — a trailing '|', and a double barline '||' (a section marker, not
+// an empty bar) — and trims whitespace so chunks can be re-joined cleanly by
+// tileRawAbcBars.
+function splitRawAbcBars(text) {
+  var raw = (text || '').trim();
+  if (!raw) return [];
+  var chunks = raw.split('|').map(function(s){ return s.trim(); });
+  return chunks.filter(function(s){ return s.length > 0; });
+}
+
+// Tile a raw part's bars to targetBars, wrapping the same way flattenPart
+// wraps cell-based bars (b % sourceBars). Joins bars with ' | ' and
+// terminates with ' |]', matching how buildVoiceMusic's output reads.
+// `bars` must already be the result of splitRawAbcBars (already
+// split/trimmed) — this function does not re-split.
+function tileRawAbcBars(bars, targetBars) {
+  if (!bars.length) return '';
+  var out = [];
+  for (var b = 0; b < targetBars; b++) out.push(bars[b % bars.length]);
+  return out.join(' | ') + ' |]';
+}
+
 // Decompose a beat quantity into representable note values (largest first).
 function decomposeBeats(target) {
   var pool = DURATIONS.slice().sort(function(a,b){ return b.beats - a.beats; });
@@ -598,6 +621,8 @@ function addPart(kind) {
     bars: bars,
     cells: makeCells(cellsPerBar() * bars),
     lyricsOn: false,
+    rawAbc: null,
+    rawMode: false,
   };
   project.parts.push(part);
   if (kind === 'bordun') applyBordunPreset(part, 'simple');
@@ -1448,7 +1473,7 @@ function seed() {
   renderApp();
 }
 function addPartSilent(kind, instId, bars, fill) {
-  var part = { id:'p'+(++partSeq), kind:kind, instrumentId:instId, bars:bars, cells:makeCells(cellsPerBar()*bars), lyricsOn:false };
+  var part = { id:'p'+(++partSeq), kind:kind, instrumentId:instId, bars:bars, cells:makeCells(cellsPerBar()*bars), lyricsOn:false, rawAbc:null, rawMode:false };
   if (fill) fill(part);
   project.parts.push(part);
 }
