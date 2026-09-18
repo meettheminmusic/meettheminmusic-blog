@@ -1,7 +1,7 @@
 ---
 title: A Ram Sam Sam
-seo_title: "A Ram Sam Sam: Lyrics and Lesson Plan | K-2 Music"
-description: "Free notation, lyrics, and a K-2 lesson plan for the seated Moroccan hand-motion song 'A Ram Sam Sam,' teaching fine motor control, in F Major, 2/4 meter."
+seo_title: "A Ram Sam Sam: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the seated Moroccan hand-motion song 'A Ram Sam Sam,' teaching fine motor control, in F Major."
 date: 2026-04-14T08:35:00
 draft: false
 unlisted: false

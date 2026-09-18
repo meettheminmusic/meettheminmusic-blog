@@ -78,8 +78,8 @@ abc_scores:
       %%center © 2026 All Rights Reserved.
     image: ''
     tempo: 116
-seo_title: "Akka Bakka Soda Cracker: Lyrics and Lesson Plan | K-2 Music"
-description: "Free lyrics and a K-2 lesson plan for the marching, turn-taking chant 'Akka Bakka Soda Cracker,' teaching steady beat to K-2 classes, in chant, 2/4 meter."
+seo_title: "Akka Bakka Soda Cracker: Lesson Plan | Elementary Music"
+description: "Free lyrics and an elementary lesson plan for the marching, turn-taking chant 'Akka Bakka Soda Cracker,' teaching steady beat, in chant meter."
 ---
 
 **<u>Activity:</u>**

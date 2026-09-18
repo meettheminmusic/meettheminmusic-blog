@@ -1,7 +1,7 @@
 ---
 title: Atta Katta Moeva
-seo_title: "Atta Katta Moeva: Lyrics and Lesson Plan | K-2 Music"
-description: "Free notation, lyrics, and a K-2 lesson plan for teaching articulation with the Dutch hand-clapping song 'Atta Katta Moeva,' in F Major, 2/4 meter."
+seo_title: "Atta Katta Moeva: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for teaching articulation with the Dutch hand-clapping song 'Atta Katta Moeva,' in F Major, 2/4 meter."
 date: 2026-04-13T08:47:00
 draft: false
 unlisted: false

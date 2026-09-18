@@ -61,8 +61,8 @@ sanitized_abc: |-
   M:6/8
   AAA A2A | A2A A3 | uA3uA3 |uA3 z3|]
 abc_tempo: 116
-seo_title: "Grandma's Glasses: Lyrics and Lesson Plan | K-2 Music"
-description: "Free notation, lyrics, and a K-2 lesson plan for teaching duple vs. triple meter with the fingerplay 'Grandma's Glasses,' in Chant, mixed meter."
+seo_title: "Grandma's Glasses: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for teaching duple vs. triple meter with the fingerplay 'Grandma's Glasses,' in Chant, mixed meter."
 ---
 
 {{< callout title="" >}}

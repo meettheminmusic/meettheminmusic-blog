@@ -59,8 +59,8 @@ sanitized_abc: |-
   dA BA | dA BA | F2 E2 | D2 z2 |
   dA BA | dA BA | F2 z2| E2 z2| | D2  z2 |]
 abc_tempo: 116
-seo_title: "Jeremiah Blow the Fire: Lyrics and Lesson Plan | K-2 Music"
-description: "Free notation, lyrics, and a K-2 lesson plan for a scarf-movement song, 'Jeremiah Blow the Fire,' teaching Mi-Re-Do, for K-2 general music classrooms."
+seo_title: "Jeremiah Blow the Fire: Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for a scarf-movement song, 'Jeremiah Blow the Fire,' teaching Mi-Re-Do, for general music classrooms."
 ---
 
 **<u>Activity:</u>**

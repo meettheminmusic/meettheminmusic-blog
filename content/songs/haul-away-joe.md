@@ -1,7 +1,7 @@
 ---
 title: Haul Away Joe
-seo_title: "Haul Away Joe: Lyrics and Lesson Plan | K-2 Music"
-description: "Free notation, lyrics, and a K-2 lesson plan for a stretchy-band sea shanty, 'Haul Away Joe,' teaching rhythmic elongation, in C Minor, 6/8 meter."
+seo_title: "Haul Away Joe: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for a stretchy-band sea shanty, 'Haul Away Joe,' teaching rhythmic elongation, in C Minor, 6/8 meter."
 date: 2026-04-07T22:08:00
 draft: false
 unlisted: false

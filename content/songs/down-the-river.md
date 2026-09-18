@@ -1,7 +1,7 @@
 ---
 title: Down the River
-seo_title: "Down the River: Lyrics and Sheet Music | K-2 Music"
-description: "Free sheet music and lyrics for the longways-set folk dance 'Down the River,' for K-2 general music classrooms, arranged in G major, 6/8 meter."
+seo_title: "Down the River: Lyrics and Sheet Music | Elementary Music"
+description: "Free sheet music and lyrics for the longways-set folk dance 'Down the River,' for general music classrooms, arranged in G major, 6/8 meter throughout."
 date: 2026-06-17T20:57:00-04:00
 draft: false
 unlisted: false

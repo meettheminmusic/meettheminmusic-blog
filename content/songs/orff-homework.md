@@ -1,6 +1,6 @@
 ---
 title: Orff Homework
-seo_title: "Orff Homework: Multi-Part Practice | K-2 Music"
+seo_title: "Orff Homework: Multi-Part Practice | Elementary Music"
 description: "A multi-part Orff ensemble practice worksheet with percussion, bass xylophone, and vocal parts, an internal rehearsal resource for general music."
 date: 2026-06-15T19:34:00
 draft: false

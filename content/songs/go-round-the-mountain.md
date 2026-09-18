@@ -84,8 +84,8 @@ abc_scores:
       %%center © 2026 All Rights Reserved.
     image: ''
     tempo: 116
-seo_title: "Go 'Round the Mountain: Lyrics and Lesson Plan | K-2 Music"
-description: "Free notation, lyrics, and a K-2 lesson plan for teaching Mi-Re-Do and steady beat with the circle game 'Go 'Round the Mountain,' in C Major, 2/4 meter."
+seo_title: "Go 'Round the Mountain: Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for teaching Mi-Re-Do and steady beat with the circle game 'Go 'Round the Mountain,' in C Major."
 ---
 
 {{< callout title="" >}}

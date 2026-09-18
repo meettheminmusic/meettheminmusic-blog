@@ -103,8 +103,8 @@ abc_scores:
       w: Pie, pie. I want pie.
     image: ''
     tempo: 100
-seo_title: "Great Big House in New Orleans: Lesson Plan | K-2 Music"
-description: "Free bass xylophone bordun notation and lyrics for 'Great Big House in New Orleans,' a K-2 general music choice song, in F Pentatonic, 4/4 meter."
+seo_title: "Great Big House in New Orleans | Elementary Music"
+description: "Free bass xylophone bordun notation and lyrics for 'Great Big House in New Orleans,' an elementary general-music choice song, in F Pentatonic, 4/4 meter."
 ---
 
 This is a great song to bring out the bass xylophone or bass bars.

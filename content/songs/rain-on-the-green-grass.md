@@ -1,7 +1,7 @@
 ---
 title: Rain on the Green Grass
-seo_title: "Rain on the Green Grass: Lyrics and Sheet Music | K-2 Music"
-description: "Free sheet music and lyrics for 'Rain on the Green Grass,' a K-2 general music song about weather and storms, for K-2 general music classrooms."
+seo_title: "Rain on the Green Grass: Lyrics | Elementary Music"
+description: "Free sheet music and lyrics for 'Rain on the Green Grass,' a general music song about weather, wind, and storms, for general music classrooms."
 date: 2026-06-17T15:13:00-04:00
 draft: false
 unlisted: true

@@ -1,7 +1,7 @@
 ---
 title: Let Us Chase the Squirrel
-seo_title: "Let Us Chase the Squirrel: Lesson Plan | K-2 Music"
-description: "Free notation, lyrics, and a K-2 lesson plan for the outdoor chase game 'Let Us Chase the Squirrel,' teaching Do-Re-Mi-So, in F Major, 2/4 meter."
+seo_title: "Let Us Chase the Squirrel: Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the outdoor chase game 'Let Us Chase the Squirrel,' teaching Do-Re-Mi-So, in F Major, 2/4 meter."
 date: 2026-05-04T12:41:00
 draft: false
 unlisted: false

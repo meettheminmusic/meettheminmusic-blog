@@ -1,7 +1,7 @@
 ---
 title: Chickema
-seo_title: "Chickema: Lyrics, Sheet Music, and Lesson Plan | K-2 Music"
-description: "Free notation, lyrics, and a K-2 lesson plan for the four-corners guessing game 'Chickema,' teaching turn-taking and accepting losing, in G Major."
+seo_title: "Chickema: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the four-corners guessing game 'Chickema,' teaching turn-taking and accepting losing, in G Major."
 date: 2026-05-01T12:39:00
 draft: false
 unlisted: false

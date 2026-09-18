@@ -1,7 +1,7 @@
 ---
 title: Oliver Twist
-seo_title: "Oliver Twist: Lyrics and Lesson Plan | K-2 Music"
-description: "Free notation, lyrics, and a K-2 lesson plan for the creative-movement circle song 'Oliver Twist,' teaching So-Mi patterns, in C Tritonic, 6/8 meter."
+seo_title: "Oliver Twist: Lyrics and Lesson Plan | Elementary Music"
+description: "Free notation, lyrics, and an elementary lesson plan for the creative-movement circle song 'Oliver Twist,' teaching So-Mi patterns, in C Tritonic."
 date: 2026-06-17T21:09:00-04:00
 draft: false
 unlisted: false
