@@ -865,7 +865,10 @@ function computeSyllableMap(seq) {
 }
 
 // ── Multi-voice score ABC ──────────────────────────────────
-function partHasContent(part) { return part.cells.some(function(c){ return c != null; }); }
+function partHasContent(part) {
+  if (part.rawMode) return splitRawAbcBars(part.rawAbc).length > 0;
+  return part.cells.some(function(c){ return c != null; });
+}
 function anyContent() { return project.parts.some(partHasContent); }
 
 function voiceHeader(part, vid, showName) {
@@ -899,7 +902,7 @@ function generateScoreABC() {
   hdr += '%%score [' + vids.join(' ') + ']\n';   // brackets = separate stacked staves
 
   var anyLyrics = showLyricsGlobal && parts.some(function(p){
-    return p.lyricsOn && p.cells.some(function(c){ return c && c.lyric && c.lyric.trim(); });
+    return !p.rawMode && p.lyricsOn && p.cells.some(function(c){ return c && c.lyric && c.lyric.trim(); });
   });
   if (anyLyrics) hdr += lyricFontDirective();
 
@@ -908,9 +911,13 @@ function generateScoreABC() {
 
   var body = '';
   parts.forEach(function(p,i){
-    var items = flattenPart(p, Lbars);
     body += 'V:' + vids[i] + '\n';
     body += voiceMidi(p);
+    if (p.rawMode) {
+      body += tileRawAbcBars(splitRawAbcBars(p.rawAbc), Lbars) + '\n';
+      return;
+    }
+    var items = flattenPart(p, Lbars);
     body += buildVoiceMusic(items, bpb) + '\n';
     var showThis = showLyricsGlobal && p.lyricsOn && items.some(function(it){ return it.lyric && it.lyric.trim(); });
     if (showThis) body += 'w: ' + buildVoiceLyrics(items, bpb) + '\n';
@@ -923,10 +930,15 @@ function generateScoreABC() {
 function generatePartABC(part) {
   if (!partHasContent(part)) return null;
   var bpb = beatsPerBar();
+  var hdr = 'X:1\nT:\nM:' + project.meter + '\nL:' + abcLen() + '\n';
+  if (part.rawMode) {
+    hdr += voiceHeader(part, 'V1', false) + '\nK:C\n';
+    var rawBars = splitRawAbcBars(part.rawAbc);
+    return hdr + 'V:V1\n' + voiceMidi(part) + tileRawAbcBars(rawBars, rawBars.length) + '\n';
+  }
   var items = flattenPart(part, part.bars);
   var showLyrics = document.getElementById('vis-lyrics').checked && part.lyricsOn &&
                    items.some(function(it){ return it.lyric && it.lyric.trim(); });
-  var hdr = 'X:1\nT:\nM:' + project.meter + '\nL:' + abcLen() + '\n';
   if (showLyrics) hdr += lyricFontDirective();
   hdr += voiceHeader(part, 'V1', false) + '\nK:C\n';
   var body = 'V:V1\n' + voiceMidi(part) + buildVoiceMusic(items, bpb) + '\n';
