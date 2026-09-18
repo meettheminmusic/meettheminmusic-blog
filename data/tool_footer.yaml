@@ -1,0 +1,33 @@
+# Song links shown in the tool-footer block (layouts/partials/tool-footer.html).
+# Keyed by the tool's content stub filename (content/<key>.md).
+rhythm-builder:
+  - url: /songs/old-raggy/
+    title: Old Raggy
+  - url: /songs/pickles-and-pie/
+    title: Pickles and Pie
+  - url: /songs/obwisana/
+    title: Obwisana
+
+ostinato-builder:
+  - url: /songs/alley-alley-oh/
+    title: Alley Alley Oh
+  - url: /songs/ally-bally/
+    title: Ally Bally
+  - url: /songs/great-big-house-in-new-orleans/
+    title: Great Big House in New Orleans
+
+chord-diagram-generator:
+  - url: /songs/chickema/
+    title: Chickema
+  - url: /songs/high-bird/
+    title: High Bird
+  - url: /songs/frog-in-the-meadow/
+    title: Frog in the Meadow
+
+visual-schedule-builder:
+  - url: /songs/did-you-feed-my-cow/
+    title: Did You Feed my Cow
+  - url: /songs/cat-is-gone/
+    title: Cat is Gone
+  - url: /songs/hogs-in-the-cornfield/
+    title: Hogs in the Cornfield

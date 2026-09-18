@@ -13,8 +13,17 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Meet Them in Music">
-<!-- Umami Analytics -->
-<script defer src="https://cloud.umami.is/script.js" data-website-id="c9aa1b7e-cd6a-43d4-89f9-f598ddd04091"></script>
+<!-- Umami Analytics (skipped on file:// or any host other than meettheminmusic.com, so local/downloaded copies don't pollute production stats) -->
+<script>
+(function () {
+  if (location.protocol === 'file:' || location.hostname !== 'meettheminmusic.com') return;
+  var s = document.createElement('script');
+  s.defer = true;
+  s.src = 'https://cloud.umami.is/script.js';
+  s.setAttribute('data-website-id', 'c9aa1b7e-cd6a-43d4-89f9-f598ddd04091');
+  document.head.appendChild(s);
+})();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0T321CJLX4"></script>
 <script>
@@ -1224,5 +1233,40 @@ buildPalette();
 applyVisibilityOverrides();
 refresh();
 </script>
+<section class="tool-footer" aria-labelledby="tool-footer-heading">
+<style>
+.tool-footer{font-family:'Inter',system-ui,sans-serif;max-width:960px;margin:3rem auto 0;padding:2rem 1.5rem;background:#E1F5EE;border-radius:12px}
+.tool-footer__heading{margin:0 0 .75rem;font-size:1.25rem;font-weight:600;color:#2C2C2A}
+.tool-footer__songs{list-style:none;margin:0 0 1.5rem;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.tool-footer__songs li{margin:0}
+.tool-footer__songs a{display:inline-block;padding:.5rem 1rem;background:#FAFAF8;border:1px solid #0F6E56;border-radius:999px;color:#085041;text-decoration:none;font-weight:500;font-size:.9rem}
+.tool-footer__songs a:hover{background:#0F6E56;color:#FAFAF8}
+.tool-footer__subscribe{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem}
+.tool-footer__subscribe p{margin:0;color:#5F5E5A;font-size:.9rem;flex:1 1 220px}
+.tool-footer__subscribe form{display:flex;gap:.5rem;flex:1 1 280px}
+.tool-footer__subscribe input{flex:1;padding:.5rem .75rem;border:1px solid #5F5E5A;border-radius:6px;font-family:inherit;font-size:.9rem}
+.tool-footer__subscribe button{padding:.5rem 1rem;background:#0F6E56;color:#FAFAF8;border:none;border-radius:6px;font-weight:600;font-size:.9rem;cursor:pointer}
+.tool-footer__subscribe button:hover{background:#085041}
+.tool-footer .tf-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
+<h2 id="tool-footer-heading" class="tool-footer__heading">Explore related songs</h2>
+<ul class="tool-footer__songs" role="list">
+  
+  <li><a href="https://meettheminmusic.com/songs/old-raggy/">Old Raggy</a></li>
+  
+  <li><a href="https://meettheminmusic.com/songs/pickles-and-pie/">Pickles and Pie</a></li>
+  
+  <li><a href="https://meettheminmusic.com/songs/obwisana/">Obwisana</a></li>
+  
+</ul>
+<div class="tool-footer__subscribe">
+  <p>Want more free tools and adaptable songs? Get occasional updates.</p>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/meettheminmusic" method="post" aria-label="Email signup">
+    <label for="tool-footer-email" class="tf-sr-only">Your email address</label>
+    <input id="tool-footer-email" type="email" name="email" placeholder="Your email address" required autocomplete="email" aria-required="true">
+    <button type="submit">Subscribe</button>
+  </form>
+</div>
+</section>
 </body>
 </html>
