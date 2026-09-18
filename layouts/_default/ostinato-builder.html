@@ -353,6 +353,23 @@ body { background: var(--ob-bg); }
 }
 .help strong { color: var(--ob-accent-dark); }
 
+.ob-btn.is-active { background: var(--ob-accent); border-color: var(--ob-accent); color: #fff; }
+.raw-abc-editor { margin-top: 8px; }
+.raw-abc-textarea {
+  width: 100%;
+  min-height: 72px;
+  padding: 8px 10px;
+  border: 1px solid var(--ob-border);
+  border-radius: var(--ob-radius);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.8rem;
+  color: var(--ob-text);
+  background: var(--ob-bg);
+  resize: vertical;
+}
+.raw-abc-textarea:focus { outline: 2px solid var(--ob-accent); outline-offset: 1px; border-color: var(--ob-accent); }
+.raw-abc-hint { margin-top: 4px; font-size: 0.72rem; color: var(--ob-text-muted); }
+
 @media (max-width: 600px) {
   .main { padding: 12px 12px 150px; gap: 12px; }
   .grid-col { width: 44px; }
@@ -1179,8 +1196,26 @@ function renderApp() {
     instWrap.appendChild(instSel);
     head.appendChild(instWrap);
 
-    // Bordun preset
-    if (part.kind === 'bordun') {
+    // Raw ABC editor toggle
+    var rawToggle = document.createElement('button');
+    rawToggle.className = 'ob-btn ob-btn-sm' + (part.rawMode ? ' is-active' : '');
+    rawToggle.textContent = 'Edit as ABC';
+    rawToggle.title = "Hand-edit this part's ABC notation, e.g. to change a note's octave";
+    rawToggle.addEventListener('click', function(){
+      if (!part.rawMode) {
+        if (part.rawAbc == null) part.rawAbc = buildVoiceMusic(flattenPart(part, part.bars), beatsPerBar());
+        part.rawMode = true;
+        part.bars = Math.max(1, splitRawAbcBars(part.rawAbc).length);
+      } else {
+        part.rawMode = false;
+        part.bars = part.cells.length / cellsPerBar();
+      }
+      renderApp();
+    });
+    head.appendChild(rawToggle);
+
+    // Bordun preset (hidden in raw-ABC mode — the preset applies to the grid, not raw text)
+    if (part.kind === 'bordun' && !part.rawMode) {
       var presetWrap = document.createElement('span'); presetWrap.className = 'part-ctl';
       var pLabel = document.createElement('span'); pLabel.textContent = 'Preset';
       var presetSel = document.createElement('select');
@@ -1193,18 +1228,24 @@ function renderApp() {
       head.appendChild(presetWrap);
     }
 
-    // Bars stepper
-    var barsWrap = document.createElement('span'); barsWrap.className = 'part-ctl';
-    var barsLabel = document.createElement('span'); barsLabel.textContent = 'Bars';
-    var stepper = document.createElement('span'); stepper.className = 'stepper';
-    var minus = document.createElement('button'); minus.textContent = '−';
-    minus.addEventListener('click', function(){ setPartBars(part, part.bars - 1); });
-    var val = document.createElement('span'); val.className='val'; val.textContent = part.bars;
-    var plus = document.createElement('button'); plus.textContent = '+';
-    plus.addEventListener('click', function(){ setPartBars(part, part.bars + 1); });
-    stepper.appendChild(minus); stepper.appendChild(val); stepper.appendChild(plus);
-    barsWrap.appendChild(barsLabel); barsWrap.appendChild(stepper);
-    head.appendChild(barsWrap);
+    // Bars stepper (hidden in raw-ABC mode — bar count is inferred from the typed | marks)
+    if (!part.rawMode) {
+      var barsWrap = document.createElement('span'); barsWrap.className = 'part-ctl';
+      var barsLabel = document.createElement('span'); barsLabel.textContent = 'Bars';
+      var stepper = document.createElement('span'); stepper.className = 'stepper';
+      var minus = document.createElement('button'); minus.textContent = '−';
+      minus.addEventListener('click', function(){ setPartBars(part, part.bars - 1); });
+      var val = document.createElement('span'); val.className='val'; val.textContent = part.bars;
+      var plus = document.createElement('button'); plus.textContent = '+';
+      plus.addEventListener('click', function(){ setPartBars(part, part.bars + 1); });
+      stepper.appendChild(minus); stepper.appendChild(val); stepper.appendChild(plus);
+      barsWrap.appendChild(barsLabel); barsWrap.appendChild(stepper);
+      head.appendChild(barsWrap);
+    } else {
+      var barsReadout = document.createElement('span'); barsReadout.className = 'part-ctl';
+      barsReadout.textContent = 'Bars: ' + part.bars + ' (from your ABC)';
+      head.appendChild(barsReadout);
+    }
 
     // Loop badge
     if (project.parts.length > 1) {
@@ -1214,12 +1255,14 @@ function renderApp() {
       head.appendChild(lb);
     }
 
-    // Lyrics toggle
-    var lyrLabel = document.createElement('label'); lyrLabel.className = 'vis-check';
-    var lyrCb = document.createElement('input'); lyrCb.type='checkbox'; lyrCb.checked = part.lyricsOn;
-    lyrCb.addEventListener('change', function(){ part.lyricsOn = this.checked; renderApp(); });
-    lyrLabel.appendChild(lyrCb); lyrLabel.appendChild(document.createTextNode(' Lyrics'));
-    head.appendChild(lyrLabel);
+    // Lyrics toggle (raw-ABC parts have no per-cell lyric data to drive this)
+    if (!part.rawMode) {
+      var lyrLabel = document.createElement('label'); lyrLabel.className = 'vis-check';
+      var lyrCb = document.createElement('input'); lyrCb.type='checkbox'; lyrCb.checked = part.lyricsOn;
+      lyrCb.addEventListener('change', function(){ part.lyricsOn = this.checked; renderApp(); });
+      lyrLabel.appendChild(lyrCb); lyrLabel.appendChild(document.createTextNode(' Lyrics'));
+      head.appendChild(lyrLabel);
+    }
 
     var spacer = document.createElement('span'); spacer.className='spacer'; head.appendChild(spacer);
 
@@ -1236,8 +1279,8 @@ function renderApp() {
 
     card.appendChild(head);
 
-    // Grid
-    card.appendChild(buildGrid(part));
+    // Grid (or raw ABC editor, if this part is in raw mode)
+    card.appendChild(part.rawMode ? buildRawAbcEditor(part) : buildGrid(part));
     document.getElementById('parts-host').appendChild(card);
   });
 
@@ -1365,6 +1408,25 @@ function buildLyricInput(part, idx) {
     this.dataset.keep = '1';
   });
   return inp;
+}
+
+function buildRawAbcEditor(part) {
+  var wrap = document.createElement('div'); wrap.className = 'raw-abc-editor';
+  var ta = document.createElement('textarea');
+  ta.className = 'raw-abc-textarea';
+  ta.spellcheck = false;
+  ta.rows = 3;
+  ta.value = part.rawAbc || '';
+  ta.addEventListener('input', function(){
+    part.rawAbc = this.value;
+    part.bars = Math.max(1, splitRawAbcBars(this.value).length);
+    scheduleRender();
+  });
+  wrap.appendChild(ta);
+  var hint = document.createElement('div'); hint.className = 'raw-abc-hint';
+  hint.textContent = 'Hand-edit the ABC for this part. Bar count is inferred from the | marks you type.';
+  wrap.appendChild(hint);
+  return wrap;
 }
 
 // ── Toast ──────────────────────────────────────────────────
