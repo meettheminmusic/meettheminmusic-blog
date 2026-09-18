@@ -989,7 +989,7 @@ function applyVisibilityToSvg(svg) {
 }
 
 // ── Score render ───────────────────────────────────────────
-function scheduleRender() { clearTimeout(renderTimer); renderTimer = setTimeout(renderScore, 130); }
+function scheduleRender() { clearTimeout(renderTimer); renderTimer = setTimeout(function(){ renderScore(); saveDraft(); }, 130); }
 
 function renderScore() {
   var wrap = document.getElementById('score-render');
@@ -1164,6 +1164,49 @@ function exportSVG(abc, filename) {
   showToast('SVG saved!');
 }
 function slugify(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+
+// ── Persistence (save/load) ─────────────────────────────────
+var DRAFT_KEY = 'mtim_ostinato_draft';
+
+function serializeProject() { return JSON.parse(JSON.stringify(project)); }
+
+function loadProjectData(data) {
+  stopPlayback();
+  project = data;
+  partSeq = project.parts.reduce(function(max, p){
+    var n = parseInt(String(p.id).replace('p', ''), 10);
+    return isNaN(n) ? max : Math.max(max, n);
+  }, 0);
+  document.getElementById('key-sel').value = project.key;
+  document.getElementById('meter-sel').value = project.meter;
+  document.getElementById('subdiv-sel').value = String(project.subdiv);
+  document.getElementById('tempo-slider').value = project.tempo;
+  document.getElementById('tempo-display').textContent = project.tempo;
+  renderApp();
+}
+
+function saveDraft() {
+  try { localStorage.setItem(DRAFT_KEY, JSON.stringify(serializeProject())); } catch (e) {}
+}
+
+function restoreDraftIfAvailable() {
+  var raw;
+  try { raw = localStorage.getItem(DRAFT_KEY); } catch (e) { return false; }
+  if (!raw) return false;
+  var data;
+  try { data = JSON.parse(raw); } catch (e) { return false; }
+  if (!data || !Array.isArray(data.parts) || !data.parts.length) return false;
+  if (!KEYS[data.key]) data.key = 'C';   // guard against a draft from an incompatible/future schema
+  if (!confirm('Restore your last unsaved ostinato?')) return false;
+  try {
+    loadProjectData(data);
+  } catch (e) {
+    console.warn('Could not restore draft, starting fresh:', e);
+    project = { meter:'4/4', subdiv:2, tempo:100, key:'C', parts:[] };   // undo any partial state loadProjectData left behind
+    return false;
+  }
+  return true;
+}
 
 // ── UI: build the parts + grid ─────────────────────────────
 function renderApp() {
@@ -1512,8 +1555,6 @@ document.getElementById('lyric-bold-btn').addEventListener('click', function(){
 
 // Seed a starter arrangement so the tool isn't empty.
 function seed() {
-  buildKeyOptions();
-
   // Clap part (V1)
   addPartSilent('perc', 'clap', 2, function(part) {
     // !style=x!B z !style=x!B z | !style=x!B z !style=x!B z |]
@@ -1552,8 +1593,11 @@ function addPartSilent(kind, instId, bars, fill) {
   project.parts.push(part);
 }
 
+window.addEventListener('beforeunload', saveDraft);
+
+buildKeyOptions();
 applyVisibilityOverrides();
-seed();
+if (!restoreDraftIfAvailable()) seed();
 </script>
 {{ partial "tool-footer.html" . }}
 {{ end }}
