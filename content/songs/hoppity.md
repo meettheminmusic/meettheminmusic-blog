@@ -4,7 +4,7 @@ date: 2026-09-20T14:20:00-04:00
 draft: false
 unlisted: false
 featured: false
-card_image: ''
+card_image: /images/uploads/hoppity.jpg
 tonal_concepts: []
 rhythmic_concepts: []
 activity_types: []
