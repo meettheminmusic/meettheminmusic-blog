@@ -1,8 +1,8 @@
 ---
 title: Hoppity
 date: 2026-09-20T14:20:00-04:00
-draft: true
-unlisted: false
+draft: false
+unlisted: true
 featured: false
 card_image: ''
 tonal_concepts: []
