@@ -68,3 +68,9 @@ abc_image: /images/uploads/Charlie Over the Ocean Choice Board.png
 abc_tempo: 100
 abc_scores: []
 ---
+
+This is a fun echo song that I like to use to get my quiet classes talking.  Go around the room having the kids pick different types or characteristics of the things that Charlie catches.
+
+My kids love trying to combine ideas or to "trick me" by choosing things that are hard to fit in the song.  Ill take it!  Engagement counts and this builds the relationship that will keep them trying when things get harder.
+
+![](/images/uploads/Charlie%20Over%20the%20Ocean%20Choice%20Board.png)
