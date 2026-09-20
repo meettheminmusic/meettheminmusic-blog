@@ -58,6 +58,9 @@ abc_notation: |-
   w: Hop, Hop, | Hop! Don't stop! |
   [V:3] B2 B B3 | BBB B3 |]
   w: Come a long, | Chris-to-pher Stop! |
+  %%textfont arial 9
+  %%center .
+  %%center © 2026 All Rights Reserved.
 sanitized_abc: ''
 abc_image: ''
 abc_tempo: 120
