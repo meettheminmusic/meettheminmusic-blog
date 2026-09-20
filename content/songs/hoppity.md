@@ -4,7 +4,7 @@ date: 2026-09-20T14:20:00-04:00
 draft: false
 unlisted: false
 featured: true
-card_image: /images/uploads/hoppity.jpg
+card_image: /images/uploads/Hoppity Splash.jpg
 tonal_concepts:
   - Chant
 rhythmic_concepts:
