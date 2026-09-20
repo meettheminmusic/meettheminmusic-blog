@@ -5,16 +5,31 @@ draft: false
 unlisted: false
 featured: true
 card_image: /images/uploads/hoppity.jpg
-tonal_concepts: []
-rhythmic_concepts: []
-activity_types: []
-social_concepts: []
+tonal_concepts:
+  - Chant
+rhythmic_concepts:
+  - 1/8 Notes
+  - Quarter-Eighth
+  - 1/4 Notes
+activity_types:
+  - Chant
+  - Percussion
+  - Orff
+social_concepts:
+  - Self-Regulation
+  - Frustration
+  - Excitement
 movement_concepts: []
 supports_adaptations: []
-language_origins: []
-keys: []
+language_origins:
+  - English
+  - England
+keys:
+  - unpitched
 modes: []
-meters: []
+meters:
+  - 6/8
+  - Triple
 source: ''
 source_url: ''
 panels: []
@@ -145,3 +160,13 @@ abc_scores:
     image: ''
     tempo: null
 ---
+
+I was looking for a nice little triple feel poem to build a chant around and discovered this nice poem by A.A. Milne.  This is split into 3 separate parts (Vocal, Shaker, and Drum) and each has a different challenge.: 
+
+- The phrase alignment on the vocals is nearly a tongue twister at the end.  
+- The percussion parts introduce quarter-eighth rhythms not present in the vocal part.
+- The drum part is the more challenging percussion part.  Give it to your kids who are ready for this challenge.
+
+**SEL Discussion:**
+
+We all have times where we have a hard time stopping ourselves from doing something. Maybe we are just so excited or our bodies just need to move.   Have you ever felt like that? What can we do when we feel that way?
