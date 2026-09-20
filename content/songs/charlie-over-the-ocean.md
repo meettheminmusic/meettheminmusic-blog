@@ -64,7 +64,7 @@ sanitized_abc: |-
   E3-D3 | G2 G GGG | E3-D3 | G2 G G2 G | A3 B3 |
   G2 G G2 G | A3 B3 |$ G3 G3 | E3-D3 | G3 G3 |
   E3-D3 |]
-abc_image: /images/uploads/Charlie Over the Ocean Choice Board.png
+abc_image: ''
 abc_tempo: 100
 abc_scores: []
 ---
