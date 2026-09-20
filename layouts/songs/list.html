@@ -6,11 +6,15 @@
     <p class="library-desc">Browse and filter songs by concept, key, mode, and meter.</p>
   </div>
 
+  <div class="library-search">
+    <label for="song-search" class="filter-label">Search</label>
+    <input type="search" id="song-search" class="song-search-input" placeholder="Title, concept, mode…" autocomplete="off" spellcheck="false">
+  </div>
+
+  <div class="library-body">
   <div class="library-filters" id="library-filters">
-    <div class="filter-group">
-      <label for="song-search" class="filter-label">Search</label>
-      <input type="search" id="song-search" class="song-search-input" placeholder="Title, concept, mode…" autocomplete="off" spellcheck="false">
-    </div>
+    <details class="filter-group filter-panel" id="fg-panel">
+      <summary><span class="filter-label">Filters</span><span id="filter-count" hidden></span></summary>
     <details class="filter-group" id="fg-tonal-concepts">
       <summary class="filter-label">Tonal concepts</summary>
       <div class="filter-buttons" data-filter="tonal_concepts">
@@ -91,9 +95,11 @@
         {{ end }}
       </div>
     </details>
+    </details>
     <button class="filter-clear" id="filter-clear" hidden>Clear filters</button>
   </div>
 
+  <div class="library-results">
   <p class="library-count" id="library-count"></p>
 
   <ul class="song-list" id="song-list" role="list">
@@ -131,6 +137,8 @@
     </li>
     {{ end }}
   </ul>
+  </div>
+  </div>
 </div>
 
 <script>
@@ -140,6 +148,13 @@
   const countEl = document.getElementById('library-count');
   const clearBtn = document.getElementById('filter-clear');
   const searchInput = document.getElementById('song-search');
+  const countBadge = document.getElementById('filter-count');
+
+  function openPanel(el) {
+    if (!el) return;
+    el.open = true;
+    localStorage.setItem('filter-' + el.id, 'open');
+  }
 
   let searchMatches = null; // null = no active search; Set of URLs when search is active
   let fuse = null;
@@ -152,8 +167,11 @@
 
   function applyFilters() {
     let visible = 0;
-    const hasActive = Object.values(activeFilters).some(a => a.length > 0) || searchMatches !== null;
+    const activeCount = Object.values(activeFilters).reduce((n, a) => n + a.length, 0);
+    const hasActive = activeCount > 0 || searchMatches !== null;
     clearBtn.hidden = !hasActive;
+    countBadge.textContent = activeCount + ' active';
+    countBadge.hidden = activeCount === 0;
 
     cards.forEach(card => {
       const filterMatch = Object.entries(activeFilters).every(([key, values]) => {
@@ -229,7 +247,7 @@
     });
 
   // Restore collapsed/expanded state from localStorage
-  document.querySelectorAll('details.filter-group').forEach(details => {
+  document.querySelectorAll('details[id^="fg-"]').forEach(details => {
     const saved = localStorage.getItem('filter-' + details.id);
     if (saved === 'open') details.open = true;
     details.addEventListener('toggle', () => {
@@ -251,8 +269,8 @@
         btn.classList.add('active');
         btn.setAttribute('aria-pressed', 'true');
         hadParams = true;
-        const details = btn.closest('details.filter-group');
-        if (details) { details.open = true; localStorage.setItem('filter-' + details.id, 'open'); }
+        openPanel(btn.closest('details.filter-group'));
+        openPanel(document.getElementById('fg-panel'));
       }
     });
   });
@@ -268,8 +286,8 @@
       .find(b => b.dataset.value.toLowerCase() === tag.dataset.value.toLowerCase());
     if (!btn) return;
     btn.click();
-    const details = btn.closest('details.filter-group');
-    if (details) { details.open = true; localStorage.setItem('filter-' + details.id, 'open'); }
+    openPanel(btn.closest('details.filter-group'));
+    openPanel(document.getElementById('fg-panel'));
     document.getElementById('library-filters').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
 })();

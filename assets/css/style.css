@@ -451,18 +451,30 @@ button.tag { cursor: pointer; font: inherit; border: none; }
   margin-bottom: 0;
 }
 
+.library-search { margin-bottom: 1rem; }
+.library-search .filter-label { display: block; margin-bottom: 0.5rem; }
+
 .library-filters {
   background: var(--neutral-50);
   border: 0.5px solid var(--neutral-100);
   border-radius: 10px;
   padding: 1.25rem 1.5rem;
   margin-bottom: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
 .filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
+
+#filter-count {
+  background: var(--teal-tint);
+  color: var(--dark-teal);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  margin-left: 0.5rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
 
 .song-search-input {
   width: 100%;
@@ -520,6 +532,7 @@ button.tag { cursor: pointer; font: inherit; border: none; }
 
 .filter-clear {
   align-self: flex-start;
+  margin-top: 0.75rem;
   background: none;
   border: none;
   color: var(--teal);
