@@ -55,6 +55,9 @@ abc_notation: |-
   w:Char-lie caught a BIG fish. Cant catch me-. Cant catch
    E3-D3 |] %16
   w: me
+  %%textfont arial 9
+  %%center .
+  %%center © 2026 All Rights Reserved.
 sanitized_abc: |-
   K:G  M:6/8  L:1/8
   L:1/8
