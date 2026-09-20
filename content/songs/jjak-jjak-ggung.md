@@ -1,12 +1,10 @@
 ---
 title: Jjak Jjak Ggung
-seo_title: "Jjak Jjak Ggung: Lyrics and Lesson Plan | Elementary Music"
-description: "Free notation, lyrics, and an elementary lesson plan for the Korean clapping song 'Jjak Jjak Ggung,' teaching So-Mi and beat keeping, in C Major."
 date: 2026-06-21T21:45:00-04:00
 draft: false
 unlisted: false
 featured: false
-card_image: ''
+card_image: /images/uploads/jjak jjak.jpg
 tonal_concepts:
   - So-Mi
 rhythmic_concepts:
@@ -68,7 +66,11 @@ abc_scores:
       %%center © 2026 All Rights Reserved.
     image: ''
     tempo: 136
+description: Free notation, lyrics, and an elementary lesson plan for the Korean clapping song 'Jjak Jjak Ggung,' teaching So-Mi and beat keeping, in C Major.
+seo_title: 'Jjak Jjak Ggung: Lyrics and Lesson Plan | Elementary Music'
 ---
+
+This is a traditional song to use with very young kids in Korea. Try to add claps on the words "Jjak Jjak ggung" or "Clap Clap Clap." Have kids add motions to the other words on the second line.
 
 {{< callout title="Language Note" >}}
 My translation in the 2nd line is slightly off.  My translation says "my mom" and "my dad." This is implied in the original, but not explicit.  I did this to align the English words with the melodic rhythm without melisma.
