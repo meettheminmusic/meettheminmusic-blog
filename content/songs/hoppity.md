@@ -2,7 +2,7 @@
 title: Hoppity
 date: 2026-09-20T14:20:00-04:00
 draft: false
-unlisted: true
+unlisted: false
 featured: false
 card_image: ''
 tonal_concepts: []
@@ -27,7 +27,7 @@ abc_notation: |-
   L:1/8
   Q:3/8=120
   %%score 1 2 3
-  V:1 clef=perc stafflines=1
+  V:1 clef=perc stafflines=1 stem=up
   V:2 clef=perc stafflines=1 nm="Shaker" snm="Sh."
   V:3 clef=perc stafflines=1 nm="Drum" snm="Dr."
   K:C
