@@ -129,10 +129,12 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
+      - { label: "Unlisted", name: "unlisted", widget: "boolean", default: false }
       - { label: "Author", name: "author", widget: "string", required: false }
       - { label: "Amazon affiliate URL", name: "amazon_url", widget: "string", required: false }
       - { label: "Cover image", name: "cover_image", widget: "image", required: false }
       - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Audience", name: "audience", widget: "select", options: [{ label: "Kids", value: "kids" }, { label: "Teachers", value: "teachers" }], required: false }
 
   - name: "navigation"
     label: "Navigation"

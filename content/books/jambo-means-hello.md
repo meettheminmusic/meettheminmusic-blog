@@ -6,4 +6,5 @@ author: Muriel Feelings
 amazon_url: https://amzn.to/4tLFc0G
 cover_image: /images/books/jambo-means-hello.jpg
 description: ''
+audience: kids
 ---

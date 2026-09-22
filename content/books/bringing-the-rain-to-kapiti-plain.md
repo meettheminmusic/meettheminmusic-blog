@@ -6,4 +6,5 @@ author: Verna Aardema
 amazon_url: https://amzn.to/48GzTXX
 cover_image: /images/books/bringing-the-rain.jpg
 description: ''
+audience: kids
 ---

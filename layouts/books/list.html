@@ -6,7 +6,7 @@
   <h2>For Kids</h2>
   <div class="book-grid">
     {{ range where .Pages "Params.audience" "kids" }}
-    {{ if not .Params.draft }}
+    {{ if and (not .Params.draft) (not .Params.unlisted) }}
     <div class="book-card">
       {{ with .Params.cover_image }}
       <div class="book-card__cover">
@@ -35,7 +35,7 @@
   <h2 style="margin-top: 3rem;">For Teachers</h2>
   <div class="book-grid">
     {{ range where .Pages "Params.audience" "teachers" }}
-    {{ if not .Params.draft }}
+    {{ if and (not .Params.draft) (not .Params.unlisted) }}
     <div class="book-card">
       {{ with .Params.cover_image }}
       <div class="book-card__cover">

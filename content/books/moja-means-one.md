@@ -6,4 +6,5 @@ author: Muriel Feelings
 amazon_url: https://amzn.to/4cDzpnW
 cover_image: /images/books/moja-means-one.jpg
 description: ''
+audience: kids
 ---
