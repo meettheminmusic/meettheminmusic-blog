@@ -1,23 +1,34 @@
 ---
 title: Down the River
-seo_title: "Down the River: Lyrics and Sheet Music | Elementary Music"
-description: "Free sheet music and lyrics for the longways-set folk dance 'Down the River,' for general music classrooms, arranged in G major, 6/8 meter throughout."
 date: 2026-06-17T20:57:00-04:00
 draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Down the river images slide.png
-tonal_concepts: []
-rhythmic_concepts: []
+tonal_concepts:
+  - Low So
+  - Leading Tone
+rhythmic_concepts:
+  - 1/8 Notes
+  - Dotted 8th/16th
 activity_types:
   - Longways sets
-social_concepts: []
-movement_concepts: []
-supports_adaptations: []
-language_origins: []
-keys: []
-modes: []
-meters: []
+social_concepts:
+  - Group Support
+movement_concepts:
+  - Dance
+supports_adaptations:
+  - Visual Supports
+language_origins:
+  - English
+  - United States
+keys:
+  - G
+modes:
+  - Major
+meters:
+  - 6/8
+  - Triple
 source: ''
 source_url: ''
 panels: []
@@ -54,6 +65,8 @@ sanitized_abc: ''
 abc_image: ''
 abc_tempo: 120
 abc_scores: []
+description: Free sheet music and lyrics for the longways-set folk dance 'Down the River,' for general music classrooms, arranged in G major, 6/8 meter throughout.
+seo_title: 'Down the River: Lyrics and Sheet Music | Elementary Music'
 ---
 
 <u>**Activity**</u>

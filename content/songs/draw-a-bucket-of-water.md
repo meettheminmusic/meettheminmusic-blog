@@ -1,22 +1,36 @@
 ---
 title: Draw a Bucket of Water
-seo_title: "Draw a Bucket of Water: Lyrics | Elementary Music"
-description: "Free sheet music and lyrics for the partner circle game 'Draw a Bucket of Water,' for general music classrooms, arranged in G major, 2/4 meter."
 date: 2026-09-16T09:01:00-04:00
 draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/Draw a bucket of water.jpg
-tonal_concepts: []
-rhythmic_concepts: []
-activity_types: []
-social_concepts: []
-movement_concepts: []
-supports_adaptations: []
-language_origins: []
-keys: []
-modes: []
-meters: []
+tonal_concepts:
+  - Low So
+  - Do-Re-Mi
+rhythmic_concepts:
+  - 1/8 Notes
+  - 1/16 Notes
+activity_types:
+  - Group Movement
+social_concepts:
+  - Partners
+  - Collaboration
+movement_concepts:
+  - Macrobeat
+  - Pulse
+  - Push/Pull
+supports_adaptations:
+  - Physical Adaptation
+language_origins:
+  - English
+keys:
+  - G
+modes:
+  - Pentatonic
+meters:
+  - 4/4
+  - Duple
 source: ''
 source_url: ''
 panels: []
@@ -71,4 +85,6 @@ abc_scores:
       %%center © 2026 All Rights Reserved.
     image: ''
     tempo: null
+description: Free sheet music and lyrics for the partner circle game 'Draw a Bucket of Water,' for general music classrooms, arranged in G major, 2/4 meter.
+seo_title: 'Draw a Bucket of Water: Lyrics | Elementary Music'
 ---
