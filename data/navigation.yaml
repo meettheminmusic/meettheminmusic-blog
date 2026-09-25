@@ -24,6 +24,8 @@ items:
         url: /visual-schedule-builder/
       - name: Music Book Slideshow Builder
         url: /music-book-slideshow-builder/
+      - name: Aiken Drum builder
+        url: /aiken-drum-builder/
   - name: Resources
     url: https://www.teacherspayteachers.com/store/meet-them-in-music
     weight: 6
