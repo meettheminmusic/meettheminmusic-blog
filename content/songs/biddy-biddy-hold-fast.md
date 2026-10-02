@@ -1,7 +1,5 @@
 ---
 title: Biddy Biddy Hold Fast
-seo_title: "Biddy Biddy Hold Fast: Lesson Plan | Elementary Music"
-description: "Free notation, lyrics, and an elementary lesson plan for the hidden-object circle game 'Biddy Biddy Hold Fast,' teaching So-Mi, in F Major, 4/4 meter."
 date: 2026-05-06T09:46:00
 draft: false
 unlisted: false
@@ -33,30 +31,10 @@ meters:
 source: ''
 source_url: ''
 panels: []
-abc_notation: |-
-  %%textfont arial italic 11
-  X:1 
-  T:Biddy Biddy Hold Fast
-  M:4/4
-  L:1/16
-  C:arr. P. Eric Bottorff
-  A: MeetThemInMusic.com 
-  %%vocalfont Arial 9
-  %%staffsep 50
-  %%stretchlast 1
-  %%barsperstaff 5
-  K:F
-  cccc A2c2 F2A2 A2A2 | GA2B A2G2 AA2AA4||
-  w: Bid-dy bid-dy hold fast. Lost my gold ring, one went to kings-ton. Come back a-gain.
-  M: 4/4
-  cccc A2c2 F2A2 A2A2 | GA2B A2G2 FF2FF4:|]
-  w: Bid-dy bid-dy hold fast. Lost my gold ring, one went to kings-ton. Come back a-gain.
-  %%textfont arial 9
-  %%center .
-  %%center © 2026 All Rights Reserved.
+abc_notation: ''
 sanitized_abc: ''
 abc_image: ''
-abc_tempo: 105
+abc_tempo: null
 abc_scores:
   - label: Simpler Rhythm
     notation: |-
@@ -81,7 +59,33 @@ abc_scores:
       %%center .
       %%center © 2026 All Rights Reserved.
     image: ''
-    tempo: null
+    tempo: 100
+  - label: Standard Rhythm
+    notation: |-
+      %%textfont arial italic 11
+      X:1 
+      T:Biddy Biddy Hold Fast
+      M:4/4
+      L:1/16
+      C:arr. P. Eric Bottorff
+      A: MeetThemInMusic.com 
+      %%vocalfont Arial 9
+      %%staffsep 50
+      %%stretchlast 1
+      %%barsperstaff 5
+      K:F
+      cccc A2c2 F2A2 A2A2 | GA2B A2G2 AA2AA4||
+      w: Bid-dy bid-dy hold fast. Lost my gold ring, one went to kings-ton. Come back a-gain.
+      M: 4/4
+      cccc A2c2 F2A2 A2A2 | GA2B A2G2 FF2FF4:|]
+      w: Bid-dy bid-dy hold fast. Lost my gold ring, one went to kings-ton. Come back a-gain.
+      %%textfont arial 9
+      %%center .
+      %%center © 2026 All Rights Reserved.
+    image: ''
+    tempo: 100
+description: Free notation, lyrics, and an elementary lesson plan for the hidden-object circle game 'Biddy Biddy Hold Fast,' teaching So-Mi, in F Major, 4/4 meter.
+seo_title: 'Biddy Biddy Hold Fast: Lesson Plan | Elementary Music'
 ---
 
 <u>**Activity**</u>
