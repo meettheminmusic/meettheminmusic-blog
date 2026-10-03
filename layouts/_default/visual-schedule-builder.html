@@ -2174,6 +2174,9 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
         if (synthControl && visualObj) {
           // midiTranspose makes playback follow the written transposition.
           synthControl.setTune(visualObj, false, { soundFontUrl: soundFontUrl, chordsOff: false, midiTranspose: transpose }).catch(function (e) { console.warn('notation synth', e); });
+          // setTune doesn't clear ABCJS's loaded flag, so a tune that already played would replay its old key.
+          // Clearing it makes the next Play rebuild the audio once, in the current key.
+          synthControl.isLoaded = false;
         }
       }
       // Saved schedules only bundle notes within transposeLimit of the saved key, so stop the buttons there.
