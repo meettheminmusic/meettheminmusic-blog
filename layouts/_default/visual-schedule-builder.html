@@ -2407,13 +2407,15 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
     function blobToDataURL(blob) { return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(blob); }); }
     async function dataURLToBlob(dataURL) { const res = await fetch(dataURL); return res.blob(); }
     // Downscale and re-encode large raster images at intake so drafts and exports stay small.
-    // Skips SVG and GIF (vector / animation) and small files; keeps the original if nothing is saved.
+    // Non-images, SVG, GIF (animation), small files, and WebP already at size pass through untouched;
+    // keeps the original if nothing is saved. Used for uploads and for "Open saved" imports.
     async function compressImage(file) {
       const MAX_EDGE = 1920;
       if (!file?.type?.startsWith('image/') || /svg|gif/.test(file.type) || file.size < 150 * 1024) return file;
       try {
         const bmp = await createImageBitmap(file);
         const scale = Math.min(1, MAX_EDGE / Math.max(bmp.width, bmp.height));
+        if (scale === 1 && file.type === 'image/webp') { bmp.close(); return file; } // already compressed: no second lossy pass
         const canvas = document.createElement('canvas');
         canvas.width = Math.round(bmp.width * scale);
         canvas.height = Math.round(bmp.height * scale);
@@ -2518,6 +2520,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
         const bgUrlMatch = screenBg.match(/url\(([^)]+)\)/);
         if (bgUrlMatch) {
           bgImageDataUrl = bgUrlMatch[1].replace(/['"]/g, '');
+          if (bgImageDataUrl.startsWith('data:')) bgImageDataUrl = await blobToDataURL(await compressImage(await dataURLToBlob(bgImageDataUrl)));
           document.getElementById('bgImageClear').style.display = '';
         } else {
           bgImageDataUrl = null;
@@ -2554,7 +2557,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
         const img = el.querySelector('img.schedule-image');
         if (img && img.src.startsWith('data:')) {
           const blob = await dataURLToBlob(img.src);
-          const dbKey = await db.add(blob);
+          const dbKey = await db.add(await compressImage(blob));
           a.media = { kind: 'image', dbKey, name: img.getAttribute('alt') || '' };
         }
 
@@ -2578,28 +2581,28 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
 
             if (imageDataURL) {
               const blob = await dataURLToBlob(imageDataURL);
-              const dbKey = await db.add(blob);
+              const dbKey = await db.add(await compressImage(blob));
               a.overlay.image = { kind: 'image', dbKey, name: o.title || '' };
             }
             if (videoDataURL) {
               const blob = await dataURLToBlob(videoDataURL);
-              const dbKey = await db.add(blob);
+              const dbKey = await db.add(await compressImage(blob));
               a.overlay.image = { kind: 'video', dbKey, name: o.title || '' };
             }
             if (audioDataURL) {
               const blob = await dataURLToBlob(audioDataURL);
-              const dbKey = await db.add(blob);
+              const dbKey = await db.add(await compressImage(blob));
               a.overlay.audio = { dbKey, name: o.title || '', label: o.audioLabel || '' };
             }
             if (audio2DataURL) {
               const blob = await dataURLToBlob(audio2DataURL);
-              const dbKey = await db.add(blob);
+              const dbKey = await db.add(await compressImage(blob));
               a.overlay.audio2 = { dbKey, name: o.title || '', label: o.audio2Label || '' };
             }
             if (slidesDataURLs.length) {
               for (const dataURL of slidesDataURLs) {
                 const blob = await dataURLToBlob(dataURL);
-                const dbKey = await db.add(blob);
+                const dbKey = await db.add(await compressImage(blob));
                 a.overlay.images.push({ kind: 'image', dbKey, name: o.title || '' });
               }
             }
@@ -2608,7 +2611,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
             const legacyDataURL = o.dataURL || (o.dataRef ? mediaManifest[o.dataRef] : null);
             if (legacyDataURL && o.kind && !imageDataURL && !audioDataURL && !videoDataURL) {
               const blob = await dataURLToBlob(legacyDataURL);
-              const dbKey = await db.add(blob);
+              const dbKey = await db.add(await compressImage(blob));
               if (o.kind === 'image') {
                 a.overlay.image = { kind: 'image', dbKey, name: o.title || '' };
               } else if (o.kind === 'video') {
