@@ -2167,13 +2167,13 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
       } else {
         audioEl.innerHTML = '<div style="color:#5F5E5A;font-size:13px">Audio playback is not supported in this browser.</div>';
       }
-      var audioParams = { soundFontUrl: soundFontUrl, chordsOff: false };
 
       function draw() {
         var visualObj = ABCJS.renderAbc(scoreEl, effAbc, { responsive: 'resize', add_classes: true, visualTranspose: transpose })[0];
         keyLabel.textContent = transpose === 0 ? 'Concert pitch' : ('Transpose ' + (transpose > 0 ? '+' : '') + transpose);
         if (synthControl && visualObj) {
-          synthControl.setTune(visualObj, false, audioParams).catch(function (e) { console.warn('notation synth', e); });
+          // midiTranspose makes playback follow the written transposition.
+          synthControl.setTune(visualObj, false, { soundFontUrl: soundFontUrl, chordsOff: false, midiTranspose: transpose }).catch(function (e) { console.warn('notation synth', e); });
         }
       }
       // Saved schedules only bundle notes within transposeLimit of the saved key, so stop the buttons there.
