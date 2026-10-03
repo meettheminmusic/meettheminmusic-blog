@@ -1031,16 +1031,12 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
       };
     }
 
-    function handleBgImage(e) {
+    async function handleBgImage(e) {
       const file = e.target.files[0];
       if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(ev) {
-        bgImageDataUrl = ev.target.result;
-        document.getElementById('bgImageClear').style.display = '';
-        queueRender();
-      };
-      reader.readAsDataURL(file);
+      bgImageDataUrl = await blobToDataURL(await compressImage(file));
+      document.getElementById('bgImageClear').style.display = '';
+      queueRender();
     }
 
     function clearBgImage() {
@@ -1368,7 +1364,11 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
         else if (type.startsWith('video/')) kind = 'video';
         else if (!type.startsWith('image/')) { alert('Unsupported file type. Use image, audio, or video.'); return; }
 
-        const dbKey = await db.add(file);
+        if ((kind === 'video' && file.size > 25 * 1024 * 1024) || /wav/.test(type)) {
+          setExportStatus(`Large file (${formatBytes(file.size)}): consider a link or compressing it first to keep the saved schedule small.`);
+        }
+
+        const dbKey = await db.add(kind === 'image' ? await compressImage(file) : file);
         const blobRef = { kind, dbKey, name: file.name };
 
         if (kindKey === 'overlay-image') {
@@ -1418,7 +1418,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
       try {
         for (const file of files) {
           if (!file?.type?.startsWith('image/')) continue;
-          const dbKey = await db.add(file);
+          const dbKey = await db.add(await compressImage(file));
           item.overlay.images.push({ kind: 'image', dbKey, name: file.name || '' });
         }
         if (item.overlay.images.length && item.action !== 'overlay') item.action = 'overlay';
@@ -2406,6 +2406,29 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
     }
     function blobToDataURL(blob) { return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(blob); }); }
     async function dataURLToBlob(dataURL) { const res = await fetch(dataURL); return res.blob(); }
+    // Downscale and re-encode large raster images at intake so drafts and exports stay small.
+    // Skips SVG and GIF (vector / animation) and small files; keeps the original if nothing is saved.
+    async function compressImage(file) {
+      const MAX_EDGE = 1920;
+      if (!file?.type?.startsWith('image/') || /svg|gif/.test(file.type) || file.size < 150 * 1024) return file;
+      try {
+        const bmp = await createImageBitmap(file);
+        const scale = Math.min(1, MAX_EDGE / Math.max(bmp.width, bmp.height));
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(bmp.width * scale);
+        canvas.height = Math.round(bmp.height * scale);
+        canvas.getContext('2d').drawImage(bmp, 0, 0, canvas.width, canvas.height);
+        bmp.close();
+        const encode = (type) => new Promise(res => canvas.toBlob(res, type, 0.85));
+        let out = await encode('image/webp');
+        // Safari can't encode WebP and silently returns PNG: fall back to JPEG, or PNG to keep transparency.
+        if (!out || out.type !== 'image/webp') out = await encode(file.type === 'image/png' ? 'image/png' : 'image/jpeg');
+        return out && out.size < file.size ? out : file;
+      } catch (e) {
+        console.warn('Image compression skipped:', e);
+        return file;
+      }
+    }
     function formatBytes(bytes) {
       if (!Number.isFinite(bytes) || bytes <= 0) return '0 B';
       const units = ['B', 'KB', 'MB', 'GB'];
