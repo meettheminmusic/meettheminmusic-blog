@@ -57,7 +57,7 @@ abc_notation: |-
   w: Down the riv-er. Oh, down the riv-er. Oh, down the riv-er we go-o-o
   M: 6/8
   D2D DDD | E2E EEE | F2F B2A | G3z3|]
-  w: Down the riv-er. Oh, down the riv-er. Oh, down the riv-er we go-o-o
+  w: Down the riv-er. Oh, down the riv-er. Down the O-hi-o.
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
