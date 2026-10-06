@@ -2,16 +2,33 @@
 const { useState, useEffect, useRef, useMemo, useCallback } = React;
 
 /* ── Color palette — shared with chord-tool-component ── */
-const DOT_FILLS_LIGHT = { charcoal: '#2C2C2A', teal: '#0F6E56', red: '#8B3A2A', blue: '#1D5FA8' };
-const DOT_FILLS_DARK  = { charcoal: '#FAFAF8', teal: '#5DCAA5', red: '#E8816E', blue: '#7EB0E8' };
+const DOT_FILLS_LIGHT = { charcoal: '#2C2C2A', teal: '#0F6E56', red: '#8B3A2A', blue: '#1D5FA8', orange: '#A04A00', purple: '#6B3FA0', green: '#2E6B1F', pink: '#A8326E' };
+const DOT_FILLS_DARK  = { charcoal: '#FAFAF8', teal: '#5DCAA5', red: '#E8816E', blue: '#7EB0E8', orange: '#F5A65B', purple: '#C3A3EB', green: '#9AD27F', pink: '#F29AC6' };
+
+/* Relative luminance (WCAG) of a #rrggbb color */
+function luminance(hex) {
+  const [r, g, b] = [1, 3, 5].map(i => {
+    const c = parseInt(hex.slice(i, i + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+/* Light or dark text, whichever contrasts more with the fill */
+function textOn(fill) {
+  const L = luminance(fill);
+  return (luminance('#FAFAF8') + 0.05) / (L + 0.05) >= (L + 0.05) / (luminance('#2C2C2A') + 0.05) ? '#FAFAF8' : '#2C2C2A';
+}
 
 /* ── ChordDiagram — pure SVG renderer ──
    shape: { strings, frets, fingers:[{string,fret,finger?,color?}],
             barres:[{fret,from,to,finger?,color?}], nut:['','O','X'],
             baseFret, name, dotSize:'sm'|'md'|'lg',
             lineWeight:'thin'|'med'|'thick',
-            dotColor:'charcoal'|'teal'|'red'|'blue',   ← shape-level fallback
+            dotColor: preset key or '#rrggbb',   ← shape-level fallback
+            font: CSS family name (default Inter),
             theme:'light'|'dark', labelPos:'top'|'bottom' }
+   Dot colors are a preset key (themed light/dark) or a custom '#rrggbb' hex.
    ── */
 function ChordDiagram({ shape, onCellClick, onNutClick, interactive = true, focusable = true }) {
   const W = 260, H = 380;
@@ -32,11 +49,9 @@ function ChordDiagram({ shape, onCellClick, onNutClick, interactive = true, focu
 
   /* Per-dot color resolution — falls back to shape.dotColor, then charcoal */
   const fills = shape.theme === 'dark' ? DOT_FILLS_DARK : DOT_FILLS_LIGHT;
-  const resolveFill = (colorKey) => fills[colorKey || shape.dotColor] || fills.charcoal;
-  const resolveText = (colorKey) => {
-    if (shape.theme !== 'dark') return '#FAFAF8';
-    const k = colorKey || shape.dotColor;
-    return k === 'teal' ? '#04342C' : '#2C2C2A';
+  const resolveFill = (color) => {
+    const c = color || shape.dotColor;
+    return c && c[0] === '#' ? c : fills[c] || fills.charcoal;
   };
 
   const stringX = (i) => ml + i * ss;
@@ -53,7 +68,7 @@ function ChordDiagram({ shape, onCellClick, onNutClick, interactive = true, focu
     }
   }
 
-  const svgStyle = { background: 'transparent', fontFamily: 'Inter, sans-serif' };
+  const svgStyle = { background: 'transparent', fontFamily: `'${shape.font || 'Inter'}', sans-serif` };
   const ptrStyle = { cursor: 'pointer' };
 
   return (
@@ -99,7 +114,7 @@ function ChordDiagram({ shape, onCellClick, onNutClick, interactive = true, focu
       {/* Barres — rendered below fingers so fingers draw on top */}
       {shape.barres && shape.barres.map((b, i) => {
         const fill = resolveFill(b.color);
-        const text = resolveText(b.color);
+        const text = textOn(fill);
         const x1 = stringX(b.from), x2 = stringX(b.to), y = dotY(b.fret);
         return (
           <g key={'b'+i}>
@@ -112,7 +127,7 @@ function ChordDiagram({ shape, onCellClick, onNutClick, interactive = true, focu
       {/* Fingers — each gets its own color */}
       {shape.fingers.map((f, i) => {
         const fill = resolveFill(f.color);
-        const text = resolveText(f.color);
+        const text = textOn(fill);
         return (
           <g key={'f'+i}>
             <circle cx={stringX(f.string)} cy={dotY(f.fret)} r={dotR} fill={fill} />
@@ -142,7 +157,7 @@ function chordA11yLabel(shape) {
     if (m === 'X') parts.push(`string ${shape.strings - i} muted`);
   });
   shape.fingers.forEach(f => {
-    parts.push(`string ${shape.strings - f.string} fret ${f.fret}${f.finger ? ' finger ' + f.finger : ''}${f.color && f.color !== 'charcoal' ? ' (' + f.color + ')' : ''}`);
+    parts.push(`string ${shape.strings - f.string} fret ${f.fret}${f.finger ? ' finger ' + f.finger : ''}${f.color && f.color !== 'charcoal' ? ' (' + (f.color[0] === '#' ? 'custom color' : f.color) + ')' : ''}`);
   });
   shape.barres.forEach(b => {
     parts.push(`barre at fret ${b.fret} from string ${shape.strings - b.from} to string ${shape.strings - b.to}`);

@@ -13,11 +13,26 @@ const COLOR_OPTS = [
   { value: 'teal',     fill: '#0F6E56', label: 'Teal'   },
   { value: 'red',      fill: '#8B3A2A', label: 'Red'    },
   { value: 'blue',     fill: '#1D5FA8', label: 'Blue'   },
+  { value: 'orange',   fill: '#A04A00', label: 'Orange' },
+  { value: 'purple',   fill: '#6B3FA0', label: 'Purple' },
+  { value: 'green',    fill: '#2E6B1F', label: 'Green'  },
+  { value: 'pink',     fill: '#A8326E', label: 'Pink'   },
 ];
+
+/* q = Google Fonts css2 family param; the same list is loaded in the layout <head> */
+const FONT_OPTS = [
+  { value: 'Inter',                 label: 'Inter',                 q: 'Inter:wght@400;500' },
+  { value: 'Atkinson Hyperlegible', label: 'Atkinson Hyperlegible', q: 'Atkinson+Hyperlegible' },
+  { value: 'Andika',                label: 'Andika',                q: 'Andika' },
+  { value: 'Patrick Hand',          label: 'Patrick Hand',          q: 'Patrick+Hand' },
+  { value: 'Merriweather',          label: 'Merriweather',          q: 'Merriweather' },
+];
+
+const PROG_GAP = 48;
 
 function emptyShape(instKey) {
   const s = INSTRUMENTS[instKey].strings;
-  return { strings: s, frets: 5, baseFret: 1, fingers: [], barres: [], nut: Array(s).fill(''), name: '', labelPos: 'top', dotSize: 'lg', dotColor: 'charcoal' };
+  return { strings: s, frets: 5, baseFret: 1, fingers: [], barres: [], nut: Array(s).fill(''), name: '', labelPos: 'top', dotSize: 'lg', dotColor: 'charcoal', font: 'Inter' };
 }
 
 function ChordTool() {
@@ -31,13 +46,22 @@ function ChordTool() {
   const [lineWeight,   setLineWeight]   = useState('med');
   const [library,      setLibrary]      = useState([]);
   const [liveMsg,      setLiveMsg]      = useState('');
+  const [progIds,      setProgIds]      = useState(['', '', '']);
+  const progRef = useRef(null);
 
   useEffect(() => {
     try {
       const raw = localStorage.getItem('mtim_chord_library');
       if (raw) setLibrary(JSON.parse(raw));
+      const prog = localStorage.getItem('mtim_chord_progression');
+      if (prog) setProgIds(JSON.parse(prog));
     } catch (e) {}
   }, []);
+
+  const saveProg = (next) => {
+    setProgIds(next);
+    try { localStorage.setItem('mtim_chord_progression', JSON.stringify(next)); } catch (e) {}
+  };
 
   const saveLibrary = (next) => {
     setLibrary(next);
@@ -99,12 +123,12 @@ function ChordTool() {
 
   const changeInstrument = (k) => {
     setInstKey(k);
-    setShape(s => ({ ...emptyShape(k), name: s.name, frets: s.frets, baseFret: s.baseFret, labelPos: s.labelPos, dotSize: s.dotSize }));
+    setShape(s => ({ ...emptyShape(k), name: s.name, frets: s.frets, baseFret: s.baseFret, labelPos: s.labelPos, dotSize: s.dotSize, font: s.font }));
     setBarreDraft(null);
   };
 
   const clearShape = () => {
-    setShape(s => ({ ...emptyShape(instKey), name: s.name, frets: s.frets, baseFret: s.baseFret, labelPos: s.labelPos, dotSize: s.dotSize }));
+    setShape(s => ({ ...emptyShape(instKey), name: s.name, frets: s.frets, baseFret: s.baseFret, labelPos: s.labelPos, dotSize: s.dotSize, font: s.font }));
     setBarreDraft(null);
     setLiveMsg('Cleared fretboard');
   };
@@ -117,49 +141,31 @@ function ChordTool() {
 
   const loadFromLibrary = (item) => {
     setInstKey(item.instrument);
-    setShape(item.shape);
+    setShape({ ...emptyShape(item.instrument), ...item.shape });
     setBarreDraft(null);
     setLiveMsg(`Loaded ${item.shape.name || 'chord'} from library`);
   };
 
-  const deleteFromLibrary = (id) => saveLibrary(library.filter(x => x.id !== id));
-
-  const exportSVG = () => {
-    const svg = document.querySelector('.chord-tool-root .canvas-wrap svg');
-    if (!svg) return;
-    const clone = svg.cloneNode(true);
-    clone.querySelectorAll('rect[fill="transparent"]').forEach(r => r.remove());
-    clone.removeAttribute('tabindex');
-    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-    const bgFill = theme === 'dark' ? '#2C2C2A' : '#FFFFFF';
-    const bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    bg.setAttribute('width', '100%'); bg.setAttribute('height', '100%'); bg.setAttribute('fill', bgFill);
-    clone.insertBefore(bg, clone.firstChild);
-    const xml = new XMLSerializer().serializeToString(clone);
-    triggerDownload(new Blob([xml], { type: 'image/svg+xml' }), `${(shape.name || 'chord').replace(/[^a-z0-9]+/gi, '_')}.svg`);
+  const deleteFromLibrary = (id) => {
+    saveLibrary(library.filter(x => x.id !== id));
+    if (progIds.includes(id)) saveProg(progIds.map(x => x === id ? '' : x));
   };
 
-  const exportPNG = (scale = 4) => {
-    const svg = document.querySelector('.chord-tool-root .canvas-wrap svg');
-    if (!svg) return;
-    const clone = svg.cloneNode(true);
-    clone.querySelectorAll('rect[fill="transparent"]').forEach(r => r.remove());
-    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-    const xml = new XMLSerializer().serializeToString(clone);
-    const img = new Image();
-    img.onload = () => {
-      const c = document.createElement('canvas');
-      c.width = 260 * scale;
-      c.height = 380 * scale;
-      const ctx = c.getContext('2d');
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
-      ctx.fillStyle = theme === 'dark' ? '#2C2C2A' : '#FFFFFF';
-      ctx.fillRect(0, 0, c.width, c.height);
-      ctx.drawImage(img, 0, 0, c.width, c.height);
-      c.toBlob(b => triggerDownload(b, `${(shape.name || 'chord').replace(/[^a-z0-9]+/gi, '_')}.png`));
-    };
-    img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(xml)));
+  const fileName = (s) => (s || 'chord').replace(/[^a-z0-9]+/gi, '_');
+
+  const canvasSvg = () => document.querySelector('.chord-tool-root .canvas-wrap svg');
+  const exportSVG = () => exportSvgEl(canvasSvg(), fileName(shape.name), theme, 'svg');
+  const exportPNG = (scale) => exportSvgEl(canvasSvg(), fileName(shape.name), theme, 'png', scale);
+
+  const progItems = progIds.map(id => library.find(x => x.id === id)).filter(Boolean);
+  const progName  = progItems.map(x => x.shape.name || 'chord').join(' to ');
+  const progW     = progItems.length * 260 + (progItems.length - 1) * PROG_GAP;
+  const progArrow = theme === 'dark' ? '#888780' : '#5F5E5A';
+  const progSvg   = () => progRef.current && progRef.current.querySelector('svg');
+  const presentProg = () => {
+    const el = progRef.current;
+    if (!el) return;
+    (el.requestFullscreen || el.webkitRequestFullscreen || (() => {})).call(el);
   };
 
   const stringRef = useRef(null);
@@ -185,7 +191,7 @@ function ChordTool() {
       <header className="tool-header">
         <p style={overlineStyle}>Tools</p>
         <h1>Chord diagram generator</h1>
-        <p>Build chord diagrams for guitar or ukulele. Place multiple colored dots per string, draw barres, save your library, and export as SVG or PNG.</p>
+        <p>Build chord diagrams for guitar or ukulele. Place multiple colored dots per string, draw barres, save your library, line up a 2 or 3 chord progression, and export as SVG or PNG.</p>
       </header>
 
       <div className="controls" role="group" aria-label="Diagram settings">
@@ -237,6 +243,12 @@ function ChordTool() {
             <option value="thick">Thick</option>
           </select>
         </div>
+        <div className="field">
+          <label htmlFor="fnt">Font</label>
+          <select id="fnt" value={shape.font} onChange={(e) => setShape(s => ({ ...s, font: e.target.value }))}>
+            {FONT_OPTS.map(f => <option key={f.value} value={f.value} style={{ fontFamily: `'${f.value}'` }}>{f.label}</option>)}
+          </select>
+        </div>
       </div>
 
       <div className="mode-row" role="group" aria-label="Placement options">
@@ -268,6 +280,15 @@ function ChordTool() {
               onClick={() => setActiveColor(c.value)}
             />
           ))}
+          <input
+            type="color"
+            aria-label="Custom color"
+            title="Custom color"
+            className={'color-custom' + (activeColor[0] === '#' ? ' active' : '')}
+            value={activeColor[0] === '#' ? activeColor : '#8B3A2A'}
+            onChange={(e) => setActiveColor(e.target.value)}
+            onClick={(e) => setActiveColor(e.target.value)}
+          />
         </div>
       </div>
 
@@ -285,7 +306,7 @@ function ChordTool() {
       </div>
 
       <div className="help" role="note">
-        <strong>How to use.</strong> Select a <strong>Color</strong> and optionally a <strong>Finger #</strong>, then click between frets to place a dot. Multiple dots per string are allowed. Click an existing dot to remove it. Click above the top line to cycle a string between open (○), muted (×), and blank. Switch to <strong>Barre</strong> mode and click two strings on the same fret to draw a barre.
+        <strong>How to use.</strong> Select a <strong>Color</strong> and optionally a <strong>Finger #</strong>, then click between frets to place a dot. Multiple dots per string are allowed. Click an existing dot to remove it. Click above the top line to cycle a string between open (○), muted (×), and blank. Switch to <strong>Barre</strong> mode and click two strings on the same fret to draw a barre. To practice chord changes, save chords to the library and pick them in <strong>Progression</strong> below.
       </div>
 
       <div className="controls" style={mtStyle} aria-label="Keyboard input">
@@ -333,8 +354,107 @@ function ChordTool() {
           </div>
         )}
       </div>
+
+      <div className="library">
+        <div className="library-head">
+          <h2>Progression</h2>
+          <span className="library-count">Pick 2 or 3 saved chords to show side by side</span>
+        </div>
+        <div className="controls" role="group" aria-label="Progression chords">
+          {progIds.map((id, i) => (
+            <div className="field" key={i}>
+              <label htmlFor={'prog' + i}>Chord {i + 1}</label>
+              <select id={'prog' + i} value={library.some(x => x.id === id) ? id : ''} onChange={(e) => saveProg(progIds.map((x, j) => j === i ? e.target.value : x))}>
+                <option value="">None</option>
+                {library.map(item => (
+                  <option key={item.id} value={item.id}>{(item.shape.name || 'Untitled') + ' (' + INSTRUMENTS[item.instrument]?.label.split(' ')[0] + ')'}</option>
+                ))}
+              </select>
+            </div>
+          ))}
+        </div>
+        {progItems.length < 2 ? (
+          <div className="library-empty">{library.length < 2 ? 'Save at least 2 chords to the library to build a progression.' : 'Pick at least 2 chords above.'}</div>
+        ) : (
+          <>
+            <div className={'canvas-wrap prog-wrap' + (theme === 'dark' ? ' dark' : '')} ref={progRef}>
+              <svg viewBox={`0 0 ${progW} 380`} width={progW} height={380} role="img" aria-label={'Progression: ' + progName}>
+                {progItems.map((item, i) => (
+                  <g key={i} transform={`translate(${i * (260 + PROG_GAP)},0)`}>
+                    <ChordDiagram shape={{ ...item.shape, theme, lineWeight }} interactive={false} focusable={false} />
+                  </g>
+                ))}
+                {progItems.slice(1).map((_, i) => {
+                  const cx = i * (260 + PROG_GAP) + 260 + PROG_GAP / 2;
+                  return (
+                    <g key={'arrow' + i} stroke={progArrow} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none">
+                      <line x1={cx - 30} y1={200} x2={cx + 30} y2={200} />
+                      <polyline points={`${cx + 18},188 ${cx + 30},200 ${cx + 18},212`} />
+                    </g>
+                  );
+                })}
+              </svg>
+            </div>
+            <div className="actions" style={mtStyle}>
+              <button type="button" className="btn btn-secondary" onClick={presentProg}>Present</button>
+              <span className="spacer" />
+              <button type="button" className="btn btn-ghost" onClick={() => exportSvgEl(progSvg(), fileName(progName), theme, 'svg')}>Export SVG</button>
+              <button type="button" className="btn btn-primary" onClick={() => exportSvgEl(progSvg(), fileName(progName), theme, 'png', 4)}>Export PNG (4×)</button>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
+}
+
+const SVGNS = 'http://www.w3.org/2000/svg';
+
+/* Inline the web fonts an SVG uses as data URLs, so exports keep the chosen font.
+   Google Fonts' text= param subsets each font to just the glyphs used. */
+async function embedFonts(svg) {
+  const families = new Set([svg, ...svg.querySelectorAll('svg')].map(el => (el.style.fontFamily || '').split(',')[0].replace(/['"]/g, '').trim()));
+  const qs = FONT_OPTS.filter(f => families.has(f.value)).map(f => 'family=' + f.q);
+  if (!qs.length) return;
+  try {
+    let css = await (await fetch(`https://fonts.googleapis.com/css2?${qs.join('&')}&text=${encodeURIComponent(svg.textContent)}`)).text();
+    const urls = [...new Set(css.match(/https:[^)'"]+/g) || [])];
+    for (const u of urls) {
+      const blob = await (await fetch(u)).blob();
+      const dataUrl = await new Promise(res => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.readAsDataURL(blob); });
+      css = css.split(u).join(dataUrl);
+    }
+    const style = document.createElementNS(SVGNS, 'style');
+    style.textContent = css;
+    svg.insertBefore(style, svg.firstChild);
+  } catch (e) { /* offline: export falls back to a system font */ }
+}
+
+async function exportSvgEl(svg, name, theme, format, scale = 4) {
+  if (!svg) return;
+  const clone = svg.cloneNode(true);
+  clone.querySelectorAll('rect[fill="transparent"]').forEach(r => r.remove());
+  clone.removeAttribute('tabindex');
+  clone.setAttribute('xmlns', SVGNS);
+  const [, , w, h] = clone.getAttribute('viewBox').split(' ').map(Number);
+  const bg = document.createElementNS(SVGNS, 'rect');
+  bg.setAttribute('width', '100%'); bg.setAttribute('height', '100%'); bg.setAttribute('fill', theme === 'dark' ? '#2C2C2A' : '#FFFFFF');
+  clone.insertBefore(bg, clone.firstChild);
+  await embedFonts(clone);
+  const xml = new XMLSerializer().serializeToString(clone);
+  if (format === 'svg') return triggerDownload(new Blob([xml], { type: 'image/svg+xml' }), name + '.svg');
+  const img = new Image();
+  img.onload = () => {
+    const c = document.createElement('canvas');
+    c.width = w * scale;
+    c.height = h * scale;
+    const ctx = c.getContext('2d');
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(img, 0, 0, c.width, c.height);
+    c.toBlob(b => triggerDownload(b, name + '.png'));
+  };
+  img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(xml)));
 }
 
 function triggerDownload(blob, name) {

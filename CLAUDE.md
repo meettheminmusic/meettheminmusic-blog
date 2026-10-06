@@ -86,8 +86,8 @@ Songs are the most complex content type. Key frontmatter fields:
 `/chord-diagram-generator/` is a Hugo page. Layout: `layouts/_default/chord-diagram-generator.html`, content stub: `content/chord-diagram-generator.md`. Unlike Rhythm Builder, this tool is React-based: the layout loads React 18.3.1, ReactDOM, and Babel Standalone 7.29.0 from unpkg CDN, then mounts `ChordTool` into `#chord-root` via `<script type="text/babel">`.
 
 JavaScript components (both in `static/js/`):
-- `chord-diagram-component.js` — pure SVG renderer (`ChordDiagram`). Accepts a `shape` object (`strings`, `frets`, `fingers`, `barres`, `nut`, `baseFret`, `name`, `dotSize`, `lineWeight`, `dotColor`, `theme`, `labelPos`). Theme-aware with shared brand palette constants.
-- `chord-tool-component.js` — full interactive UI (`ChordTool`). Supports Guitar (6 strings) and Ukulele (4 strings); finger placement and barre modes; color/size/weight customization. Chord library persists to `localStorage` key `mtim_chord_library`.
+- `chord-diagram-component.js` — pure SVG renderer (`ChordDiagram`). Accepts a `shape` object (`strings`, `frets`, `fingers`, `barres`, `nut`, `baseFret`, `name`, `dotSize`, `lineWeight`, `dotColor`, `font`, `theme`, `labelPos`). Dot/barre colors are a preset key (8 presets, light/dark variants in `DOT_FILLS_LIGHT`/`DARK`) or a custom `#rrggbb` hex; finger-number text color is picked by WCAG luminance (`textOn`).
+- `chord-tool-component.js` — full interactive UI (`ChordTool`). Supports Guitar (6 strings) and Ukulele (4 strings); finger placement and barre modes; color/size/weight/font customization (fonts in `FONT_OPTS`, also loaded by a Google Fonts `<link>` in the layout). Chord library persists to `localStorage` key `mtim_chord_library`. A progression strip shows 2 to 3 library chords side by side (slot IDs in `mtim_chord_progression`) with Present (fullscreen) and export. All exports go through `exportSvgEl`, which inlines subsetted web fonts (`embedFonts`) so PNG/SVG keep the chosen font.
 
 CSS uses `--mtim-*` prefixed custom properties (same namespace as global brand tokens, unlike Rhythm Builder's isolated `--rb-` prefix).
 

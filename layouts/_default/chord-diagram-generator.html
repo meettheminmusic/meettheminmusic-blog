@@ -1,4 +1,5 @@
 {{ define "extra_head" }}
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&family=Andika&family=Patrick+Hand&family=Merriweather&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
@@ -87,6 +88,20 @@ ReactDOM.createRoot(document.getElementById('chord-root')).render(React.createEl
 .chord-tool-root .color-btn { width: 24px; height: 24px; border-radius: 50%; border: 2.5px solid transparent; cursor: pointer; flex-shrink: 0; transition: box-shadow 100ms ease, border-color 100ms ease; outline: none; }
 .chord-tool-root .color-btn.active { border-color: #fff; box-shadow: 0 0 0 2.5px var(--mtim-charcoal); }
 .chord-tool-root .color-btn:focus-visible { box-shadow: 0 0 0 3px var(--mtim-teal); }
+.chord-tool-root .color-swatch-row { flex-wrap: wrap; }
+.chord-tool-root .color-custom { width: 28px; height: 28px; padding: 0; border: 2px solid var(--mtim-border); border-radius: 50%; background: none; cursor: pointer; overflow: hidden; }
+.chord-tool-root .color-custom::-webkit-color-swatch-wrapper { padding: 0; }
+.chord-tool-root .color-custom::-webkit-color-swatch { border: none; border-radius: 50%; }
+.chord-tool-root .color-custom::-moz-color-swatch { border: none; border-radius: 50%; }
+.chord-tool-root .color-custom.active { border-color: #fff; box-shadow: 0 0 0 2.5px var(--mtim-charcoal); }
+.chord-tool-root .color-custom:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--mtim-teal); }
+
+/* Progression strip; Present makes it fullscreen */
+.chord-tool-root .prog-wrap svg { cursor: default; }
+.chord-tool-root .prog-wrap:fullscreen { align-items: center; border-radius: 0; padding: 4vmin; }
+.chord-tool-root .prog-wrap:-webkit-full-screen { align-items: center; border-radius: 0; padding: 4vmin; }
+.chord-tool-root .prog-wrap:fullscreen svg { width: 100%; height: 100%; max-width: none; }
+.chord-tool-root .prog-wrap:-webkit-full-screen svg { width: 100%; height: 100%; max-width: none; }
 
 @media (max-width: 600px) {
   .chord-tool-root .controls { grid-template-columns: 1fr 1fr; }
