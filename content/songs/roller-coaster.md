@@ -1,12 +1,10 @@
 ---
 title: Roller Coaster
-seo_title: "Roller Coaster: Lyrics and Lesson Plan | Elementary Music"
-description: "Free notation, lyrics, and an elementary lesson plan for the inner-and-outer circle game 'Roller Coaster,' created during my Orff Level 1 training course."
 date: 2026-06-17T14:36:00-04:00
 draft: false
-unlisted: true
+unlisted: false
 featured: false
-card_image: ''
+card_image: /images/uploads/meg-boulden-qac9Q3pWHWg-unsplash.jpg
 tonal_concepts: []
 rhythmic_concepts: []
 activity_types: []
@@ -46,6 +44,8 @@ sanitized_abc: ''
 abc_image: ''
 abc_tempo: 100
 abc_scores: []
+description: Free notation, lyrics, and an elementary lesson plan for the inner-and-outer circle game 'Roller Coaster,' created during my Orff Level 1 training course.
+seo_title: 'Roller Coaster: Lyrics and Lesson Plan | Elementary Music'
 ---
 
 This was a game created by myself and fellow participants  during my Orff Level 1 training
