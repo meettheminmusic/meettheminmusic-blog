@@ -4,7 +4,7 @@ date: 2026-10-06T10:51:00-04:00
 draft: false
 unlisted: false
 featured: false
-card_image: ''
+card_image: /images/uploads/gabriel-lenca-8AHSaUA5q_0-unsplash.jpg
 tonal_concepts: []
 rhythmic_concepts: []
 activity_types: []
