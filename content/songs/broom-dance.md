@@ -35,11 +35,11 @@ abc_notation: |-
   V:1 treble nm=
    A,2 D2 D2 D2 | D2 C2 E2 z2 | A,2 E2 E2 E2 | E2 D2 F2 z2 || 
   w: One, two, three, four, five. Oh! Say! Where does my dear part-ner stay?
-  B,2 F2 A2 z2 | B2 B2 B2 z2 | G2 G2 G2 F2 |$ E4 D2 z2 || 
+  D,2 F2 A2 z2 | B2 B2 A2 z2 | G2 G2 F2 F2 | E4 D2 z2 || 
   w: In this room, ver-y soon, I will sure-ly find him.
-  A,2 D2 D2 D2 | DC B,C E2 z2 | A,2 E2 E2 E2 | ED CD A2 z2 || 
+  A,2 D2 D2 D2 | DC B,C E2 z2 | A,2 E2 E2 E2 | ED CD F2 z2 || 
   w: Tra la la la la la la la la. Tra la la la la la la la la.
-  D2 F2 A2 z B |$ G2 G2 G2 z2 | G2 G2 F2 F2 | FE DE D2 z2 |]
+  D2 F2 A2 z A |$ B2 B2 A2 z2 | G2 G2 F2 F2 | FE DE D2 z2 |]
   w: Tra la la. Tra la la la. Tra la la la la la la la la.
   %%textfont arial 8
   %%center .
