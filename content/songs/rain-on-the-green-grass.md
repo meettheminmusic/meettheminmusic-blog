@@ -1,7 +1,5 @@
 ---
 title: Rain on the Green Grass
-seo_title: "Rain on the Green Grass: Lyrics | Elementary Music"
-description: "Free sheet music and lyrics for 'Rain on the Green Grass,' a general music song about weather, wind, and storms, for general music classrooms."
 date: 2026-06-17T15:13:00-04:00
 draft: false
 unlisted: true
@@ -49,7 +47,7 @@ abc_notation: |-
   w: drip drop. Rain is fall-ing drip drop. Rain is fall-ing.
   M: 2/4
   AA z2|AA AA |AA z2|AA AA |]
-  w: drip drop. Rain is fall-ing drip drop. Rain is fall-ing.
+  w: drip drop. Rain is fall-ing. Drip drop. Rain is fall-ing.
   V:3
   A2 z2|A2 z2|AA AA | AA A2 ||
   w: BOOM! CRASH! Thund-er boom-ing, Light-ning flash.
@@ -60,4 +58,6 @@ sanitized_abc: ''
 abc_image: ''
 abc_tempo: 120
 abc_scores: []
+description: Free sheet music and lyrics for 'Rain on the Green Grass,' a general music song about weather, wind, and storms, for general music classrooms.
+seo_title: 'Rain on the Green Grass: Lyrics | Elementary Music'
 ---
