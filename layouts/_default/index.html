@@ -3,20 +3,10 @@
 {{/*
   ── Content queries ──────────────────────────────────────────
   Songs: first 3 entries from the songs section, newest first.
-  Featured: single post with `featured: true` in front matter.
-  Recent: up to 3 posts from the posts section, excluding the
-          featured post so it never appears twice on the page.
 */}}
 
 {{ $listable := where .Site.RegularPages "Params.unlisted" "ne" true }}
 {{ $songs    := where $listable.ByDate.Reverse "Section" "songs" | first 3 }}
-{{ $allPosts := where $listable.ByDate.Reverse "Section" "posts" }}
-{{ $featured := where $allPosts "Params.featured" true | first 1 }}
-{{ $practicalPosts := slice }}
-{{ with .Site.GetPage "posts/it-s-a-dignity-issue-age-appropriate-music-for-your-self-contained-students" }}{{ $practicalPosts = $practicalPosts | append . }}{{ end }}
-{{ with .Site.GetPage "posts/your-classroom-layout-is-a-behavior-management-tool-here-s-how-to-use-it" }}{{ $practicalPosts = $practicalPosts | append . }}{{ end }}
-{{ with .Site.GetPage "posts/choice-boards-the-gateway-to-speech-and-song" }}{{ $practicalPosts = $practicalPosts | append . }}{{ end }}
-{{ $recent := $practicalPosts | complement $featured | first 4 }}
 
 
 {{/* ── Hero ──────────────────────────────────────────────── */}}
@@ -34,15 +24,15 @@
       </h1>
       <p class="home-hero__lead">
         Inclusive music teaching should not require guesswork. Meet Them in
-        Music gives music teachers research-informed strategies, adaptable
-        songs, and practical classroom tools for reaching every learner.
+        Music gives music teachers adaptable songs, book picks, and
+        practical classroom tools for reaching every learner.
       </p>
       <div class="home-hero__actions">
         <a href="{{ "/songs/" | relURL }}" class="btn-primary">
           Find an adapted song
         </a>
-        <a href="{{ "/your-lessons-need-a-predictable-structure/" | relURL }}" class="btn-ghost-light">
-          Read inclusion strategies
+        <a href="{{ "/rhythm-builder/" | relURL }}" class="btn-ghost-light">
+          Try the classroom tools
         </a>
       </div>
     </div>
@@ -130,16 +120,15 @@
       </li>
 
       <li>
-        <article class="start-card" aria-labelledby="start-strategy-title">
-          <h3 class="start-card__title" id="start-strategy-title">
-            Build a more predictable music room
+        <article class="start-card" aria-labelledby="start-books-title">
+          <h3 class="start-card__title" id="start-books-title">
+            Find a book for your music room
           </h3>
           <p class="start-card__desc">
-            Read practical strategies for structure, sensory needs, behavior
-            support, and belonging.
+            Picture books for students and professional reads for teachers.
           </p>
-          <a href="{{ "/your-lessons-need-a-predictable-structure/" | relURL }}" class="start-card__link">
-            Start with predictable structure &rarr;
+          <a href="{{ "/books/" | relURL }}" class="start-card__link">
+            Browse the books &rarr;
           </a>
         </article>
       </li>
@@ -209,7 +198,7 @@
       </li>
 
       <li>
-        <article class="pillar-card" aria-labelledby="pillar-blog">
+        <article class="pillar-card" aria-labelledby="pillar-books">
           <div class="pillar-card__icon" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="1.5"
@@ -221,13 +210,13 @@
               <polyline points="10 9 9 9 8 9"/>
             </svg>
           </div>
-          <h3 class="pillar-card__title" id="pillar-blog">Research and strategies</h3>
+          <h3 class="pillar-card__title" id="pillar-books">Books</h3>
           <p class="pillar-card__desc">
-            Research-informed writing for the music room, not the journal.
-            Structure, access, sensory supports, behavior, and belonging.
+            Picture books for students and professional reads for teachers,
+            chosen for the music room.
           </p>
-          <a href="{{ "/posts/" | relURL }}" class="pillar-card__link"
-             aria-label="Read the blog">Read the blog &rarr;</a>
+          <a href="{{ "/books/" | relURL }}" class="pillar-card__link"
+             aria-label="Browse the books">Browse books &rarr;</a>
         </article>
       </li>
 
@@ -343,111 +332,11 @@
     {{ else }}
       <div class="song-grid-empty" role="status">
         <p>The song library is coming soon. Check back after launch.</p>
-        <a href="{{ "/posts/" | relURL }}" class="section-link">
-          Read the blog in the meantime &rarr;
-        </a>
       </div>
     {{ end }}
 
   </div>
 </section>
-
-
-{{/* ── Featured post ───────────────────────────────────────── */}}
-
-{{ with index $featured 0 }}
-  <section class="home-section home-section--alt"
-           aria-labelledby="featured-heading">
-    <div class="container-wide">
-
-      <p class="overline" aria-hidden="true">Start with structure</p>
-      <div class="home-section__header">
-        <div>
-          <h2 id="featured-heading">Make inclusion more predictable first</h2>
-          <p class="home-section__subhead">
-            A practical first read for reducing guesswork in tomorrow's music
-            class.
-          </p>
-        </div>
-      </div>
-
-      <article class="featured-card" aria-labelledby="featured-post-title">
-        <div class="featured-card__meta">
-          <time datetime="{{ .Date.Format "2006-01-02" }}">
-            {{ .Date.Format "January 2, 2006" }}
-          </time>
-          <span class="featured-card__read-time">
-            {{ .ReadingTime }} min read
-          </span>
-        </div>
-        <h2 class="featured-card__title" id="featured-post-title">
-          <a href="{{ .Permalink }}">{{ .Title }}</a>
-        </h2>
-        {{ $featuredExcerpt := .Params.description | default .Summary | plainify | htmlUnescape | replaceRE "\\s*[\\x{2014}\\x{2013}]\\s*" ", " | truncate 180 }}
-        <p class="featured-card__excerpt">{{ $featuredExcerpt }}</p>
-        <a href="{{ .Permalink }}" class="read-link"
-           aria-label="Read: {{ .Title }}">
-          Read this piece &rarr;
-        </a>
-      </article>
-
-    </div>
-  </section>
-{{ end }}
-
-
-{{/* ── Practical strategy path ─────────────────────────────── */}}
-
-{{ if $recent }}
-  <section class="home-section" aria-labelledby="recent-heading">
-    <div class="container-wide">
-
-      <div class="home-section__header">
-        <div>
-          <h2 id="recent-heading">More practical strategies</h2>
-          <p class="home-section__subhead">
-            Keep building a music room with clearer structure, stronger access,
-            and more meaningful participation.
-          </p>
-        </div>
-        <a href="{{ "/posts/" | relURL }}" class="section-link"
-           aria-label="View all blog posts">
-          All posts &rarr;
-        </a>
-      </div>
-
-      <ul class="post-grid" role="list">
-        {{ range $recent }}
-          <li>
-            <article class="post-grid__card">
-
-              {{ with .Params.tags }}
-                <span class="post-grid__tag" aria-label="Topic">
-                  {{ index . 0 }}
-                </span>
-              {{ end }}
-
-              <h3 class="post-grid__title">
-                <a href="{{ .Permalink }}">{{ .Title }}</a>
-              </h3>
-
-              {{ $postExcerpt := .Params.description | default .Summary | plainify | htmlUnescape | replaceRE "\\s*[\\x{2014}\\x{2013}]\\s*" ", " | truncate 120 }}
-              <p class="post-grid__excerpt">{{ $postExcerpt }}</p>
-
-              <time class="post-grid__date"
-                    datetime="{{ .Date.Format "2006-01-02" }}">
-                {{ .Date.Format "January 2, 2006" }}
-              </time>
-
-            </article>
-          </li>
-        {{ end }}
-      </ul>
-
-    </div>
-  </section>
-{{ end }}
-
 
 
 {{ end }}

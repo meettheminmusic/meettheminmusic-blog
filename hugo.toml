@@ -87,10 +87,6 @@ enableGitInfo = true
     url = "/"
     weight = 1
   [[menu.main]]
-    name = "Blog"
-    url = "/posts/"
-    weight = 2
-  [[menu.main]]
     name = "Song library"
     url = "/songs/"
     weight = 3
