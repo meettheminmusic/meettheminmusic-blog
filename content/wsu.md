@@ -6,7 +6,7 @@ unlisted_badge: false
 noindex: true
 ---
 
-The materials below accompany my application for the music education position. The full collection is also available at [EricBottorff.com/music-artifacts](https://www.ericbottorff.com/music-artifacts).
+The materials below accompany my application for the music education position. The performance video collection is also available at [EricBottorff.com/music-artifacts](https://www.ericbottorff.com/music-artifacts).
 
 ## Conducting and ensemble teaching
 
