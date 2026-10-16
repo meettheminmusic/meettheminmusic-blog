@@ -4,7 +4,7 @@ date: 2026-10-06T20:50:00-04:00
 draft: false
 unlisted: false
 featured: false
-card_image: ''
+card_image: /images/uploads/esperanza-doronila-y-sYBO_wAos-unsplash.jpg
 tonal_concepts:
   - Chant
 rhythmic_concepts:
