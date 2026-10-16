@@ -52,9 +52,9 @@ abc_notation: |-
   V:1
    C2 | F F2 F D2 C2 | [M:5/4] F2 F F2 F F2 C2|
   w: We're ma-king a purp-le soup. Do Do Do Do. We're 
-  [M:4/4] F F2 F D2 C2 | F2 FG AG F C ||
+  [M:4/4] F F2 F D2 C2 | [M:5/4 F2 FG AG F2 C2 ||
   w:ma-king a purp-le soup. Shoo bee doo bee doo. With
-  |: F F2 F DD C2 |F F2 F DD C2 :|
+  |:[M:4/4] F F2 F DD C2 |F F2 F DD C2 :|
   w: purp-le (to-ma-toes) and purpl-le (po-ta-toes) and 
   F2 z2 F2 z2 | F2 z2 z2 |]
   w: we want you
