@@ -16,6 +16,7 @@ activity_types:
   - Creation
   - Choice
   - Camp Song
+  - Memory Game
 social_concepts: []
 movement_concepts: []
 supports_adaptations:
@@ -65,3 +66,22 @@ abc_image: ''
 abc_tempo: 120
 abc_scores: []
 ---
+
+{{< callout title="Prosody" >}}
+I learned this song from a student teacher who has spent a lot of time at summer camps.  In researching the song, I found versions that do not have the mixed meter but that is not accurate to how it was sung at camp.
+{{< /callout >}}
+
+**<u>Activity</u>**
+
+Stand students in a circle and sing the song together.  On each repetition, add a new purple food/item to the soup.  Repeat the two measures as you say all of the items that have been added to soup.  
+
+The fun of the game is both in creating a weird soup and trying to remember every student's purple food/item in order.
+
+{{< callout title="Prosody" >}}
+Prosody is the natural alignment of syllables to rhythm.  It is possible that student examples will not align with the rhythm notated in the song.  That can be an opportunity for more mixed meter experience.
+{{< /callout >}}
+
+**<u>Choice Board</u>**
+Use a choice board or AAC to help students make choices.  If you need more choices, check the food emoji options!
+
+![Choice board of various foods](/images/uploads/Purple%20Soup.png "Purple Soup Choice Board")
