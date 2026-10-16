@@ -5,16 +5,30 @@ draft: false
 unlisted: false
 featured: false
 card_image: ''
-tonal_concepts: []
-rhythmic_concepts: []
-activity_types: []
-social_concepts: []
-movement_concepts: []
-supports_adaptations: []
-language_origins: []
-keys: []
-modes: []
-meters: []
+tonal_concepts:
+  - Chant
+rhythmic_concepts:
+  - 1/4 Notes
+  - 1/8 Notes
+  - 1/16 Notes
+activity_types:
+  - Circle Game
+social_concepts:
+  - Accepting Losing
+movement_concepts:
+  - Steady Beat
+supports_adaptations:
+  - Peer
+language_origins:
+  - Spanish
+  - Mexico
+keys:
+  - Chant
+modes:
+  - Chant
+meters:
+  - 4/4
+  - Duple
 source: ''
 source_url: ''
 panels: []
@@ -47,3 +61,11 @@ abc_image: ''
 abc_tempo: 120
 abc_scores: []
 ---
+
+Students sit in a circle. One student is the chicken. The chicken pretends to peck at every person in the circle to the beat.  _The chicken has to peck themselves, too!_ Whoever the chicken is pecking at on the last beat is out. Keep going until there is only one person left in the group.
+
+Each turn, the next person in the circle gets to be the chicken.
+
+{{< callout title="Teaching Tip" >}}
+To make sure the game stays as fair as possible, whoever gets out first gets to be the first chicken in the next round.
+{{< /callout >}}
