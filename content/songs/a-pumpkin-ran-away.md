@@ -91,6 +91,8 @@ abc_scores: []
 ---
 
 <u>**Activity**</u>
+
+
 After teaching the song by rote, have students stand in a straight line.  Pass a ball, beanbag, or decorative pumpkin over their heads until it gets to the student at the end of the line.    At this point have students "make a tunnel" to gently roll the ball down. 
 
 If the ball makes it to the first person, the pumpkin got away!  If the pumpkin hits a leg or doesn't make it ... Its pumpkin pie!
