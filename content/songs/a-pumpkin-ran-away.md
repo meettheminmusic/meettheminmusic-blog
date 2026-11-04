@@ -35,29 +35,33 @@ source: The Progressive Music Series for Basal Use in Primary, Intermediate, and
 source_url: https://www.google.com/books/edition/The_Progressive_Music_Series_for_Basal_U/Yf2AAAAAIAAJ?hl=en&gbpv=1&pg=PA83&printsec=frontcover&dq=pumpkin
 panels:
   - heading: Standard
-    sanitized_abc: |-
-      %%textfont arial italic 11
-      X:1
-      T:A Pumpkin Ran Away
-      M:2/4
-      L:1/8
-      C:arr. P. Eric Bottorff
-      A: MeetThemInMusic.com
-      Q:1/4=100
-      %%gchordfont Arial 12
-      %%vocalfont Arial 8
-      %%staffsep 50
-      %%stretchlast 1
-      %%barsperstaff 5
-      K:D
-      D| FD FD | E3 E| GE GE | F3 F ||
-      w: a pump-kin ran a-way. Be-fore Thanks-giv-ing day. They'll
-      AA Ac | dc/2B/2  AG |F2 E2 | D3 |]
-      w: make said he a pie out of me if I should stay.
-      %%textfont arial 9
-      %%center .
-      %%center © 2026 All Rights Reserved.
+    sanitized_abc: ''
     scores:
+      - label: Standard
+        notation: |-
+          %%textfont arial italic 11
+          X:1
+          T:A Pumpkin Ran Away
+          M:2/4
+          L:1/8
+          C:arr. P. Eric Bottorff
+          A: MeetThemInMusic.com
+          Q:1/4=100
+          %%gchordfont Arial 12
+          %%vocalfont Arial 8
+          %%staffsep 50
+          %%stretchlast 1
+          %%barsperstaff 5
+          K:D
+          D| FD FD | E3 E| GE GE | F3 F ||
+          w: a pump-kin ran a-way. Be-fore Thanks-giv-ing day. They'll
+          AA Ac | dc/2B/2  AG |F2 E2 | D3 |]
+          w: make said he a pie out of me if I should stay.
+          %%textfont arial 9
+          %%center .
+          %%center © 2026 All Rights Reserved.
+        image: ''
+        tempo: null
       - label: Simplified
         notation: |-
           %%textfont arial italic 11
@@ -83,7 +87,28 @@ panels:
           %%center © 2026 All Rights Reserved.
         image: ''
         tempo: 100
-abc_notation: ''
+abc_notation: |-
+  %%textfont arial italic 11
+  X:1
+  T:A Pumpkin Ran Away
+  M:2/4
+  L:1/8
+  C:arr. P. Eric Bottorff
+  A: MeetThemInMusic.com
+  Q:1/4=100
+  %%gchordfont Arial 12
+  %%vocalfont Arial 8
+  %%staffsep 50
+  %%stretchlast 1
+  %%barsperstaff 5
+  K:D
+  D| FD FD | E3 E| GE GE | F3 F ||
+  w: a pump-kin ran a-way. Be-fore Thanks-giv-ing day. They'll
+  AA Ac | dc/2B/2  AG |F2 E2 | D3 |]
+  w: make said he a pie out of me if I should stay.
+  %%textfont arial 9
+  %%center .
+  %%center © 2026 All Rights Reserved.
 sanitized_abc: ''
 abc_image: ''
 abc_tempo: 100
