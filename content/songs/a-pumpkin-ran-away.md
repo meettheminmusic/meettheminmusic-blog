@@ -31,8 +31,8 @@ modes:
 meters:
   - Duple
   - 2/4
-source: ''
-source_url: ''
+source: The Progressive Music Series for Basal Use in Primary, Intermediate, and Grammar Grades Volume 1 (1914)
+source_url: https://www.google.com/books/edition/The_Progressive_Music_Series_for_Basal_U/Yf2AAAAAIAAJ?hl=en&gbpv=1&pg=PA83&printsec=frontcover&dq=pumpkin
 panels:
   - heading: Standard
     sanitized_abc: |-
@@ -82,10 +82,26 @@ panels:
           %%center .
           %%center © 2026 All Rights Reserved.
         image: ''
-        tempo: null
+        tempo: 100
 abc_notation: ''
 sanitized_abc: ''
 abc_image: ''
 abc_tempo: 100
 abc_scores: []
 ---
+
+<u>**Activity**</u>
+After teaching the song by rote, have students stand in a straight line.  Pass a ball, beanbag, or decorative pumpkin over their heads until it gets to the student at the end of the line.    At this point have students "make a tunnel" to gently roll the ball down. 
+
+If the ball makes it to the first person, the pumpkin got away!  If the pumpkin hits a leg or doesn't make it ... Its pumpkin pie!
+
+Extend the activity by seeing how long of a line the kids can make and still be successful.
+
+Teaching tip:
+
+My students tend to lose pitch on the last 3 notes (Mi, Re, Do).  Some rote instruction on this pattern can help. The usual cause is not reaching the high Do on the second line.  
+
+My students also like to find a clapping pattern than matches the song
+
+<u>**SEL Connection**</u>
+This is a game that
