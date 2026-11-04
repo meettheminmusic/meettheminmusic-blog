@@ -97,15 +97,15 @@ If the ball makes it to the first person, the pumpkin got away!  If the pumpkin 
 
 Extend the activity by seeing how long of a line the kids can make and still be successful.
 
-\<u>**Adaptation**\</u>
+<u>**Adaptation**</u>
 
 There is not reason this needs to be done standing.  You could make a line of chairs to pass the pumpkin.  Students could roll the ball under the chairs instead of under legs. If that is not possible, create a line of cones/beanbags/rhythm sticks/pool noodles for the ball to get through.
 
-Teaching tip:
-
+{{< callout title="Teaching tip:" >}}
 My students tend to lose pitch on the last 3 notes (Mi, Re, Do).  Some rote instruction on this pattern can help. The usual cause is not reaching the high Do on the second line.  
 
-My students also like to find a clapping pattern than matches the song
+<p>My students also like to find a clapping pattern than matches the song
+{{< /callout >}}
 
 <u>**SEL Connection**</u>
 This is a game that can be ruined by one kid not following directions.  Talk about teamwork and how this only works when we all work together.
