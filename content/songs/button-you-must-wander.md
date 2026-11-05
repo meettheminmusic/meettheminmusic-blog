@@ -5,16 +5,27 @@ draft: false
 unlisted: false
 featured: false
 card_image: /images/uploads/olga-safronova-JExGIWryHUs-unsplash.jpg
-tonal_concepts: []
-rhythmic_concepts: []
-activity_types: []
+tonal_concepts:
+  - So-Do
+  - Do-Re-Mi
+  - Re-So
+rhythmic_concepts:
+  - 1/8 Notes
+  - 1/4 Rests
+activity_types:
+  - Passing Game
 social_concepts: []
 movement_concepts: []
 supports_adaptations: []
-language_origins: []
-keys: []
-modes: []
-meters: []
+language_origins:
+  - English
+keys:
+  - C
+modes:
+  - Pentatonic
+meters:
+  - Duple
+  - 2/4
 source: ''
 source_url: ''
 panels: []
@@ -40,7 +51,7 @@ abc_notation: |-
   A2 AA | G2 C2 | A2 AA | G2 C2 ||
   w: Bright eyes will find you, sharp eyes will find you.
   CC CD | E2 G2 | D2 G2 | C2 z2|]
-  w: But-ton you must wan-der ev-ery where.
+  w: But-ton you must wan-der ev-ery-where.
   %%textfont arial 9
   %%center .
   %%center © 2026 All Rights Reserved.
