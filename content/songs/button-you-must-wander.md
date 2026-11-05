@@ -39,7 +39,7 @@ abc_notation: |-
   w: But-ton you must wan-der far far a-way.
   A2 AA | G2 C2 | A2 AA | G2 C2 ||
   w: Bright eyes will find you, sharp eyes will find you.
-  CC CD | E2 G2 | D2 DG | C2 z2|]
+  CC CD | E2 G2 | D2 G2 | C2 z2|]
   w: But-ton you must wan-der ev-ery where.
   %%textfont arial 9
   %%center .
