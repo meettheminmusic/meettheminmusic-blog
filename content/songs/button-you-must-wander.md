@@ -46,8 +46,8 @@ abc_notation: |-
   K:C
   CC CD | E2 G2 | D2 G2 | E2 C2 || 
   w: But-ton you must wan-der wan-der wan-der
-  CC CD | E2 G2 | D2 DG | C2 z2|| 
-  w: But-ton you must wan-der far far a-way.
+  CC CD | E2 G2 | D2 G2 | C2 z2|]
+  w: But-ton you must wan-der ev-ery-where.
   A2 AA | G2 C2 | A2 AA | G2 C2 ||
   w: Bright eyes will find you, sharp eyes will find you.
   CC CD | E2 G2 | D2 G2 | C2 z2|]
