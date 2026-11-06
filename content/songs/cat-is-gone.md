@@ -1,7 +1,5 @@
 ---
 title: Cat is Gone
-seo_title: "Cat is Gone: Lyrics and Sheet Music | Elementary Music"
-description: "Free sheet music and lyrics for 'Cat is Gone,' a pentatonic Do-Mi-So echo tune for elementary xylophone improvisation practice, in Pentatonic, 4/4 meter."
 date: 2026-06-19T08:08:00-04:00
 draft: false
 unlisted: false
@@ -78,7 +76,7 @@ abc_scores:
       %%barsperstaff 4
       K:C
       V:1 name="Melody" snm="Mel."
-      V:2 clef=treble name="Alto Glock" snm="A.G."
+      V:2 clef=treble name="Alto Xylo" snm="A.X."
       V:3 clef=bass name="Bass Xylo" snm="B.X."
       V:1
       c2G2 A/2A/2A/2A/2 G2 | E/2E/2E/2E/2 DE CE G2 ||
@@ -90,7 +88,7 @@ abc_scores:
       %%center .
       %%center © 2026 All Rights Reserved.
       V:2
-      %%MIDI program 9
+      %%MIDI program 13
       CG CG CG CG|CG CG CG CG ||
       M:4/4
       CG CG CG CG|CG CG CG CG |]
@@ -101,4 +99,6 @@ abc_scores:
       [C,4G,4] [C,4G,4]|[C,4G,4] [C,4G,4]|]
     image: ''
     tempo: 112
+description: Free sheet music and lyrics for 'Cat is Gone,' a pentatonic Do-Mi-So echo tune for elementary xylophone improvisation practice, in Pentatonic, 4/4 meter.
+seo_title: 'Cat is Gone: Lyrics and Sheet Music | Elementary Music'
 ---
