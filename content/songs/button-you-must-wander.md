@@ -29,34 +29,67 @@ meters:
 source: ''
 source_url: ''
 panels: []
-abc_notation: |-
-  %%textfont arial italic 11
-  X:1
-  T:Button You Must Wander
-  M:2/4
-  L:1/8
-  C:arr. P. Eric Bottorff
-  A: MeetThemInMusic.com
-  Q:1/4=100
-  %%gchordfont Arial 12
-  %%vocalfont Arial 10
-  %%staffsep 50
-  %%stretchlast 1
-  %%barsperstaff 4
-  K:C
-  CC CD | E2 G2 | D2 G2 | E2 C2 || 
-  w: But-ton you must wan-der wan-der wan-der
-  CC CD | E2 G2 | D2 G2 | C2 z2|]
-  w: But-ton you must wan-der ev-ery-where.
-  A2 AA | G2 C2 | A2 AA | G2 C2 ||
-  w: Bright eyes will find you, sharp eyes will find you.
-  CC CD | E2 G2 | D2 G2 | C2 z2|]
-  w: But-ton you must wan-der ev-ery-where.
-  %%textfont arial 9
-  %%center .
-  %%center © 2026 All Rights Reserved.
+abc_notation: ''
 sanitized_abc: ''
 abc_image: ''
 abc_tempo: 100
-abc_scores: []
+abc_scores:
+  - label: 1/8 Notes
+    notation: |-
+      %%textfont arial italic 11
+      X:1
+      T:Button You Must Wander
+      M:2/4
+      L:1/8
+      C:arr. P. Eric Bottorff
+      A: MeetThemInMusic.com
+      Q:1/4
+      %%gchordfont Arial 12
+      %%vocalfont Arial 10
+      %%staffsep 50
+      %%stretchlast 1
+      %%barsperstaff 4
+      K:C
+      CC CD | E2 G2 | D2 G2 | E2 C2 || 
+      w: But-ton you must wan-der wan-der wan-der
+      CC CD | E2 G2 | D2 G2 | C2 z2|]
+      w: But-ton you must wan-der ev-ery-where.
+      A2 AA | G2 C2 | A2 AA | G2 C2 ||
+      w: Bright eyes will find you, sharp eyes will find you.
+      CC CD | E2 G2 | D2 G2 | C2 z2|]
+      w: But-ton you must wan-der ev-ery-where.
+      %%textfont arial 9
+      %%center .
+      %%center © 2026 All Rights Reserved.
+    image: ''
+    tempo: 100
+  - label: 16th Notes
+    notation: |-
+      %%textfont arial italic 11
+      X:1
+      T:Button You Must Wander
+      M:2/4
+      L:1/16
+      C:arr. P. Eric Bottorff
+      A: MeetThemInMusic.com
+      Q:1/4
+      %%gchordfont Arial 12
+      %%vocalfont Arial 10
+      %%staffsep 50
+      %%stretchlast 1
+      %%barsperstaff 4
+      K:C
+      CCCD  E2G2 | D2G2 E2C2 || 
+      w: But-ton you must wan-der wan-der wan-der
+      CCCD  E2G2 | D2G2  C4 ||
+      w: But-ton you must wan-der ev-ery-where.
+      A2AA  G2C2 | A2AA G2C2 ||
+      w: Bright eyes will find you, sharp eyes will find you.
+      CCCD  E2G2 | D2G2  C4 |]
+      w: But-ton you must wan-der ev-ery-where.
+      %%textfont arial 9
+      %%center .
+      %%center © 2026 All Rights Reserved.
+    image: ''
+    tempo: 100
 ---
