@@ -777,6 +777,7 @@
     <button class="vsb-btn ghost" onclick="openFullscreenPreview()">Fullscreen preview</button>
     <button class="vsb-btn ghost" onclick="exportStatic()">&#8595; Save schedule</button>
     <button class="vsb-btn ghost" onclick="document.getElementById('importFile').click()">Open saved</button>
+    <span id="sizeEstimate" class="pill" style="display:none" title="Estimated size of the file that Save schedule will create"></span>
     <span id="exportStatus" class="pill" style="display:none"></span>
   </div>
   <input id="importFile" type="file" accept=".html,text/html" style="display:none" onchange="handleImportFile(event)">
@@ -896,8 +897,11 @@ window.SONG_INDEX = {{ $index | jsonify | safeJS }};
 {{/* Piano soundfont note filenames, read at build time. Used only when exporting a
      schedule with notation, to bundle audio for fully offline playback. The -export folder is a
      mono 64 kbps copy of the site soundfont (ffmpeg -ac 1 -b:a 64k) to keep saved files small. */}}
-{{ $sf := slice }}{{ range (os.ReadDir "static/soundfonts/acoustic_grand_piano-mp3-export") }}{{ if strings.HasSuffix .Name ".mp3" }}{{ $sf = $sf | append .Name }}{{ end }}{{ end }}
+{{ $sf := slice }}{{ $sfSizes := dict }}{{ range (os.ReadDir "static/soundfonts/acoustic_grand_piano-mp3-export") }}{{ if strings.HasSuffix .Name ".mp3" }}{{ $sf = $sf | append .Name }}{{ $sfSizes = merge $sfSizes (dict .Name .Size) }}{{ end }}{{ end }}
 window.SF_NOTE_FILES = {{ $sf | jsonify | safeJS }};
+// Byte sizes for the running saved-file size estimate.
+window.SF_NOTE_SIZES = {{ $sfSizes | jsonify | safeJS }};
+window.ABCJS_LIB_BYTES = {{ (os.Stat "static/js/abcjs-6.4.4-min.js").Size }};
 window.SF_INSTRUMENT_DIR = 'acoustic_grand_piano-mp3-export'; // mono 64 kbps copy, exports only
 window.SF_SITE_URL = '/soundfonts/';
 {{/* ABCJS audio-control stylesheet, embedded so the player is styled on this page and can be inlined into exports. */}}
@@ -1368,8 +1372,8 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
         else if (type.startsWith('video/')) kind = 'video';
         else if (!type.startsWith('image/')) { alert('Unsupported file type. Use image, audio, or video.'); return; }
 
-        if ((kind === 'video' && file.size > 25 * 1024 * 1024) || /wav/.test(type)) {
-          setExportStatus(`Large file (${formatBytes(file.size)}): consider a link or compressing it first to keep the saved schedule small.`);
+        if (isLargeMedia(file)) {
+          setExportStatus(largeFileNote(file.size));
         }
 
         const dbKey = await db.add(kind === 'image' ? await compressImage(file) : file);
@@ -1964,6 +1968,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
     }
 
     async function renderPreview() {
+      queueSizeEstimate();
       previewUrls.forEach(URL.revokeObjectURL);
       previewUrls.length = 0;
 
@@ -2745,6 +2750,78 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
       return lo <= hi ? [lo, hi] : null;
     }
 
+    // Every stored media blob the schedule uses, each once.
+    function mediaDbKeys() {
+      const keys = new Set();
+      activities.forEach(a => {
+        if (a.media?.dbKey) keys.add(a.media.dbKey);
+        if (a.overlay?.image?.dbKey) keys.add(a.overlay.image.dbKey);
+        if (a.overlay?.audio?.dbKey) keys.add(a.overlay.audio.dbKey);
+        if (a.overlay?.audio2?.dbKey) keys.add(a.overlay.audio2.dbKey);
+        if (Array.isArray(a.overlay?.images)) {
+          a.overlay.images.forEach(img => { if (img?.dbKey) keys.add(img.dbKey); });
+        }
+        // Legacy support
+        if (a.overlay?.dbKey) keys.add(a.overlay.dbKey);
+      });
+      return Array.from(keys);
+    }
+
+    // Running estimate of the saved file's size, refreshed after every change.
+    const BASE64_GROWTH = 1.37, LARGE_EXPORT_BYTES = 40 * 1024 * 1024;
+    const blobSizeCache = new Map();
+    let sizeEstimateTimeout = null;
+    // Big videos and uncompressed audio get a "Large file" note, shown while such a file is in the schedule.
+    function isLargeMedia(f) { return ((f.type || '').startsWith('video/') && f.size > 25 * 1024 * 1024) || /wav/.test(f.type || ''); }
+    function largeFileNote(size) { return `Large file (${formatBytes(size)}): consider a link or compressing it first to keep the saved schedule small.`; }
+    let largestLargeMedia = 0; // set by estimateExportBytes; 0 when the schedule has no such file
+    async function estimateExportBytes() {
+      largestLargeMedia = 0;
+      let bytes = 30 * 1024 + (bgImageDataUrl || '').length; // page markup and script, plus the background image
+      for (const key of mediaDbKeys()) {
+        if (!blobSizeCache.has(key)) {
+          const blob = await db.get(key);
+          if (!blob) continue;
+          blobSizeCache.set(key, { size: blob.size || 0, type: blob.type || '' });
+        }
+        const info = blobSizeCache.get(key);
+        bytes += info.size * BASE64_GROWTH;
+        if (isLargeMedia(info)) largestLargeMedia = Math.max(largestLargeMedia, info.size);
+      }
+      const usesNotation = activities.some(a => a.action === 'notation' && (a.notation?.abc || '').trim());
+      if (usesNotation) {
+        bytes += window.ABCJS_LIB_BYTES || 0;
+        const span = notationMidiSpan();
+        for (const f of (window.SF_NOTE_FILES || [])) {
+          const m = noteFileMidi(f);
+          if (!span || m == null || (m >= span[0] && m <= span[1])) bytes += ((window.SF_NOTE_SIZES || {})[f] || 0) * BASE64_GROWTH;
+        }
+      }
+      return Math.round(bytes);
+    }
+    function queueSizeEstimate() {
+      if (sizeEstimateTimeout) clearTimeout(sizeEstimateTimeout);
+      sizeEstimateTimeout = setTimeout(async () => {
+        const el = document.getElementById('sizeEstimate');
+        if (!el) return;
+        try {
+          const bytes = await estimateExportBytes();
+          const large = bytes > LARGE_EXPORT_BYTES;
+          el.textContent = 'Saved file: about ' + formatBytes(bytes) + (large ? ', large. Consider links for big media.' : '');
+          el.style.color = large ? 'var(--error)' : '';
+          el.style.display = 'inline-flex';
+          // Keep the "Large file" note in step with the schedule, without touching other status messages.
+          const status = document.getElementById('exportStatus');
+          const showingNote = status.textContent.startsWith('Large file');
+          if (largestLargeMedia && (showingNote || !status.textContent)) setExportStatus(largeFileNote(largestLargeMedia));
+          else if (!largestLargeMedia && showingNote) setExportStatus('');
+        } catch (e) {
+          console.warn('Size estimate failed', e);
+          el.style.display = 'none';
+        }
+      }, 400);
+    }
+
     async function exportStatic(modeOverride) {
       if (!activities.length) { alert('Add at least one activity before exporting.'); return; }
       const mode = 'optimized'; // Always use optimized media handling
@@ -2755,18 +2832,7 @@ window.ABCJS_AUDIO_CSS = {{ (readFile "static/css/abcjs-audio.css") | jsonify | 
 
       setExportStatus('Preparing export...');
       try {
-        const mediaToConvert = new Map();
-        activities.forEach(a => {
-          if (a.media?.dbKey) mediaToConvert.set(a.media.dbKey, null);
-          if (a.overlay?.image?.dbKey) mediaToConvert.set(a.overlay.image.dbKey, null);
-          if (a.overlay?.audio?.dbKey) mediaToConvert.set(a.overlay.audio.dbKey, null);
-          if (a.overlay?.audio2?.dbKey) mediaToConvert.set(a.overlay.audio2.dbKey, null);
-          if (Array.isArray(a.overlay?.images)) {
-            a.overlay.images.forEach(img => { if (img?.dbKey) mediaToConvert.set(img.dbKey, null); });
-          }
-          // Legacy support
-          if (a.overlay?.dbKey) mediaToConvert.set(a.overlay.dbKey, null);
-        });
+        const mediaToConvert = new Map(mediaDbKeys().map(k => [k, null]));
 
         const keys = Array.from(mediaToConvert.keys());
         let totalBlobBytes = 0;
