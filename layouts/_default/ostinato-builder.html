@@ -126,6 +126,11 @@ body { background: var(--ob-bg); }
 }
 .main select:focus { outline: 2px solid var(--ob-accent); outline-offset: 1px; border-color: var(--ob-accent); }
 .tempo-range { width: 110px; cursor: pointer; accent-color: var(--ob-accent); }
+.part-vol { width: 110px; cursor: pointer; accent-color: var(--ob-accent); }
+.score-mixer { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-bottom: 10px; }
+.score-mixer:empty { display: none; }
+.score-mixer .mix-name { font-weight: 700; color: var(--ob-text); }
+.part-vol-val { min-width: 34px; font-weight: 700; color: var(--ob-text); font-variant-numeric: tabular-nums; }
 .tempo-num { font-size: 0.875rem; font-weight: 700; color: var(--ob-accent); min-width: 32px; text-align: right; }
 .tempo-unit { font-size: 0.75rem; color: var(--ob-text-muted); }
 
@@ -460,8 +465,9 @@ body { background: var(--ob-bg); }
       <strong>How it works:</strong> Add a <strong>Bordun</strong> (pitched drone on barred instruments) and one or more
       <strong>Percussion</strong> ostinati. Click a percussion cell to cycle <em>empty → hit → rest</em>. For the bordun,
       pick a pitch (or a do+so chord) from each cell, or drop in a preset. Each part can be a different number of bars —
-      shorter parts loop under the longest. Turn on <strong>Lyrics</strong> to type words under any part. Export the whole
-      score, or each part on its own for flashcards.
+      shorter parts loop under the longest. Turn on <strong>Lyrics</strong> to type words under any part. Use each part's
+      <strong>Volume</strong> slider and <strong>Mute</strong> button to balance the parts, even while the loop is playing.
+      Export the whole score, or each part on its own for flashcards.
     </div>
     <div class="add-row" style="margin-top:12px;">
       <button id="add-bordun-btn" class="ob-btn">&#43; Add bordun part</button>
@@ -476,6 +482,7 @@ body { background: var(--ob-bg); }
   <!-- Notation preview -->
   <div class="card notation-card">
     <div class="card-label">Score preview</div>
+    <div id="score-mixer" class="score-mixer" role="group" aria-label="Part volumes"></div>
     <div class="notation-wrap">
       <div id="score-render">
         <div class="notation-empty">
@@ -922,8 +929,9 @@ function voiceMidi(part) {
   return '%%MIDI transpose ' + (instrumentFor(part).drum - 71) + '\n';
 }
 
-function generateScoreABC() {
-  var parts = orderedParts().filter(partHasContent);
+// `only` (optional) limits the score to one part, still tiled to the full loop length (used by the mixer).
+function generateScoreABC(only) {
+  var parts = only ? [only] : orderedParts().filter(partHasContent);
   if (!parts.length) return null;
 
   var bpb   = beatsPerBar();
@@ -1060,10 +1068,57 @@ function doCountIn() {
   });
 }
 
+// ── Mixer ──────────────────────────────────────────────────
+// abcjs mixes a whole tune into one buffer, so each part is primed into its own buffer and
+// played through its own GainNode. That lets volume and mute change while playback runs.
+var partGains = {};   // part.id -> GainNode of the playing pass
+function partLevel(part) {
+  var v = part.muted ? 0 : (part.volume == null ? 1 : part.volume);
+  return v * v;   // squared so the slider feels even to the ear
+}
+function applyPartLevel(part) {
+  var g = partGains[part.id];
+  if (g) g.gain.setTargetAtTime(partLevel(part), audioCtx.currentTime, 0.015);   // short ramp, no click
+}
+
+// One volume slider + mute button for a part. A part has two of these (its card and the strip
+// by the score), so every change re-syncs all of that part's controls. Neither path calls
+// renderApp, so they work mid-playback.
+function buildMixer(part, label) {
+  var wrap = document.createElement('span'); wrap.className = 'part-ctl'; wrap.dataset.mix = part.id;
+  var name = document.createElement('span'); name.className = 'mix-name'; name.textContent = label;
+  var vol = document.createElement('input');
+  vol.type = 'range'; vol.className = 'part-vol'; vol.min = 0; vol.max = 100; vol.step = 1;
+  vol.title = 'Volume';
+  vol.setAttribute('aria-label', 'Volume, ' + partName(part));
+  vol.addEventListener('input', function(){ part.volume = this.value / 100; syncMixers(part); });
+  var val = document.createElement('span'); val.className = 'part-vol-val';
+  var mute = document.createElement('button'); mute.className = 'ob-btn ob-btn-sm'; mute.textContent = 'Mute';
+  mute.setAttribute('aria-label', 'Mute ' + partName(part));
+  mute.addEventListener('click', function(){ part.muted = !part.muted; syncMixers(part); });
+  wrap.appendChild(name); wrap.appendChild(vol); wrap.appendChild(val); wrap.appendChild(mute);
+  paintMixer(wrap, part);
+  return wrap;
+}
+function paintMixer(wrap, part) {
+  var pct = Math.round((part.volume == null ? 1 : part.volume) * 100);
+  wrap.querySelector('.part-vol').value = pct;
+  wrap.querySelector('.part-vol-val').textContent = pct + '%';
+  var mute = wrap.querySelector('button');
+  mute.classList.toggle('is-active', !!part.muted);
+  mute.setAttribute('aria-pressed', part.muted ? 'true' : 'false');
+}
+function syncMixers(part) {
+  document.querySelectorAll('[data-mix="' + part.id + '"]').forEach(function(w){ paintMixer(w, part); });
+  applyPartLevel(part); saveDraft();
+}
+
 function clearLoopTimer() { if (loopTimer) { clearTimeout(loopTimer); loopTimer = null; } }
 
-// Re-trigger the primed buffer exactly one musical pass after the downbeat, using the
-// audio clock (not onEnded) so repeats stay locked to the beat with no accumulating drift.
+// Re-trigger the primed buffers exactly one musical pass after the downbeat. The timer only
+// wakes up a little early; the repeat itself is scheduled on the audio clock, so a late
+// setTimeout (busy tab, slow device) cannot delay the downbeat and cause a stutter.
+var LOOP_LOOKAHEAD = 0.2;   // seconds
 function startLoopScheduler() {
   clearLoopTimer();
   var k = 1;
@@ -1071,10 +1126,10 @@ function startLoopScheduler() {
     if (!isPlaying || !loopOn() || !synthControl) { clearLoopTimer(); return; }
     // Skip any boundaries already in the past (e.g. loop toggled on mid-pass).
     while (loopAnchor + k * loopPeriod <= audioCtx.currentTime + 0.005) k++;
-    var delayMs = Math.max(0, (loopAnchor + k * loopPeriod - audioCtx.currentTime) * 1000);
+    var delayMs = Math.max(0, (loopAnchor + k * loopPeriod - LOOP_LOOKAHEAD - audioCtx.currentTime) * 1000);
     loopTimer = setTimeout(function() {
       if (!isPlaying || !loopOn() || !synthControl) { clearLoopTimer(); return; }
-      try { synthControl.start(); } catch(e) { stopPlayback(); return; }
+      try { synthControl.start(loopAnchor + k * loopPeriod); } catch(e) { stopPlayback(); return; }
       k++;
       schedule();
     }, delayMs);
@@ -1090,16 +1145,38 @@ async function togglePlay() {
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     if (audioCtx.state === 'suspended') await audioCtx.resume();
     playBtn.textContent = '▶ Loading…'; playBtn.disabled = true;
-    var synth = new ABCJS.synth.CreateSynth();
-    await synth.init({ audioContext: audioCtx, visualObj: currentTune,
-      // ABCJS pads the rendered buffer with a short release tail, so waiting for
-      // onEnded to loop lands each repeat late. Looping is driven by the precise
-      // audio-clock scheduler instead; onEnded only stops a non-looping pass.
-      options: { onEnded: function(){
-        if (!isPlaying || loopOn()) return;
-        stopPlayback();
-      } } });
-    await synth.prime();
+    partGains = {};
+    var voices = await Promise.all(orderedParts().filter(partHasContent).map(async function(part){
+      var s = new ABCJS.synth.CreateSynth();
+      await s.init({ audioContext: audioCtx, visualObj: ABCJS.renderAbc('*', generateScoreABC(part))[0],
+        options: {} });   // abcjs prime() reads options.swing, so options must exist
+      await s.prime();
+      var gain = audioCtx.createGain();
+      gain.gain.value = partLevel(part);
+      gain.connect(audioCtx.destination);
+      partGains[part.id] = gain;
+      return { buffer: s.getAudioBuffer(), gain: gain };
+    }));
+    var sources = new Set(), lastSrc = null;
+    var synth = {
+      // Every part starts at the same audio-clock time, so the parts stay sample-aligned.
+      start: function(when){
+        var t = when || audioCtx.currentTime;
+        voices.forEach(function(v){
+          var src = audioCtx.createBufferSource();
+          src.buffer = v.buffer; src.connect(v.gain); src.start(t);
+          sources.add(src); lastSrc = src;
+          // ABCJS pads the rendered buffer with a short release tail, so waiting for
+          // onended to loop lands each repeat late. Looping is driven by the precise
+          // audio-clock scheduler instead; onended only stops a non-looping pass.
+          src.onended = function(){
+            sources.delete(src);
+            if (src === lastSrc && isPlaying && !loopOn() && synthControl === synth) stopPlayback();
+          };
+        });
+      },
+      stop: function(){ sources.forEach(function(src){ try { src.stop(); } catch(e){} }); sources.clear(); },
+    };
 
     // Count-off plays one bar of clicks before the first pass only.
     if (countOffOn()) {
@@ -1109,10 +1186,10 @@ async function togglePlay() {
       if (!isPlaying) { try { synth.stop(); } catch(e){} return; }
     }
 
-    synth.start();
-    synthControl = synth; isPlaying = true;
     // Capture the exact downbeat and musical length so the loop restarts on the beat.
-    loopAnchor = audioCtx.currentTime;
+    loopAnchor = audioCtx.currentTime + 0.05;
+    synth.start(loopAnchor);
+    synthControl = synth; isPlaying = true;
     loopPeriod = beatsPerBar() * longestBars() * (60 / project.tempo);
     if (loopOn()) startLoopScheduler();
     playBtn.textContent = loopOn() ? '▶ Looping…' : '▶ Playing…';
@@ -1321,7 +1398,11 @@ function renderApp() {
   host.innerHTML = '';
   var Lbars = longestBars();
 
+  var strip = document.getElementById('score-mixer');
+  strip.innerHTML = '';
+
   orderedParts().forEach(function(part){
+    strip.appendChild(buildMixer(part, partName(part)));
     var card = document.createElement('div');
     card.className = 'part-card' + (part.kind === 'bordun' ? ' bordun' : '');
 
@@ -1345,6 +1426,8 @@ function renderApp() {
     instSel.addEventListener('change', function(){ part.instrumentId = this.value; renderApp(); });
     instWrap.appendChild(instSel);
     head.appendChild(instWrap);
+
+    head.appendChild(buildMixer(part, 'Volume'));
 
     // Raw ABC editor toggle
     var rawToggle = document.createElement('button');
