@@ -68,7 +68,7 @@ abc_scores:
       L:1/8
       C:arr. P. Eric Bottorff
       A: MeetThemInMusic.com
-      Q:1/4
+      Q:1/4=100
       %%gchordfont Arial 12
       %%vocalfont Arial 8
       %%staffsep 50
@@ -76,8 +76,9 @@ abc_scores:
       %%barsperstaff 4
       K:C
       V:1 name="Melody" snm="Mel."
-      V:2 clef=treble name="Alto Xylo" snm="A.X."
-      V:3 clef=bass name="Bass Xylo" snm="B.X."
+      V:2 clef=treble name="Sopr X" snm="A.X."
+      V:3 clef=treble name="Alto X" snm="A.X."
+      V:4 clef=bass name="Bass Xylo" snm="B.X."
       V:1
       c2G2 A/2A/2A/2A/2 G2 | E/2E/2E/2E/2 DE CE G2 ||
       w: Ding Dong Di-ggy di-ggy dong Di-ggy Di-ggy dong, the cat is gone!
@@ -89,10 +90,15 @@ abc_scores:
       %%center © 2026 All Rights Reserved.
       V:2
       %%MIDI program 13
-      CG CG CG CG|CG CG CG CG ||
+      E2 D2 C2 D2 |E2 D2 C2 D2 ||
       M:4/4
-      CG CG CG CG|CG CG CG CG |]
+      E2 D2 C2 D2|E2 D2 C2 D2 |]
       V:3
+      %%MIDI program 13
+      C2 D2 E2 G2 |C2 D2 E2 G2 ||
+      M:4/4
+      C2 D2 E2 G2|C2 D2 E2 G2 |]
+      V:4
       %%MIDI program 13
       [C,4G,4] [C,4G,4]|[C,4G,4] [C,4G,4]||
       M:4/4
